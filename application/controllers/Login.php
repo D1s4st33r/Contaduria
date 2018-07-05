@@ -6,31 +6,23 @@ class Login extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Login_Model');
-		$get = $this->input->get();
-		if(!empty($get)){
-			$sesionUsuario = $this->Auth_Model->verificarSesion(array('id' => $get['id'] , 'token' => $get['token'] )) ;
-			var_dump($sesionUsuario);
-			if(!empty($sesionUsuario)){
-				return $sesionUsuario;
-			}
-		}
 	}
 
 	public function index()
 	{
 		$data['titulo'] = "Login";
 		$this->load->view('templates/header');
-		$this->load->view('Login/vlogin');
+		$this->load->view('Login/index');
 		$this->load->view('templates/footer');
 	}
 
-	public function ingresoLogin()
+	public function IniciarSesion()
 	{	
 		if( !empty($this->input->post()) && 
 			!empty($this->input->post("email")) && 
 			!empty($this->input->post("clave"))
 		  )
-		{
+		{ 
 			$data["Datos"] = array('email' =>  $this->input->post("email"), 'clave'=>$this->input->post("clave"));
 			$usuario = $this->Login_Model->validaDatosUsuario($data['Datos']);
 			if($usuario)
