@@ -26,6 +26,7 @@ class Panel_admin extends MY_Controller {
 	public function index()
 	{	
 		$data['usuario'] = $this->Usuario;
+		$data['session'] = "token=".$this->session_token."&id=".$this->session_id;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$data);
 		$this->load->view('templates/footer');
