@@ -1,24 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Formularios extends CI_Controller {
+class Formularios extends  MY_Controller {
 
 	private $sessionUrl ;
 	private $ContaUrl  ;
 	public function __construct()
 	{
 		parent::__construct();
-		$get = $this->input->get();
-		if($get){
-			$sesionUsuario = $this->Auth_Model->verificarSesion(array('id' => $get['id'] , 'token' => $get['token'] )) ;
-			if(!$sesionUsuario){
-				redirect('Login','refresh');
-			}
-			$this->sessionUrl = '?id='.$get['id']."&token=".$get['token'];
-			//$this->ContaUrl = base_url() .$this->sessionUrl;
-		}else{
-			redirect('Login','refresh');
-		}
 		$this->load->model('Formularios_Model');	
 	}
 

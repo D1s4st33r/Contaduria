@@ -2,48 +2,58 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Login_Model');
-		$get = $this->input->get();
-		if(!empty($get)){
-			$sesionUsuario = $this->Auth_Model->verificarSesion(array('id' => $get['id'] , 'token' => $get['token'] )) ;
-			var_dump($sesionUsuario);
-			if(!empty($sesionUsuario)){
-				return $sesionUsuario;
-			}
-		}
 	}
 
 	public function index()
 	{
 		$data['titulo'] = "Login";
+		$get = $this->input->get();
+		if(isset($get['error_login']) && !empty($get['error_login'])){
+			$data["error_login"] = $get["error_login"];
+		}
+		
 		$this->load->view('templates/header');
-		$this->load->view('Login/vlogin');
+		$this->load->view('Login/index',$data);
 		$this->load->view('templates/footer');
 	}
 
-	public function ingresoLogin()
+	/**
+	 * [IniciorSesion][ metodo que valida el usuario que debe ser un correo y una clave y le asigna sesion o le actualiza ]
+	 * @param [array] [Post por variable global $_POST o en CI $this->input->post() ] 
+	 * @var empty($this->input->post("email") & empty($this->input->post("clave") son obligatorias 
+	 */
+	public function IniciarSesion()
 	{	
+		// si existe $_POST['email'] & $_POST['email'] y no estan vacias entra
 		if( !empty($this->input->post()) && 
 			!empty($this->input->post("email")) && 
 			!empty($this->input->post("clave"))
 		  )
-		{
-			$data["Datos"] = array('email' =>  $this->input->post("email"), 'clave'=>$this->input->post("clave"));
-			$usuario = $this->Login_Model->validaDatosUsuario($data['Datos']);
+		{ 
+			$data["datos"] = array('email' =>  $this->input->post("email"), 
+									'clave'=>$this->input->post("clave")
+							);
+							
+			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
 			if($usuario)
 			{	
-				$url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
+				echo $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
+				
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
-					redirect('Panel_admin'.$url,'refresh');	
+					echo $usuario[0]['roll'];
+					unset($usuario[0]['roll']);
+					redirect('Panel_admin/index'.$url,'refresh');	
 				}
-				redirect('Formularios/General'.$url,'refresh');	
+				unset($usuario[0]['roll']);
+				//redirect('Formularios/General'.$url,'refresh');	
 			}else{
-				redirect('Login','refresh');
-					
+				redirect('Login/index?error_login=acceso','refresh');
 			}
 
 		}else{
