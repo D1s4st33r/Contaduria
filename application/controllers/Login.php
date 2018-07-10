@@ -19,6 +19,7 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		$data['titulo'] = "Registro";
+		$data1['titulo'] = "Registro";
 		$this->load->view('templates/header');
 		$this->load->view('Registro/vlogin');
 		$this->load->view('templates/footer');
