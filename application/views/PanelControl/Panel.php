@@ -3,7 +3,7 @@
 ?>
     <?php
       $this->load->view("PanelControl/components/PanelMenu",array("usuario"=>$usuario,"session"=>$session));
-      //$this->load->view("PanelControl/components/PanelLinks");
+      // $this->load->view("PanelControl/components/PanelLinks");
     ?>
     <?php
 

@@ -8,7 +8,7 @@
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="<?php echo base_url("Panel_admin");echo "?". $session;?>"> Panel </a>
+            <a class="nav-link" href="<?php echo base_url("Panel_admin");echo $session;?>"> Panel </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Notifications</a>
