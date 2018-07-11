@@ -8,6 +8,17 @@
             overflow-y: scroll;
             max-height: 400px;
           }
+          .seccion-pre{
+            text-align: left;
+            float:left;
+            margin-left:0;
+          }
+          .grupo-bot{
+            
+            text-align: right;
+            float:right;
+            margin-right:0;
+          }
         </style>
 
       <?php 
@@ -53,6 +64,7 @@
               $label_id_html = str_replace($chars, "-",  $valores['seccion']); 
               echo '<div class="card">                                   <!-- div de seccion -->
                       <div class="card-header" id="'. $label_id_html.'">    <!-- div header de seccion -->
+                      <div class="seccion-pre" id="'. $label_id_html.'">
                         <h5 class="mb-0">     
                         <!-- Button de seccion -->                                <!-- titulo de seccion -->
                           <button class="btn btn-link"';
@@ -64,8 +76,13 @@
                             '.strtoupper($valores['seccion']).'
                           </button>                                             <!-- fin Button de seccion -->
                         </h5>                                                 <!-- Fin de titulo -->
+                        </div>
+                        <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary btn-sm" >Añadir</button>
+            <button type="button" class="btn btn-primary btn-sm">Actualizar</button>
+            <button type="button" class="btn btn-primary btn-sm">Eliminar</button>
+            </div>
                       </div>                                                <!-- fin div header seccion -->
-
                       <div id="'.$label_id_html.'1'.'" class="collapse '  ; 
                        if($collapse_activo) 
                        {
@@ -79,9 +96,13 @@
                       $div_abierto = true;
 
           }
-            echo '<div> 
-            <br>'.
-                $estatica_numerica."-.".$valores['texto']; 
+            echo '<div id="'.$valores['id'].'"> 
+            <br> <br>'.
+                $estatica_numerica."-.".$valores['texto'];
+                echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-success btn-sm">Actualizar</button>
+                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                </div>';
             echo '</div>';
           $estatica_numerica++;
       }

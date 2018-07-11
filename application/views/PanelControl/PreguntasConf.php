@@ -73,9 +73,9 @@
             ?>
             </div>
             <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary">Left</button>
-            <button type="button" class="btn btn-secondary">Middle</button>
-            <button type="button" class="btn btn-secondary">Right</button>
+            <button type="button" class="btn btn-secondary btn-sm" >Añadir</button>
+            <button type="button" class="btn btn-secondary btn-sm">Actualizar</button>
+            <button type="button" class="btn btn-secondary btn-sm">Eliminar</button>
             </div>
 			    
 			  </div>
