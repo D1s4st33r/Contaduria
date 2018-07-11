@@ -96,11 +96,15 @@ class Login_Model extends CI_Model {
 		if($count)
 		{
 			$this->db->where('usuario_id', $id);
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 			$this->db->update("sessiones",$session);
 		}else{
 			$session['usuario_id'] = $id;
 			$this->db->insert('sessiones', $session);
+<<<<<<< HEAD
 
 			$this->db->update("sessiones", array("token" => $this->GenerarToken() ,
 											"expira" => (time()+(60*60)),
@@ -114,6 +118,8 @@ class Login_Model extends CI_Model {
 												'ultimaSession' => $this->date
 												));
 
+=======
+>>>>>>> master
 		}
 
 	}

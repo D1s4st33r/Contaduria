@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * [Panel_admin] [Clase] [esta clase es solo para el administador]
  */
 	class Panel_user extends MY_Controller {
-	protected $nivelAcceso = 0 ;
+	protected $nivelAcceso = 2 ;
 	protected $Usuario = array();
 
 	public function __construct()

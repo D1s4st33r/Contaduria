@@ -25,6 +25,9 @@
      <?php 
      $this->load->view('PanelControl/components/ContadoresUsuarios');
      ?>
+     <?php 
+     $this->load->view('PanelControl/components/ContadoresUsuarios');
+     ?>
      </div>
     </main>
     

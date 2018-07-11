@@ -42,7 +42,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view("PanelControl/components/perfilActualizacion",$data);
 	 }
 
-<<<<<<< HEAD
 	 public function configuracionPreguntas()
 	 {
 		 $data['titulo']="";
@@ -90,7 +89,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}	
 		}
 	// Fin funciones AJAX
-=======
->>>>>>> david
 }
 
