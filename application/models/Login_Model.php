@@ -5,7 +5,7 @@ class Login_Model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
-	}	
+	}
 
 	/**
 	 * [validaDatosUsuario] [valida que el usuario Exista]
@@ -18,32 +18,32 @@ class Login_Model extends CI_Model {
 		if(!empty($datos)){
 			if($datos[0]['clave'] == $Datos['clave'])
 			{
-				unset($datos[0]['clave']); 
+				unset($datos[0]['clave']);
 				$this->crearSession($datos[0]['id']);
 				$datos[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$datos[0]['id'])->get()->result_array()[0]['token'];
 				return $datos;
-			} 
+			}
 		}else{
 			return false;
 		}
 	}
-	
+
 	public function crearSession($id)
 	{
-		$this->db->insert('sessiones', array("usuario_id" => $id, 
-													 "token" => $this->GenerarToken() , 
+		$this->db->insert('sessiones', array("usuario_id" => $id,
+													 "token" => $this->GenerarToken() ,
 													 "expira" => (time()+(60*60*3))
 													)
 								);
 	}
 
 	public function usuarioById($id){
-		
+
 		$datos = $this->db->select('*')->from('usuario')->where('id',$id)->get()->result_array();
 		$datos[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$datos[0]['id']);
 		return $datos[0];
 	}
-	//fin GenerarToken	
+	//fin GenerarToken
 	public function GenerarToken()
 	{
 		$dia = date("d");
