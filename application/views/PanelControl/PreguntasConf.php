@@ -5,5 +5,5 @@
       $this->load->view("PanelControl/components/PanelMenu",array("usuario"=>$usuario,"session"=>$session));
     ?>
 <div role="main" class="container">
-    
+
 </div>

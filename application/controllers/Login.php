@@ -11,24 +11,26 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-<<<<<<< HEAD
+
 		$data['titulo'] = "Registro";
 		$this->load->view('templates/header');
-		$this->load->view('Registro/vlogin');
+		$this->load->view('Login/index');
 		$this->load->view('templates/footer');
 	}
 
 	public function ingresoLogin()
 	{
 		if( !empty($this->input->post()) &&
-			!empty($this->input->post("email")) &&
-=======
+			!empty($this->input->post("email")){
+
 		$data['titulo'] = "Login";
 		$get = $this->input->get();
+	}
 		if(isset($get['error_login']) && !empty($get['error_login'])){
 			$data["error_login"] = $get["error_login"];
 		}
 		
+
 		$this->load->view('templates/header');
 		$this->load->view('Login/index',$data);
 		$this->load->view('templates/footer');
@@ -36,25 +38,25 @@ class Login extends CI_Controller {
 
 	/**
 	 * [IniciorSesion][ metodo que valida el usuario que debe ser un correo y una clave y le asigna sesion o le actualiza ]
-	 * @param [array] [Post por variable global $_POST o en CI $this->input->post() ] 
-	 * @var empty($this->input->post("email") & empty($this->input->post("clave") son obligatorias 
+	 * @param [array] [Post por variable global $_POST o en CI $this->input->post() ]
+	 * @var empty($this->input->post("email") & empty($this->input->post("clave") son obligatorias
 	 */
 	public function IniciarSesion()
-	{	
+	{
 		// si existe $_POST['email'] & $_POST['email'] y no estan vacias entra
-		if( !empty($this->input->post()) && 
-			!empty($this->input->post("email")) && 
->>>>>>> master
+		if( !empty($this->input->post()) &&
+			!empty($this->input->post("email")) &&
+
 			!empty($this->input->post("clave"))
 		  )
-		{ 
-			$data["datos"] = array('email' =>  $this->input->post("email"), 
+		{
+			$data["datos"] = array('email' =>  $this->input->post("email"),
 									'clave'=>$this->input->post("clave")
 							);
-							
+
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
 			if($usuario)
-<<<<<<< HEAD
+
 			{
 				$url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
 				if ( ((int)$usuario[0]['roll']) == 0 )
@@ -65,21 +67,21 @@ class Login extends CI_Controller {
 			}else{
 				redirect('Registro','refresh');
 
-=======
-			{	
+
+			{
 				echo $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
-				
+
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
 					echo $usuario[0]['roll'];
 					unset($usuario[0]['roll']);
-					redirect('Panel_admin/index'.$url,'refresh');	
+					redirect('Panel_admin/index'.$url,'refresh');
 				}
 				unset($usuario[0]['roll']);
-				//redirect('Formularios/General'.$url,'refresh');	
+				//redirect('Formularios/General'.$url,'refresh');
 			}else{
 				redirect('Login/index?error_login=acceso','refresh');
->>>>>>> master
+
 			}
 
 		}else{
