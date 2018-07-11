@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-07-2018 a las 22:28:18
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 11-07-2018 a las 01:16:26
+-- Versión del servidor: 10.1.32-MariaDB
+-- Versión de PHP: 5.6.36
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -691,24 +691,17 @@ CREATE TABLE `sessiones` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `token` varchar(255) NOT NULL,
-  `ip_addresses` text,
-  `expira` varchar(20) NOT NULL
+  `direccionIP` text,
+  `expira` varchar(20) NOT NULL,
+  `ultimaSession` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sessiones`
 --
 
-INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `ip_addresses`, `expira`) VALUES
-(34, 1, '95bb92325ab93e396ea72622', NULL, '1530705430'),
-(35, 1, '50240f0741b1a3d707b6d0dc', NULL, '1530705506'),
-(36, 1, '4a9656d3128b68b6bf4ac809', NULL, '1530744709'),
-(37, 1, '7e2934133980ff7224064f13', NULL, '1530744730'),
-(38, 1, 'da9b2dfc215124cde760a3b7', NULL, '1530744749'),
-(39, 1, 'e7ec3cc5c8704461c7bc55d2', NULL, '1530744855'),
-(40, 1, 'd41b5d7ba100f6d5fc89d75d', NULL, '1530745114'),
-(41, 1, 'b5234790d7e7fb75a38987a2', NULL, '1530745424'),
-(42, 1, '65816210d9deb516ba7ad3e0', NULL, '1530745575');
+INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
+(72, 1, '38f9c2bea97f71121d1f4ee1', '::1', '1531267847', 'Martes 10 de Julio 2018 06:10:47 PM');
 
 -- --------------------------------------------------------
 
@@ -731,7 +724,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
-(1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483647, '123456789', 1);
+(1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483647, '123456789', 0);
 
 --
 -- Índices para tablas volcadas
@@ -782,16 +775,19 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `preguntas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=577;
+
 --
 -- AUTO_INCREMENT de la tabla `sessiones`
 --
 ALTER TABLE `sessiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

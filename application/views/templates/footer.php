@@ -7,7 +7,10 @@
 </footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="<?php echo  base_url();?>public/js/jquery-3.3.1.slim.min.js" ></script>
+	<script src="<?php echo  base_url();?>public/js/jquery.min.js" ></script>
 	<script src="<?php echo  base_url();?>public/js/bootstrap.min.js"></script>
+	<script src="<?php echo  base_url();?>public/js/holder.min.js"></script>
+	<script src="<?php echo  base_url();?>public/js/offcanvas.js"></script>
+	<script src="<?php echo  base_url();?>public/js/app.js"></script>
 </body>
 </html>
