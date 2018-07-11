@@ -50,8 +50,11 @@ class Login extends CI_Controller {
 					redirect('Panel_admin/index'.$url,'refresh');
 				}
 				if(((int)$usuario[0]['roll']) == 2 )
-				unset($usuario[0]['roll']);
-				redirect('Panel_user/index'.$url,'refresh');
+				{
+					unset($usuario[0]['roll']);
+					redirect('Panel_user/index'.$url,'refresh');
+				}
+				
 			}else{
 				redirect('Login/index?error_login=acceso','refresh');
 			}
