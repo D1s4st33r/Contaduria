@@ -24,13 +24,5 @@
 
       </p>
     </div>
-    <div class=" pt-1 col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Contraseña</strong>
-        <?php echo "********************"; ?>
-      </p>
     </div>
-    <small class="d-block text-right mt-3">
-      <button onclick="return hacerCambio('perfil','<?php echo base_url("Panel_admin/getActualizacionPerfil");echo $session;?>')">Actualizar Datos</button>
-    </small>
   </div>
