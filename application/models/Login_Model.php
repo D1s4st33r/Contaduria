@@ -46,7 +46,7 @@ class Login_Model extends CI_Model {
 			}
 			//$this->date =str_replace($vowels, "", $this->date);
 		parent::__construct();
-	}	
+	}
 
 	/**
 	 * [validaDatosUsuario] [valida que el usuario Exista]
@@ -63,9 +63,14 @@ class Login_Model extends CI_Model {
 		if(!empty($usuario)){
 			if($usuario[0]['clave'] == $datos['clave'])
 			{
-				unset($usuario[0]['clave']); 
+				unset($usuario[0]['clave']);
 				$this->initSession($usuario[0]['id']);
-				$usuario[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$usuario[0]['id'])->get()->result_array()[0]['token'];
+				$token =  $this->db->select('token')
+									->from('sessiones')
+									->where('usuario_id',$usuario[0]['id'])
+									->get()
+									->result_array()[0]['token'];
+				$usuario[0]['token'] = $token;
 				return $usuario;
 			}else{
 				return false;
@@ -74,36 +79,38 @@ class Login_Model extends CI_Model {
 			return false;
 		}
 	}
-	
+
 	public function initSession($id)
-	{	
+	{
 		//if()
-		$count =(int) $this->db->select("COUNT(usuario_id)")->from('sessiones')->get()->result_array()[0]["COUNT(usuario_id)"];
+		$count = (int)$this->db->select("COUNT(id)")
+							   ->from('sessiones')
+							   ->where("usuario_id",$id)
+							   ->get()
+							   ->result_array()[0]["COUNT(id)"];
+		$session = array("token" => $this->GenerarToken() ,
+						"expira" => (time()+(60*60)),
+						"direccionIP" => $this->ip,
+						'ultimaSession' => $this->date);
+						
 		if($count)
 		{
 			$this->db->where('usuario_id', $id);
-			$this->db->update("sessiones", array("token" => $this->GenerarToken() , 
-											"expira" => (time()+(60*60)),
-											"direccionIP" => $this->ip, 
-											'ultimaSession' => $this->date));
+			$this->db->update("sessiones",$session);
 		}else{
-			$this->db->insert('sessiones', array("usuario_id" => $id, 
-												"token" => $this->GenerarToken() , 
-												"expira" => (time()+(60*60)),// una hora de session
-												"direccionIP" => $this->ip, 
-												'ultimaSession' => $this->date
-												));
+			$session['usuario_id'] = $id;
+			$this->db->insert('sessiones', $session);
 		}
 
 	}
 
 	public function usuarioById($id){
-		
+
 		$datos = $this->db->select('*')->from('usuario')->where('id',$id)->get()->result_array();
 		$datos[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$datos[0]['id']);
 		return $datos[0];
 	}
-	//fin GenerarToken	
+	//fin GenerarToken
 	public function GenerarToken()
 	{
 		$dia = date("d");

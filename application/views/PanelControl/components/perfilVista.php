@@ -1,5 +1,5 @@
 
-<div class="my-3 p-3 bg-white rounded box-shadow container" id ="perfil">
+
   <h6 class="border-bottom border-gray pb-2 mb-0">Perfil</h6>
   <div class="row">
     <div class=" pt-3 col ">
@@ -25,8 +25,10 @@
         <?php echo "********************"; ?>
       </p>
     </div>
-    <small class="d-block text-right mt-3">
-      <button onclick="return hacerCambio('perfil','<?php echo base_url("Panel_admin/getActualizacionPerfil");echo $session;?>')">Actualizar Datos</button> 
-    </small>
+    <div class=" pt-1 col-lg-4">
+      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
+      <button  type="button" class="btn btn-primary" onclick="return hacerCambio('perfil','<?php echo base_url("Panel_admin/getActualizacionPerfil");echo $session;?>')">Editar</button> 
+      </p>
+    </div>
+    
   </div>
-</div>
