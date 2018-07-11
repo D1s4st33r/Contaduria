@@ -33,8 +33,7 @@ class Login extends CI_Controller {
 		if( !empty($this->input->post()) &&
 			!empty($this->input->post("email")) &&
 			!empty($this->input->post("clave"))
-		  )
-		{
+		){
 			$data["datos"] = array('email' =>  $this->input->post("email"),
 									'clave'=>$this->input->post("clave")
 							);
@@ -42,20 +41,20 @@ class Login extends CI_Controller {
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
 			if($usuario)
 			{
-<<<<<<< HEAD
+
 				 $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
-=======
+
 				echo $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
->>>>>>> david
+
 
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
 					unset($usuario[0]['roll']);
-<<<<<<< HEAD
+
 					redirect('Panel_admin/index'.$url,'refresh');
-=======
+
 					redirect('Panel_user/index'.$url,'refresh');
->>>>>>> david
+
 				}
 				unset($usuario[0]['roll']);
 				//redirect('Formularios/General'.$url,'refresh');

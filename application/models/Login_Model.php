@@ -92,16 +92,16 @@ class Login_Model extends CI_Model {
 						"expira" => (time()+(60*60)),
 						"direccionIP" => $this->ip,
 						'ultimaSession' => $this->date);
-						
+
 		if($count)
 		{
 			$this->db->where('usuario_id', $id);
-<<<<<<< HEAD
+
 			$this->db->update("sessiones",$session);
 		}else{
 			$session['usuario_id'] = $id;
 			$this->db->insert('sessiones', $session);
-=======
+
 			$this->db->update("sessiones", array("token" => $this->GenerarToken() ,
 											"expira" => (time()+(60*60)),
 											"direccionIP" => $this->ip,
@@ -113,7 +113,7 @@ class Login_Model extends CI_Model {
 												"direccionIP" => $this->ip,
 												'ultimaSession' => $this->date
 												));
->>>>>>> david
+
 		}
 
 	}
