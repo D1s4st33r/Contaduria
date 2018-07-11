@@ -63,25 +63,25 @@ class Login_Model extends CI_Model {
 		if(!empty($usuario)){
 			if($usuario[0]['clave'] == $datos['clave'])
 			{
-<<<<<<< HEAD
+
 				unset($datos[0]['clave']);
 				$this->crearSession($datos[0]['id']);
 				$datos[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$datos[0]['id'])->get()->result_array()[0]['token'];
 				return $datos;
-=======
-				unset($usuario[0]['clave']); 
+
+				unset($usuario[0]['clave']);
 				$this->initSession($usuario[0]['id']);
 				$usuario[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$usuario[0]['id'])->get()->result_array()[0]['token'];
 				return $usuario;
 			}else{
 				return false;
->>>>>>> master
+
 			}
 		}else{
 			return false;
 		}
 	}
-<<<<<<< HEAD
+
 
 	public function crearSession($id)
 	{
@@ -90,29 +90,29 @@ class Login_Model extends CI_Model {
 													 "expira" => (time()+(60*60*3))
 													)
 								);
-=======
-	
+							}
+
+
 	public function initSession($id)
-	{	
+	{
 		//if()
 		$count =(int) $this->db->select("COUNT(usuario_id)")->from('sessiones')->get()->result_array()[0]["COUNT(usuario_id)"];
 		if($count)
 		{
 			$this->db->where('usuario_id', $id);
-			$this->db->update("sessiones", array("token" => $this->GenerarToken() , 
+			$this->db->update("sessiones", array("token" => $this->GenerarToken() ,
 											"expira" => (time()+(60*60)),
-											"direccionIP" => $this->ip, 
+											"direccionIP" => $this->ip,
 											'ultimaSession' => $this->date));
 		}else{
-			$this->db->insert('sessiones', array("usuario_id" => $id, 
-												"token" => $this->GenerarToken() , 
+			$this->db->insert('sessiones', array("usuario_id" => $id,
+												"token" => $this->GenerarToken() ,
 												"expira" => (time()+(60*60)),// una hora de session
-												"direccionIP" => $this->ip, 
+												"direccionIP" => $this->ip,
 												'ultimaSession' => $this->date
 												));
 		}
 
->>>>>>> master
 	}
 
 	public function usuarioById($id){
