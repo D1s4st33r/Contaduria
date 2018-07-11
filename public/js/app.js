@@ -9,10 +9,9 @@ function hacerCambio(divById ,url)
 
         },
         success: function(data){
-        
+
             $("#"+divById).html("");
             $("#"+divById).html(data);
         }
     });
 }
-

@@ -63,35 +63,17 @@ class Login_Model extends CI_Model {
 		if(!empty($usuario)){
 			if($usuario[0]['clave'] == $datos['clave'])
 			{
-
-				unset($datos[0]['clave']);
-				$this->crearSession($datos[0]['id']);
-				$datos[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$datos[0]['id'])->get()->result_array()[0]['token'];
-				return $datos;
-
 				unset($usuario[0]['clave']);
 				$this->initSession($usuario[0]['id']);
 				$usuario[0]["token"] =  $this->db->select('token')->from('sessiones')->where('usuario_id',$usuario[0]['id'])->get()->result_array()[0]['token'];
 				return $usuario;
 			}else{
 				return false;
-
 			}
 		}else{
 			return false;
 		}
 	}
-
-
-	public function crearSession($id)
-	{
-		$this->db->insert('sessiones', array("usuario_id" => $id,
-													 "token" => $this->GenerarToken() ,
-													 "expira" => (time()+(60*60*3))
-													)
-								);
-							}
-
 
 	public function initSession($id)
 	{

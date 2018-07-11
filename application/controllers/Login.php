@@ -48,7 +48,7 @@ class Login extends CI_Controller {
 				{
 					echo $usuario[0]['roll'];
 					unset($usuario[0]['roll']);
-					redirect('Panel_admin/index'.$url,'refresh');
+					redirect('Panel_user/index'.$url,'refresh');
 				}
 				unset($usuario[0]['roll']);
 				//redirect('Formularios/General'.$url,'refresh');

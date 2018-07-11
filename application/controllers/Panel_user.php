@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * [Panel_admin] [Clase] [esta clase es solo para el administador]
  */
-	class Panel_admin extends MY_Controller {
+	class Panel_user extends MY_Controller {
 	protected $nivelAcceso = 0 ;
 	protected $Usuario = array();
 
@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['usuario'] = $this->Usuario;
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$data);
+		$this->load->view('PanelUser/Panel',$data);
 		$this->load->view('templates/footer');
 	}
 
@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 {
 		$data['usuario'] = $this->Usuario;
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-		$this->load->view("PanelControl/components/perfilActualizacion",$data);
+		$this->load->view("PanelUser/components_user/perfilActualizacion",$data);
 	 }
 
 }
