@@ -17,4 +17,10 @@ class Paneles_Model extends CI_Model
         return $usuario;	
     }
 
+    public function actualizarDatosUsuario($usuario)
+    {
+        $hecho = $this->db->update('usuario', $usuario);
+        return $hecho;
+        
+    }
 }

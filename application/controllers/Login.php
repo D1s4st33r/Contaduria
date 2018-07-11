@@ -42,11 +42,10 @@ class Login extends CI_Controller {
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
 			if($usuario)
 			{	
-				echo $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
+				 $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
 				
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
-					echo $usuario[0]['roll'];
 					unset($usuario[0]['roll']);
 					redirect('Panel_admin/index'.$url,'refresh');	
 				}

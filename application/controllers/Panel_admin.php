@@ -35,11 +35,40 @@ class Panel_admin extends MY_Controller {
 	/**
 	 * Funciones AJAX
 	 */
-	 public function getActualizacionPerfil()
-	 {
-		$data['usuario'] = $this->Usuario;
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-		$this->load->view("PanelControl/components/perfilActualizacion",$data);	
-	 }
-	 
+		public function getActualizacionPerfil()
+		{
+			$data['usuario'] = $this->Usuario;
+			$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+			$this->load->view("PanelControl/components/perfilActualizacion",$data);	
+		}
+		
+		public function ActualizarPerfil()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['nombre']) && !empty($post['nombre'])
+				&& isset($post['apellido'])&& !empty($post['apellido'])
+				&& isset($post['email'])&& !empty($post['email'])
+				&& isset($post['telefono']) && !empty($post['telefono'])
+			){
+				$us = 	array(
+					"nombre" => $post['nombre'],
+					"apellido" => $post['apellido'],
+					"email" => $post['email'],
+					"telefono" => $post['telefono']
+				);
+				$hecho = $this->Paneles_Model->actualizarDatosUsuario($us);
+				if($hecho){
+					$this->Usuario=$this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
+					$data['usuario'] = $this->Usuario;
+					$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+					$this->load->view("PanelControl/components/perfilVista",$data);	
+				}else{
+				$this->getActualizacionPerfil();	
+				}
+			}else{
+			$this->getActualizacionPerfil();	
+			}	
+		}
+	// Fin funciones AJAX
 }
