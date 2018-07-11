@@ -64,7 +64,7 @@ class Panel_admin extends MY_Controller {
 					$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 					$this->load->view("PanelControl/components/perfilVista",$data);	
 				}else{
-				$this->getActualizacionPerfil();	
+				
 				}
 			}else{
 			$this->getActualizacionPerfil();	
@@ -72,3 +72,4 @@ class Panel_admin extends MY_Controller {
 		}
 	// Fin funciones AJAX
 }
+

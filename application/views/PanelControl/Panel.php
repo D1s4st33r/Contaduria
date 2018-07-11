@@ -22,5 +22,9 @@
      $this->load->view('PanelControl/components/perfilVista');
      ?>
      </div>
+     <?php 
+     $this->load->view('PanelControl/components/ContadoresUsuarios');
+     ?>
+     </div>
     </main>
     
