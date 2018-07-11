@@ -11,7 +11,7 @@
             <a class="nav-link" href="<?php echo base_url("Panel_admin");echo $session;?>"> Panel </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="<?php echo base_url("Formularios/contable");echo $session;?>">Notifications</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Profile</a>
@@ -21,7 +21,7 @@
           </li>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Questions</a>
+            <a class="nav-link" href="<?php echo base_url("Panel_admin/configuracionPreguntas");echo $session.'&cat=ind';?>">Questions</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>

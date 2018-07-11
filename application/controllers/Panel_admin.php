@@ -41,5 +41,22 @@ class Panel_admin extends MY_Controller {
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 		$this->load->view("PanelControl/components/perfilActualizacion",$data);	
 	 }
+
+	 public function configuracionPreguntas()
+	 {
+		 $data['titulo']="";
+		$data['usuario'] = $this->Usuario;
+		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+		$data['categorias']=$this->Paneles_Model->getCategorias();
+		$data['secciones']=$this->Paneles_Model->getSecciones();
+		$data['preguntas']=$this->Paneles_Model->getPreguntas();
+		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
+		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
+		if($_GET['cat']!="ind"){$data['specific']=$this->Paneles_Model->getSpecificPreguntas(strtoupper($_GET['cat']));$data["titulo"]=strtoupper($_GET['cat']);}
+		$this->load->view('templates/headerLimpio');
+		$this->load->view('PanelControl/PreguntasConf',$data);
+		if($_GET['cat']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
+		$this->load->view('templates/footer');
+	 }
 	 
 }

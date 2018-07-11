@@ -17,13 +17,57 @@ class Paneles_Model extends CI_Model
         return $usuario;	
     }
 
-    public function getSeccionsQuestions()
+    public function getCategorias()
     {
-        $seccions=$this->db->select("seccion")
-        ->from("preguntas")
+        $seccions=$this->db->select("categoria")
+        ->from("categorias_preguntas")
         ->get()
         ->result_array();
         return $seccions;
+    }
+
+    public function getSecciones()
+    {
+        $categories=$this->db->select("seccion")
+        ->from("secciones_preguntas")
+        ->get()
+        ->result_array();
+        return $categories;
+    }
+
+    public function getPreguntas()
+    {
+        $preguntas=$this->db->select("categoria,seccion,texto")
+        ->from("preguntas")
+        ->get()
+        ->result_array();
+        return $preguntas;
+    }
+
+    public function getSpecificPreguntas($categoria)
+    {
+        $dato = $this->db->select('id,seccion,texto')->from('preguntas')->where('categoria',$categoria)->get()->result_array();
+			return $dato;
+    }
+
+    public function getSoliArchivo()
+    {
+        $categories=$this->db->select("id_pregunta")
+        ->from("detalles_preguntas")
+        ->where('soliarchivo',1)
+        ->get()
+        ->result_array();
+        return $categories;
+    }
+
+    public function getObliArchivo()
+    {
+        $obligatorio=$this->db->select("id_pregunta")
+        ->from("detalles_preguntas")
+        ->where('obligatorio',1)
+        ->get()
+        ->result_array();
+        return $obligatorio;
     }
 
 }
