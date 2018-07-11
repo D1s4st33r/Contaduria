@@ -40,6 +40,7 @@ class Login extends CI_Controller {
 							);
 
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
+			
 			if($usuario)
 			{
 				 $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
