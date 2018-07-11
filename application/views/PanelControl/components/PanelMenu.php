@@ -19,6 +19,10 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Switch account</a>
           </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Questions</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">

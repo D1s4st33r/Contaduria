@@ -17,4 +17,13 @@ class Paneles_Model extends CI_Model
         return $usuario;	
     }
 
+    public function getSeccionsQuestions()
+    {
+        $seccions=$this->db->select("seccion")
+        ->from("preguntas")
+        ->get()
+        ->result_array();
+        return $seccions;
+    }
+
 }
