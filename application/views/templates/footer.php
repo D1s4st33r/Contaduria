@@ -2,7 +2,7 @@
 </div>
 <footer class="footer container-fluid">
 	<div class="container">
-		<small>Todos los derechos reservados 2018.</small>	
+		<small>Todos los derechos reservados 2018.</small>
 	</div>
 </footer>
 <!-- Optional JavaScript -->
@@ -12,5 +12,6 @@
 	<script src="<?php echo  base_url();?>public/js/holder.min.js"></script>
 	<script src="<?php echo  base_url();?>public/js/offcanvas.js"></script>
 	<script src="<?php echo  base_url();?>public/js/app.js"></script>
+
 </body>
 </html>

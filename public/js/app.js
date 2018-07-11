@@ -9,12 +9,13 @@ function hacerCambio(divById ,url)
 
         },
         success: function(data){
-        
+
             $("#"+divById).html("");
             $("#"+divById).html(data);
         }
     });
 }
+<<<<<<< HEAD
 var divPerfil ="";
 function hacerCambiosPostAsy(datosPost,urlDes,div)
 {
@@ -50,3 +51,5 @@ function actualizarDatosUsuario(url)
     }
     
 }
+=======
+>>>>>>> david

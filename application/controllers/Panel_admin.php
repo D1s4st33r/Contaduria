@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * [Panel_admin] [Clase] [esta clase es solo para el administador] 
+ * [Panel_admin] [Clase] [esta clase es solo para el administador]
  */
-class Panel_admin extends MY_Controller {
+	class Panel_admin extends MY_Controller {
 	protected $nivelAcceso = 0 ;
 	protected $Usuario = array();
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -24,7 +24,7 @@ class Panel_admin extends MY_Controller {
 	}
 
 	public function index()
-	{	
+	{
 		$data['usuario'] = $this->Usuario;
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 		$this->load->view('templates/headerLimpio');
@@ -39,9 +39,10 @@ class Panel_admin extends MY_Controller {
 	 {
 		$data['usuario'] = $this->Usuario;
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-		$this->load->view("PanelControl/components/perfilActualizacion",$data);	
+		$this->load->view("PanelControl/components/perfilActualizacion",$data);
 	 }
 
+<<<<<<< HEAD
 	 public function configuracionPreguntas()
 	 {
 		 $data['titulo']="";
@@ -89,5 +90,7 @@ class Panel_admin extends MY_Controller {
 			}	
 		}
 	// Fin funciones AJAX
+=======
+>>>>>>> david
 }
 
