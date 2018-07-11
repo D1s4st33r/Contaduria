@@ -17,7 +17,6 @@ class Paneles_Model extends CI_Model
         return $usuario;	
     }
 
-<<<<<<< HEAD
     public function getCategorias()
     {
         $seccions=$this->db->select("categoria")
@@ -71,12 +70,10 @@ class Paneles_Model extends CI_Model
         return $obligatorio;
     }
 
-=======
     public function actualizarDatosUsuario($usuario)
     {
         $hecho = $this->db->update('usuario', $usuario);
         return $hecho;
         
     }
->>>>>>> isaac
 }
