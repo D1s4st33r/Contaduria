@@ -35,7 +35,6 @@ class Panel_admin extends MY_Controller {
 	/**
 	 * Funciones AJAX
 	 */
-<<<<<<< HEAD
 	 public function getActualizacionPerfil()
 	 {
 		$data['usuario'] = $this->Usuario;
@@ -60,13 +59,6 @@ class Panel_admin extends MY_Controller {
 		$this->load->view('templates/footer');
 	 }
 	 
-=======
-		public function getActualizacionPerfil()
-		{
-			$data['usuario'] = $this->Usuario;
-			$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-			$this->load->view("PanelControl/components/perfilActualizacion",$data);	
-		}
 		
 		public function ActualizarPerfil()
 		{
@@ -97,6 +89,5 @@ class Panel_admin extends MY_Controller {
 			}	
 		}
 	// Fin funciones AJAX
->>>>>>> isaac
 }
 
