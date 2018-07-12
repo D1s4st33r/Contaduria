@@ -52,4 +52,6 @@ class Auth_Model extends CI_Model
 			return ((int)$roll);
 		}
 
+		
+
 }

@@ -3,9 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * [Panel_admin] [Clase] [esta clase es solo para el administador]
+ * tipos de Usuarios
+ * Administrador = roll 0
+ * Contador  = roll 1
+ * Cliente = roll 2
  */
 	class Panel_admin extends MY_Controller {
-	protected $nivelAcceso = 0 ;
+	protected $nivelAcceso = "Administrador" ;
 	protected $Usuario = array();
 
 	public function __construct()
@@ -14,8 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		//extendido de core/MY_Contoller.php
 		//$this->session_token;
 		// $this->session_id;
-		$roll_usuario = $this->Auth_Model->getRollById($this->session_id);
-		if($this->nivelAcceso != $roll_usuario)
+		
+		if($this->nivelAcceso != $this->session_tipo)
 		{
 			redirect('Login/index?error_login=session','refresh');
 		}
@@ -26,6 +30,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function index()
 	{
 		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$data);
@@ -38,6 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 public function getActualizacionPerfil()
 	 {
 		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 		$this->load->view("PanelControl/components/perfilActualizacion",$data);
 	 }
@@ -46,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 {
 		 $data['titulo']="";
 		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 		$data['categorias']=$this->Paneles_Model->getCategorias();
 		$data['secciones']=$this->Paneles_Model->getSecciones();
@@ -79,6 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				if($hecho){
 					$this->Usuario=$this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
 					$data['usuario'] = $this->Usuario;
+					$data['usuario'] += array("tipo" => $this->session_tipo);
 					$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 					$this->load->view("PanelControl/components/perfilVista",$data);	
 				}else{
