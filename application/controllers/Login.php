@@ -40,19 +40,29 @@ class Login extends CI_Controller {
 							);
 
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
+			
 			if($usuario)
 			{
 				 $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
+<<<<<<< HEAD
 				echo $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
+=======
+>>>>>>> master
 
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
 					unset($usuario[0]['roll']);
 					redirect('Panel_admin/index'.$url,'refresh');
+<<<<<<< HEAD
+=======
+				}
+				if(((int)$usuario[0]['roll']) == 2 )
+				{
+					unset($usuario[0]['roll']);
+>>>>>>> master
 					redirect('Panel_user/index'.$url,'refresh');
 				}
-				unset($usuario[0]['roll']);
-				//redirect('Formularios/General'.$url,'refresh');
+				
 			}else{
 				redirect('Login/index?error_login=acceso','refresh');
 			}

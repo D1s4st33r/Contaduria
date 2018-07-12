@@ -96,24 +96,10 @@ class Login_Model extends CI_Model {
 		if($count)
 		{
 			$this->db->where('usuario_id', $id);
-<<<<<<< HEAD
 			$this->db->update("sessiones",$session);
 		}else{
 			$session['usuario_id'] = $id;
 			$this->db->insert('sessiones', $session);
-=======
-			$this->db->update("sessiones", array("token" => $this->GenerarToken() ,
-											"expira" => (time()+(60*60)),
-											"direccionIP" => $this->ip,
-											'ultimaSession' => $this->date));
-		}else{
-			$this->db->insert('sessiones', array("usuario_id" => $id,
-												"token" => $this->GenerarToken() ,
-												"expira" => (time()+(60*60)),// una hora de session
-												"direccionIP" => $this->ip,
-												'ultimaSession' => $this->date
-												));
->>>>>>> david
 		}
 
 	}
@@ -139,9 +125,7 @@ class Login_Model extends CI_Model {
 		$mezclaMD5 = md5($masMescla.$diamesaniotiempo);
 		return substr(sha1($mezclaMD5), 16);
 	}
-
-
-
+	
 	public function zona_horaria_set(){
 		date_default_timezone_set('America/Cancun');
 	}
