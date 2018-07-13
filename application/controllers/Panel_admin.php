@@ -29,6 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function index()
 	{
+		$data['menu'] = "Panel" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();

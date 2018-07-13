@@ -94,10 +94,15 @@ class Paneles_Model extends CI_Model
                   ->where("roll",2)
                   ->get()
                   ->result_array()[0]["COUNT(id)"];
+        $empresa = $this->db->select('COUNT(rfc)')
+                  ->from("empresa")
+                  ->get()
+                  ->result_array()[0]["COUNT(rfc)"];
         $usuarios= array(
             "Administradores" => $sumaAdmin,
             "Contadores" => $sumaEmContadores,
-            "Clientes" => $sumaClientes
+            "Clientes" => $sumaClientes,
+            "Empresas" => $empresa
         );
         return $usuarios;
     }

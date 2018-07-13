@@ -1,8 +1,8 @@
-<div class="col p-0">
+<div class="col-12 p-0">
   <?php $this->load->view("PanelControl/components/TituloPanel"); ?>
 </div>
 
-<div class="col p-0">
+<div class="col-12 p-0">
   <div class="my-3 p-3 bg-white rounded box-shadow container">
     <div class="row">
     
@@ -51,7 +51,7 @@
         
       <br />
       <div class="col-12 mb-1">
-        <h4 class="p-2"> 
+        <h4 class="p-2 bg-light text-dark"> 
           <i class="fas fa-key fa-md"></i>  Cambiar Contraseña
         </h4>
         <hr>

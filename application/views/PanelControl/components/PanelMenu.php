@@ -7,24 +7,25 @@
 
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="<?php echo base_url("Panel_admin");echo $session;?>"> Panel </a>
+          <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Panel") ) ? "active" : "" ; ?>">
+            <a class="nav-link" href="<?php echo base_url("PanelDeControl");echo $session;?>"> Panel </a>
+          </li>
+          <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Contadores") ) ? "active" : "" ; ?>">
+            <a class="nav-link" href="<?php echo base_url("PanelDeControl");echo $session;?>"> Contadores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url("Formularios/contable");echo $session;?>">Notifications</a>
+            <a class="nav-link" href="#"> Clientes </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="<?php echo base_url("Panel_admin/configuracionPreguntas");echo $session.'&cat=ind';?>"> Boveda  </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Switch account</a>
-          </li>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url("Panel_admin/configuracionPreguntas");echo $session.'&cat=ind';?>">Questions</a>
+            <a class="nav-link" href="<?php echo base_url("Formularios/contable");echo $session;?>"> </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Configuraciones</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">Action</a>
               <a class="dropdown-item" href="#">Another action</a>

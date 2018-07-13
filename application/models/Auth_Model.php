@@ -23,8 +23,15 @@ class Auth_Model extends CI_Model
 						get()->result_array();
 			if($sesion) // session
 			{	
-				if( ( (int)$sesion[0]["expira"]) > time()){
-					if($sesion[0]["token"] == $Credenciales['token']){ return true;}
+				if( ( (int)$sesion[0]["expira"]) > time())
+				{	
+					if($sesion[0]["token"] == $Credenciales['token'])
+					{ 
+						$this->db->where('usuario_id', $id);
+						$this->db->update("sessiones",array("expira" => (time()+(60*60))));
+						
+						return true;
+					}
 					else{	return array("error_login"=>"session");}
 				}
 				else{ return array("error_login"=>"tiempo"); }
