@@ -29,7 +29,6 @@ class Auth_Model extends CI_Model
 					{ 
 						$this->db->where('usuario_id', $id);
 						$this->db->update("sessiones",array("expira" => (time()+(60*60))));
-						
 						return true;
 					}
 					else{	return array("error_login"=>"session");}

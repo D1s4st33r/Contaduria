@@ -52,6 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Login';
 /* $route['de_donde_vienes'] = "controlador/metodo"; */
 $route['PanelDeControl'] = 'Panel_admin/index';
+$route['ControlContadores'] = 'Panel_admin/Contadores';
+$route['ActualizarPerfil'] = 'Panel_admin/getActualizacionPerfil';
+$route['AgregarContador'] = 'Panel_admin/FormularioEmpContador';
 $route['Login'] ="Login/index";
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';

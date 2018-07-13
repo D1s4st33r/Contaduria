@@ -106,4 +106,17 @@ class Paneles_Model extends CI_Model
         );
         return $usuarios;
     }
+
+    public function getContadoresEmp()
+    {
+        $sumaEmContadores = $this->db->select('COUNT(id)')
+            ->from("usuario")
+            ->where("roll",1)
+            ->get()
+            ->result_array()[0]["COUNT(id)"];
+        $usuarios= array(
+            "Contadores" => $sumaEmContadores
+        );
+        return $usuarios;
+    }
 }

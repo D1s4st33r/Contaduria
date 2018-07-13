@@ -39,16 +39,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('templates/footer');
 	}
 
-	/**
-	 * Funciones AJAX
-	 */
-	 public function getActualizacionPerfil()
-	 {
+	public function Contadores()
+	{
+		$data['menu'] = "Contadores" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-		$this->load->view("PanelControl/components/perfilActualizacion",$data);
-	 }
+		$this->load->view('templates/headerLimpio');
+		$this->load->view('PanelControl/Panel',$data);
+		$this->load->view('templates/footer');
+	}
 
 	 public function configuracionPreguntas()
 	 {
@@ -68,7 +69,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('templates/footer');
 	 }
 	 
+	
+	/**
+	 * Funciones AJAX
+	 */
+		public function getActualizacionPerfil()
+		{
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+			$this->load->view("PanelControl/components/perfilActualizacion",$data);
+		}
 		
+		public function FormularioEmpContador()
+		{
+			$this->load->view("PanelControl/components/RegistroContadores");	
+		}
 		public function ActualizarPerfil()
 		{
 			$post = $this->input->post();

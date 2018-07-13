@@ -30,7 +30,6 @@ function hacerCambiosPostAsy(datosPost,urlDes,div)
     });
 }
 
-
 function actualizarDatosUsuario(url)
 {
    nombre_ = $("#nombre").val();
