@@ -4,13 +4,14 @@
       <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Panel") ) ? "active" : "" ; ?>">
             <a class="nav-link" href="<?php echo base_url("PanelDeControl");echo $session;?>"> Panel </a>
           </li>
           <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Contadores") ) ? "active" : "" ; ?>">
-            <a class="nav-link" href="<?php echo base_url("ControlContadores");echo $session;?>"> Contadores</a>
+            <a class="nav-link" href="<?php echo base_url("PanelDeControl");echo $session;?>"> Contadores</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"> Clientes </a>
