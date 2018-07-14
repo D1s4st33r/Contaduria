@@ -42,4 +42,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view("PanelUser/components_user/perfilActualizacion",$data);
 	 }
 
+	 public function registrar_empresa()
+	 {
+ 
+	 
+		$data['usuario'] = $this->Usuario;
+		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+		 
+		 $data['sessionUrl'] = $this->sessionUrl;
+		 $this->load->view('templates/header');
+		 $this->load->view('PanelUser/Panel');	
+		 $this->load->view('templates/footer');
+ 
+	 }
+
 }

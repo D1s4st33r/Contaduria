@@ -11,6 +11,16 @@ class Formularios extends  MY_Controller {
 		$this->load->model('Formularios_Model');	
 	}
 
+	public function General()
+	{
+		$data['titulo'] = "General";
+		$data['sessionUrl'] = $this->sessionUrl;
+		$this->load->view('templates/header');
+		$this->load->view('formularios/menuSecciones',$data);
+		$this->load->view('formularios/index');
+		$this->load->view('templates/footer');
+	}
+
 	public function legal()
 	{
 		$data['titulo'] = "Legal";
@@ -40,15 +50,7 @@ class Formularios extends  MY_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function General()
-	{
-		$data['titulo'] = "General";
-		$data['sessionUrl'] = $this->sessionUrl;
-		$this->load->view('templates/header');
-		$this->load->view('formularios/menuSecciones',$data);
-		$this->load->view('formularios/index');
-		$this->load->view('templates/footer');
-	}
+
 
 	public function Contable()
 	{
@@ -93,4 +95,7 @@ class Formularios extends  MY_Controller {
 		$this->load->view('formularios/fiscal',$data);
 		$this->load->view('templates/footer');
 	}
+	
+
+
 }

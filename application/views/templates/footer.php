@@ -12,6 +12,7 @@
 	<script src="<?php echo  base_url();?>public/js/holder.min.js"></script>
 	<script src="<?php echo  base_url();?>public/js/offcanvas.js"></script>
 	<script src="<?php echo  base_url();?>public/js/app.js"></script>
+	<script src="<?php echo  base_url();?>public/js/Res_Empresa.js"></script>
 
 </body>
 </html>
