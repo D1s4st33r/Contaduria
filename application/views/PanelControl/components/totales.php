@@ -26,7 +26,11 @@
         <div class="col-auto pb-3 mb-0 small lh-125 border-bottom border-gray">
           <div class="d-flex justify-content-between align-items-center w-100">
             <strong class="text-gray-dark">'. $key.'</strong>
-            <a href="#">Ver</a>
+            <a href="';
+            if($key == "Contadores"){
+              echo base_url("ControlContadores").$session;
+            }
+            echo '"> <i class="fas fa-eye fa-lg"></i> </a>
           </div>
           <span class="d-block"> Total Registrados '.$value.'</span>
         </div>
