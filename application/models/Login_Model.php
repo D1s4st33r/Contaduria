@@ -125,9 +125,7 @@ class Login_Model extends CI_Model {
 		$mezclaMD5 = md5($masMescla.$diamesaniotiempo);
 		return substr(sha1($mezclaMD5), 16);
 	}
-
-
-
+	
 	public function zona_horaria_set(){
 		date_default_timezone_set('America/Cancun');
 	}

@@ -33,12 +33,22 @@ class Login extends CI_Controller {
 		if( !empty($this->input->post()) &&
 			!empty($this->input->post("email")) &&
 			!empty($this->input->post("clave"))
+<<<<<<< HEAD
 		){
 			$data["datos"] = array('email' =>  $this->input->post("email"),
 									'clave'=>$this->input->post("clave")
 							);
+=======
+		  )
+		{
+			$data["datos"] = array(
+				'email' =>  $this->input->post("email"),	
+				'clave'=>$this->input->post("clave")
+			);
+>>>>>>> master
 
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
+			
 			if($usuario)
 			{
 				 $url = '?token='.$usuario[0]['token']."&id=".$usuario[0]['id'];
@@ -46,15 +56,21 @@ class Login extends CI_Controller {
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
 					unset($usuario[0]['roll']);
-					redirect('Panel_admin/index'.$url,'refresh');
+					redirect('PanelDeControl'.$url,'refresh');
 				}
 				if(((int)$usuario[0]['roll']) == 2 )
+<<<<<<< HEAD
 				unset($usuario[0]['roll']);
 				redirect('Formularios/General'.$url,'refresh');
+=======
+				{
+					unset($usuario[0]['roll']);
+					redirect('Panel_user/index'.$url,'refresh');
+				}
+>>>>>>> master
 			}else{
-				redirect('Login/index?error_login=acceso','refresh');
+				redirect('Login?error_login=acceso','refresh');
 			}
-
 		}else{
 			redirect('Login','refresh');
 		}

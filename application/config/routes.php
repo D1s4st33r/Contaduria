@@ -50,6 +50,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Login';
+/* $route['de_donde_vienes'] = "controlador/metodo"; */
+$route['PanelDeControl'] = 'Panel_admin/index';
+$route['ControlContadores'] = 'Panel_admin/Contadores';
+$route['ActualizarPerfil'] = 'Panel_admin/getActualizacionPerfil';//ActualizarUsuarioById
+$route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
+$route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
+$route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
+$route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
+$route['Login'] ="Login/index";
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

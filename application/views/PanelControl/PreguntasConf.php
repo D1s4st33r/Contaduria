@@ -13,7 +13,6 @@
           }
         </style>
 <div role="main" class="container">
-<<<<<<< HEAD
 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-lgBlue rounded box-shadow">
         <!-- <img class="mr-3" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48"> -->
     <div class="lh-100">
@@ -83,7 +82,3 @@
 			</nav>
 	  	</div>
   	</div>
-=======
-
-</div>
->>>>>>> david

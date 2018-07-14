@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 11-07-2018 a las 01:16:26
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 5.6.36
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-07-2018 a las 23:07:43
+-- Versión del servidor: 10.1.33-MariaDB
+-- Versión de PHP: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,49 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `contaduria`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `catalogo_preguntas`
+--
+
+CREATE TABLE `catalogo_preguntas` (
+  `id` int(11) NOT NULL,
+  `tipo` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `catalogo_preguntas`
+--
+
+INSERT INTO `catalogo_preguntas` (`id`, `tipo`) VALUES
+(1, 'checkbox'),
+(2, 'radius'),
+(3, 'textbox'),
+(4, 'combobox');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categorias_preguntas`
+--
+
+CREATE TABLE `categorias_preguntas` (
+  `id` int(11) NOT NULL,
+  `categoria` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categorias_preguntas`
+--
+
+INSERT INTO `categorias_preguntas` (`id`, `categoria`) VALUES
+(1, 'contable'),
+(2, 'fiscal'),
+(3, 'laboral'),
+(4, 'legal'),
+(5, 'seguridad social');
 
 -- --------------------------------------------------------
 
@@ -44,6 +87,7 @@ CREATE TABLE `detalles_preguntas` (
   `id_pregunta` int(11) NOT NULL,
   `tipo` varchar(255) NOT NULL,
   `obligatorio` int(1) NOT NULL,
+  `soliarchivo` int(1) NOT NULL,
   `preguntaOpcional` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -684,6 +728,17 @@ CREATE TABLE `resultados` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `secciones_preguntas`
+--
+
+CREATE TABLE `secciones_preguntas` (
+  `id` int(11) NOT NULL,
+  `seccion` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `sessiones`
 --
 
@@ -701,7 +756,7 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-(72, 1, '38f9c2bea97f71121d1f4ee1', '::1', '1531267847', 'Martes 10 de Julio 2018 06:10:47 PM');
+(72, 1, '4d5a09a527b852af9067af37', '::1', '1531345045', 'Miércoles 11 de Julio 2018 03:37:25 PM');
 
 -- --------------------------------------------------------
 
@@ -729,6 +784,18 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`,
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `catalogo_preguntas`
+--
+ALTER TABLE `catalogo_preguntas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `categorias_preguntas`
+--
+ALTER TABLE `categorias_preguntas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `contrato`
@@ -769,6 +836,18 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `catalogo_preguntas`
+--
+ALTER TABLE `catalogo_preguntas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `categorias_preguntas`
+--
+ALTER TABLE `categorias_preguntas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
