@@ -119,4 +119,34 @@ class Paneles_Model extends CI_Model
         );
         return $usuarios;
     }
+    public function getContadoresEmpleados()
+    {
+
+        $Empleados = $this->db->select('id,nombre,apellido,email,telefono')
+            ->from("usuario")
+            ->where("roll",1)
+            ->get()
+            ->result_array();
+        
+        $usuarios= array(
+            "Contadores" => $Empleados
+        );
+        return $usuarios;
+    }
+    public function actualizarUsuarioById($usuario,$id)
+    {
+        $registrado = $this->db->where('id', $id)->update("usuario",$usuario);
+        return $registrado;
+    }
+    public function EliminarUsuarioById($id)
+    {
+        $registrado = $this->db->where('id', $id)->delete('usuario');
+        return $registrado;
+    }
+    public function RegistrarContador($datos)
+    {
+        $datos['roll'] = 1;
+        $registrado = $this->db->insert('usuario', $datos);
+        return $registrado;   
+    }
 }

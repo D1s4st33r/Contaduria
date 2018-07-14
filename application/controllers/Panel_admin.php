@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$data);
 		$this->load->view('templates/footer');
@@ -45,7 +45,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+		if($data['estadisticas']['Contadores'])
+		{ 
+			$data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados();
+		}
+		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$data);
 		$this->load->view('templates/footer');
@@ -56,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		 $data['titulo']="";
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+		$data['session'] = $this->session;
 		$data['categorias']=$this->Paneles_Model->getCategorias();
 		$data['secciones']=$this->Paneles_Model->getSecciones();
 		$data['preguntas']=$this->Paneles_Model->getPreguntas();
@@ -77,14 +81,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+			$data['session'] = $this->session;
 			$this->load->view("PanelControl/components/perfilActualizacion",$data);
 		}
 		
 		public function FormularioEmpContador()
 		{
-			$this->load->view("PanelControl/components/RegistroContadores");	
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/RegistroContadores",$data);	
+		}	
+		
+		public function AgregarEmpleado()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['nombre']) && !empty($post['nombre'])
+				&& isset($post['apellido'])&& !empty($post['apellido'])
+				&& isset($post['email'])&& !empty($post['email'])
+				&& isset($post['telefono']) && !empty($post['telefono'])
+				&& isset($post['clave']) && !empty($post['clave'])
+			){
+				$us = 	array(
+					"nombre" => $post['nombre'],
+					"apellido" => $post['apellido'],
+					"email" => $post['email'],
+					"telefono" => $post['telefono'],
+					"clave" => $post['clave']
+				);
+				$hecho = $this->Paneles_Model->RegistrarContador($us);
+				if($hecho){
+					$data['usuario'] = $this->Usuario;
+					$data['usuario'] += array("tipo" => $this->session_tipo);
+					$data['session'] = $this->session;
+					$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
+					if($data['estadisticas']['Contadores']){ $data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
+					$this->load->view("PanelControl/components/ContadoresCRUD",$data);	
+				}
+			}
+			
 		}
+
 		public function ActualizarPerfil()
 		{
 			$post = $this->input->post();
@@ -105,7 +143,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$this->Usuario=$this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
 					$data['usuario'] = $this->Usuario;
 					$data['usuario'] += array("tipo" => $this->session_tipo);
-					$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+					$data['session'] = $this->session;
 					$this->load->view("PanelControl/components/perfilVista",$data);	
 				}else{
 				
@@ -113,6 +151,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}else{
 			$this->getActualizacionPerfil();	
 			}	
+		}
+		public function EliminarUsuarioById()
+		{
+			$post = $this->input->post();
+			if(!empty($post) && isset($post['id']) && !empty($post['id'])){
+				$hecho = $this->Paneles_Model->EliminarUsuarioById($post['id']);
+				if($hecho){
+					$data['usuario'] = $this->Usuario;
+					$data['usuario'] += array("tipo" => $this->session_tipo);
+					$data['session'] = $this->session;
+					$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
+					if($data['estadisticas']['Contadores']){ $data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
+					$this->load->view("PanelControl/components/ContadoresCRUD",$data);
+				}	
+			}
+		}
+		public function ActualizarUsuarioById()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['id']) && !empty($post['id'])
+				&& isset($post['nombre']) && !empty($post['nombre'])
+				&& isset($post['apellido'])&& !empty($post['apellido'])
+				&& isset($post['email'])&& !empty($post['email'])
+				&& isset($post['telefono']) && !empty($post['telefono'])
+			){
+				$us = 	array(
+					"nombre" => $post['nombre'],
+					"apellido" => $post['apellido'],
+					"email" => $post['email'],
+					"telefono" => $post['telefono']
+				);
+				$hecho = $this->Paneles_Model->actualizarUsuarioById($us,$post['id']);
+				if($hecho){
+					$data['usuario'] = $this->Usuario;
+					$data['usuario'] += array("tipo" => $this->session_tipo);
+					$data['session'] = $this->session;
+					$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
+					if($data['estadisticas']['Contadores']){ $data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
+					$this->load->view("PanelControl/components/ContadoresCRUD",$data);	
+				}
+			}
 		}
 	// Fin funciones AJAX
 }

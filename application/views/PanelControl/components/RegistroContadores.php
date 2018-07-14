@@ -1,5 +1,6 @@
+
 <div class="container">
-    <div class="row">
+    <div class="row m-1 border rounded  pt-2 pb-2">
         <div class=" col-sm col-md-6 col-lg-3 ">
             <div class="form-group">
             <label for="nombre"><b> Nombre</b></label>
@@ -27,11 +28,17 @@
             <input type="text" class="form-control" name="telefono" id="telefono" >
             </div>
         </div>
+        <div class=" col-sm col-md-6 col-lg-3 ">
+            <div class="form-group">
+            <label for="contrasena"><b> Contraseña </b></label>
+            <input type="password" class="form-control" name="clave" id="contrasena" >
+            </div>
+        </div>
       
 
       <div class=" col-12 ">
         <div class="form-group">
-        <button  type="button" class="btn btn-primary" >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Contador</button> 
+        <button  type="button" class="btn btn-primary" onclick="return AgregarUsuario('<?php echo base_url("AgregarContador").$session;?>')" >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Contador</button> 
         </div>
       </div>  
     </div>
