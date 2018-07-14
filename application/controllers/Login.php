@@ -33,19 +33,12 @@ class Login extends CI_Controller {
 		if( !empty($this->input->post()) &&
 			!empty($this->input->post("email")) &&
 			!empty($this->input->post("clave"))
-<<<<<<< HEAD
-		){
-			$data["datos"] = array('email' =>  $this->input->post("email"),
-									'clave'=>$this->input->post("clave")
-							);
-=======
 		  )
 		{
 			$data["datos"] = array(
 				'email' =>  $this->input->post("email"),	
 				'clave'=>$this->input->post("clave")
 			);
->>>>>>> master
 
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
 			
@@ -59,15 +52,10 @@ class Login extends CI_Controller {
 					redirect('PanelDeControl'.$url,'refresh');
 				}
 				if(((int)$usuario[0]['roll']) == 2 )
-<<<<<<< HEAD
-				unset($usuario[0]['roll']);
-				redirect('Formularios/General'.$url,'refresh');
-=======
 				{
 					unset($usuario[0]['roll']);
 					redirect('Panel_user/index'.$url,'refresh');
 				}
->>>>>>> master
 			}else{
 				redirect('Login?error_login=acceso','refresh');
 			}
