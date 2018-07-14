@@ -71,11 +71,12 @@
               echo '<a class=" '; if($titulo ==strtoupper($valores["categoria"]) ){echo "btn btn-secondary active";}else{echo " nav-item nav-link";}echo' "href="'.base_url("Panel_admin/configuracionPreguntas").$session.'&cat='.strtoupper($valores["categoria"]).'" >'.strtoupper($valores["categoria"]).'</a> ';    
             }
             ?>
-            </div>
+           </div>
+           <div class="col-md"></div>
             <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-sm" >Añadir</button>
-            <button type="button" class="btn btn-secondary btn-sm">Actualizar</button>
-            <button type="button" class="btn btn-secondary btn-sm">Eliminar</button>
+            <button type="button" class="btn btn-secondary btn-sm" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
 			    
 			  </div>
