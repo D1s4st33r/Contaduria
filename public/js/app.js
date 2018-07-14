@@ -15,10 +15,6 @@ function hacerCambio(divById ,url)
         }
     });
 }
-<<<<<<< HEAD
-
-
-=======
 var divPerfil ="";
 function hacerCambiosPostAsy(datosPost,urlDes,div)
 {
@@ -121,4 +117,3 @@ function EliminarUsuario(iddiv,url)
     }
     
 }
->>>>>>> master
