@@ -76,4 +76,77 @@ class Paneles_Model extends CI_Model
         return $hecho;
         
     }
+
+    public function getContadoresUsuarios()
+    {
+        $sumaAdmin = $this->db->select('COUNT(id)')
+                  ->from("usuario")
+                  ->where("roll",0)
+                  ->get()
+                  ->result_array()[0]["COUNT(id)"];
+        $sumaEmContadores = $this->db->select('COUNT(id)')
+                  ->from("usuario")
+                  ->where("roll",1)
+                  ->get()
+                  ->result_array()[0]["COUNT(id)"];
+        $sumaClientes = $this->db->select('COUNT(id)')
+                  ->from("usuario")
+                  ->where("roll",2)
+                  ->get()
+                  ->result_array()[0]["COUNT(id)"];
+        $empresa = $this->db->select('COUNT(rfc)')
+                  ->from("empresa")
+                  ->get()
+                  ->result_array()[0]["COUNT(rfc)"];
+        $usuarios= array(
+            "Administradores" => $sumaAdmin,
+            "Contadores" => $sumaEmContadores,
+            "Clientes" => $sumaClientes,
+            "Empresas" => $empresa
+        );
+        return $usuarios;
+    }
+
+    public function getContadoresEmp()
+    {
+        $sumaEmContadores = $this->db->select('COUNT(id)')
+            ->from("usuario")
+            ->where("roll",1)
+            ->get()
+            ->result_array()[0]["COUNT(id)"];
+        $usuarios= array(
+            "Contadores" => $sumaEmContadores
+        );
+        return $usuarios;
+    }
+    public function getContadoresEmpleados()
+    {
+
+        $Empleados = $this->db->select('id,nombre,apellido,email,telefono')
+            ->from("usuario")
+            ->where("roll",1)
+            ->get()
+            ->result_array();
+        
+        $usuarios= array(
+            "Contadores" => $Empleados
+        );
+        return $usuarios;
+    }
+    public function actualizarUsuarioById($usuario,$id)
+    {
+        $registrado = $this->db->where('id', $id)->update("usuario",$usuario);
+        return $registrado;
+    }
+    public function EliminarUsuarioById($id)
+    {
+        $registrado = $this->db->where('id', $id)->delete('usuario');
+        return $registrado;
+    }
+    public function RegistrarContador($datos)
+    {
+        $datos['roll'] = 1;
+        $registrado = $this->db->insert('usuario', $datos);
+        return $registrado;   
+    }
 }

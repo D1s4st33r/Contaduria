@@ -13,7 +13,6 @@
           }
         </style>
 <div role="main" class="container">
-<<<<<<< HEAD
 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-lgBlue rounded box-shadow">
         <!-- <img class="mr-3" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48"> -->
     <div class="lh-100">
@@ -72,18 +71,15 @@
               echo '<a class=" '; if($titulo ==strtoupper($valores["categoria"]) ){echo "btn btn-secondary active";}else{echo " nav-item nav-link";}echo' "href="'.base_url("Panel_admin/configuracionPreguntas").$session.'&cat='.strtoupper($valores["categoria"]).'" >'.strtoupper($valores["categoria"]).'</a> ';    
             }
             ?>
-            </div>
+           </div>
+           <div class="col-md"></div>
             <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-sm" >Añadir</button>
-            <button type="button" class="btn btn-secondary btn-sm">Actualizar</button>
-            <button type="button" class="btn btn-secondary btn-sm">Eliminar</button>
+            <button type="button" class="btn btn-secondary btn-sm" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
 			    
 			  </div>
 			</nav>
 	  	</div>
   	</div>
-=======
-
-</div>
->>>>>>> david

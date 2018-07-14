@@ -35,9 +35,10 @@ class Login extends CI_Controller {
 			!empty($this->input->post("clave"))
 		  )
 		{
-			$data["datos"] = array('email' =>  $this->input->post("email"),
-									'clave'=>$this->input->post("clave")
-							);
+			$data["datos"] = array(
+				'email' =>  $this->input->post("email"),	
+				'clave'=>$this->input->post("clave")
+			);
 
 			$usuario = $this->Login_Model->validaDatosUsuario($data['datos']);
 			
@@ -52,9 +53,13 @@ class Login extends CI_Controller {
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
 					unset($usuario[0]['roll']);
+<<<<<<< HEAD
 					redirect('Panel_admin/index'.$url,'refresh');
 <<<<<<< HEAD
 =======
+=======
+					redirect('PanelDeControl'.$url,'refresh');
+>>>>>>> master
 				}
 				if(((int)$usuario[0]['roll']) == 2 )
 				{
@@ -62,11 +67,9 @@ class Login extends CI_Controller {
 >>>>>>> master
 					redirect('Panel_user/index'.$url,'refresh');
 				}
-				
 			}else{
-				redirect('Login/index?error_login=acceso','refresh');
+				redirect('Login?error_login=acceso','refresh');
 			}
-
 		}else{
 			redirect('Login','refresh');
 		}

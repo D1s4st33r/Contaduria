@@ -14,6 +14,7 @@
             margin-left:0;
           }
           .grupo-bot{
+            
             text-align: right;
             float:right;
             margin-right:0;
@@ -77,9 +78,9 @@
                         </h5>                                                 <!-- Fin de titulo -->
                         </div>
                         <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-sm" >Añadir</button>
+            <button type="button" class="btn btn-primary btn-sm">Actualizar</button>
+            <button type="button" class="btn btn-primary btn-sm">Eliminar</button>
             </div>
                       </div>                                                <!-- fin div header seccion -->
                       <div id="'.$label_id_html.'1'.'" class="collapse '  ; 
@@ -99,13 +100,14 @@
             <br> <br>'.
                 $estatica_numerica."-.".$valores['texto'];
                 echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></button>
-                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-success btn-sm">Actualizar</button>
+                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                 </div>';
             echo '</div>';
           $estatica_numerica++;
       }
     ?>
+  
       </div>
     </div>
   </div>
