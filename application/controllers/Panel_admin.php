@@ -55,23 +55,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('templates/footer');
 	}
 
-	 public function configuracionPreguntas()
-	 {
-		 $data['titulo']="";
-		$data['usuario'] = $this->Usuario;
-		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['session'] = $this->session;
-		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['secciones']=$this->Paneles_Model->getSecciones();
-		$data['preguntas']=$this->Paneles_Model->getPreguntas();
-		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
-		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
-		if($_GET['cat']!="ind"){$data['specific']=$this->Paneles_Model->getSpecificPreguntas(strtoupper($_GET['cat']));$data["titulo"]=strtoupper($_GET['cat']);}
+	public function configuracionPreguntas()
+	{
+		$data['menu']       = "ConfPreguntas" ;
+		$data['usuario']      = $this->Usuario;
+		$data['usuario']     += array("tipo" => $this->session_tipo);
+		$data['session']   	  = $this->session;
+		$data['categorias']   = $this->Paneles_Model->getCategorias();
+		$data['secciones']    = $this->Paneles_Model->getSecciones();
+		$data['preguntas']	  = $this->Paneles_Model->getPreguntas();
+		$data['archivos']	  = $this->Paneles_Model->getSoliArchivo();
+		$data['obligatorios'] = $this->Paneles_Model->getObliArchivo();
+		if( $_GET['cat'] != "ind" )
+		{
+			$data['specific'] = $this->Paneles_Model->getSpecificPreguntas(strtoupper($_GET['cat']));$data["titulo"]=strtoupper($_GET['cat']);
+		}
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/PreguntasConf',$data);
-		if($_GET['cat']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
+		if( $_GET['cat'] != "ind")
+		{
+			$this->load->view('PanelControl/components/preguntas',$data);
+		}
+		$this->load->view('PanelControl/Panel',$data);
 		$this->load->view('templates/footer');
-	 }
+	}
 	 
 	
 	/**

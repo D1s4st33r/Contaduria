@@ -58,6 +58,7 @@ $route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
 $route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
 $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
+$route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
 $route['Login'] ="Login/index";
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
