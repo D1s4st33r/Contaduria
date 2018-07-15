@@ -1,5 +1,10 @@
 <div class="container">
   <div class="row">
+  <div class="btn-group grupo-bot" role="group" aria-label="Basic example" style="margin-right:30px;">
+            <button type="button" class="btn btn-primary btn-sm" title="añadir seccion"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-sm" title="editar seccion"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-sm" title="eliminar seccion"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </div>
     <div class="jumbotron container">
       <div class="accordion" id="accordionExample">
         <style>
@@ -17,6 +22,7 @@
             text-align: right;
             float:right;
             margin-right:0;
+            margin-left:auto;
           }
         </style>
 
@@ -77,10 +83,10 @@
                         </h5>                                                 <!-- Fin de titulo -->
                         </div>
                         <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </div>
+            <button type="button" class="btn btn-primary btn-sm" title="añadir pregunta"><i class="fa fa-plus-square" aria-hidden="true"></i></button>';
+            //<button type="button" class="btn btn-primary btn-sm" title="editar seccion"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+            //<button type="button" class="btn btn-primary btn-sm" title="eliminar seccion"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            echo '</div>
                       </div>                                                <!-- fin div header seccion -->
                       <div id="'.$label_id_html.'1'.'" class="collapse '  ; 
                        if($collapse_activo) 
@@ -99,7 +105,7 @@
             <br> <br>'.
                 $estatica_numerica."-.".$valores['texto'];
                 echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
                 <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </div>';
             echo '</div>';

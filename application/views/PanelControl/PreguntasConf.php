@@ -57,14 +57,14 @@
 </div>
 </div>
 
-<div class="row p-1">
+<div class="container p-1" style="margin-bottom:60px;background:white;">
   		<div class="container">
 	  		<nav class="navbar navbar-expand-lg navbar-light ">
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			    <div class="navbar-nav contenedor-cat ">
+			    <div class="navbar-nav contenedor-cat " style="">
           <?php
             foreach($categorias as $cen=>$valores)
             {
@@ -72,11 +72,11 @@
             }
             ?>
            </div>
-           <div class="col-md"></div>
+           <div class="col-md" id="insert-name"><?php if($config=="categoria"){$this->load->view('PanelControl/components/cateSeccyPre');}?></div>
             <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-sm" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></i></button>
-            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary btn-sm" title="añadir categoria"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary btn-sm" title="editar nombre"><i class="fa fa-pencil-alt" aria-hidden="true"></i></i></button>
+            <button type="button" class="btn btn-secondary btn-sm" title="eliminar categoria"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
 			    
 			  </div>
