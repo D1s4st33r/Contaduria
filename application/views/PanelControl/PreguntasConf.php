@@ -72,10 +72,10 @@
             }
             ?>
            </div>
-           <div class="col-md" id="insert-name"><?php if($config=="categoria"){$this->load->view('PanelControl/components/cateSeccyPre');}?></div>
+           <div class="col-md" id="config-categoria"></div>
             <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-sm" title="añadir categoria"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-secondary btn-sm" title="editar nombre"><i class="fa fa-pencil-alt" aria-hidden="true"></i></i></button>
+            <button type="button" class="btn btn-secondary btn-sm" title="añadir categoria" onclick="return hacerCambio('config-categoria' ,'<?php echo base_url('addCategoria').$session.'&cat='.strtoupper($categoria);?>')" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary btn-sm" title="editar nombre" onclick="return hacerCambio('config-categoria' ,'<?php echo base_url('updateCategoria').$session.'&cat='.strtoupper($categoria);?>')" ><i class="fa fa-pencil-alt" aria-hidden="true"></i></i></button>
             <button type="button" class="btn btn-secondary btn-sm" title="eliminar categoria"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
 			    

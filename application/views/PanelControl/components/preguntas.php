@@ -1,9 +1,12 @@
 <div class="container">
   <div class="row">
+  <div class="panel container" style="floa">
+  <div id="config-seccion" class="col-xs" style="margin-right:0;margin-left:auto;"></div>
   <div class="btn-group grupo-bot" role="group" aria-label="Basic example" style="margin-right:30px;">
-            <button type="button" class="btn btn-primary btn-sm" title="añadir seccion"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary btn-sm" title="editar seccion"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary btn-sm" title="eliminar seccion"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-sm" title="añadir seccion" onclick="return hacerCambio('config-seccion' ,'<?php echo base_url('addSeccion').$session.'&cat='.strtoupper($categoria);?>')"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-sm" title="editar seccion" onclick="return hacerCambio('config-seccion' ,'<?php echo base_url('upSeccion').$session.'&cat='.strtoupper($categoria);?>')"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary btn-sm" title="eliminar seccion" onclick="return hacerCambio('config-seccion' ,'<?php echo base_url('deleteSeccion').$session.'&cat='.strtoupper($categoria);?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </div>
     </div>
     <div class="jumbotron container">
       <div class="accordion" id="accordionExample">
@@ -104,8 +107,9 @@
             echo '<div id="'.$valores['id'].'"> 
             <br> <br>'.
                 $estatica_numerica."-.".$valores['texto'];
+                echo '<div class="config-pregunta">< /div>';
                 echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-success btn-sm" onclick="return hacerCambio(config-seccion ,'.base_url('upPregunta').$session.'&cat='.strtoupper($categoria).')"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
                 <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </div>';
             echo '</div>';

@@ -58,7 +58,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 public function configuracionPreguntas()
 	 {
 		 $data['titulo']="";
-		 $data['config']="categoria";
+		 $data['config']="";
+		 $data['categoria']=$_GET['cat'];
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
@@ -67,10 +68,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['preguntas']=$this->Paneles_Model->getPreguntas();
 		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
 		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
-		if($_GET['cat']!="ind"){$data['specific']=$this->Paneles_Model->getSpecificPreguntas(strtoupper($_GET['cat']));$data["titulo"]=strtoupper($_GET['cat']);}
+		if($data['categoria']!="ind"){$data['specific']=$this->Paneles_Model->getSpecificPreguntas(strtoupper($_GET['cat']));$data["titulo"]=strtoupper($_GET['cat']);}
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/PreguntasConf',$data);
-		if($_GET['cat']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
+		if($data['categoria']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
 		$this->load->view('templates/footer');
 	 }
 	 
@@ -194,6 +195,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$this->load->view("PanelControl/components/ContadoresCRUD",$data);	
 				}
 			}
+		}
+
+		public function configAddCategoria()
+		{
+			$data['config']="addcategoria";
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function configUpCategoria()
+		{
+			$data['config']="upcategoria";
+			$data['catact']=$_GET['cat'];
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function configAddSeccion()
+		{
+			$data['config']="addseccion";
+			$data['catact']=$_GET['cat'];
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function configUpSeccion()
+		{
+			$data['config']="upseccion";
+			$data['catact']=$_GET['cat'];
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function configDelSeccion()
+		{
+			$data['config']="deleteseccion";
+			$data['catact']=$_GET['cat'];
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 	// Fin funciones AJAX
 }
