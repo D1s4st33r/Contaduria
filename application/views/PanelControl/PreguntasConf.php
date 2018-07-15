@@ -24,36 +24,7 @@
 <div class="my-3 p-3 bg-white rounded box-shadow container" id="perfil">
   <h6 class="border-bottom border-gray pb-2 mb-0">GENERAL ESPECIFICATION</h6>
   <div class="row">
-    <div class=" pt-1 col ">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Seccions</strong>
-        <span><?php echo count($categorias) ?></span>
-      </p>
-    </div>
-    <div class=" pt-1 col-md col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Categorias</strong>
-        <span><?php echo count($secciones)?></span>
-        </p>
-    </div>
-    <div class=" pt-1 col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Preguntas</strong>
-        <span><?php echo count($preguntas) ?></span>
-         </p>
-    </div>
-    <div class=" pt-1 col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Solicitudes de archivos</strong>
-        <span><?php echo count( $archivos) ?></span>
-        </p>
-  </div>
-  <div class=" pt-1 col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Archivos obligatorios</strong>
-        <span><?php echo count($obligatorios)?></span>
-        </p>
-  </div>
+    
 </div>
 </div>
 
@@ -71,11 +42,12 @@
               echo '<a class=" '; if($titulo ==strtoupper($valores["categoria"]) ){echo "btn btn-secondary active";}else{echo " nav-item nav-link";}echo' "href="'.base_url("Panel_admin/configuracionPreguntas").$session.'&cat='.strtoupper($valores["categoria"]).'" >'.strtoupper($valores["categoria"]).'</a> ';    
             }
             ?>
-            </div>
+           </div>
+           <div class="col-md"></div>
             <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-sm" >Añadir</button>
-            <button type="button" class="btn btn-secondary btn-sm">Actualizar</button>
-            <button type="button" class="btn btn-secondary btn-sm">Eliminar</button>
+            <button type="button" class="btn btn-secondary btn-sm" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
 			    
 			  </div>
