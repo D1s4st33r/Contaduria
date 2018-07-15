@@ -48,11 +48,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 
 		$data['usuario'] = $this->Usuario;
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-		 
-		 $data['sessionUrl'] = $this->sessionUrl;
-		 $this->load->view('templates/header');
-		 $this->load->view('PanelUser/Panel');	
-		 $this->load->view('templates/footer');
+		$data['sessionUrl'] = $this->sessionUrl;
+
+		
  
 	 }
 

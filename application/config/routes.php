@@ -59,6 +59,9 @@ $route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
 $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
 $route['Login'] ="Login/index";
+
+
+
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
