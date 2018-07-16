@@ -44,9 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	 public function registrar_empresa()
 	 {
- 
-	 
-		$data['usuario'] = $this->Usuario;
+ 		$data['usuario'] = $this->Usuario;
 		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
 		$data['sessionUrl'] = $this->sessionUrl;
 
