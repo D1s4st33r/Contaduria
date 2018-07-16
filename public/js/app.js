@@ -27,12 +27,12 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
     });
 }
 
-function routeDiv(div,url)
-{
-    hacerCambio(div,url);
+function routeDiv(div, url) {
+    hacerCambio(div, url);
 
 }
-function actualizarDatosUsuario(url,tituloPanel) {
+
+function actualizarDatosUsuario(url, tituloPanel) {
     nombre_ = $("#nombre").val();
     apellido_ = $("#apellido").val();
     telefono_ = $("#telefono").val();
@@ -45,7 +45,7 @@ function actualizarDatosUsuario(url,tituloPanel) {
             telefono: telefono_
         };
         hacerCambiosPostAsy(post, url, $("#perfil"));
-        hacerCambio("TituloPanel",tituloPanel);
+        hacerCambio("TituloPanel", tituloPanel);
 
     }
 }

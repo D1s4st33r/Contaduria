@@ -205,6 +205,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		}
 
+		public function configCancelar()
+		{
+			$data['config']="cancelar";
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
 		public function configAddCategoria()
 		{
 			$data['config']="addcategoria";

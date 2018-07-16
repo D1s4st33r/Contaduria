@@ -61,6 +61,7 @@ $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
 $route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
 $route['TituloPanel'] = 'Panel_admin/getTituloPanel';
 $route['Login'] ="Login/index";
+$route['configCancelar']="Panel_admin/configCancelar";
 $route['configAddCategoria']="Panel_admin/configAddCategoria";
 $route['addCategoria']="Panel_admin/addCategoria";
 $route['configUpdateCategoria']="Panel_admin/configUpCategoria";
