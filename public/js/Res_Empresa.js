@@ -4,6 +4,7 @@ $(document).on('submit', '#registrar', function(e)
      
         e.preventDefault();
         var formData = new FormData($("#registrar")[0]);
+        console.log( $( this ).serialize() );
      $.ajax({
 
         method: 'post',
@@ -12,11 +13,10 @@ $(document).on('submit', '#registrar', function(e)
         cache:false,
         contentType:false,
         processData:false,
-        
         success: function(respuesta){
-        alert(respuesta);
+            alert(respuesta);
 
-     }
+        }
    
 
 
