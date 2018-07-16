@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
 		if($data['categoria']!="ind"){$data['specific']=$this->Paneles_Model->getSpecificPreguntas(strtoupper($_GET['cat']));$data["titulo"]=strtoupper($_GET['cat']);$data['idcat']=$_GET['idcat'];}
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/PreguntasConf',$data);
+		$this->load->view('PanelControl/Panel',$data);
 		if($data['categoria']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
 		$this->load->view('templates/footer');
 	}
