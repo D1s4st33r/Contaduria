@@ -87,7 +87,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['session'] = $this->session;
 			$this->load->view("PanelControl/components/perfilActualizacion",$data);
 		}
-		
+		public function getTituloPanel()
+		{
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/TituloPanel",$data);
+		}
 		public function FormularioEmpContador()
 		{
 			$data['usuario'] = $this->Usuario;

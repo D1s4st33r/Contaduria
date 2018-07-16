@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col-12">
             <div class="container">
-              <div class="row">
+              <div class="row" id="TituloPanel">
               <?php 
                 $this->load->view('PanelControl/components/TituloPanel');
               ?>

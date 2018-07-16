@@ -23,7 +23,7 @@ class MY_Controller extends CI_Controller
 		 }
 		 $this->session_token = $get['token'];
 		 $this->session_id = $get['id'];
-		 $this->session="?token=".$this->session_token."&id=".$this->session_id;
+		 $this->session = "?token=".$this->session_token."&id=".$this->session_id;
 		 $roll = $this->Auth_Model->getRollById($this->session_id);
 		 if($roll == 0){
 			$this->session_tipo = "Administrador";
