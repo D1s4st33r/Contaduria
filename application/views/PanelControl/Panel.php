@@ -132,8 +132,15 @@
           </div>
         </div>
 
+      <div class="col-12">
+              <?php 
+                $this->load->view('PanelControl/components/categorias');
+              ?>
+        </div>
+
       </div>
     </div>
+
     <?php endif; ?>
 
 

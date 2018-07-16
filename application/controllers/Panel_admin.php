@@ -57,9 +57,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	 public function configuracionPreguntas()
 	 {
-		$data['menu']       = "ConfPreguntas" ;
-		$data['config']	=	"";
-		$data['idcat']	=	"";
+		$data['menu']= "ConfPreguntas" ;
+		$data['config']=	"";
+		$data['idcat']=	"";
+		$data['titulo']="";
 		$data['categoria']	=$_GET['cat'];
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
