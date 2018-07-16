@@ -24,36 +24,7 @@
 <div class="my-3 p-3 bg-white rounded box-shadow container" id="perfil">
   <h6 class="border-bottom border-gray pb-2 mb-0">GENERAL ESPECIFICATION</h6>
   <div class="row">
-    <div class=" pt-1 col ">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Seccions</strong>
-        <span><?php echo count($categorias) ?></span>
-      </p>
-    </div>
-    <div class=" pt-1 col-md col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Categorias</strong>
-        <span><?php echo count($secciones)?></span>
-        </p>
-    </div>
-    <div class=" pt-1 col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Preguntas</strong>
-        <span><?php echo count($preguntas) ?></span>
-         </p>
-    </div>
-    <div class=" pt-1 col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Solicitudes de archivos</strong>
-        <span><?php echo count( $archivos) ?></span>
-        </p>
-  </div>
-  <div class=" pt-1 col-lg-4">
-      <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Num. Archivos obligatorios</strong>
-        <span><?php echo count($obligatorios)?></span>
-        </p>
-  </div>
+    
 </div>
 </div>
 
@@ -80,6 +51,11 @@
             <button type="button" class="btn btn-secondary btn-sm" title="añadir categoria" onclick="return hacerCambio('config-categoria' ,'<?php echo base_url('configAddCategoria').$session.'&cat='.strtoupper($categoria);?>')" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-secondary btn-sm" title="editar nombre" onclick="return hacerCambio('config-categoria' ,'<?php echo base_url('configUpdateCategoria').$session.'&cat='.strtoupper($categoria);?>')" ><i class="fa fa-pencil-alt" aria-hidden="true"></i></i></button>
             <button type="button" class="btn btn-secondary btn-sm" title="eliminar categoria" onclick="return hacerCambio('config-categoria' ,'<?php echo base_url('configDeleteCategoria').$session.'&cat='.strtoupper($categoria);?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+           <div class="col-md"></div>
+            <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary btn-sm" ><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></i></button>
+            <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </div>
 			    
 			  </div>

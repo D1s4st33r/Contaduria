@@ -1,32 +1,42 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-      <a class="navbar-brand mr-auto mr-lg-0" href="">Administracion</a>
+      <a class="navbar-brand mr-auto mr-lg-0 text-white" > <i class='fas fa-user-shield fa-lg'></i></a>
       <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Panel") ) ? "active" : "" ; ?>">
-            <a class="nav-link" href="<?php echo base_url("PanelDeControl");echo $session;?>"> Panel </a>
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Panel") ) ? "active" : "" ; ?> p-1">
+            <a class="nav-link" href="<?php echo base_url("PanelDeControl");echo $session;?>"> 
+              <i class='fas fa-desktop fa-lg'></i><small> Panel </small>
+            </a>
           </li>
-          <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Contadores") ) ? "active" : "" ; ?>">
-            <a class="nav-link" href="<?php echo base_url("ControlContadores");echo $session;?>"> Contadores</a>
+          <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Contadores") ) ? "active" : "" ; ?> p-1">
+            <a class="nav-link" href="<?php echo base_url("ControlContadores");echo $session;?>">
+             <i class='fas fa-user-tie fa-lg'></i> <small>Contadores</small>
+            </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Clientes </a>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="#"> 
+              <i class='fas fa-user fa-lg'></i> <small> Clientes</small>
+             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url("Panel_admin/configuracionPreguntas");echo $session.'&cat=ind';?>"> Boveda  </a>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="#">
+              <i class='fas fa-suitcase fa-lg'></i> <small> Boveda</small>
+              </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url("Formularios/contable");echo $session;?>"> </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Configuraciones</a>
+        <!--   <li class="nav-item p-1">
+            <a class="nav-link" href="<?php echo base_url("Formularios/contable");echo $session;?>">Contables </a>
+          </li> -->
+          <li class="nav-item dropdown p-1">
+            <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+              <i class='fas fa-cog fa-lg'></i> <small>Configuraciones</small>
+            </a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="<?php echo base_url("ConfPreguntas");echo $session.'&cat=ind';?>"> Questionarios</a>
               <a class="dropdown-item" href="#">Another action</a>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>

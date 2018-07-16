@@ -58,6 +58,7 @@ $route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
 $route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
 $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
+$route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
 $route['Login'] ="Login/index";
 $route['configAddCategoria']="Panel_admin/configAddCategoria";
 $route['addCategoria']="Panel_admin/addCategoria";

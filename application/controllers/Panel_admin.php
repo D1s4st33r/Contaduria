@@ -57,10 +57,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	 public function configuracionPreguntas()
 	 {
-		 $data['titulo']="";
-		 $data['config']="";
-		 $data['idcat']="";
-		 $data['categoria']=$_GET['cat'];
+		$data['menu']       = "ConfPreguntas" ;
+		$data['config']	=	"";
+		$data['idcat']	=	"";
+		$data['categoria']	=$_GET['cat'];
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('PanelControl/PreguntasConf',$data);
 		if($data['categoria']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
 		$this->load->view('templates/footer');
-	 }
+	}
 	 
 	
 	/**
