@@ -92,7 +92,7 @@ class Login_Model extends CI_Model {
 						"expira" => (time()+(60*60)),
 						"direccionIP" => $this->ip,
 						'ultimaSession' => $this->date);
-						
+
 		if($count)
 		{
 			$this->db->where('usuario_id', $id);

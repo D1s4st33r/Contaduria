@@ -242,31 +242,7 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
           <a href="#">All suggestions</a>
         </small>
       </div>
-      <br>
-
-
-
-
-  <!-- Subir archivo ejemplo -->
-
-
-
-  <br>
-  <form  autocomplete="off" class="form-inline" id="formArchivos">
-    <center>
-      <label>Nombre del documento: </label>
-      <div class="input-group">
-        <span class="input-group-addon">
-          <i class="fa fa-file" aria-hidden="true"></i>
-        </span>
-        <input type="text" name="nombre" placeholder="Nombre del documento" class="form-control" required="required"/>
-      </div>
-      <button class="btn btn-light btn-sm" id="upFile"><i class="fa fa-upload" id="ico-btn-file" aria-hidden="true"></i></button>
-
-      <input type="file" name="archivo" id="getFile" class="hidden" required="required" accept="application/pdf" />
-      <input type="submit" form="formArchivos" id="smtArchivo" class="btn btn-success btn-sm" value="Agregar" /><br />
-    </center>
-  </form>
+    
 
 
 
@@ -279,67 +255,9 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
 
 
 
-
-        <script>
-
-        $( document ).ready(function(){
-
-          $("#upFile").on("click", function () {
-            $("#getFile").click();
-            return false;
-          });
-
-          $("#getFile").on("change", function () {
-            $("#upFile").removeClass("btn-light");
-            $("#upFile").addClass("btn-primary");
-            $("#ico-btn-file").removeClass("fa-upload");
-            $("#ico-btn-file").addClass("fa-check");
-            return false;
-          });
+      
 
 
-          $("body").on("submit", "#formArchivos", function () {
-            var formData = new FormData($("#formArchivos").get(0));
-            $("#smtArchivo").prop('disabled', true);
-            $.ajax({
-              url: base_url+"Panel_user/addFile",
-              type: "POST",
-              // dataType: "json",
-              data: formData,
-              contentType: false,
-              processData: false,
-              success: function (resultadoItem) {
-                location.reload();
-              },
-              error: function (data) {
-                $("#error").html(data['responseText']);
-              }
-            });
-            return false;
-          });
-
-
-          $(".delArchivo").on("click", function () {
-            var idArchivo = $(this).data("id");
-            $.ajax({
-              url: base_url+"Panel_user/delFile",
-              type: "POST",
-              // dataType: "json",
-              data: {idArchivo:idArchivo},
-              success: function (resultadoItem) {
-                location.reload();
-              },
-              error: function (data) {
-                $("#error").html(data['responseText']);
-              }
-            });
-            return false;
-          });
-
-
-
-
-        }); // fin funcion ready
         </script>
       </form>
 

@@ -18,3 +18,4 @@
         <div class="container">
             <img class="d-block mb-1" src="<?php echo  base_url();?>public/imagenes/logo.png" alt="" width="250" height="80">
         </div>
+</html>

@@ -12,7 +12,7 @@
 			  </button>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav">
-			      <a class="nav-item <?php if($titulo =="General" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("Formularios/general".$sessionUrl); ?>">
+			      <a class="nav-item <?php if($titulo =="General" ){echo "btn btn-secondary btn-lg btn-block";}else{echo "nav-link";} ?>" href="<?php echo base_url("Formularios/general".$sessionUrl); ?>">
 
 			      	General
 			      
