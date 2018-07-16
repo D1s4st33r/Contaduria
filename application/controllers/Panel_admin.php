@@ -326,6 +326,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 
+		public function addPregunta()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['categoria']) && !empty($post['categoria'])
+				&& isset($post['seccion']) && !empty($post['seccion'])
+				&& isset($post['texto']) && !empty($post['texto'])
+			){
+				$us = 	array(
+					"seccion"=>strtoupper($post['seccion']),
+					"categoria" => strtoupper($post['categoria']),
+					"texto"=>$post['texto']
+				);
+				$hecho = $this->Paneles_Model->registrarSeccion($us);
+				if($hecho){
+					$this->configuracionPreguntas();	
+				}
+			}
+		}
+
 		public function configUpPregunta()
 		{
 			$data['config']="uppregunta";
