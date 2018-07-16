@@ -19,7 +19,7 @@ class Paneles_Model extends CI_Model
 
     public function getCategorias()
     {
-        $seccions=$this->db->select("categoria")
+        $seccions=$this->db->select("categoria,id")
         ->from("categorias_preguntas")
         ->get()
         ->result_array();
@@ -149,4 +149,54 @@ class Paneles_Model extends CI_Model
         $registrado = $this->db->insert('usuario', $datos);
         return $registrado;   
     }
+
+    //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
+
+    public function registrarCategoria($datos)
+    {
+        $registrado= $this->db->insert('categorias_preguntas',$datos);
+        return $registrado;
+    }
+
+    public function actualizarCategoria($nombre,$id)
+    {
+        $registrado=$this->db->where('id',$id)->update("categorias_preguntas",$nombre);
+        return $registrado;
+    }
+
+    public function eliminarCategoria($id)
+    {
+        $registrado=$this->db->where('id',$id)->delete('categorias_preguntas');
+        return $registrado;
+    }
+
+    public function registrarSeccion($datos)
+    {
+        $registrado=$this->db->insert('secciones_preguntas',$datos);
+        return $registrado;
+    }
+
+    public function actualizarSeccion($nombre,$id)
+    {
+        $registrado=$this->db->where('id',$id)->update("secciones_preguntas",$nombre);
+        return $registrado;
+    }
+
+    public function eliminarSeccion($id)
+    {
+        $registrado=$this->db->where('id',$id)->delete('secciones_preguntas');
+        return $registrado;
+    }
+
+    public function registrarPregunta($datos)
+    {
+        $registrado=$this->db->insert('preguntas',$datos);
+        return $registrado;
+    }
+    public function registrarDetalles($datos)
+    {
+        $registrado=$this->db->insert('preguntas',$datos);
+        return $registrado;
+    }
+
 }

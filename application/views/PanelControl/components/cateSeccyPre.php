@@ -5,7 +5,7 @@
        <input type="text" name="categoria" class="form-control-sm" id="categoria" >
        </div>
        <button type="button" class="btn btn-danger btn-sm" style="float:right;">cancelar</button>
-       <button type="button" class="btn btn-primary btn-sm" style="float:right;">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="return agregarCategoria('config-categoria','<?php echo base_url("addCategoria").$session; ?>')">aceptar</button>
 </div>
 <?php endif; ?>
 
@@ -16,7 +16,15 @@
        <input type="text" name="categoria" class="form-control-sm" id="categoria" value=<?php echo $catact; ?>>
        </div>
        <button type="button" class="btn btn-danger btn-sm" style="float:right;">cancelar</button>
-       <button type="button" class="btn btn-primary btn-sm" style="float:right;">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="return actualizarCategoria('panel-categoria','<?php echo base_url("updateCategoria").$session; ?>')">aceptar</button>
+</div>
+<?php endif; ?>
+
+<?php if($config=="deletecategoria"): ?>
+<div class=" col-md">
+        <p><b>¿Eliminar esta categoria?</b></p>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarCategoria('panel-categoria','<?php echo base_url("deleteCategoria").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-danger btn-sm" style="">cancelar</button>
 </div>
 <?php endif; ?>
 
@@ -26,23 +34,19 @@
        <label for="seccion"><b> nueva seccion</b></label>
        <input type="text" name="seccion" class="form-control-sm" id="seccion">
        </div>
-       <button type="button" class="btn btn-primary btn-sm" style="">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return agregarSeccion('panel-seccion','<?php echo base_url("addSeccion").$session; ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" style="">cancelar</button>
 </div>
 <?php endif; ?>
 
 <?php if($config=="upseccion"): ?>
 <div class=" col-md">
-       <div class="dropdown" style="float:left;">
-       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Secciones
-       </button>
-       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-       <a class="dropdown-item" href="#">Action</a>
-       <a class="dropdown-item" href="#">Another action</a>
-       <a class="dropdown-item" href="#">Something else here</a>
-       </div>
-       </div>
+<select class="custom-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
        <div class="form-group" style="float:left;">
        <label for="seccion"><b> nuevo nombre</b></label>
        <input type="text" name="seccion" class="form-control-sm" id="seccion">
@@ -54,16 +58,12 @@
 
 <?php if($config=="deleteseccion"): ?>
 <div class=" col-md">
-<div class="dropdown" style="float:left;">
-       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Secciones
-       </button>
-       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-       <a class="dropdown-item" href="#">Action</a>
-       <a class="dropdown-item" href="#">Another action</a>
-       <a class="dropdown-item" href="#">Something else here</a>
-       </div>
-       </div>
+<select class="custom-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
        <button type="button" class="btn btn-primary btn-sm" style="">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" style="">cancelar</button>
 </div>
