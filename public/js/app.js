@@ -177,7 +177,28 @@ function agregarSeccion(iddiv, url) {
 function agregarPregunta(iddiv, url) {
     var categoria_ = "";
     var seccion_ = "";
-    var texto_ = "algo";
+    var texto_ = "pregunta";
+    var div = $("#" + iddiv);
+    var finds = div.find("input");
+    finds.each(function() {
+        if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
+        if ($(this).attr("name") == "seccion") { seccion_ = $(this).val(); }
+    });
+    if (categoria_ != "" && seccion_ != "") {
+        post = {
+            categoria: categoria_,
+            seccion: seccion_,
+            texto: texto_
+        };
+        hacerCambiosPostAsy(post, url, $("#nada"));
+        console.log(post);
+    }
+}
+
+function agregarPregunta(iddiv, url) {
+    var categoria_ = "";
+    var seccion_ = "";
+    var texto_ = "pregunta";
     var div = $("#" + iddiv);
     var finds = div.find("input");
     finds.each(function() {
