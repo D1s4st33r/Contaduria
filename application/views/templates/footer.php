@@ -14,8 +14,6 @@
 	<script src="<?php echo  base_url();?>public/js/offcanvas.js"></script>
 	<script src="<?php echo  base_url();?>public/js/app.js"></script>
 	
-	<script lenguage="javascript"> 
-	var <?php echo  base_url();?>
 	</script>
 	<script src="<?php echo  base_url();?>public/js/Res_Empresa.js"></script>
  

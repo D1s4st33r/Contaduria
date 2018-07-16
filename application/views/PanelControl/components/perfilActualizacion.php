@@ -41,7 +41,7 @@
 
       <div class=" col-12 ">
         <div class="form-group">
-        <button  type="button" class="btn btn-primary" onclick="actualizarDatosUsuario('<?php echo base_url("Panel_admin/ActualizarPerfil") . $session;?>')">  <i class="fas fa-thumbs-up fa-md"></i> Actualizar Datos</button> 
+        <button  type="button" class="btn btn-primary" onclick="actualizarDatosUsuario('<?php echo base_url("Panel_admin/ActualizarPerfil") . $session;?>','<?php echo base_url("TituloPanel").$session; ?>')">  <i class="fas fa-thumbs-up fa-md"></i> Actualizar Datos</button> 
         </div>
       </div>
         
