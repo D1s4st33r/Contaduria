@@ -8,6 +8,7 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="<?php echo  base_url();?>public/js/jquery.min.js" ></script>
+	<script src="<?php echo  base_url();?>public/js/popper.js" ></script>
 	<script src="<?php echo  base_url();?>public/js/bootstrap.min.js"></script>
 	<script src="<?php echo  base_url();?>public/js/holder.min.js"></script>
 	<script src="<?php echo  base_url();?>public/js/offcanvas.js"></script>
