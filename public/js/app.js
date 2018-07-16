@@ -191,7 +191,6 @@ function agregarPregunta(iddiv, url) {
             texto: texto_
         };
         hacerCambiosPostAsy(post, url, $("#nada"));
-        console.log(post);
     }
 }
 
@@ -212,6 +211,5 @@ function agregarPregunta(iddiv, url) {
             texto: texto_
         };
         hacerCambiosPostAsy(post, url, $("#nada"));
-        console.log(post);
     }
 }
