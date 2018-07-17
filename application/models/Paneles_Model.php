@@ -198,5 +198,15 @@ class Paneles_Model extends CI_Model
         $registrado=$this->db->insert('preguntas',$datos);
         return $registrado;
     }
-
+    
+    public function getContadorEmpresa($id)
+    {
+        $empresas =$this->db->select('COUNT(rfc)')
+                ->from("empresa")
+                ->where('id_usuario',$id)
+                ->get()
+                ->result_array()[0];
+         return $empresas["COUNT(rfc)"] ;
+         
+    }
 }

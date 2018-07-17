@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col-12">
             <div class="container">
-              <div class="row">
+              <div class="row" id="TituloPanel">
               <?php 
                 $this->load->view('PanelControl/components/TituloPanel');
               ?>
@@ -138,6 +138,24 @@
               ?>
         </div>
 
+      </div>
+    </div>
+
+     <?php elseif($menu == "Clientes") : ?>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-12">
+          <div class="container">
+            <div class="row my-3 p-3 bg-white rounded box-shadow">
+              <?php 
+                $this->load->view('PanelControl/components/RegistroClientes');
+              ?>
+            </div>
+          </div>
+        </div>
+
+     
       </div>
     </div>
 

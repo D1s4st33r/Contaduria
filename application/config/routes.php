@@ -59,6 +59,8 @@ $route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
 $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
 $route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
+$route['TituloPanel'] = 'Panel_admin/getTituloPanel';
+$route['ClientesAdmin'] = 'Panel_admin/Clientes';
 $route['Login'] ="Login/index";
 $route['configAddCategoria']="Panel_admin/configAddCategoria";
 $route['addCategoria']="Panel_admin/addCategoria";
@@ -71,6 +73,11 @@ $route['addSeccion']="Panel_admin/addSeccion";
 $route['configUpSeccion']="Panel_admin/configUpSeccion";
 $route['configDeleteSeccion']="Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
+
+$route['Cuestionario']="Panel_user/Cuestionario";
+$route['Cliente']="Panel_user/index";
+
+
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

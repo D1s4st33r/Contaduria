@@ -1,9 +1,17 @@
 <div class="container p-3 my-3 text-white-50 bg-lgBlue rounded box-shadow">
     <div class="row">
     <div class="col-auto">
+    <script>  
+    </script>
       <?php 
         if($usuario['tipo'] == "Administrador"){
           echo "<i class='fas fa-user-shield fa-3x'></i>";
+        }
+        if($usuario['tipo'] == "Contadores"){
+          echo "<i class='fas fa-user-tie fa-3x'></i>";
+        }
+        if($usuario['tipo'] == "Cliente"){
+          echo "<i class='fas fa-user fa-3x'></i>";
         }
       ?>
     </div>

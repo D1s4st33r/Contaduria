@@ -54,6 +54,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('PanelControl/Panel',$data);
 		$this->load->view('templates/footer');
 	}
+	public function Clientes()
+	{
+		$data['menu'] = "Clientes" ;
+		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
+		if($data['estadisticas']['Contadores'])
+		{ 
+			$data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados();
+		}
+		$data['session'] = $this->session;
+		$this->load->view('templates/headerLimpio');
+		$this->load->view('PanelControl/Panel',$data);
+		$this->load->view('templates/footer');
+	}
 
 	 public function configuracionPreguntas()
 	 {
@@ -88,7 +103,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['session'] = $this->session;
 			$this->load->view("PanelControl/components/perfilActualizacion",$data);
 		}
-		
+		public function getTituloPanel()
+		{
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/TituloPanel",$data);
+		}
 		public function FormularioEmpContador()
 		{
 			$data['usuario'] = $this->Usuario;
