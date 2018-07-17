@@ -14,7 +14,10 @@
 	<script src="<?php echo  base_url();?>public/js/offcanvas.js"></script>
 	<script src="<?php echo  base_url();?>public/js/app.js"></script>
 	
+<<<<<<< HEAD
 	</script>
+=======
+>>>>>>> 32ac5f9a1938e77337ec402382757ccd27ccdef0
 	<script src="<?php echo  base_url();?>public/js/Res_Empresa.js"></script>
  
 

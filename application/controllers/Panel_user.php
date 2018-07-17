@@ -23,20 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
 		}
 	
-		public function index()
-		{
-			$data['menu'] = "Panel" ;
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
-			$data['session'] = $this->session;
-			$this->load->view('templates/headerLimpio');
-			$this->load->view('PanelUser/Panel',$data);
-			$this->load->view('templates/footer');
-		}
-		$this->load->model('Paneles_Model');
-		$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
-	}
+	
+	
 
 	public function index()
 	{

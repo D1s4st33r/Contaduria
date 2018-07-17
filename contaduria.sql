@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2018 a las 23:07:43
--- Versión del servidor: 10.1.33-MariaDB
--- Versión de PHP: 7.2.6
+-- Servidor: localhost
+-- Tiempo de generación: 17-07-2018 a las 06:11:06
+-- Versión del servidor: 10.1.32-MariaDB
+-- Versión de PHP: 5.6.36
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -756,7 +756,10 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-(72, 1, '4d5a09a527b852af9067af37', '::1', '1531345045', 'Miércoles 11 de Julio 2018 03:37:25 PM');
+(72, 1, 'e3be9fbdb46b2810cc9f477f', '::1', '1531804251', 'Lunes 16 de Julio 2018 10:52:05 PM'),
+(74, 13, '1f3514fb84583810ea970a01', '::1', '1531550888', 'Sábado 14 de Julio 2018 12:48:08 AM'),
+(75, 14, '897289b82ec4a21484638777', '::1', '1531804032', 'Lunes 16 de Julio 2018 11:07:12 PM'),
+(76, 15, 'b88775de2172f9296ce519fe', '::1', '1531803530', 'Lunes 16 de Julio 2018 10:58:50 PM');
 
 -- --------------------------------------------------------
 
@@ -769,7 +772,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telefono` int(15) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
   `clave` varchar(30) NOT NULL,
   `roll` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -779,7 +782,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
-(1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483647, '123456789', 0);
+(1, 'Super', 'Usuario', 'super@usuario.com', '101010101011', 'admin', 0),
+(14, 'cliente', 'lorem', 'cliente@lorem.com', '1111111111111', 'cliente', 2),
+(15, 'Contador', 'nose', 'conta@conta.com', '202020202020', 'conta', 1);
 
 --
 -- Índices para tablas volcadas
@@ -859,13 +864,13 @@ ALTER TABLE `preguntas`
 -- AUTO_INCREMENT de la tabla `sessiones`
 --
 ALTER TABLE `sessiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
