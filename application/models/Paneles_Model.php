@@ -138,6 +138,16 @@ class Paneles_Model extends CI_Model
         $registrado = $this->db->where('id', $id)->update("usuario",$usuario);
         return $registrado;
     }
+
+    public function getRollById($id)
+    {
+        $roll = $this->db->select("roll")
+        ->from("usuario")
+        ->where("id",$id)
+        ->get()
+        ->result_array()[0]['roll'];
+        return $roll;
+    }
     public function EliminarUsuarioById($id)
     {
         $registrado = $this->db->where('id', $id)->delete('usuario');
@@ -149,6 +159,13 @@ class Paneles_Model extends CI_Model
         $registrado = $this->db->insert('usuario', $datos);
         return $registrado;   
     }
+    public function RegistrarCliente($datos)
+    {
+        $datos['roll'] = 2;
+        $registrado = $this->db->insert('usuario', $datos);
+        return $registrado;   
+    }
+    
 
     //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
 
@@ -208,5 +225,33 @@ class Paneles_Model extends CI_Model
                 ->result_array()[0];
          return $empresas["COUNT(rfc)"] ;
          
+    }
+
+    public function getContadoresClientes()
+    {
+        $Clientes = $this->db->select('COUNT(id)')
+            ->from("usuario")
+            ->where("roll",2)
+            ->get()
+            ->result_array()[0]["COUNT(id)"];
+        $usuarios= array(
+            "Clientes" => $Clientes
+        );
+        return $usuarios;
+    }
+
+    public function getInfoClientes()
+    {
+
+        $Clientes = $this->db->select('id,nombre,apellido,email,telefono')
+            ->from("usuario")
+            ->where("roll",2)
+            ->get()
+            ->result_array();
+        
+        $usuarios= array(
+            "Clientes" => $Clientes
+        );
+        return $usuarios;
     }
 }

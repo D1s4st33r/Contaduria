@@ -1,13 +1,18 @@
+/**
+ * Funciones Generales para peticion ajax
+ * 
+ * */
+
+ /*
+ * @param {div para colorcar el response de la url} divById 
+ * @param {url donde se hace el GET} url 
+ */
 function hacerCambio(divById, url) {
     $.ajax({
         type: 'GET',
         url: url,
         dataType: 'html',
-        after: function() {
-
-        },
         success: function(data) {
-
             $("#" + divById).html("");
             $("#" + divById).html(data);
         }
@@ -15,6 +20,12 @@ function hacerCambio(divById, url) {
 }
 var divPerfil = "";
 
+ /**
+  * 
+  * @param {objetoPost} datosPost 
+  * @param {Url del recurso} urlDes 
+  * @param {div de la vista} div 
+  */
 function hacerCambiosPostAsy(datosPost, urlDes, div) {
     $.ajax({
         type: "POST", // la variable type guarda el tipo de la peticion GET,POST,..
@@ -27,11 +38,13 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
     });
 }
 
-function routeDiv(div,url)
-{
-    hacerCambio(div,url);
 
-}
+
+/**
+ * 
+ * @param {*} url 
+ * @param {*} tituloPanel 
+ */
 function actualizarDatosUsuario(url,tituloPanel) {
     nombre_ = $("#nombre").val();
     apellido_ = $("#apellido").val();
@@ -56,6 +69,7 @@ function AgregarUsuario(url) {
     telefono_ = $("#telefono").val();
     email_ = $("#email").val();
     contrasena_ = $("#contrasena").val();
+    
     if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && contrasena_ != "") {
         post = {
             nombre: nombre_,
@@ -66,9 +80,29 @@ function AgregarUsuario(url) {
         };
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
 
+
     }
 }
 
+function AgregarCliente(url) {
+    nombre_ = $("#nombre").val();
+    apellido_ = $("#apellido").val();
+    telefono_ = $("#telefono").val();
+    email_ = $("#email").val();
+    contrasena_ = $("#contrasena").val();
+    if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && contrasena_ != "") {
+        post = {
+            nombre: nombre_,
+            apellido: apellido_,
+            email: email_,
+            telefono: telefono_,
+            clave: contrasena_
+        };
+        
+        hacerCambiosPostAsy(post, url, $("#clienteReg"));
+        hacerCambio("Controles",);
+    }
+}
 function updateContador(iddiv, url) {
     var id_ = "";
     var nombre_ = "";
@@ -93,10 +127,39 @@ function updateContador(iddiv, url) {
             email: email_,
             telefono: telefono_
         };
-        console.log(url);
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
     }
 }
+
+
+function updateCliente(iddiv, url) {
+    var id_ = "";
+    var nombre_ = "";
+    var apellido_ = "";
+    var telefono_ = "";
+    var email_ = "";
+
+    var div = $("#" + iddiv);
+    var finds = div.find("input");
+    finds.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+        if ($(this).attr("name") == "nombre") { nombre_ = $(this).val(); }
+        if ($(this).attr("name") == "apellido") { apellido_ = $(this).val(); }
+        if ($(this).attr("name") == "telefono") { telefono_ = $(this).val(); }
+        if ($(this).attr("name") == "email") { email_ = $(this).val(); }
+    });
+    if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && id_ != "") {
+        post = {
+            id: id_,
+            nombre: nombre_,
+            apellido: apellido_,
+            email: email_,
+            telefono: telefono_
+        };
+        hacerCambiosPostAsy(post, url, $("#clienteReg"));
+    }
+}
+
 
 function EliminarUsuario(iddiv, url) {
     var id_ = "";
@@ -110,6 +173,21 @@ function EliminarUsuario(iddiv, url) {
             id: id_
         };
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
+    }
+
+}
+function EliminarCliente(iddiv, url) {
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var finds = div.find("input");
+    finds.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+    });
+    if (id_ != "") {
+        post = {
+            id: id_
+        };
+        hacerCambiosPostAsy(post, url, $("#clienteReg"));
     }
 
 }
