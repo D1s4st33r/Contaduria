@@ -69,6 +69,7 @@ function AgregarUsuario(url) {
     telefono_ = $("#telefono").val();
     email_ = $("#email").val();
     contrasena_ = $("#contrasena").val();
+    
     if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && contrasena_ != "") {
         post = {
             nombre: nombre_,
@@ -78,6 +79,7 @@ function AgregarUsuario(url) {
             clave: contrasena_
         };
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
+
 
     }
 }
@@ -96,8 +98,9 @@ function AgregarCliente(url) {
             telefono: telefono_,
             clave: contrasena_
         };
-        hacerCambiosPostAsy(post, url, $("#clienteReg"));
         
+        hacerCambiosPostAsy(post, url, $("#clienteReg"));
+        hacerCambio("Controles",);
     }
 }
 function updateContador(iddiv, url) {

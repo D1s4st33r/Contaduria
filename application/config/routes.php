@@ -62,19 +62,20 @@ $route['TituloPanel']           = 'Panel_admin/getTituloPanel';
  * Panel Contadores Admin
  */
 $route['ControlContadores']     = 'Panel_admin/Contadores';
+$route['AgregarContador']       = 'Panel_admin/AgregarEmpleado';
 
 /**
  * Panel Cliente Admin
  */
 $route['ClienteControl'] = 'Panel_admin/Clientes';
 $route['AgregarCliente'] = 'Panel_admin/AgregarCliente';
-
+$route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
+$route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 
 $route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
 $route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
 $route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
-$route['AgregarContador']       = 'Panel_admin/AgregarEmpleado';
 $route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
 
 $route['configAddCategoria']    = "Panel_admin/configAddCategoria";
@@ -88,7 +89,6 @@ $route['addSeccion']            = "Panel_admin/addSeccion";
 $route['configUpSeccion']       = "Panel_admin/configUpSeccion";
 $route['configDeleteSeccion']   = "Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']  = "Panel_admin/configUpPregunta";
-$route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
 
 
 $route['Cuestionario']="Panel_user/Cuestionario";

@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	class Panel_admin extends MY_Controller {
 	protected $nivelAcceso = "Administrador" ;
 	protected $Usuario = array();
-
+	protected $post ;
 	public function __construct()
 	{
 		parent::__construct();
@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 		$this->load->model('Paneles_Model');
 		$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
+		$this->post = $this->input->post();
 	}
 
 	/**
@@ -117,8 +118,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['session'] = $this->session;
 			$this->load->view("PanelControl/components/TituloPanel",$data);
 		}
-		
+
 		public function getActualizacionPerfil()
+		{
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/perfilActualizacion",$data);
+		}
+		public function getActualizacionContadoresClientesAdmin()
 		{
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
@@ -133,6 +141,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['session'] = $this->session;
 			$this->load->view("PanelControl/components/RegistroContadores",$data);	
 		}	
+
+
 		public function FormularioClientes()
 		{
 			$data['usuario'] = $this->Usuario;
@@ -175,6 +185,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		public function AgregarCliente()
 		{
 			$post = $this->input->post();
+			
 			if(!empty($post) 
 				&& isset($post['nombre']) && !empty($post['nombre'])
 				&& isset($post['apellido'])&& !empty($post['apellido'])
@@ -194,8 +205,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$data['usuario'] = $this->Usuario;
 					$data['usuario'] += array("tipo" => $this->session_tipo);
 					$data['session'] = $this->session;
-					$data['estadisticas'] = $this->Paneles_Model->getContadoresCliente();
-					if($data['estadisticas']['Clientes']){ $data['Clientes'] = $this->Paneles_Model->getContadorClientes(); }
+					$data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
+					if($data['estadisticas']['Clientes']){ $data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
 					$this->load->view("PanelControl/components/CrudClientes",$data);	
 				}
 			}
