@@ -73,6 +73,11 @@ $route['addSeccion']="Panel_admin/addSeccion";
 $route['configUpSeccion']="Panel_admin/configUpSeccion";
 $route['configDeleteSeccion']="Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
+
+$route['Cuestionario']="Panel_user/Cuestionario";
+$route['Cliente']="Panel_user/index";
+
+
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -25,8 +25,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function index()
 	{
+		$data['menu'] = "Panel" ;
 		$data['usuario'] = $this->Usuario;
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['numEmpresas'] = $this->Paneles_Model->getContadorEmpresa($this->session_id);
+		$data['session'] = $this->session;
+		$this->load->view('templates/headerLimpio');
+		$this->load->view('PanelUser/Panel',$data);
+		$this->load->view('templates/footer');
+	}
+
+	public function Cuestionario()
+	{
+		$data['menu'] = "Cuestionario" ;
+		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['estadisticas'] = $this->Paneles_Model->getContadorEmpresa();
+		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/Panel',$data);
 		$this->load->view('templates/footer');

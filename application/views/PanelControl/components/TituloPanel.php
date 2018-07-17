@@ -7,6 +7,12 @@
         if($usuario['tipo'] == "Administrador"){
           echo "<i class='fas fa-user-shield fa-3x'></i>";
         }
+        if($usuario['tipo'] == "Contadores"){
+          echo "<i class='fas fa-user-tie fa-3x'></i>";
+        }
+        if($usuario['tipo'] == "Cliente"){
+          echo "<i class='fas fa-user fa-3x'></i>";
+        }
       ?>
     </div>
     <div class="col-sm">
