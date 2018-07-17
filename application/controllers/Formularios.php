@@ -77,14 +77,13 @@ class Formularios extends  MY_Controller {
 						"representantelegal"=>$ReLegal,
 						"archivos" => $dato_archivo['upload_data']['file_name']
 			
-			
-			
 					 );
 					 $datos_null='NULL';
 			
 					
 					 $this->Formularios_Model->registro_empresa($datos_empresa);
-					 $this->Formularios_Model->eliminar_nUll($datos_empresa,$datos_null);
+					 
+					// $this->Formularios_Model->eliminar_nUll($datos_empresa,$datos_null);
 	 
 					 $xd='CHALE';
 					 echo $xd;

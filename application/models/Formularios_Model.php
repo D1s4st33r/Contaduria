@@ -35,15 +35,18 @@
 			return $dato;
 		}
 
-		function registro_empresa($datos_empresa)
+		public function registro_empresa($datos_empresa)
 		{
-			$this->db->insert("empresa",$datos_empresa);
+			var_dump($datos_empresa);
+			$registrado = $this->db->insert("empresa",$datos_empresa);
+			echo $registrado;
+			
 
 		}
-		function eliminar_null($datos_null)
+		/**function eliminar_null($datos_null)
 		{
 			$this->db->delete("empresa",$datos_null);
 
-		}
+		}*/
 	}
 
