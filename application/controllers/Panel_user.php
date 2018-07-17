@@ -34,8 +34,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view('PanelUser/Panel',$data);
 			$this->load->view('templates/footer');
 		}
-<<<<<<< HEAD
-=======
 		$this->load->model('Paneles_Model');
 		$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
 	}
@@ -63,26 +61,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('PanelUser/Panel',$data);
 		$this->load->view('templates/footer');
 	}
->>>>>>> master
 
 	/**
 	 * Funciones AJAX
 	 */
-<<<<<<< HEAD
-=======
-	 public function getActualizacionPerfil()
-	 {
-		$data['usuario'] = $this->Usuario;
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-		$this->load->view("PanelUser/components_user/perfilActualizacion",$data);
-	 }
-
-	 public function registrar_empresa()
-	 {
- 		$data['usuario'] = $this->Usuario;
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
-		$data['sessionUrl'] = $this->sessionUrl;
->>>>>>> master
 
 
 }
