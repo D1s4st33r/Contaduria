@@ -77,6 +77,8 @@ $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
 $route['Cuestionario']="Panel_user/Cuestionario";
 $route['Cliente']="Panel_user/index";
 
+$route['Contador']="Panel_contador/index";
+// $route['Contadores']="Panel_user/index";
 
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
