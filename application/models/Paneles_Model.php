@@ -149,6 +149,13 @@ class Paneles_Model extends CI_Model
         $registrado = $this->db->insert('usuario', $datos);
         return $registrado;   
     }
+    public function RegistrarCliente($datos)
+    {
+        $datos['roll'] = 2;
+        $registrado = $this->db->insert('usuario', $datos);
+        return $registrado;   
+    }
+    
 
     //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
 
@@ -207,6 +214,16 @@ class Paneles_Model extends CI_Model
                 ->get()
                 ->result_array()[0];
          return $empresas["COUNT(rfc)"] ;
+         
+    }
+
+    public function getContadorCliente($id)
+    {
+        $clientes =$this->db->select('COUNT(id)')
+                ->from("usuario")
+                ->get()
+                ->result_array()[0];
+         return $clientes["COUNT(id)"] ;
          
     }
 }
