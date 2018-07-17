@@ -50,32 +50,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Login';
-/* $route['de_donde_vienes'] = "controlador/metodo"; */
-$route['PanelDeControl'] = 'Panel_admin/index';
-$route['ControlContadores'] = 'Panel_admin/Contadores';
-$route['ActualizarPerfil'] = 'Panel_admin/getActualizacionPerfil';//ActualizarUsuarioById
-$route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
-$route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
-$route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
-$route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
-$route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
-$route['TituloPanel'] = 'Panel_admin/getTituloPanel';
-$route['ClientesAdmin'] = 'Panel_admin/Clientes';
-$route['Login'] ="Login/index";
-$route['configAddCategoria']="Panel_admin/configAddCategoria";
-$route['addCategoria']="Panel_admin/addCategoria";
-$route['configUpdateCategoria']="Panel_admin/configUpCategoria";
-$route['updateCategoria']="Panel_admin/updateCategoria";
-$route['configDeleteCategoria']="Panel_admin/configDelCategoria";
-$route['deleteCategoria']="Panel_admin/deleteCategoria";
-$route['configAddSeccion']="Panel_admin/configAddSeccion";
-$route['addSeccion']="Panel_admin/addSeccion";
-$route['configUpSeccion']="Panel_admin/configUpSeccion";
-$route['configDeleteSeccion']="Panel_admin/configDelSeccion";
-$route['configUpdatePregunta']="Panel_admin/configUpPregunta";
+$route['Login']                 = "Login/index";
+
+/**
+ * Panel Prinicipal Admin
+ */
+$route['PanelDeControl']        = 'Panel_admin/index';
+$route['TituloPanel']           = 'Panel_admin/getTituloPanel';
+
+/**
+ * Panel Contadores Admin
+ */
+$route['ControlContadores']     = 'Panel_admin/Contadores';
+
+/**
+ * Panel Cliente Admin
+ */
+$route['ClienteControl'] = 'Panel_admin/Clientes';
+$route['AgregarCliente'] = 'Panel_admin/AgregarCliente';
+
+
+$route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
+$route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
+$route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
+$route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
+$route['AgregarContador']       = 'Panel_admin/AgregarEmpleado';
+$route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
+
+$route['configAddCategoria']    = "Panel_admin/configAddCategoria";
+$route['addCategoria']          = "Panel_admin/addCategoria";
+$route['configUpdateCategoria'] = "Panel_admin/configUpCategoria";
+$route['updateCategoria']       = "Panel_admin/updateCategoria";
+$route['configDeleteCategoria'] = "Panel_admin/configDelCategoria";
+$route['deleteCategoria']       = "Panel_admin/deleteCategoria";
+$route['configAddSeccion']      = "Panel_admin/configAddSeccion";
+$route['addSeccion']            = "Panel_admin/addSeccion";
+$route['configUpSeccion']       = "Panel_admin/configUpSeccion";
+$route['configDeleteSeccion']   = "Panel_admin/configDelSeccion";
+$route['configUpdatePregunta']  = "Panel_admin/configUpPregunta";
+$route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
+
 
 $route['Cuestionario']="Panel_user/Cuestionario";
 $route['Cliente']="Panel_user/index";
+
+
+
 
 
 //$route['Formularios/legal'] = "Formularios/legal";

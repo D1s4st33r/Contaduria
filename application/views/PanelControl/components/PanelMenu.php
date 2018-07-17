@@ -17,7 +17,7 @@
         </a>
       </li>
       <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Clientes") ) ? "active" : "" ; ?> p-1">
-        <a class="nav-link" href="<?php echo base_url("ClientesAdmin").$session;?>"> 
+        <a class="nav-link" href="<?php echo base_url("ClienteControl").$session;?>"> 
           <i class='fas fa-user fa-lg'></i> <small> Clientes</small>
           </a>
       </li>

@@ -38,7 +38,7 @@
 
       <div class=" col-12 ">
         <div class="form-group">
-        <button  type="button" class="btn btn-primary" onclick="return AgregarUsuario('<?php echo base_url("AgregarContador").$session;?>')" >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Contador</button> 
+        <button  type="button" class="btn btn-primary" onclick="return AgregarCliente('<?php echo base_url("AgregarCliente").$session;?>')" >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Cliente</button> 
         </div>
       </div>  
     </div>
