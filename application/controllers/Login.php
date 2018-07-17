@@ -49,13 +49,11 @@ class Login extends CI_Controller {
 				if ( ((int)$usuario[0]['roll']) == 0 )
 				{
 					unset($usuario[0]['roll']);
-
 					redirect('PanelDeControl'.$url,'refresh');
 				}
 				if(((int)$usuario[0]['roll']) == 2 )
 				{
 					unset($usuario[0]['roll']);
-
 					redirect('Cliente'.$url,'refresh');
 				}
 				if(((int)$usuario[0]['roll']) == 1 )
