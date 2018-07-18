@@ -1,120 +1,82 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Formularios extends  MY_Controller {
-
-	private $sessionUrl ;
-	private $ContaUrl  ;
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('Formularios_Model');	
-	}
+/**
+ * [Panel_admin] [Clase] [esta clase es solo para el administador]
+ */
+	class Panel_user extends MY_Controller {
+		protected $nivelAcceso = "Cliente" ;
+		protected $Usuario = array();
+	
+		public function __construct()
+		{
+			parent::__construct();
+			//extendido de core/MY_Contoller.php
+			//$this->session_token;
+			// $this->session_id;
+			
+			if($this->nivelAcceso != $this->session_tipo)
+			{
+				redirect('Login/index?error_login=session','refresh');
+			}
+			$this->load->model('Paneles_Model');
+			$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
+		}
+	
+	
+	
 
 	public function General()
 	{
 		$data['titulo'] = "General";
-		$data['sessionUrl'] = $this->sessionUrl;
+		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['session'] = $this->session;
+		$this->load->view('templates/headerLimpio');
+		$this->load->view('PanelUser/componets_user/Form_General',$data);
+		$this->load->view('templates/footer');
+	}
+
+	/**public function General()
+	{
+		$data['titulo'] = "General";
+		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['session'] = $this->session;
 		$this->load->view('templates/headerlimpio');
 		$this->load->view('formularios/menuSecciones',$data);
-		$this->load->view('formularios/index');
+		$this->load->view('formularios/index',$data);
 		$this->load->view('templates/footer');
 
+		       if($this->input->post()){
 
-		if($this->input->post()){
+			            $Datos_empresa['RazonSocial'] = $this->input->post("razonSocial");
+			            $Datos_empresa['RFC'] = $this->input->post("rfc");
+			            $Datos_empresa['Domicilio']=$this->input->post("domicilio");
+			            $Datos_empresa['Correo'] = $this->input->post("correo");		
+			            $Datos_empresa['Telefono']= $this->input->post("telefono");
+			            $Datos_empresa['ReLegal'] = $this->input->post("representantelegal");
+			            $RFC= $this->input->post("rfc");
 
+			            $this->form_validation->set_rules('rfc', 'RFC', 'min_length[13]|is_unique[empresa.rfc]');
+			            $this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
 
-			
-
-			$RazonSocial = $this->input->post("razonSocial");
-			$RFC = $this->input->post("rfc");
-			$Domicilio = $this->input->post("domicilio");
-			$Correo = $this->input->post("correo");		
-			$Telefono = $this->input->post("telefono");
-			$ReLegal = $this->input->post("representantelegal");
-
-
-
-
-			
-			$this->form_validation->set_rules('rfc', 'RFC', 'min_length[13]|is_unique[empresa.rfc]');
-			$this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
-
-			
-			if($this->form_validation->run()===TRUE)
-			{
-				$this->load->helper('path');  
-				////set_realpath('./uploads/peliculas/'.$idp."/");    
-				//retorna el directorio en el servidor /var/www/proyecto/[B]uploads/peliculas/10[/B] 
-				//para dentro de application //set_realpath('./application/uploads/peliculas/'.$idp."/");   
-				 $dir=set_realpath('./Boveda/'.$RFC."/");  
-				if(!is_dir($dir)){  
-				mkdir($dir,0777); 
-
-
-				$config = [
-					"upload_path" =>'./Boveda/'.$RFC."/",
-					'allowed_types' =>"png|jpg|pdf|docs|xls"
-
-				];
-
+			                     if($this->form_validation->run()===TRUE)
+			                    {
 				
-				$this->load->library("upload",$config);
-
-				if($this->upload->do_upload('archivos')){
-
-
-
-					$dato_archivo=array("upload_data" =>$this->upload->data());
-
-					$datos_empresa=array(
-   
-						"rfc"=>$RFC,
-						"razonSocial"=>$RazonSocial,
-						"domicilio"=>$Domicilio,
-						"correo"=>$Correo,
-						"telefono"=>$Telefono,
-						"representantelegal"=>$ReLegal,
-						"archivos" => $dato_archivo['upload_data']['file_name']
-			
-			
-			
-					 );
-					 $datos_null='NULL';
-			
-					
-					 $this->Formularios_Model->registro_empresa($datos_empresa);
-					 $this->Formularios_Model->eliminar_nUll($datos_empresa,$datos_null);
-	 
-					 $xd='CHALE';
-					 echo $xd;
-					} 
-
-
-				}else{
-
-					echo $this->upload->display_errors();
-				}
-
-
-
-				
-				
-
-
-			
-			}else{
-				echo validation_errors('<li>','<li>');
-			   
-			}
-   
-
-
+			                            $this->load->helper('path');   
+				                        $dir=set_realpath('./Boveda/'.$RFC."/");  
+											   if(!is_dir($dir))
+											   {  
+												  mkdir($dir,0777); 
+												  
+												 }	
+											$this->subirdatosform($RFC,$Datos_empresa);
+		                        }else{
+				echo validation_errors('<li>','<li>'); 
+		    }
 		}
-
-		 
-	
-
+ 
 	}
 
 	public function legal()
@@ -191,7 +153,33 @@ class Formularios extends  MY_Controller {
 		$this->load->view('formularios/fiscal',$data);
 		$this->load->view('templates/footer');
 	}
+
+
+	public function subirdatosform($archivo,$Empresa)
+	{
+		
+		$data['sessionUrl'] = $this->sessionUrl;
+		$data['Secciones'] = $this->Formularios_Model->fiscal();
+		var_dump();
+		
+		$config = [
+			"upload_path" =>'./Boveda/'.$archivo."/",
+			'allowed_types' =>"png|jpg|pdf|docs|xls"
+		 ];
+		 var_dump($archivos);
+		 $this->load->library("upload",$config);
+
+			  if($this->upload->do_upload('archivos')){
+
+				$this->Formularios_Model->registro_empresa($Empresa);
+				
+			  }
+
 	
+
+
+	}*/
+
 
 
 }

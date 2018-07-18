@@ -59,7 +59,7 @@
             <div class="container">
               <div class="row my-3 p-3 bg-white rounded box-shadow">
                 <?php 
-                  $this->load->view('PanelControl/components/totales');
+                  $this->load->view('PanelControl/components/ContadoresPreguntas');
                 ?>
               </div>
             </div>
@@ -82,22 +82,10 @@
               </div>
               <div class="col-12 mb-1">
                 <div class="container">
-                  <div class="row">
-                    <div class="col-lg align-items-center">
-                    <h6 class="lh-125 small text-muted p-2"> Registrados :  <?php echo $estadisticas["Contadores"];?></h6>
-                    </div>
-                    <div class="col-lg">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col">
-                            <a  type="button" class="btn btn-sm btn-success btn-block text-white" href="<?php echo base_url('ControlContadores').$session;?>" > Ver </a> 
-                          </div>
-                          <div class="col">
-                            <a  type="button" class="btn btn-sm btn-primary btn-block text-white" onclick="return hacerCambio('contadoresReg' ,'<?php echo base_url('FormularioContador').$session;?>')" > Agregar</a> 
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="row" id="Controles">
+                    <?php 
+                      $this->load->view('PanelControl/components/controlesCliente');
+                     ?>
                   </div>
                 </div>
               </div>
@@ -136,6 +124,80 @@
               <?php 
                 $this->load->view('PanelControl/components/categorias');
               ?>
+        </div>
+
+      </div>
+    </div>
+
+     <?php elseif($menu == "Clientes") : ?>
+     <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="container">
+            <div class="row my-3 p-3 bg-white rounded box-shadow">
+              <div class="col-12 mb-1 align-items-center">
+                <h4 class="p-2 bg-light text-dark rounded "> 
+                  <i class='fas fa-user fa-2x'></i> Clientes
+                </h4>
+              </div>
+              <div class="col-12 mb-1">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg align-items-center">
+                    <h6 class="lh-125 small text-muted p-2"> Registrados :  <?php echo $estadisticas["Clientes"];?></h6>
+                    </div>
+                    <div class="col-lg">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col">
+                            <a  type="button" class="btn btn-sm btn-success btn-block text-white" href="<?php echo base_url('ClienteControl').$session;?>" > Ver </a> 
+                          </div>
+                          <div class="col">
+                            <a  type="button" class="btn btn-sm btn-primary btn-block text-white" onclick="return hacerCambio('clienteReg' ,'<?php echo base_url('FormularioCliente').$session;?>')" > Agregar</a> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 " id="clienteReg" >
+                <style>
+                #clienteReg{
+                  max-height: 400px;
+                  overflow: hidden;
+                  overflow-y: scroll;
+                }
+                </style>
+                <?php 
+                $this->load->view('PanelControl/components/CrudClientes');
+                ?>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="container">
+            <div class="row my-3 p-3 bg-white rounded box-shadow">
+              
+              <div class="col-12 mb-1 align-items-center">
+                <h4 class="p-2 bg-light text-dark rounded "> 
+                  <i class='fas fa-industry fa-2x'></i> Empresas
+                </h4>
+              </div>
+                <div class="col-12 " id="empresasClie" >
+                  <style>
+                  #empresasClie{
+                    max-height: 400px;
+                    overflow: hidden;
+                    overflow-y: scroll;
+                  }
+                  </style>
+                  
+                </div>
+            </div>
+          </div>
         </div>
 
       </div>
