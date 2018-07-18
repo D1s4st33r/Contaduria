@@ -58,11 +58,11 @@
                               <a href="#" onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session."&cliente=".$value['id'];?>')" > Ver</a>
                           </div>
                           <div class="col-sm-6 col-md-6 col-lg-6"><i class='fas fa-user-tie'></i>Contador
-                              <span><?php if( $value['EmpresasRegistradas']["Contador"] =="0") {
+                              <span><?php if( $value['EmpresasRegistradas']["numEmpresas"] == "0") {
                                 echo "No asignado";
                                 echo '<a href="'. base_url("ControlContadores") . $session.'"> Asignar</a>';
                               }else{
-                                echo  $value['EmpresasRegistradas']["Contador"];
+                                echo  $value['EmpresasRegistradas']["numEmpresas"];
                               } ?> </span>
 
                           </div>

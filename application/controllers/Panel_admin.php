@@ -484,6 +484,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			if($Cliente){
 				$data["empresas"] = $this->Paneles_Model->EmpresasByCliente($Cliente);
 			}
+
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
