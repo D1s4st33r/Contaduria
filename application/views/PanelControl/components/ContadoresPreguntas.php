@@ -2,7 +2,7 @@
       <h6 class="lh-125  text-muted p-2"> 
           <i class="fas fa-chart-bar fa-lg"></i>  Informacion General
       </h6>
-      <a href=""> <i class="fas fa-eye fa-lg"></i>  </a>
+      <a href="<?php echo base_url("ConfPreguntas").$session; ?>"> <i class="fas fa-eye fa-lg"></i>  </a>
     </div>
       
     <div class=" col-12 text-muted pt-3 ">
