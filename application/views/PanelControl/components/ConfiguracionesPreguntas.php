@@ -22,7 +22,7 @@
                                 <strong class="text-gray-dark">
                                     <i class='fas fa-hashtag'></i> Secciones 
                                 </strong>
-                                <span><?php echo count($categorias) ?></span>
+                                <span><?php echo count($secciones) ?></span>
                             </p>
                         </div> 
                         <div class=" pt-1 col-sm-12 col-md-6 col-lg-4">
@@ -30,7 +30,7 @@
                                 <strong class="text-gray-dark">
                                     <i class='fas fa-hashtag'></i> Categorias 
                                 </strong>
-                                <span><?php echo count($secciones)?></span>
+                                <span><?php echo count($categorias)?></span>
                             </p>
                         </div>
                         <div class=" pt-1 col-sm-12 col-md-6 col-lg-4">

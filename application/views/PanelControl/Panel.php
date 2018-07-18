@@ -59,7 +59,7 @@
             <div class="container">
               <div class="row my-3 p-3 bg-white rounded box-shadow">
                 <?php 
-                  $this->load->view('PanelControl/components/totales');
+                  $this->load->view('PanelControl/components/ContadoresPreguntas');
                 ?>
               </div>
             </div>

@@ -38,6 +38,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
 		$data['session'] = $this->session;
+
+		$data['categorias']=$this->Paneles_Model->getCategorias();
+		$data['secciones']=$this->Paneles_Model->getSecciones();
+		$data['preguntas']=$this->Paneles_Model->getPreguntas();
+		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
+		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
+
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$data);
 		$this->load->view('templates/footer');
@@ -101,7 +108,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if($data['categoria']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
 		$this->load->view('templates/footer');
 	}
-	 
+	
 	
 	/**
 	 * Funciones AJAX
@@ -465,6 +472,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['session'] = $this->session;
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
+		
 	// Fin funciones AJAX
 }
 

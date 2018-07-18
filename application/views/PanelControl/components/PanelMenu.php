@@ -27,24 +27,19 @@
           <i class='fas fa-suitcase fa-lg'></i> <small> Boveda</small>
           </a>
       </li>
-
+      <li class="nav-item p-1">
+        <a class="nav-link" href="<?php echo base_url("ConfPreguntas");echo $session.'&cat=ind';?>"> 
+        <i class='fas fa-question fa-lg'></i> <small>Cuestionarios</small>
+        </a>
+      </li>
     <!--   <li class="nav-item p-1">
         <a class="nav-link" href="<?php echo base_url("Formularios/contable");echo $session;?>">Contables </a>
       </li> -->
-      <li class="nav-item dropdown p-1">
-        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-          <i class='fas fa-cog fa-lg'></i> <small>Configuraciones</small>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<?php echo base_url("ConfPreguntas");echo $session.'&cat=ind';?>"> Questionarios</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+      
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
   </div>
 </nav>
