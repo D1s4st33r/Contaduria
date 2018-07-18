@@ -23,7 +23,6 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
         success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
             div.html(datos);
-            alert(datos);
         }
     });
 }
