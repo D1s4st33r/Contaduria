@@ -93,7 +93,7 @@
                         <input type="text" value="'.strtoupper($valores['seccion']).'" name="seccion" class="form-control form-control-sm text-center" readonly hidden>
                         </div>
                         <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-sm" title="añadir pregunta" onclick="return agregarPregunta(';echo "'"; echo 'datos-preguntas  '.$valores['id'];echo "'"; echo  ", '".base_url('addPregunta').$session.'&cat='.strtoupper($categoria);echo"'"; echo ')"><i class="fa fa-plus-square" aria-hidden="true"></i></button>';
+            <button type="button" class="btn btn-primary btn-sm" title="añadir pregunta" onclick="return agregarPregunta(';echo "'"; echo 'datos-pregunta';echo "'"; echo  ", '".base_url('addPregunta').$session.'&cat='.strtoupper($categoria);echo"'"; echo ')"><i class="fa fa-plus-square" aria-hidden="true"></i></button>';
             //<button type="button" class="btn btn-primary btn-sm" title="editar seccion"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
             //<button type="button" class="btn btn-primary btn-sm" title="eliminar seccion"><i class="fa fa-trash" aria-hidden="true"></i></button>
             echo '</div>
@@ -115,12 +115,14 @@
                 $estatica_numerica."-.".$valores['texto'].'</div>';
                 
                 echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success btn-sm" onclick="return hacerCambio(';echo "'"; echo 'config-pregunta'.$valores['id'];echo "'"; echo  ", '".base_url('configUpdatePregunta').$session.'&cat='.strtoupper($categoria);echo"'"; echo ')"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
-                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-success btn-sm" onclick="return hacerCambio(';echo "'"; echo 'config-pregunta'.$valores['id'];echo "'"; echo  ", '".base_url('configUpdatePregunta').$session.'&cat='.strtoupper($categoria).'&idpre='.$valores['id'];echo"'"; echo ')"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="return hacerCambio(';echo "'"; echo 'config-pregunta'.$valores['id'];echo "'"; echo  ", '".base_url('configDelPregunta').$session.'&cat='.strtoupper($categoria).'&idpre='.$valores['id'];echo"'"; echo ')"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </div>';
             echo '</div>';
+            echo '<div id="panel-pregunta'.$valores['id'].'">';
+            echo '<input type="text" value="'.$valores['id'].'" name="id" class="form-control form-control-sm text-center" readonly hidden>';
             echo '<div id="config-pregunta'.$valores['id'].'"class=" row"></div>';
-            echo '<br> <br>';
+            echo '</div><br> <br>';
           $estatica_numerica++;
       }
     ?>

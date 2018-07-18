@@ -2,10 +2,17 @@
 -- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Servidor: localhost
 -- Tiempo de generación: 17-07-2018 a las 06:11:06
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
+=======
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 18-07-2018 a las 07:42:29
+-- Versión del servidor: 10.1.33-MariaDB
+-- Versión de PHP: 7.2.6
+>>>>>>> salva
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,19 +32,41 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `catalogo_preguntas`
+-- Estructura de tabla para la tabla `cat_categorias_preguntas`
 --
 
-CREATE TABLE `catalogo_preguntas` (
+CREATE TABLE `cat_categorias_preguntas` (
+  `id` int(11) NOT NULL,
+  `categoria` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cat_categorias_preguntas`
+--
+
+INSERT INTO `cat_categorias_preguntas` (`id`, `categoria`) VALUES
+(1, 'contable'),
+(2, 'fiscal'),
+(3, 'laboral'),
+(4, 'legal'),
+(5, 'seguridad social');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cat_input_preguntas`
+--
+
+CREATE TABLE `cat_input_preguntas` (
   `id` int(11) NOT NULL,
   `tipo` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `catalogo_preguntas`
+-- Volcado de datos para la tabla `cat_input_preguntas`
 --
 
-INSERT INTO `catalogo_preguntas` (`id`, `tipo`) VALUES
+INSERT INTO `cat_input_preguntas` (`id`, `tipo`) VALUES
 (1, 'checkbox'),
 (2, 'radius'),
 (3, 'textbox'),
@@ -46,24 +75,52 @@ INSERT INTO `catalogo_preguntas` (`id`, `tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias_preguntas`
+-- Estructura de tabla para la tabla `cat_secciones_preguntas`
 --
 
-CREATE TABLE `categorias_preguntas` (
+CREATE TABLE `cat_secciones_preguntas` (
   `id` int(11) NOT NULL,
-  `categoria` varchar(70) NOT NULL
+  `seccion` varchar(100) NOT NULL,
+  `categoria` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `categorias_preguntas`
+-- Volcado de datos para la tabla `cat_secciones_preguntas`
 --
 
-INSERT INTO `categorias_preguntas` (`id`, `categoria`) VALUES
-(1, 'contable'),
-(2, 'fiscal'),
-(3, 'laboral'),
-(4, 'legal'),
-(5, 'seguridad social');
+INSERT INTO `cat_secciones_preguntas` (`id`, `seccion`, `categoria`) VALUES
+(1, 'BANCOS', 'CONTABLE'),
+(2, 'CAJA CHICA', 'CONTABLE'),
+(5, 'COEFICIENTE DE UTILIDAD', 'FISCAL'),
+(6, 'PERDIDAS FISCALES ACUMULAS', 'FISCAL'),
+(7, 'PAGOS PROVISIONALES', 'FISCAL'),
+(8, 'IMPUESTOS SOBRE LA RENTA', 'FISCAL'),
+(9, 'CONCILIACION CONTABLE Y FISCAL DEL ISR', 'FISCAL'),
+(10, 'DESCANSOS SEMANALES Y OBLIGATORIOS', 'LABORAL'),
+(11, 'VACACIONES', 'LABORAL'),
+(12, 'AGUINALDO', 'LABORAL'),
+(13, 'REPARTO DE UTILIDAD', 'LABORAL'),
+(14, 'CONSTANCIA DE RETENCION', 'LABORAL'),
+(15, 'PREFERENCIA Y ANTIGUEDAD', 'LABORAL'),
+(16, 'PRIMA DE ANTIGUEDAD', 'LABORAL'),
+(17, 'PRIMA DE ANTIGUEDADR', 'LABORAL'),
+(18, 'CAPACITACION Y ADIESTRAMIENTO', 'LABORAL'),
+(19, 'SEGURIDAD E HIGIENE', 'LABORAL'),
+(20, 'CONSERVACION DEL DOC', 'LABORAL'),
+(21, 'GENERALES', 'LABORAL'),
+(22, 'GENERALESR', 'LABORAL'),
+(23, 'GENERAL', 'LEGAL'),
+(24, 'R IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
+(25, 'MODIFICACION SALARIOS', 'SEGURIDAD SOCIAL'),
+(26, 'LLEVAR Y CONSERVAR', 'SEGURIDAD SOCIAL'),
+(27, 'DETERMINAR Y ENTRAR', 'SEGURIDAD SOCIAL'),
+(28, 'CAPITALES CONSTITUTIVOS', 'SEGURIDAD SOCIAL'),
+(29, 'INF IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
+(30, 'INSPECCIONES Y VISITAS', 'SEGURIDAD SOCIAL'),
+(31, 'COMUNICAR AL IMSS', 'SEGURIDAD SOCIAL'),
+(32, 'OTROS', 'SEGURIDAD SOCIAL'),
+(33, 'PRESENTACION DICTAMEN', 'SEGURIDAD SOCIAL'),
+(34, 'CONSIDERACION', 'SEGURIDAD SOCIAL');
 
 -- --------------------------------------------------------
 
@@ -90,6 +147,36 @@ CREATE TABLE `detalles_preguntas` (
   `soliarchivo` int(1) NOT NULL,
   `preguntaOpcional` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `detalles_preguntas`
+--
+
+INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarchivo`, `preguntaOpcional`) VALUES
+(129, 'defaulth', 0, 0, 'pregunta opcional'),
+(470, 'default', 0, 0, 'pregunta opcional'),
+(545, 'defaulth', 0, 0, 'pregunta opcional'),
+(546, 'defaulth', 0, 0, 'pregunta opcional'),
+(547, 'defaulth', 0, 0, 'pregunta opcional'),
+(548, 'defaulth', 0, 0, 'pregunta opcional'),
+(549, 'defaulth', 0, 0, 'pregunta opcional'),
+(551, 'defaulth', 0, 0, 'pregunta opcional'),
+(552, 'defaulth', 0, 0, 'pregunta opcional'),
+(559, 'defaulth', 0, 0, 'pregunta opcional'),
+(560, 'defaulth', 0, 0, 'pregunta opcional'),
+(561, 'defaulth', 0, 0, 'pregunta opcional'),
+(565, 'defaulth', 0, 0, 'pregunta opcional'),
+(566, 'defaulth', 0, 0, 'pregunta opcional'),
+(569, 'defaulth', 0, 0, 'pregunta opcional'),
+(570, 'defaulth', 0, 0, 'pregunta opcional'),
+(573, 'defaulth', 0, 0, 'pregunta opcional'),
+(576, 'defaulth', 0, 0, 'pregunta opcional'),
+(580, 'RADIUS', 0, 1, 'nuevaaa'),
+(581, 'defaulth', 0, 0, 'pregunta opcional'),
+(582, 'defaulth', 0, 0, 'pregunta opcional'),
+(583, 'defaulth', 0, 0, 'pregunta opcional'),
+(584, 'RADIUS', 0, 1, 'pregunta opcional'),
+(585, 'CHECKBOX', 0, 0, 'pregunta opcional');
 
 -- --------------------------------------------------------
 
@@ -728,17 +815,6 @@ CREATE TABLE `resultados` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `secciones_preguntas`
---
-
-CREATE TABLE `secciones_preguntas` (
-  `id` int(11) NOT NULL,
-  `seccion` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `sessiones`
 --
 
@@ -756,10 +832,14 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
+<<<<<<< HEAD
 (72, 1, 'e3be9fbdb46b2810cc9f477f', '::1', '1531804251', 'Lunes 16 de Julio 2018 10:52:05 PM'),
 (74, 13, '1f3514fb84583810ea970a01', '::1', '1531550888', 'Sábado 14 de Julio 2018 12:48:08 AM'),
 (75, 14, '897289b82ec4a21484638777', '::1', '1531804032', 'Lunes 16 de Julio 2018 11:07:12 PM'),
 (76, 15, 'b88775de2172f9296ce519fe', '::1', '1531803530', 'Lunes 16 de Julio 2018 10:58:50 PM');
+=======
+(72, 1, 'ac0f3ac71058ce82ff6154bd', '::1', '1531895925', 'Martes 17 de Julio 2018 10:09:23 PM');
+>>>>>>> salva
 
 -- --------------------------------------------------------
 
@@ -782,24 +862,36 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
+<<<<<<< HEAD
 (1, 'Super', 'Usuario', 'super@usuario.com', '101010101011', 'admin', 0),
 (14, 'cliente', 'lorem', 'cliente@lorem.com', '1111111111111', 'cliente', 2),
 (15, 'Contador', 'nose', 'conta@conta.com', '202020202020', 'conta', 1);
+=======
+(1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483646, '123456789', 0),
+(2, 'salvador', 'miron', 'masterchif57@gmail.com', 2147483647, '123456789', 1),
+(3, 'dante', 'auditore', 'strokescode@gmail.com', 2147483647, '123456789', 1);
+>>>>>>> salva
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `catalogo_preguntas`
+-- Indices de la tabla `cat_categorias_preguntas`
 --
-ALTER TABLE `catalogo_preguntas`
+ALTER TABLE `cat_categorias_preguntas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `categorias_preguntas`
+-- Indices de la tabla `cat_input_preguntas`
 --
-ALTER TABLE `categorias_preguntas`
+ALTER TABLE `cat_input_preguntas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `cat_secciones_preguntas`
+--
+ALTER TABLE `cat_secciones_preguntas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -807,6 +899,12 @@ ALTER TABLE `categorias_preguntas`
 --
 ALTER TABLE `contrato`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `detalles_preguntas`
+--
+ALTER TABLE `detalles_preguntas`
+  ADD PRIMARY KEY (`id_pregunta`);
 
 --
 -- Indices de la tabla `empresa`
@@ -843,22 +941,28 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `catalogo_preguntas`
+-- AUTO_INCREMENT de la tabla `cat_categorias_preguntas`
 --
-ALTER TABLE `catalogo_preguntas`
+ALTER TABLE `cat_categorias_preguntas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `cat_input_preguntas`
+--
+ALTER TABLE `cat_input_preguntas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `categorias_preguntas`
+-- AUTO_INCREMENT de la tabla `cat_secciones_preguntas`
 --
-ALTER TABLE `categorias_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `cat_secciones_preguntas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=577;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=587;
 
 --
 -- AUTO_INCREMENT de la tabla `sessiones`
@@ -870,7 +974,11 @@ ALTER TABLE `sessiones`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
+<<<<<<< HEAD
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+=======
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+>>>>>>> salva
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

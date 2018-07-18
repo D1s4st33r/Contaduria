@@ -58,7 +58,7 @@ function actualizarDatosUsuario(url,tituloPanel) {
             telefono: telefono_
         };
         hacerCambiosPostAsy(post, url, $("#perfil"));
-        hacerCambio("TituloPanel",tituloPanel);
+        hacerCambio("TituloPanel", tituloPanel);
 
     }
 }
@@ -258,21 +258,37 @@ function agregarSeccion(iddiv, url) {
     }
 }
 
-function agregarPregunta(iddiv, url) {
-    var categoria_ = "";
-    var seccion_ = "";
-    var texto_ = "pregunta";
+function actualizarSeccion(iddiv, url) {
+    var nombre_ = "";
+    var id_ = "";
     var div = $("#" + iddiv);
-    var finds = div.find("input");
-    finds.each(function() {
-        if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
-        if ($(this).attr("name") == "seccion") { seccion_ = $(this).val(); }
+    var input = div.find("input");
+    var select = div.find("select");
+    input.each(function() {
+        if ($(this).attr("name") == "nombre") { nombre_ = $(this).val(); }
     });
-    if (categoria_ != "" && seccion_ != "") {
+    select.each(function() {
+        if ($(this).attr("name") == "seccion") { id_ = $(this).val(); }
+    });
+    if (nombre_ != "") {
         post = {
-            categoria: categoria_,
-            seccion: seccion_,
-            texto: texto_
+            seccion: nombre_,
+            id: id_
+        };
+        hacerCambiosPostAsy(post, url, $("#nada"));
+    }
+}
+
+function eliminarSeccion(iddiv, url) {
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var finds = div.find("select");
+    finds.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+    });
+    if (id_ != "") {
+        post = {
+            id: id_
         };
         hacerCambiosPostAsy(post, url, $("#nada"));
     }
@@ -293,6 +309,62 @@ function agregarPregunta(iddiv, url) {
             categoria: categoria_,
             seccion: seccion_,
             texto: texto_
+        };
+        hacerCambiosPostAsy(post, url, $("#nada"));
+    }
+}
+
+function actualizarPregunta(iddiv, url) {
+    var id_ = "";
+    var categoria_ = "";
+    var seccion_ = "";
+    var texto_ = "";
+    var tipo_ = "";
+    var soliarchivo_ = "";
+    var obligatorio_ = "";
+    var preguntaOpcional_ = "";
+
+    var div = $("#" + iddiv);
+    var inputs = div.find("input");
+    var select = div.find("select");
+    inputs.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+        if ($(this).attr("name") == "pregunta") { texto_ = $(this).val(); }
+        if ($(this).attr("name") == "archivo") { soliarchivo_ = $('[name="archivo"]:checked').attr('value'); }
+        if ($(this).attr("name") == "obligatorio") { obligatorio_ = $('[name="obligatorio"]:checked').attr('value'); }
+        if ($(this).attr("name") == "preOpcional") { preguntaOpcional_ = $(this).val(); }
+    });
+    select.each(function() {
+        if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
+        if ($(this).attr("name") == "seccion") { seccion_ = $(this).val(); }
+        if ($(this).attr("name") == "tipo") { tipo_ = $(this).val(); }
+    });
+    if (texto_ != "" && soliarchivo_ != "" && obligatorio_ != "" && id_ != "" && categoria_ != "" && seccion_ != "" && tipo_ != "") {
+        post = {
+            id: id_,
+            categoria: categoria_,
+            seccion: seccion_,
+            texto: texto_,
+            tipo: tipo_,
+            soliarchivo: soliarchivo_,
+            obligatorio: obligatorio_,
+            preguntaOpcional: preguntaOpcional_
+        };
+        console.log(post);
+        hacerCambiosPostAsy(post, url, $("#nada"));
+    }
+}
+
+function eliminarPregunta(iddiv, url) {
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var finds = div.find("input");
+    finds.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+    });
+    if (id_ != "") {
+        post = {
+            id: id_
         };
         hacerCambiosPostAsy(post, url, $("#nada"));
     }

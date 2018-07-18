@@ -38,7 +38,7 @@
                                 <strong class="text-gray-dark">
                                     <i class='fas fa-hashtag'></i> Preguntas 
                                 </strong>
-                                <span><?php echo count($preguntas) ?></span>
+                                <span><?php echo ($preguntas) ?></span>
                             </p>
                         </div>
                         <div class=" pt-1 col-sm-12 col-md-6 col-lg-4">

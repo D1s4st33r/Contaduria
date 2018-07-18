@@ -20,7 +20,7 @@ class Paneles_Model extends CI_Model
     public function getCategorias()
     {
         $seccions=$this->db->select("categoria,id")
-        ->from("categorias_preguntas")
+        ->from("cat_categorias_preguntas")
         ->get()
         ->result_array();
         return $seccions;
@@ -29,22 +29,22 @@ class Paneles_Model extends CI_Model
     public function getSecciones()
     {
         $categories=$this->db->select("seccion")
-        ->from("secciones_preguntas")
+        ->from("cat_secciones_preguntas")
         ->get()
         ->result_array();
         return $categories;
     }
 
-    public function getPreguntas()
+    public function getNumPreguntas()
     {
-        $preguntas=$this->db->select("categoria,seccion,texto")
+        $preguntas=$this->db->select("COUNT(id)")
         ->from("preguntas")
         ->get()
-        ->result_array();
+        ->result_array()[0]["COUNT(id)"];
         return $preguntas;
     }
 
-    public function getSpecificPreguntas($categoria)
+    public function getPreguntas($categoria)
     {
         $dato = $this->db->select('id,seccion,texto')->from('preguntas')->where('categoria',$categoria)->get()->result_array();
 			return $dato;
@@ -172,48 +172,123 @@ class Paneles_Model extends CI_Model
 
     public function registrarCategoria($datos)
     {
-        $registrado= $this->db->insert('categorias_preguntas',$datos);
+        $registrado= $this->db->insert('cat_categorias_preguntas',$datos);
         return $registrado;
     }
 
     public function actualizarCategoria($nombre,$id)
     {
-        $registrado=$this->db->where('id',$id)->update("categorias_preguntas",$nombre);
+        $registrado=$this->db->where('id',$id)->update("cat_categorias_preguntas",$nombre);
         return $registrado;
     }
 
     public function eliminarCategoria($id)
     {
-        $registrado=$this->db->where('id',$id)->delete('categorias_preguntas');
+        $registrado=$this->db->where('id',$id)->delete('cat_categorias_preguntas');
         return $registrado;
     }
 
     public function registrarSeccion($datos)
     {
-        $registrado=$this->db->insert('secciones_preguntas',$datos);
+        $registrado=$this->db->insert('cat_secciones_preguntas',$datos);
         return $registrado;
     }
 
     public function actualizarSeccion($nombre,$id)
     {
-        $registrado=$this->db->where('id',$id)->update("secciones_preguntas",$nombre);
+        $registrado=$this->db->where('id',$id)->update("cat_secciones_preguntas",$nombre);
         return $registrado;
     }
 
     public function eliminarSeccion($id)
     {
-        $registrado=$this->db->where('id',$id)->delete('secciones_preguntas');
+        $registrado=$this->db->where('id',$id)->delete('cat_secciones_preguntas');
         return $registrado;
     }
 
     public function registrarPregunta($datos)
     {
-        $registrado=$this->db->insert('preguntas',$datos);
-        return $registrado;
+        $this->db->insert('preguntas',$datos);
+        $insertId=$this->db->insert_id();
+        return $insertId;
     }
+
     public function registrarDetalles($datos)
     {
-        $registrado=$this->db->insert('preguntas',$datos);
+        $registrado=$this->db->insert('detalles_preguntas',$datos);
+        return $registrado;
+    }
+
+    public function getSpecificPregunta($id)
+    {
+        $pregunta= $this->db->select('categoria,seccion,texto')
+        ->from("preguntas")
+        ->where('id',$id)
+        ->get()
+        ->result_array()[0];
+        return  $pregunta;
+    }
+
+    public function validacionDetalles($id)
+    {
+        $preguntas=$this->db->select("COUNT(id_pregunta)")
+        ->from("detalles_preguntas")
+        ->where('id_pregunta',$id)
+        ->get()
+        ->result_array()[0]["COUNT(id_pregunta)"];
+        return $preguntas;
+    }
+
+    public function getCatalogo()
+    {
+        $preguntas=$this->db->select("tipo")
+        ->from("cat_input_preguntas")
+        ->get()
+        ->result_array();
+        return $preguntas;
+    }
+
+    public function getSpecificSecciones($categoria)
+    {
+        $preguntas=$this->db->select("seccion,id")
+        ->from("cat_secciones_preguntas")
+        ->where('categoria',$categoria)
+        ->get()
+        ->result_array();
+        return $preguntas;
+    }
+
+    public function getDetallesPregunta($id)
+    {
+        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional')
+        ->from("detalles_preguntas")
+        ->where('id_pregunta',$id)
+        ->get()
+        ->result_array()[0];
+        return $detalles;
+    }
+
+    public function actualizarPregunta($datos,$id)
+    {
+        $registrado=$this->db->where('id',$id)->update("preguntas",$datos);
+        return  $registrado;
+    }
+
+    public function actualizarDetallesPregunta($datos,$id)
+    {
+        $registrado=$this->db->where('id_pregunta',$id)->update("detalles_preguntas",$datos);
+        return $registrado;
+    }
+
+    public function eliminarPregunta($id)
+    {
+        $registrado=$this->db->where('id',$id)->delete('preguntas');
+        return $registrado;
+    }
+
+    public function eliminarDetalles($id)
+    {
+        $registrado=$this->db->where('id_pregunta',$id)->delete('detalles_preguntas');
         return $registrado;
     }
     
