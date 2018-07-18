@@ -7,6 +7,17 @@
 			parent::__construct();
 		}
 
+
+
+		public function dataempresa($datos_empresa)
+		{
+			
+			$this->db->insert("empresa",$datos_empresa);
+			var_dump($datos_empresa);
+			
+
+		}
+
 		public function legal(){
 
 			$dato = $this->db->select('id,seccion,texto')->from('preguntas')->where('categoria','LEGAL')->get()->result_array();
@@ -35,14 +46,32 @@
 			return $dato;
 		}
 
-		public function registro_empresa($datos_empresa)
-		{
-			var_dump($datos_empresa);
-			$registrado = $this->db->insert("empresa",$datos_empresa);
-			echo $registrado;
-			
 
+
+
+		public function getContadoresEmpEmpresa()
+		{
+			$sumaEmEmpresas = $this->db->select('COUNT(rfc)')
+				->from("empresas")
+				->where("id_usuario",1)
+				->get()
+				->result_array()[0]["COUNT(rfc)"];
+			$usuarios= array(
+				"Empresas" => $sumaEmEmpresas
+			);
+			return $usuarios;
 		}
+		public function getContadorEmpresa($id)
+		{
+			$empresas =$this->db->select('COUNT(rfc)')
+					->from("empresa")
+					->where('id_usuario',$id)
+					->get()
+					->result_array()[0];
+			 return $empresas["COUNT(rfc)"] ;
+			 
+		}
+
 		/**function eliminar_null($datos_null)
 		{
 			$this->db->delete("empresa",$datos_null);

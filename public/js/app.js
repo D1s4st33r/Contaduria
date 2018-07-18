@@ -50,6 +50,7 @@ function actualizarDatosUsuario(url,tituloPanel) {
     }
 }
 
+
 function AgregarUsuario(url) {
     nombre_ = $("#nombre").val();
     apellido_ = $("#apellido").val();
@@ -68,7 +69,6 @@ function AgregarUsuario(url) {
 
     }
 }
-
 function updateContador(iddiv, url) {
     var id_ = "";
     var nombre_ = "";

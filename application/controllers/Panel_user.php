@@ -38,12 +38,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('templates/footer');
 	}
 
-	public function Cuestionario()
+	public function Registro_Empresa()
 	{
-		$data['menu'] = "Cuestionario" ;
+		$data['menu'] = "Registro Empresa" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['estadisticas'] = $this->Paneles_Model->getContadorEmpresa();
+		
+		$data['session'] = $this->session;
+		$this->load->view('templates/headerLimpio');
+		$this->load->view('PanelUser/components_user/PanelMenu',$data);
+		$this->load->view('PanelUser/components_user/menuSecciones',$data);
+		$this->load->view('PanelUser/components_user/Form_General',$data);
+		$this->load->view('templates/footer');
+	}
+
+	public function Empresas()
+	{
+		$data['menu'] = "Empresas" ;
+		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
+		if($data['estadisticas']['Contadores'])
+		{ 
+			$data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados();
+		}
 		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/Panel',$data);

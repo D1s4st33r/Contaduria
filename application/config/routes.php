@@ -53,11 +53,13 @@ $route['default_controller'] = 'Login';
 /* $route['de_donde_vienes'] = "controlador/metodo"; */
 $route['PanelDeControl'] = 'Panel_admin/index';
 $route['ControlContadores'] = 'Panel_admin/Contadores';
+$route['ControlEmpresas'] = 'Panel_user/Empresas';
 $route['ActualizarPerfil'] = 'Panel_admin/getActualizacionPerfil';//ActualizarUsuarioById
 $route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
 $route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
 $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
+$route['AgregarEmpresa'] = 'Formulario/AgregarEmpresa';
 $route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
 $route['TituloPanel'] = 'Panel_admin/getTituloPanel';
 $route['ClientesAdmin'] = 'Panel_admin/Clientes';
@@ -74,7 +76,7 @@ $route['configUpSeccion']="Panel_admin/configUpSeccion";
 $route['configDeleteSeccion']="Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
 
-$route['Cuestionario']="Panel_user/Cuestionario";
+$route['RegistroEmpresa']="Panel_user/Registro_Empresa";
 $route['Cliente']="Panel_user/index";
 
 $route['Contador']="Panel_contador/index";

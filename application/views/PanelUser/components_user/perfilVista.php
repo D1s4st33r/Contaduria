@@ -4,7 +4,7 @@
 
       <div class="col-12 mb-1">
         <h4 class="p-2 bg-light text-dark"> 
-          <i class="fas fa-user-edit fa-md"></i> Perfil
+          <i class="fas fa-user fa-lg"></i> Perfil
         </h4>
         
       </div>
