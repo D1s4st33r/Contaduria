@@ -236,7 +236,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				);
 				$hecho = $this->Paneles_Model->registrarCategoria($us);
 				if($hecho){
-					$this->configuracionPreguntas();	
+					$self = $_SERVER['PHP_SELF'];	
 				}
 			}
 			

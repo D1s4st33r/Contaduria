@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-07-2018 a las 06:59:13
+-- Tiempo de generación: 18-07-2018 a las 07:42:29
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -84,7 +84,36 @@ CREATE TABLE `cat_secciones_preguntas` (
 INSERT INTO `cat_secciones_preguntas` (`id`, `seccion`, `categoria`) VALUES
 (1, 'BANCOS', 'CONTABLE'),
 (2, 'CAJA CHICA', 'CONTABLE'),
-(4, 'BEBE', 'CONTABLE');
+(5, 'COEFICIENTE DE UTILIDAD', 'FISCAL'),
+(6, 'PERDIDAS FISCALES ACUMULAS', 'FISCAL'),
+(7, 'PAGOS PROVISIONALES', 'FISCAL'),
+(8, 'IMPUESTOS SOBRE LA RENTA', 'FISCAL'),
+(9, 'CONCILIACION CONTABLE Y FISCAL DEL ISR', 'FISCAL'),
+(10, 'DESCANSOS SEMANALES Y OBLIGATORIOS', 'LABORAL'),
+(11, 'VACACIONES', 'LABORAL'),
+(12, 'AGUINALDO', 'LABORAL'),
+(13, 'REPARTO DE UTILIDAD', 'LABORAL'),
+(14, 'CONSTANCIA DE RETENCION', 'LABORAL'),
+(15, 'PREFERENCIA Y ANTIGUEDAD', 'LABORAL'),
+(16, 'PRIMA DE ANTIGUEDAD', 'LABORAL'),
+(17, 'PRIMA DE ANTIGUEDADR', 'LABORAL'),
+(18, 'CAPACITACION Y ADIESTRAMIENTO', 'LABORAL'),
+(19, 'SEGURIDAD E HIGIENE', 'LABORAL'),
+(20, 'CONSERVACION DEL DOC', 'LABORAL'),
+(21, 'GENERALES', 'LABORAL'),
+(22, 'GENERALESR', 'LABORAL'),
+(23, 'GENERAL', 'LEGAL'),
+(24, 'R IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
+(25, 'MODIFICACION SALARIOS', 'SEGURIDAD SOCIAL'),
+(26, 'LLEVAR Y CONSERVAR', 'SEGURIDAD SOCIAL'),
+(27, 'DETERMINAR Y ENTRAR', 'SEGURIDAD SOCIAL'),
+(28, 'CAPITALES CONSTITUTIVOS', 'SEGURIDAD SOCIAL'),
+(29, 'INF IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
+(30, 'INSPECCIONES Y VISITAS', 'SEGURIDAD SOCIAL'),
+(31, 'COMUNICAR AL IMSS', 'SEGURIDAD SOCIAL'),
+(32, 'OTROS', 'SEGURIDAD SOCIAL'),
+(33, 'PRESENTACION DICTAMEN', 'SEGURIDAD SOCIAL'),
+(34, 'CONSIDERACION', 'SEGURIDAD SOCIAL');
 
 -- --------------------------------------------------------
 
@@ -118,6 +147,7 @@ CREATE TABLE `detalles_preguntas` (
 
 INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarchivo`, `preguntaOpcional`) VALUES
 (129, 'defaulth', 0, 0, 'pregunta opcional'),
+(470, 'default', 0, 0, 'pregunta opcional'),
 (545, 'defaulth', 0, 0, 'pregunta opcional'),
 (546, 'defaulth', 0, 0, 'pregunta opcional'),
 (547, 'defaulth', 0, 0, 'pregunta opcional'),
@@ -795,7 +825,7 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-(72, 1, 'ac0f3ac71058ce82ff6154bd', '::1', '1531893444', 'Martes 17 de Julio 2018 10:09:23 PM');
+(72, 1, 'ac0f3ac71058ce82ff6154bd', '::1', '1531895925', 'Martes 17 de Julio 2018 10:09:23 PM');
 
 -- --------------------------------------------------------
 
@@ -894,7 +924,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cat_categorias_preguntas`
 --
 ALTER TABLE `cat_categorias_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_input_preguntas`
@@ -906,13 +936,13 @@ ALTER TABLE `cat_input_preguntas`
 -- AUTO_INCREMENT de la tabla `cat_secciones_preguntas`
 --
 ALTER TABLE `cat_secciones_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=586;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=587;
 
 --
 -- AUTO_INCREMENT de la tabla `sessiones`

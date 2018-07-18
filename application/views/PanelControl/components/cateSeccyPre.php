@@ -73,7 +73,7 @@
             }
 ?>
   </select>
-       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarCategoria('panel-seccion','<?php echo base_url("deleteSeccion").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarSeccion('panel-seccion','<?php echo base_url("deleteSeccion").$session; ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-seccion','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
 </div>
 <?php endif; ?>
