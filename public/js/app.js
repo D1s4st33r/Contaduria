@@ -3,7 +3,7 @@
  * 
  * */
 
- /*
+/*
  * @param {div para colorcar el response de la url} divById 
  * @param {url donde se hace el GET} url 
  */
@@ -20,12 +20,12 @@ function hacerCambio(divById, url) {
 }
 var divPerfil = "";
 
- /**
-  * 
-  * @param {objetoPost} datosPost 
-  * @param {Url del recurso} urlDes 
-  * @param {div de la vista} div 
-  */
+/**
+ * 
+ * @param {objetoPost} datosPost 
+ * @param {Url del recurso} urlDes 
+ * @param {div de la vista} div 
+ */
 function hacerCambiosPostAsy(datosPost, urlDes, div) {
     $.ajax({
         type: "POST", // la variable type guarda el tipo de la peticion GET,POST,..
@@ -45,7 +45,7 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
  * @param {*} url 
  * @param {*} tituloPanel 
  */
-function actualizarDatosUsuario(url,tituloPanel) {
+function actualizarDatosUsuario(url, tituloPanel) {
     nombre_ = $("#nombre").val();
     apellido_ = $("#apellido").val();
     telefono_ = $("#telefono").val();
@@ -70,7 +70,7 @@ function AgregarUsuario(url) {
     telefono_ = $("#telefono").val();
     email_ = $("#email").val();
     contrasena_ = $("#contrasena").val();
-    
+
     if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && contrasena_ != "") {
         post = {
             nombre: nombre_,
@@ -99,11 +99,12 @@ function AgregarCliente(url) {
             telefono: telefono_,
             clave: contrasena_
         };
-        
+
         hacerCambiosPostAsy(post, url, $("#clienteReg"));
-        hacerCambio("Controles",);
+        hacerCambio("Controles", );
     }
 }
+
 function updateContador(iddiv, url) {
     var id_ = "";
     var nombre_ = "";
@@ -177,6 +178,7 @@ function EliminarUsuario(iddiv, url) {
     }
 
 }
+
 function EliminarCliente(iddiv, url) {
     var id_ = "";
     var div = $("#" + iddiv);

@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		$data['categorias']=$this->Paneles_Model->getCategorias();
 		$data['secciones']=$this->Paneles_Model->getSecciones();
-		$data['preguntas']=$this->Paneles_Model->getPreguntas();
+		$data['preguntas']=$this->Paneles_Model->getNumPreguntas();
 		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
 		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
 
@@ -98,20 +98,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
 		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['secciones']=$this->Paneles_Model->getSecciones();
-		$data['preguntas']=$this->Paneles_Model->getNumPreguntas();
+		$data['numsecciones']=$this->Paneles_Model->getNumSecciones();
+		$data['numpreguntas']=$this->Paneles_Model->getNumPreguntas();
 		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
 		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
-		if($data['categoria']!="ind")
+		if($data['categoria']!="")
 		{
-			$data['detalles']=$this->Paneles_Model->getSpecificSecciones(strtoupper($data['categoria']));
-			$data['specific']=$this->Paneles_Model->getPreguntas(strtoupper($data['categoria']));
+			$data['secciones']=$this->Paneles_Model->getSpecificSecciones(strtoupper($data['categoria']));
+			$data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($data['categoria']));
 			$data["titulo"]=strtoupper($data['categoria']);
 			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
 		}
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$data);
-		if($data['categoria']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
 		$this->load->view('templates/footer');
 	}
 	
@@ -547,7 +546,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 
-<<<<<<< HEAD
 		/**
 		 * Empresas AJAX
 		 */
@@ -565,7 +563,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/CrudEmpresas",$data);
 		}
 		
-=======
 		public function updatePregunta()
 		{
 			$post = $this->input->post();
@@ -624,7 +621,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			}
 		}
->>>>>>> salva
 	// Fin funciones AJAX
 }
 

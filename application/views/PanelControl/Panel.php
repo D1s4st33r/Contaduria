@@ -110,7 +110,7 @@
     <?php elseif($menu == "ConfPreguntas") : ?>
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" id="general">
           <div class="container">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <?php 
@@ -120,10 +120,16 @@
           </div>
         </div>
 
-      <div class="col-12">
+      <div class="col-12" id="categorias">
               <?php 
                 $this->load->view('PanelControl/components/categorias');
               ?>
+        </div>
+
+        <div class "col-12" id="seccypre">
+        <?php
+            if($categoria!=""){$this->load->view('PanelControl/components/preguntas');}
+        ?>
         </div>
 
       </div>

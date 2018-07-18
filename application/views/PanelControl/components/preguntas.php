@@ -40,7 +40,7 @@
       $estatica_numerica = 1;
       
       //por cada pregunta registrada 
-      foreach ($specific as $index => $valores) 
+      foreach ($preguntas as $index => $valores) 
       { 
         //Si es una nueva seccion
           if (!in_array(strtoupper($valores['seccion']), $secciones_disponibles))

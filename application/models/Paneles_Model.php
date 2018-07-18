@@ -26,12 +26,12 @@ class Paneles_Model extends CI_Model
         return $seccions;
     }
 
-    public function getSecciones()
+    public function getNumSecciones()
     {
-        $categories=$this->db->select("seccion")
+        $categories=$this->db->select("COUNT(seccion)")
         ->from("cat_secciones_preguntas")
         ->get()
-        ->result_array();
+        ->result_array()[0]["COUNT(seccion)"];
         return $categories;
     }
 
@@ -267,6 +267,7 @@ class Paneles_Model extends CI_Model
         ->result_array()[0];
         return $detalles;
     }
+
 
     public function actualizarPregunta($datos,$id)
     {

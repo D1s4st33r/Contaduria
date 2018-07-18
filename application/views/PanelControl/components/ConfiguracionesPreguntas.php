@@ -20,17 +20,17 @@
                         <div class=" pt-1 col-sm-12 col-md-6 col-lg-4 ">
                             <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <strong class="text-gray-dark">
-                                    <i class='fas fa-hashtag'></i> Secciones 
+                                    <i class='fas fa-hashtag'></i> Categorias 
                                 </strong>
-                                <span><?php echo count($secciones) ?></span>
+                                <span><?php echo count($categorias) ?></span>
                             </p>
                         </div> 
                         <div class=" pt-1 col-sm-12 col-md-6 col-lg-4">
                             <p class=" pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <strong class="text-gray-dark">
-                                    <i class='fas fa-hashtag'></i> Categorias 
+                                    <i class='fas fa-hashtag'></i> Secciones 
                                 </strong>
-                                <span><?php echo count($categorias)?></span>
+                                <span><?php echo $numsecciones?></span>
                             </p>
                         </div>
                         <div class=" pt-1 col-sm-12 col-md-6 col-lg-4">
@@ -38,7 +38,7 @@
                                 <strong class="text-gray-dark">
                                     <i class='fas fa-hashtag'></i> Preguntas 
                                 </strong>
-                                <span><?php echo ($preguntas) ?></span>
+                                <span><?php echo ($numpreguntas) ?></span>
                             </p>
                         </div>
                         <div class=" pt-1 col-sm-12 col-md-6 col-lg-4">

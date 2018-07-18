@@ -78,6 +78,7 @@ $route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
 $route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
 
+$route['configCancelar']="Panel_admin/configCancelar";
 $route['configAddCategoria']    = "Panel_admin/configAddCategoria";
 $route['addCategoria']          = "Panel_admin/addCategoria";
 $route['configUpdateCategoria'] = "Panel_admin/configUpCategoria";
@@ -87,9 +88,14 @@ $route['deleteCategoria']       = "Panel_admin/deleteCategoria";
 $route['configAddSeccion']      = "Panel_admin/configAddSeccion";
 $route['addSeccion']            = "Panel_admin/addSeccion";
 $route['configUpSeccion']       = "Panel_admin/configUpSeccion";
+$route['updateSeccion']="Panel_admin/updateSeccion";
 $route['configDeleteSeccion']   = "Panel_admin/configDelSeccion";
+$route['deleteSeccion']="Panel_admin/deleteSeccion";
+$route['addPregunta']="Panel_admin/addPregunta";
 $route['configUpdatePregunta']  = "Panel_admin/configUpPregunta";
-
+$route['upPregunta']="Panel_admin/updatePregunta";
+$route['configDelPregunta']="Panel_admin/configDelPregunta";
+$route['deletePregunta']="Panel_admin/deletePregunta";
 
 $route['RegistroEmpresa']="Panel_user/Registro_Empresa";
 $route['Cliente']="Panel_user/index";

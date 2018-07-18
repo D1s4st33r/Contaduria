@@ -39,7 +39,7 @@
           </strong>
         </div>
         <span class="d-block"> Total Registrados 
-              <?php echo count($preguntas) ?> 
+              <?php echo $preguntas ?> 
         </span>
       </div>
     </div>
