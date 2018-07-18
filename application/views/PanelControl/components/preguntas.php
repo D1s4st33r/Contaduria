@@ -116,7 +116,7 @@
                 
                 echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-success btn-sm" onclick="return hacerCambio(';echo "'"; echo 'config-pregunta'.$valores['id'];echo "'"; echo  ", '".base_url('configUpdatePregunta').$session.'&cat='.strtoupper($categoria).'&idpre='.$valores['id'];echo"'"; echo ')"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
-                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="return hacerCambio(';echo "'"; echo 'config-pregunta'.$valores['id'];echo "'"; echo  ", '".base_url('configDelPregunta').$session.'&cat='.strtoupper($categoria).'&idpre='.$valores['id'];echo"'"; echo ')"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </div>';
             echo '</div>';
             echo '<div id="panel-pregunta'.$valores['id'].'">';

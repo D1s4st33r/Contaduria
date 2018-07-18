@@ -334,6 +334,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 
+		public function updateSeccion()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['seccion']) && !empty($post['seccion'])
+				&& isset($post['id']) && !empty($post['id'])
+			){
+				$us = 	array(
+					"seccion" => strtoupper($post['seccion'])
+				);
+				$hecho = $this->Paneles_Model->actualizarSeccion($us,$post['id']);
+				if($hecho){
+					$this->configuracionPreguntas();	
+				}
+			}
+		}
+
 		public function configDelSeccion()
 		{
 			$data['config']="deleteseccion";
@@ -343,6 +360,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['session'] = $this->session;
 			$data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function deleteSeccion()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['id']) && !empty($post['id'])
+			){
+				$hecho = $this->Paneles_Model->eliminarSeccion($post['id']);
+				if($hecho){
+					$this->configuracionPreguntas();	
+				}
+			}
 		}
 
 		public function addPregunta()
@@ -434,6 +464,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			}
 			
+		}
+
+		public function configDelPregunta()
+		{
+			$data['config']="deletepregunta";
+			$data['catact']=$_GET['cat'];
+			$data['id']=$_GET['idpre'];
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function deletePregunta()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['id']) && !empty($post['id'])
+			){
+				$hecho = $this->Paneles_Model->eliminarPregunta($post['id']);
+				$hechode = $this->Paneles_Model->eliminarDetalles($post['id']);
+				if($hecho){
+					$this->configuracionPreguntas();	
+				}
+			}
 		}
 	// Fin funciones AJAX
 }

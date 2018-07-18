@@ -23,6 +23,7 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
         success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
             div.html(datos);
+            alert(datos);
         }
     });
 }
@@ -180,6 +181,42 @@ function agregarSeccion(iddiv, url) {
     }
 }
 
+function actualizarSeccion(iddiv, url) {
+    var nombre_ = "";
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var input = div.find("input");
+    var select = div.find("select");
+    input.each(function() {
+        if ($(this).attr("name") == "nombre") { nombre_ = $(this).val(); }
+    });
+    select.each(function() {
+        if ($(this).attr("name") == "seccion") { id_ = $(this).val(); }
+    });
+    if (nombre_ != "") {
+        post = {
+            seccion: nombre_,
+            id: id_
+        };
+        hacerCambiosPostAsy(post, url, $("#nada"));
+    }
+}
+
+function eliminarSeccion(iddiv, url) {
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var finds = div.find("select");
+    finds.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+    });
+    if (id_ != "") {
+        post = {
+            id: id_
+        };
+        hacerCambiosPostAsy(post, url, $("#nada"));
+    }
+}
+
 function agregarPregunta(iddiv, url) {
     var categoria_ = "";
     var seccion_ = "";
@@ -237,6 +274,21 @@ function actualizarPregunta(iddiv, url) {
             preguntaOpcional: preguntaOpcional_
         };
         console.log(post);
+        hacerCambiosPostAsy(post, url, $("#nada"));
+    }
+}
+
+function eliminarPregunta(iddiv, url) {
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var finds = div.find("input");
+    finds.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+    });
+    if (id_ != "") {
+        post = {
+            id: id_
+        };
         hacerCambiosPostAsy(post, url, $("#nada"));
     }
 }

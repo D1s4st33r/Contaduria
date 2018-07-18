@@ -45,30 +45,35 @@
 
 <?php if($config=="upseccion"): ?>
 <div class=" col-md">
-<select class="custom-select" id="inputGroupSelect01">
-    <option selected>Choose...</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+<select class="custom-select" id="seccion" name="seccion">
+<?php
+            foreach ($secciones as $ind=>$val)
+            {
+                echo "<option value='".$val['id']."'>".strtoupper($val['seccion'])."</option>";
+            }
+?>
   </select>
        <div class="form-group" style="float:left;">
        <label for="seccion"><b> nuevo nombre</b></label>
-       <input type="text" name="seccion" class="form-control-sm" id="seccion">
+       <input type="text" name="nombre" class="form-control-sm" id="nombre">
        </div>
-       <button type="button" class="btn btn-primary btn-sm" style="">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return  actualizarSeccion('config-seccion','<?php echo base_url("updateSeccion").$session; ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-seccion','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
 </div>
 <?php endif; ?>
 
 <?php if($config=="deleteseccion"): ?>
 <div class=" col-md">
-<select class="custom-select" id="inputGroupSelect01">
-    <option selected>Choose...</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+<label for="id"><b>Eliminar Seccion</b></label>
+<select class="custom-select" id="id" name="id">
+<?php
+            foreach ($secciones as $ind=>$val)
+            {
+                echo "<option value='".$val['id']."'>".strtoupper($val['seccion'])."</option>";
+            }
+?>
   </select>
-       <button type="button" class="btn btn-primary btn-sm" style="">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarCategoria('panel-seccion','<?php echo base_url("deleteSeccion").$session; ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-seccion','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
 </div>
 <?php endif; ?>
@@ -178,5 +183,13 @@
         </div>
       </div>  
     </div>
+</div>
+<?php endif; ?>
+
+<?php if($config=="deletepregunta"): ?>
+<div class=" col-md">
+        <p><b>¿Eliminar esta pregunta?</b></p>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("deletePregunta").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-pregunta<?php echo $id ?>','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
 </div>
 <?php endif; ?>

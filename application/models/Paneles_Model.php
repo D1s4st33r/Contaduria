@@ -232,7 +232,7 @@ class Paneles_Model extends CI_Model
 
     public function getSpecificSecciones($categoria)
     {
-        $preguntas=$this->db->select("seccion")
+        $preguntas=$this->db->select("seccion,id")
         ->from("cat_secciones_preguntas")
         ->where('categoria',$categoria)
         ->get()
@@ -259,6 +259,18 @@ class Paneles_Model extends CI_Model
     public function actualizarDetallesPregunta($datos,$id)
     {
         $registrado=$this->db->where('id_pregunta',$id)->update("detalles_preguntas",$datos);
+        return $registrado;
+    }
+
+    public function eliminarPregunta($id)
+    {
+        $registrado=$this->db->where('id',$id)->delete('preguntas');
+        return $registrado;
+    }
+
+    public function eliminarDetalles($id)
+    {
+        $registrado=$this->db->where('id_pregunta',$id)->delete('detalles_preguntas');
         return $registrado;
     }
 
