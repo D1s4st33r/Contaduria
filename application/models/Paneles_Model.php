@@ -70,8 +70,9 @@ class Paneles_Model extends CI_Model
         return $obligatorio;
     }
 
-    public function actualizarDatosUsuario($usuario)
+    public function actualizarDatosUsuario($usuario,$id)
     {
+        $this->db->where('id', $id);
         $hecho = $this->db->update('usuario', $usuario);
         return $hecho;
         
@@ -248,10 +249,50 @@ class Paneles_Model extends CI_Model
             ->where("roll",2)
             ->get()
             ->result_array();
-        
+        foreach ($Clientes as $key => $value) {
+            $Clientes[$key]["EmpresasRegistradas"]= $this->getContadorEmpresaById($value['id']);
+        }
         $usuarios= array(
             "Clientes" => $Clientes
         );
         return $usuarios;
+    }
+
+    public function getContadorEmpresaById($id)
+    {
+        $empresas =array();
+        $datosContador = array();
+        $empresa = $this->db->select('COUNT(rfc)')
+        ->from("empresa")
+        ->where("id_usuario",$id)
+        ->get()
+        ->result_array()[0]["COUNT(rfc)"];
+       
+        $contador = $this->db->select('contadorAsignado')
+        ->from("empresa")
+        ->where("id_usuario",$id)
+        ->get()
+        ->result_array()[0]["contadorAsignado"];
+        
+        if($empresa != "0"){
+            $empresas["numEmpresas"] =$empresa;
+            if($contador!="0")
+            {
+                $datosContador = $this->db->select('nombre,apellido')->from("usuario")->where("id",$contador)->get()->result_array()[0];
+                var_dump($datosContador);
+            }else{
+                $empresas["Contador"] = "0";
+            }
+        }else{
+            $empresas["numEmpresas"] =0;
+        }
+         
+        return $empresas;
+    }
+
+    public function EmpresasByCliente($id)
+    {
+        $empresas = $this->db->select('rfc,razonSocial,domicilio,correo,telefono')->from("empresa")->where("id_usuario",$id)->get()->result_array();
+        return $empresas;
     }
 }

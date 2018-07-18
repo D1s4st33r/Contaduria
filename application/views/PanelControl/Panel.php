@@ -177,6 +177,29 @@
           </div>
         </div>
 
+        <div class="col-12">
+          <div class="container">
+            <div class="row my-3 p-3 bg-white rounded box-shadow">
+              
+              <div class="col-12 mb-1 align-items-center">
+                <h4 class="p-2 bg-light text-dark rounded "> 
+                  <i class='fas fa-industry fa-2x'></i> Empresas
+                </h4>
+              </div>
+                <div class="col-12 " id="empresasClie" >
+                  <style>
+                  #empresasClie{
+                    max-height: 400px;
+                    overflow: hidden;
+                    overflow-y: scroll;
+                  }
+                  </style>
+                  
+                </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 

@@ -235,7 +235,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					"email" => $post['email'],
 					"telefono" => $post['telefono']
 				);
-				$hecho = $this->Paneles_Model->actualizarDatosUsuario($us);
+				$hecho = $this->Paneles_Model->actualizarDatosUsuario($us,$this->session_id);
 				if($hecho){
 					$this->Usuario=$this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
 					$data['usuario'] = $this->Usuario;
@@ -471,6 +471,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		/**
+		 * Empresas AJAX
+		 */
+
+		public function getEmpresas()
+		{
+			$idCliente = $this->input->get('cliente');
+			$Cliente = (isset($idCliente))? $idCliente : false ; 
+			if($Cliente){
+				$data["empresas"] = $this->Paneles_Model->EmpresasByCliente($Cliente);
+			}
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/CrudEmpresas",$data);
 		}
 		
 	// Fin funciones AJAX

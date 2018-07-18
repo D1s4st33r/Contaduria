@@ -97,9 +97,13 @@ $route['Cliente']="Panel_user/index";
 $route['Contador']="Panel_contador/index";
 // $route['Contadores']="Panel_user/index";
 
+// Empresas
+$route['empresasClie']="Panel_admin/getEmpresas";
 
 
 
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
