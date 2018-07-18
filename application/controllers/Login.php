@@ -51,16 +51,17 @@ class Login extends CI_Controller {
 					unset($usuario[0]['roll']);
 					redirect('PanelDeControl'.$url,'refresh');
 				}
+				if(((int)$usuario[0]['roll']) == 1 )
+				{
+					unset($usuario[0]['roll']);
+					redirect('Formulario/General'.$url,'refresh');
+				}
 				if(((int)$usuario[0]['roll']) == 2 )
 				{
 					unset($usuario[0]['roll']);
 					redirect('Cliente'.$url,'refresh');
 				}
-				if(((int)$usuario[0]['roll']) == 1 )
-				{	
-					unset($usuario[0]['roll']);
-					redirect('Contador'.$url,'refresh');
-				}
+			
 			}else{
 				redirect('Login?error_login=acceso','refresh');
 			}

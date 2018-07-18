@@ -24,10 +24,16 @@
         </a>
       </li>
       <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Cuestionario") ) ? "active" : "" ; ?> p-1">
-        <a class="nav-link" href="<?php echo base_url("Cuestionario");echo $session;?>">
+        <a class="nav-link" href="<?php echo base_url("Formulario/General");echo $session;?>">
           <i class='fas fa-question  fa-lg'></i> <small>Cuestionario</small>
         </a>
       </li>
+      <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Documentos") ) ? "active" : "" ; ?> p-1">
+        <a class="nav-link" href="<?php echo base_url("ControlEmpresas");echo $session;?>">
+          <i class='far fa-folder'></i> <small>Documentos</small>
+        </a>
+      </li>
+      
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

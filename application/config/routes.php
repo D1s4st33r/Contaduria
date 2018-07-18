@@ -91,7 +91,7 @@ $route['configDeleteSeccion']   = "Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']  = "Panel_admin/configUpPregunta";
 
 
-$route['Cuestionario']="Panel_user/Cuestionario";
+$route['RegistroEmpresa']="Panel_user/Registro_Empresa";
 $route['Cliente']="Panel_user/index";
 
 $route['Contador']="Panel_contador/index";

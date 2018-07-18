@@ -3,16 +3,22 @@
 -- https://www.phpmyadmin.net/
 --
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> david
 -- Servidor: localhost
 -- Tiempo de generación: 17-07-2018 a las 06:11:06
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
+<<<<<<< HEAD
 =======
 -- Servidor: 127.0.0.1
 -- Tiempo de generación: 18-07-2018 a las 07:42:29
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 >>>>>>> salva
+=======
+>>>>>>> david
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -833,13 +839,19 @@ CREATE TABLE `sessiones` (
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> david
 (72, 1, 'e3be9fbdb46b2810cc9f477f', '::1', '1531804251', 'Lunes 16 de Julio 2018 10:52:05 PM'),
 (74, 13, '1f3514fb84583810ea970a01', '::1', '1531550888', 'Sábado 14 de Julio 2018 12:48:08 AM'),
 (75, 14, '897289b82ec4a21484638777', '::1', '1531804032', 'Lunes 16 de Julio 2018 11:07:12 PM'),
 (76, 15, 'b88775de2172f9296ce519fe', '::1', '1531803530', 'Lunes 16 de Julio 2018 10:58:50 PM');
+<<<<<<< HEAD
 =======
 (72, 1, 'ac0f3ac71058ce82ff6154bd', '::1', '1531895925', 'Martes 17 de Julio 2018 10:09:23 PM');
 >>>>>>> salva
+=======
+>>>>>>> david
 
 -- --------------------------------------------------------
 
@@ -863,6 +875,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
 <<<<<<< HEAD
+<<<<<<< HEAD
 (1, 'Super', 'Usuario', 'super@usuario.com', '101010101011', 'admin', 0),
 (14, 'cliente', 'lorem', 'cliente@lorem.com', '1111111111111', 'cliente', 2),
 (15, 'Contador', 'nose', 'conta@conta.com', '202020202020', 'conta', 1);
@@ -871,6 +884,11 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`,
 (2, 'salvador', 'miron', 'masterchif57@gmail.com', 2147483647, '123456789', 1),
 (3, 'dante', 'auditore', 'strokescode@gmail.com', 2147483647, '123456789', 1);
 >>>>>>> salva
+=======
+(1, 'Super', 'Usuario', 'super@usuario.com', '101010101011', 'admin', 0),
+(14, 'cliente', 'lorem', 'cliente@lorem.com', '1111111111111', 'cliente', 2),
+(15, 'Contador', 'nose', 'conta@conta.com', '202020202020', 'conta', 1);
+>>>>>>> david
 
 --
 -- Índices para tablas volcadas
@@ -975,10 +993,14 @@ ALTER TABLE `sessiones`
 --
 ALTER TABLE `usuario`
 <<<<<<< HEAD
+<<<<<<< HEAD
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 =======
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 >>>>>>> salva
+=======
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+>>>>>>> david
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
