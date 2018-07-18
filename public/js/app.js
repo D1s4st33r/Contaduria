@@ -200,22 +200,43 @@ function agregarPregunta(iddiv, url) {
     }
 }
 
-function agregarPregunta(iddiv, url) {
+function actualizarPregunta(iddiv, url) {
+    var id_ = "";
     var categoria_ = "";
     var seccion_ = "";
-    var texto_ = "pregunta";
+    var texto_ = "";
+    var tipo_ = "";
+    var soliarchivo_ = "";
+    var obligatorio_ = "";
+    var preguntaOpcional_ = "";
+
     var div = $("#" + iddiv);
-    var finds = div.find("input");
-    finds.each(function() {
+    var inputs = div.find("input");
+    var select = div.find("select");
+    inputs.each(function() {
+        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+        if ($(this).attr("name") == "pregunta") { texto_ = $(this).val(); }
+        if ($(this).attr("name") == "archivo") { soliarchivo_ = $('[name="archivo"]:checked').attr('value'); }
+        if ($(this).attr("name") == "obligatorio") { obligatorio_ = $('[name="obligatorio"]:checked').attr('value'); }
+        if ($(this).attr("name") == "preOpcional") { preguntaOpcional_ = $(this).val(); }
+    });
+    select.each(function() {
         if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
         if ($(this).attr("name") == "seccion") { seccion_ = $(this).val(); }
+        if ($(this).attr("name") == "tipo") { tipo_ = $(this).val(); }
     });
-    if (categoria_ != "" && seccion_ != "") {
+    if (texto_ != "" && soliarchivo_ != "" && obligatorio_ != "" && id_ != "" && categoria_ != "" && seccion_ != "" && tipo_ != "") {
         post = {
+            id: id_,
             categoria: categoria_,
             seccion: seccion_,
-            texto: texto_
+            texto: texto_,
+            tipo: tipo_,
+            soliarchivo: soliarchivo_,
+            obligatorio: obligatorio_,
+            preguntaOpcional: preguntaOpcional_
         };
+        console.log(post);
         hacerCambiosPostAsy(post, url, $("#nada"));
     }
 }
