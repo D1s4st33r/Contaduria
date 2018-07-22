@@ -1,24 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> david
--- Servidor: localhost
--- Tiempo de generación: 17-07-2018 a las 06:11:06
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 5.6.36
-<<<<<<< HEAD
-=======
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-07-2018 a las 07:42:29
+-- Tiempo de generación: 22-07-2018 a las 07:58:48
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
->>>>>>> salva
-=======
->>>>>>> david
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -96,37 +83,72 @@ CREATE TABLE `cat_secciones_preguntas` (
 
 INSERT INTO `cat_secciones_preguntas` (`id`, `seccion`, `categoria`) VALUES
 (1, 'BANCOS', 'CONTABLE'),
-(2, 'CAJA CHICA', 'CONTABLE'),
-(5, 'COEFICIENTE DE UTILIDAD', 'FISCAL'),
-(6, 'PERDIDAS FISCALES ACUMULAS', 'FISCAL'),
-(7, 'PAGOS PROVISIONALES', 'FISCAL'),
-(8, 'IMPUESTOS SOBRE LA RENTA', 'FISCAL'),
-(9, 'CONCILIACION CONTABLE Y FISCAL DEL ISR', 'FISCAL'),
-(10, 'DESCANSOS SEMANALES Y OBLIGATORIOS', 'LABORAL'),
-(11, 'VACACIONES', 'LABORAL'),
-(12, 'AGUINALDO', 'LABORAL'),
-(13, 'REPARTO DE UTILIDAD', 'LABORAL'),
-(14, 'CONSTANCIA DE RETENCION', 'LABORAL'),
-(15, 'PREFERENCIA Y ANTIGUEDAD', 'LABORAL'),
-(16, 'PRIMA DE ANTIGUEDAD', 'LABORAL'),
-(17, 'PRIMA DE ANTIGUEDADR', 'LABORAL'),
-(18, 'CAPACITACION Y ADIESTRAMIENTO', 'LABORAL'),
-(19, 'SEGURIDAD E HIGIENE', 'LABORAL'),
-(20, 'CONSERVACION DEL DOC', 'LABORAL'),
-(21, 'GENERALES', 'LABORAL'),
-(22, 'GENERALESR', 'LABORAL'),
-(23, 'GENERAL', 'LEGAL'),
-(24, 'R IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
-(25, 'MODIFICACION SALARIOS', 'SEGURIDAD SOCIAL'),
-(26, 'LLEVAR Y CONSERVAR', 'SEGURIDAD SOCIAL'),
-(27, 'DETERMINAR Y ENTRAR', 'SEGURIDAD SOCIAL'),
-(28, 'CAPITALES CONSTITUTIVOS', 'SEGURIDAD SOCIAL'),
-(29, 'INF IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
-(30, 'INSPECCIONES Y VISITAS', 'SEGURIDAD SOCIAL'),
-(31, 'COMUNICAR AL IMSS', 'SEGURIDAD SOCIAL'),
-(32, 'OTROS', 'SEGURIDAD SOCIAL'),
-(33, 'PRESENTACION DICTAMEN', 'SEGURIDAD SOCIAL'),
-(34, 'CONSIDERACION', 'SEGURIDAD SOCIAL');
+(3, 'CAJA CHICA', 'CONTABLE'),
+(4, 'GENERAL', 'LEGAL'),
+(5, 'OTROS', 'SEGURIDAD SOCIAL'),
+(7, 'REPARTO DE UTILIDAD', 'LABORAL'),
+(9, 'COEFICIENTE DE UTILIDAD', 'FISCAL'),
+(10, 'PERDIDAS FISCALES ACUMULADAS', 'FISCAL'),
+(11, 'PAGOS PROVISIONALES', 'FISCAL'),
+(12, 'IMPUESTO SOBRE LA RENTA', 'FISCAL'),
+(13, 'CONCILIACION CONTABLE Y FISCAL DEL ISR', 'FISCAL'),
+(14, 'IMPUESTO AL VALOR AGREGADO', 'FISCAL'),
+(15, 'OTRAS CONTRIBUCIONES: (RETENCION ISR, IVA, IEPS)', 'FISCAL'),
+(16, 'RETENCION IMPUESTO SOBRE LA RENTA: (ISR) RESIDENTES EN EL PAIS', 'FISCAL'),
+(17, 'RETENCION IMPUESTO SOBRE LA RENTA: (ISR) RESIDENTES EN EL EXTRANJERO', 'FISCAL'),
+(18, 'RETENCION DEL IMPUESTO AL VALOR AGREGADO: (IVA)', 'FISCAL'),
+(19, 'CONCILIACION CONTABLE Y FISCAL DEL ISR:', 'FISCAL'),
+(20, 'INGRESOS FISCALES NO CONTABLES:', 'FISCAL'),
+(21, 'DEDUCCIONES CONTABLES NO FISCALES:', 'FISCAL'),
+(22, 'DEDUCCIONES FISCALES NO CONTABLES:', 'FISCAL'),
+(23, 'INGRESOS CONTABLES NO FISCALES', 'FISCAL'),
+(24, 'DEDUCCION DE INVERSIONES CONTABLE Y FISCAL:', 'FISCAL'),
+(25, 'DIFERENCIAS DE IMPUESTOS POR PAGAR DETERMINADAS POR EL CPR:', 'FISCAL'),
+(26, '3% SOBRE NOMINAS:', 'FISCAL'),
+(27, 'OTRAS CONSIDERACIONES:', 'FISCAL'),
+(28, 'CUENTA DE CAPITAL DE APORTACION (CUCA):', 'FISCAL'),
+(29, 'CUENTA DE UTILIDAD FISCAL NETA (CUFIN)', 'FISCAL'),
+(30, 'PAGOS AL EXTRANJERO Y TRATADO DE DOBLE TRIBUTACION:', 'FISCAL'),
+(31, 'CHECK LIST FISCAL 2017:', 'FISCAL'),
+(32, 'PRESTAMOS E INTERESES:', 'FISCAL'),
+(33, 'DEDUCCION DE PAGOS A PERSONAS FISICAS EFECTIVAMENTE EROGADOS ', 'FISCAL'),
+(34, 'DEDUCCION DE PREVISION SOCIAL', 'FISCAL'),
+(35, 'DEDUCCION DE FONDO DE AHORRO', 'FISCAL'),
+(36, 'DEDUCCION DEL COSTO DE ADQUISICION O INTERESES A PRECIO DE MERCADO: PARTES RELACIONADAS NACIONALES', 'FISCAL'),
+(37, 'DEDUCCION DEL COSTO DE ADQUISICION A PRECIO DE MERCADO: PARTES RELACIONADAS EXTRANJERAS', 'FISCAL'),
+(38, 'DEDUCCION DE CREDITOS INCOBRABLES', 'FISCAL'),
+(39, 'DEDUCCION DE CONSUMOS EN RESTAURANTE AL 12.5%', 'FISCAL'),
+(40, 'DEDUCCION DE SUELDOS Y SALARIOS', 'FISCAL'),
+(41, 'DEDUCCION DE CUOTA OBRERA AL IMSS PAGADA POR EL PATRON', 'FISCAL'),
+(42, 'REQUISITOS DE LAS DEDUCCIONES, PLAZO PARA REUNIRLOS:', 'FISCAL'),
+(43, 'PRESENTACION DE DECLARACIONES INFORMATIVAS', 'FISCAL'),
+(44, 'SALARIOS CON DERECHO A DEVOLUCION DE SUBSIDIO AL EMPLEO', 'FISCAL'),
+(45, 'TRATAMIENTO FISCAL DE LA PERDIDA CAMBIARIA / UTILIDAD CAMBIARIA', 'FISCAL'),
+(46, 'GASTOS DE VIAJE: TOPES DIARIO POR CONCEPTO Y POR BENEFICIARIO', 'FISCAL'),
+(47, 'REQUISITOS ADICIONALES DE LOS COMPROBANTES FISCALES', 'FISCAL'),
+(48, 'DESCANSOS SEMANALES Y OBLIGATORIOS', 'LABORAL'),
+(49, 'VACACIONES', 'LABORAL'),
+(50, 'AGUINALDO', 'LABORAL'),
+(51, 'CONSTANCIA DE RETENCION', 'LABORAL'),
+(52, 'PREFERENCIA Y ANTIGUEDAD', 'LABORAL'),
+(53, 'PRIMA DE ANTIGUEDAD', 'LABORAL'),
+(54, 'PRIMA DE ANTIGUEDADR', 'LABORAL'),
+(55, 'CAPACITACION Y ADIESTRAMIENTO', 'LABORAL'),
+(56, 'SEGURIDAD E HIGIENE', 'LABORAL'),
+(57, 'CONSERVACION DE DOC', 'LABORAL'),
+(58, 'GENERALES', 'LABORAL'),
+(59, 'GENERALESR', 'LABORAL'),
+(60, 'R IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
+(61, 'MODIFICACION SALARIOS', 'SEGURIDAD SOCIAL'),
+(62, 'LLEVAR Y CONSERVAR', 'SEGURIDAD SOCIAL'),
+(63, 'DETERMINAR Y ENTRAR', 'SEGURIDAD SOCIAL'),
+(64, 'CAPITALES CONSTITUTIVOS', 'SEGURIDAD SOCIAL'),
+(65, 'INF IMSS INFONAVIT', 'SEGURIDAD SOCIAL'),
+(66, 'INSPECCIONES Y VISITAS', 'SEGURIDAD SOCIAL'),
+(67, 'COMUNICAR AL IMSS', 'SEGURIDAD SOCIAL'),
+(68, 'PRESENTACION DICTAMEN', 'SEGURIDAD SOCIAL'),
+(69, 'CONSIDERACION', 'SEGURIDAD SOCIAL'),
+(72, 'DEDUCCION DE GASTOS DE VIAJE', 'FISCAL');
 
 -- --------------------------------------------------------
 
@@ -151,38 +173,26 @@ CREATE TABLE `detalles_preguntas` (
   `tipo` varchar(255) NOT NULL,
   `obligatorio` int(1) NOT NULL,
   `soliarchivo` int(1) NOT NULL,
-  `preguntaOpcional` varchar(255) NOT NULL
+  `preguntaOpcional` varchar(255) NOT NULL,
+  `tipoPreOpcional` varchar(100) NOT NULL,
+  `categoria` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `detalles_preguntas`
 --
 
-INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarchivo`, `preguntaOpcional`) VALUES
-(129, 'defaulth', 0, 0, 'pregunta opcional'),
-(470, 'default', 0, 0, 'pregunta opcional'),
-(545, 'defaulth', 0, 0, 'pregunta opcional'),
-(546, 'defaulth', 0, 0, 'pregunta opcional'),
-(547, 'defaulth', 0, 0, 'pregunta opcional'),
-(548, 'defaulth', 0, 0, 'pregunta opcional'),
-(549, 'defaulth', 0, 0, 'pregunta opcional'),
-(551, 'defaulth', 0, 0, 'pregunta opcional'),
-(552, 'defaulth', 0, 0, 'pregunta opcional'),
-(559, 'defaulth', 0, 0, 'pregunta opcional'),
-(560, 'defaulth', 0, 0, 'pregunta opcional'),
-(561, 'defaulth', 0, 0, 'pregunta opcional'),
-(565, 'defaulth', 0, 0, 'pregunta opcional'),
-(566, 'defaulth', 0, 0, 'pregunta opcional'),
-(569, 'defaulth', 0, 0, 'pregunta opcional'),
-(570, 'defaulth', 0, 0, 'pregunta opcional'),
-(573, 'defaulth', 0, 0, 'pregunta opcional'),
-(576, 'defaulth', 0, 0, 'pregunta opcional'),
-(580, 'RADIUS', 0, 1, 'nuevaaa'),
-(581, 'defaulth', 0, 0, 'pregunta opcional'),
-(582, 'defaulth', 0, 0, 'pregunta opcional'),
-(583, 'defaulth', 0, 0, 'pregunta opcional'),
-(584, 'RADIUS', 0, 1, 'pregunta opcional'),
-(585, 'CHECKBOX', 0, 0, 'pregunta opcional');
+INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarchivo`, `preguntaOpcional`, `tipoPreOpcional`, `categoria`) VALUES
+(545, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(577, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(578, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(579, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(584, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(585, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(586, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(587, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(588, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(589, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL');
 
 -- --------------------------------------------------------
 
@@ -365,7 +375,6 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (132, 'FISCAL', 'PERDIDAS FISCALES ACUMULADAS', '¿ Están integradas por su origen ?'),
 (133, 'FISCAL', 'PERDIDAS FISCALES ACUMULADAS', '¿ Conoce la mecánica actual de actualización fiscal ?'),
 (134, 'FISCAL', 'PERDIDAS FISCALES ACUMULADAS', '¿ Están actualizadas y amortizadas en su caso, en el ejercicio que les corresponde ?'),
-(135, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Tiene la compañía un listado (concentrado) de todos los impuestos pagados ?'),
 (136, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Esta al corriente en los pagos provisionales de impuestos ? (proporcionar comprobantes)'),
 (137, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Se tiene actualmente elaborado un calendario de todas las obligaciones al que esta afecto la compañía ?'),
 (138, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Tiene la compañía un listado (concentrado)de todos los impuestos pagados ?'),
@@ -497,7 +506,6 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (264, 'FISCAL', 'DIFERENCIAS DE IMPUESTOS POR PAGAR DETERMINADAS POR EL CPR:', 'Otros impuestos pendientes de pago'),
 (265, 'FISCAL', 'DIFERENCIAS DE IMPUESTOS POR PAGAR DETERMINADAS POR EL CPR:', '* Estas diferencias, fueron pagadas dentro de los plazos que las disposiciones fiscales contemplan, para efectos de considerarse espontanea dichos pagos, e incluso la autoridad respetar la revisión secuencial del dictamen ? '),
 (266, 'FISCAL', '3% SOBRE NOMINAS:', '* Se tiene la obligación del pago del 3% de Impuesto Sobre Nóminas ?'),
-(267, 'FISCAL', '3% SOBRE NOMINAS:', '*Tiene la empresa la obligacion de retener el 3% sobre nominas en servicios de outsourcing? Esta al corriente con el entero de las retenciones?'),
 (268, 'FISCAL', '3% SOBRE NOMINAS:', '* Cuales son los conceptos que la compañía considera como objetos de impuesto ?'),
 (269, 'FISCAL', '3% SOBRE NOMINAS:', '* Cuales son los conceptos que la compañía considera como exento y cual es el fundamento legal correspondiente ?'),
 (270, 'FISCAL', '3% SOBRE NOMINAS:', '* Durante el ejercicio se han realizado pagos provisionales de este impuesto ? (Proporcionar papeles de trabajo)'),
@@ -517,7 +525,6 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (284, 'FISCAL', 'CUENTA DE UTILIDAD FISCAL NETA (CUFIN)', '* Se tienen todos y cada uno de los documentos legales que ampare o soporte la determinación de la CUFIN ? (Última Declaración Anual Complementaria o por Dictamen, y el Dictamen Fiscal)'),
 (285, 'FISCAL', 'CUENTA DE UTILIDAD FISCAL NETA (CUFIN)', '* La empresa a la fecha, ha decretado y en su caso, pagado dividendos a los socios o accionistas ?'),
 (286, 'FISCAL', 'CUENTA DE UTILIDAD FISCAL NETA (CUFIN)', '* Proporcionar papel de trabajo de la CUFIN, así como de la determinación o no de la retención del ISR que corresponda.'),
-(287, 'FISCAL', 'CUENTA DE UTILIDAD FISCAL NETA (CUFIN)', '*Se tiene por separado la CUFIN que se genera a partir del 2014 del resto de la CUFIN?'),
 (288, 'FISCAL', 'PAGOS AL EXTRANJERO Y TRATADO DE DOBLE TRIBUTACION:', '* Durante el ejercicio efectuó pagos al extranjero ?'),
 (289, 'FISCAL', 'PAGOS AL EXTRANJERO Y TRATADO DE DOBLE TRIBUTACION:', '* En su caso, se están haciendo la retención correspondiente del ISR invocando los beneficios del tratado para evitar la doble tributación ?'),
 (290, 'FISCAL', 'PAGOS AL EXTRANJERO Y TRATADO DE DOBLE TRIBUTACION:', '* Están expedidas las constancias de retención correspondiente ?'),
@@ -533,12 +540,12 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (300, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'd) Monederos Electrónicos'),
 (301, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'A utilizado alguno de estos últimos ?, cite cual.'),
 (302, 'FISCAL', 'CHECK LIST FISCAL 2017:', '* Conoce los requisitos que deben de contener los cheques ? Son de la cuenta del contribuyente ?, Contienen el RFC del contribuyente ?, al emitirse se anota la leyenda en el anverso Para abono en cuenta del beneficiario ? (Verificar muestreo)'),
-(303, 'FISCAL', 'CHECK LIST FISCAL 2017:', '* Conoce que la deducción de Compras relacionadas con bebidas alcohólicas para su posterior venta y consumo al público en general y en el mismo establecimiento, se tiene que cumplir con ciertos requisitos ?');
-INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
+(303, 'FISCAL', 'CHECK LIST FISCAL 2017:', '* Conoce que la deducción de Compras relacionadas con bebidas alcohólicas para su posterior venta y consumo al público en general y en el mismo establecimiento, se tiene que cumplir con ciertos requisitos ?'),
 (304, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'a) Son destruidos los envases una vez agotados el contenido ?'),
 (305, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'b) En que momento ?, al final del día o al día siguiente ?'),
 (306, 'FISCAL', 'PRESTAMOS E INTERESES:', '* Se recibieron préstamos y por los cuales se pagan intereses ?, y a su vez se concedieron créditos a:'),
-(307, 'FISCAL', 'PRESTAMOS E INTERESES:', 'a) Trabajadores o funcionarios'),
+(307, 'FISCAL', 'PRESTAMOS E INTERESES:', 'a) Trabajadores o funcionarios');
+INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (308, 'FISCAL', 'PRESTAMOS E INTERESES:', 'b) Socios o Accionistas'),
 (309, 'FISCAL', 'PRESTAMOS E INTERESES:', 'c) Terceros'),
 (310, 'FISCAL', 'PRESTAMOS E INTERESES:', 'y por ello se cobran o no intereses a tasas menores a los pactados por el crédito recibido?, se está conciente de que habrá una porción de \'deducción de intereses no deducibles\' ?'),
@@ -804,7 +811,13 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (573, 'CONTABLE', 'CAJA CHICA', '¿Arqueos de caja?'),
 (574, 'CONTABLE', 'CAJA CHICA', '¿Resguardos actualizados?'),
 (575, 'CONTABLE', 'BANCOS', 'Libros diario, mayor y auxiliares.- ¿se maneja un sistema electrónico para el registro de las operaciones contables?,¿Están debidamente empastados?, ¿Resguardados? (Verificar) '),
-(576, 'CONTABLE', 'BANCOS', '¿Se tiene la  integración  de las cuentas de aportación de capital?');
+(576, 'CONTABLE', 'BANCOS', '¿Se tiene la  integración  de las cuentas de aportación de capital?'),
+(584, 'FISCAL', 'DIFERENCIAS DE IMPUESTOS POR PAGAR DETERMINADAS POR EL CPR:', 'Impuesto al activo'),
+(585, 'FISCAL', 'DIFERENCIAS DE IMPUESTOS POR PAGAR DETERMINADAS POR EL CPR:', 'Retención por intereses pagados a residentes en el extranjero.'),
+(586, 'FISCAL', 'DIFERENCIAS DE IMPUESTOS POR PAGAR DETERMINADAS POR EL CPR:', 'Retención de IVA servicio prestados por comisionistas PF'),
+(587, 'FISCAL', 'OTRAS CONSIDERACIONES:', '* Durante el ejercicio se ha presentado ante las autoridades fiscales \"solicitud para disminución del pago provisional de IMPAC ? (Proporcionar Aviso y papeles de trabajo)'),
+(588, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'e) Transpaso entre cuenta de cheques'),
+(589, 'FISCAL', 'DEDUCCION DEL COSTO DE ADQUISICION A PRECIO DE MERCADO: PARTES RELACIONADAS EXTRANJERAS', '* Se tiene contemplado presentar conjuntamente la declaración informativa de operaciones con partes relacionadas en el extranjero, con la declaración anual del ejercicio ?');
 
 -- --------------------------------------------------------
 
@@ -838,20 +851,7 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> david
-(72, 1, 'e3be9fbdb46b2810cc9f477f', '::1', '1531804251', 'Lunes 16 de Julio 2018 10:52:05 PM'),
-(74, 13, '1f3514fb84583810ea970a01', '::1', '1531550888', 'Sábado 14 de Julio 2018 12:48:08 AM'),
-(75, 14, '897289b82ec4a21484638777', '::1', '1531804032', 'Lunes 16 de Julio 2018 11:07:12 PM'),
-(76, 15, 'b88775de2172f9296ce519fe', '::1', '1531803530', 'Lunes 16 de Julio 2018 10:58:50 PM');
-<<<<<<< HEAD
-=======
-(72, 1, 'ac0f3ac71058ce82ff6154bd', '::1', '1531895925', 'Martes 17 de Julio 2018 10:09:23 PM');
->>>>>>> salva
-=======
->>>>>>> david
+(72, 1, '51c84ecfa58b5348174a2db1', '::1', '1532241449', 'Sábado 21st de Julio 2018 10:54:21 PM');
 
 -- --------------------------------------------------------
 
@@ -864,7 +864,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telefono` varchar(15) NOT NULL,
+  `telefono` int(15) NOT NULL,
   `clave` varchar(30) NOT NULL,
   `roll` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -874,21 +874,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
-<<<<<<< HEAD
-<<<<<<< HEAD
-(1, 'Super', 'Usuario', 'super@usuario.com', '101010101011', 'admin', 0),
-(14, 'cliente', 'lorem', 'cliente@lorem.com', '1111111111111', 'cliente', 2),
-(15, 'Contador', 'nose', 'conta@conta.com', '202020202020', 'conta', 1);
-=======
 (1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483646, '123456789', 0),
 (2, 'salvador', 'miron', 'masterchif57@gmail.com', 2147483647, '123456789', 1),
 (3, 'dante', 'auditore', 'strokescode@gmail.com', 2147483647, '123456789', 1);
->>>>>>> salva
-=======
-(1, 'Super', 'Usuario', 'super@usuario.com', '101010101011', 'admin', 0),
-(14, 'cliente', 'lorem', 'cliente@lorem.com', '1111111111111', 'cliente', 2),
-(15, 'Contador', 'nose', 'conta@conta.com', '202020202020', 'conta', 1);
->>>>>>> david
 
 --
 -- Índices para tablas volcadas
@@ -962,7 +950,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cat_categorias_preguntas`
 --
 ALTER TABLE `cat_categorias_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_input_preguntas`
@@ -974,33 +962,25 @@ ALTER TABLE `cat_input_preguntas`
 -- AUTO_INCREMENT de la tabla `cat_secciones_preguntas`
 --
 ALTER TABLE `cat_secciones_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=587;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=590;
 
 --
 -- AUTO_INCREMENT de la tabla `sessiones`
 --
 ALTER TABLE `sessiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-<<<<<<< HEAD
-<<<<<<< HEAD
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-=======
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
->>>>>>> salva
-=======
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
->>>>>>> david
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
