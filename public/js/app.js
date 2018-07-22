@@ -206,7 +206,7 @@ function agregarCategoria(iddiv, url) {
         post = {
             categoria: categoria_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#categorias"));
     }
 }
 
@@ -224,7 +224,7 @@ function actualizarCategoria(iddiv, url) {
             categoria: categoria_,
             id: id_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#categorias"));
     }
 }
 
@@ -239,7 +239,7 @@ function eliminarCategoria(iddiv, url) {
         post = {
             id: id_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#categorias"));
     }
 }
 

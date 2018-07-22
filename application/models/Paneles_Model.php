@@ -260,11 +260,21 @@ class Paneles_Model extends CI_Model
 
     public function getDetallesPregunta($id)
     {
-        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional')
+        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional')
         ->from("detalles_preguntas")
         ->where('id_pregunta',$id)
         ->get()
         ->result_array()[0];
+        return $detalles;
+    }
+
+    public function getDetallesporCat($categoria)
+    {
+        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional')
+        ->from("detalles_preguntas")
+        ->where('categoria',$categoria)
+        ->get()
+        ->result_array();
         return $detalles;
     }
 

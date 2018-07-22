@@ -8,8 +8,8 @@
        <label for="categoria"><b> nueva categoria</b></label>
        <input type="text" name="categoria" class="form-control-sm" id="categoria" >
        </div>
-       <button type="button" class="btn btn-danger btn-sm" style="float:right;" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
-       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="return agregarCategoria('config-categoria','<?php echo base_url("addCategoria").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-danger btn-sm" style="float:right;" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cerrar</button>
+       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="agregarCategoria('config-categoria','<?php echo base_url("addCategoria").$session.'&cat='.strtoupper($categoria); ?>'); hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">aceptar</button>
 </div>
 <?php endif; ?>
 
@@ -17,18 +17,18 @@
 <div class=" col-md">
        <div class="form-group" style="float:left;">
        <label for="categoria"><b> nuevo nombre</b></label>
-       <input type="text" name="categoria" class="form-control-sm" id="categoria" value=<?php echo $catact; ?>>
+       <input type="text" name="categoria" class="form-control-sm" id="categoria" value=<?php echo $categoria; ?>>
        </div>
-       <button type="button" class="btn btn-danger btn-sm" style="float:right;" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
-       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="return actualizarCategoria('panel-categoria','<?php echo base_url("updateCategoria").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-danger btn-sm" style="float:right;" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cerrar</button>
+       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="actualizarCategoria('panel-categoria','<?php echo base_url("updateCategoria").$session.'&cat='.strtoupper($categoria); ?>');hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">aceptar</button>
 </div>
 <?php endif; ?>
 
 <?php if($config=="deletecategoria"): ?>
 <div class=" col-md">
         <p><b>¿Eliminar esta categoria?</b></p>
-       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarCategoria('panel-categoria','<?php echo base_url("deleteCategoria").$session; ?>')">aceptar</button>
-       <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="eliminarCategoria('panel-categoria','<?php echo base_url("deleteCategoria").$session.'&cat='.strtoupper($categoria); ?>');hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cerrar</button>
 </div>
 <?php endif; ?>
 
@@ -172,6 +172,21 @@
             <div class="form-group input-group-sm">
             <label for="preOpcional"><b> Pregunta opcional </b></label>
             <input type="text" class="form-control" name="preOpcional" id="preOpcional" value="<?php echo $detalles['preguntaOpcional'] ?>">
+            </div>
+        </div>
+
+        <div class=" col-sm col-md-6 col-lg-3 ">
+            <div class="form-group  input-group-sm">
+            <label for="tipo"><b> Tipo pregunta opcional</b></label>
+            <select class="form-control" id="tipoOpc" name="tipoOpc" value="<?php echo $detalles['tipo'] ?>">
+            <?php
+            echo '<option>'.strtoupper($detalles['tipoPreOpcional']).'</option>';
+            foreach ($catalogo as $ind4=>$val4)
+            {
+                echo '<option>'.strtoupper($val4['tipo']).'</option>';
+            }
+                ?>
+            </select>
             </div>
         </div>
       

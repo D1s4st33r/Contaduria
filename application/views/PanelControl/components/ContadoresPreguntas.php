@@ -13,7 +13,7 @@
           </strong>
         </div>
         <span class="d-block"> Total Registrados 
-              <?php echo count($secciones) ?> 
+              <?php echo $numsecciones ?> 
         </span>
       </div>
     </div>
