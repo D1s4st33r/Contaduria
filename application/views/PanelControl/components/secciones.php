@@ -35,7 +35,7 @@
   //$this->load->model('Paneles_Model');
   //$secciones_disponibles = array();
   $div_abierto = false;
-  $collapse_activo = true;
+  $collapse_activo = false;
   $chars = array(',' , '.', '_' , '´', '¨' , '{', 'ç' , 'Ç', '}' , '^', '?' , '[', '`' ,'\'', '*' , ']', '+' , '¿', '¡' , '!', '"' , '·',  '$' , '%', '&' , '/', '=' , '(', ')' , ')', ':' , ';', ')' , '#', ' ' );
  /* foreach ($secciones as $cen => $val) 
   { 
@@ -88,7 +88,7 @@
                     echo "";
                   } 
                   echo'" aria-labelledby="'.$label_id_html.'" data-parent="#accordionExample">  <!-- inicio div collapse -->
-                  <div class="card-body">                                                       <!-- div de preguntas  de seccion -->';
+                  <div class="card-body" id="preguntas'.$index.'">                                                       <!-- div de preguntas  de seccion -->';
                   $div_abierto = true;
     //Si imprime las preguntas corespondientes
     $this->load->view("PanelControl/components/preguntas",$data);

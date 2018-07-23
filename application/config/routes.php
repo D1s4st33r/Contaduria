@@ -78,6 +78,8 @@ $route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
 $route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
 
+$route['viewCategorias']="Panel_admin/getPanelCategorias";
+$route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
 $route['configCancelar']="Panel_admin/configCancelar";
 $route['configAddCategoria']    = "Panel_admin/configAddCategoria";
 $route['addCategoria']          = "Panel_admin/addCategoria";

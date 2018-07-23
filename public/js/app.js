@@ -257,7 +257,7 @@ function agregarSeccion(iddiv, url) {
             categoria: categoria_,
             seccion: seccion_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#seccypre"));
     }
 }
 
@@ -278,7 +278,7 @@ function actualizarSeccion(iddiv, url) {
             seccion: nombre_,
             id: id_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#seccypre"));
     }
 }
 
@@ -293,7 +293,7 @@ function eliminarSeccion(iddiv, url) {
         post = {
             id: id_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#seccypre"));
     }
 }
 

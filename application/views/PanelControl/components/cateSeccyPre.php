@@ -9,7 +9,7 @@
        <input type="text" name="categoria" class="form-control-sm" id="categoria" >
        </div>
        <button type="button" class="btn btn-danger btn-sm" style="float:right;" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cerrar</button>
-       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="agregarCategoria('config-categoria','<?php echo base_url("addCategoria").$session.'&cat='.strtoupper($categoria); ?>'); hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="return agregarCategoria('config-categoria','<?php echo base_url("addCategoria").$session.'&cat='.strtoupper($categoria).'&idcat='.$idcat; ?>')">aceptar</button>
 </div>
 <?php endif; ?>
 
@@ -20,14 +20,14 @@
        <input type="text" name="categoria" class="form-control-sm" id="categoria" value=<?php echo $categoria; ?>>
        </div>
        <button type="button" class="btn btn-danger btn-sm" style="float:right;" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cerrar</button>
-       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="actualizarCategoria('panel-categoria','<?php echo base_url("updateCategoria").$session.'&cat='.strtoupper($categoria); ?>');hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" style="float:right;" onclick="return actualizarCategoria('panel-categoria','<?php echo base_url("updateCategoria").$session.'&cat='.strtoupper($categoria).'&idcat='.$idcat; ?>')">aceptar</button>
 </div>
 <?php endif; ?>
 
 <?php if($config=="deletecategoria"): ?>
 <div class=" col-md">
         <p><b>¿Eliminar esta categoria?</b></p>
-       <button type="button" class="btn btn-primary btn-sm" onclick="eliminarCategoria('panel-categoria','<?php echo base_url("deleteCategoria").$session.'&cat='.strtoupper($categoria); ?>');hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarCategoria('panel-categoria','<?php echo base_url("deleteCategoria").$session.'&cat='.strtoupper($categoria).'&idcat='.$idcat; ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-categoria','<?php echo base_url("configCancelar").$session; ?>')">cerrar</button>
 </div>
 <?php endif; ?>
@@ -38,7 +38,7 @@
        <label for="seccion"><b> nueva seccion</b></label>
        <input type="text" name="seccion" class="form-control-sm" id="seccion">
        </div>
-       <button type="button" class="btn btn-primary btn-sm" onclick="return agregarSeccion('panel-seccion','<?php echo base_url("addSeccion").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return agregarSeccion('panel-seccion','<?php echo base_url("addSeccion").$session.'&cat='.strtoupper($categoria); ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-seccion','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
 </div>
 <?php endif; ?>
@@ -57,7 +57,7 @@
        <label for="seccion"><b> nuevo nombre</b></label>
        <input type="text" name="nombre" class="form-control-sm" id="nombre">
        </div>
-       <button type="button" class="btn btn-primary btn-sm" onclick="return  actualizarSeccion('config-seccion','<?php echo base_url("updateSeccion").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return  actualizarSeccion('config-seccion','<?php echo base_url("updateSeccion").$session.'&cat='.strtoupper($categoria); ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-seccion','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
 </div>
 <?php endif; ?>
@@ -73,7 +73,7 @@
             }
 ?>
   </select>
-       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarSeccion('panel-seccion','<?php echo base_url("deleteSeccion").$session; ?>')">aceptar</button>
+       <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarSeccion('panel-seccion','<?php echo base_url("deleteSeccion").$session.'&cat='.strtoupper($categoria); ?>')">aceptar</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-seccion','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
 </div>
 <?php endif; ?>
