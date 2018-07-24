@@ -45,6 +45,8 @@
   foreach ($secciones as $index => $valores) 
   { 
     $data['seccion']=$valores['seccion'];
+    $data['div']=$index;
+    $data['cate']=strtoupper($categoria);
     if ($div_abierto) 
           {
             echo '</div>
@@ -72,9 +74,10 @@
                     <div id="datos-pregunta'.$index.'">
                     <input type="text" value="'.strtoupper($categoria).'" name="categoria" class="form-control form-control-sm text-center" readonly hidden>
                     <input type="text" value="'.strtoupper($valores['seccion']).'" name="seccion" class="form-control form-control-sm text-center" readonly hidden>
+                    <input type="text" value="'.$index.'" name="divindex" class="form-control form-control-sm text-center" readonly hidden>
                     </div>
                     <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary btn-sm" title="añadir pregunta" onclick="return agregarPregunta(';echo "'"; echo 'datos-pregunta'.$index;echo "'"; echo  ", '".base_url('addPregunta').$session.'&cat='.strtoupper($categoria);echo"'"; echo ')"><i class="fa fa-plus-square" aria-hidden="true"></i></button>';
+        <button type="button" class="btn btn-primary btn-sm" title="añadir pregunta" onclick="return agregarPregunta(';echo "'"; echo 'datos-pregunta'.$index;echo "'"; echo  ", '".base_url('addPregunta').$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($valores['seccion']);echo"'"; echo ')"><i class="fa fa-plus-square" aria-hidden="true"></i></button>';
         //<button type="button" class="btn btn-primary btn-sm" title="editar seccion"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
         //<button type="button" class="btn btn-primary btn-sm" title="eliminar seccion"><i class="fa fa-trash" aria-hidden="true"></i></button>
         echo '</div>

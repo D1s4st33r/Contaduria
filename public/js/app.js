@@ -33,6 +33,7 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         data: datosPost, // data recive un objeto con la informacion que se enviara al servidor
         dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
         success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
+            //alert(datos);
             div.html(datos);
         }
     });
@@ -300,25 +301,29 @@ function eliminarSeccion(iddiv, url) {
 function agregarPregunta(iddiv, url) {
     var categoria_ = "";
     var seccion_ = "";
+    var div_ = "";
     var texto_ = "pregunta";
     var div = $("#" + iddiv);
     var finds = div.find("input");
     finds.each(function() {
         if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
         if ($(this).attr("name") == "seccion") { seccion_ = $(this).val(); }
+        if ($(this).attr("name") == "divindex") { div_ = $(this).val(); }
     });
     if (categoria_ != "" && seccion_ != "") {
         post = {
             categoria: categoria_,
             seccion: seccion_,
-            texto: texto_
+            texto: texto_,
+            div: div_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
 }
 
 function actualizarPregunta(iddiv, url) {
     var id_ = "";
+    var div_ = "";
     var categoria_ = "";
     var seccion_ = "";
     var texto_ = "";
@@ -336,6 +341,7 @@ function actualizarPregunta(iddiv, url) {
         if ($(this).attr("name") == "archivo") { soliarchivo_ = $('[name="archivo"]:checked').attr('value'); }
         if ($(this).attr("name") == "obligatorio") { obligatorio_ = $('[name="obligatorio"]:checked').attr('value'); }
         if ($(this).attr("name") == "preOpcional") { preguntaOpcional_ = $(this).val(); }
+        if ($(this).attr("name") == "divid") { div_ = $(this).val(); }
     });
     select.each(function() {
         if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
@@ -351,24 +357,28 @@ function actualizarPregunta(iddiv, url) {
             tipo: tipo_,
             soliarchivo: soliarchivo_,
             obligatorio: obligatorio_,
-            preguntaOpcional: preguntaOpcional_
+            preguntaOpcional: preguntaOpcional_,
+            div: div_
         };
         console.log(post);
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
 }
 
 function eliminarPregunta(iddiv, url) {
     var id_ = "";
+    var div_ = "";
     var div = $("#" + iddiv);
     var finds = div.find("input");
     finds.each(function() {
         if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+        if ($(this).attr("name") == "divid") { div_ = $(this).val(); }
     });
     if (id_ != "") {
         post = {
-            id: id_
+            id: id_,
+            div: div_
         };
-        hacerCambiosPostAsy(post, url, $("#nada"));
+        hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
 }
