@@ -35,15 +35,15 @@ public function General()
         $this->load->view('formularios/menuSecciones',$data);
 		$this->load->view('formularios/index',$data);
 		$this->load->view('templates/footer');
+		
 		               if($this->input->post()){
-
-			            $Datos_empresa['razonSocial'] = $this->input->post("razonSocial");
-			            $Datos_empresa['rfc'] = $this->input->post("rfc");
-			            $Datos_empresa['domicilio']=$this->input->post("domicilio");
-			            $Datos_empresa['correo'] = $this->input->post("correo");		
-			            $Datos_empresa['telefono']= $this->input->post("telefono");
-			            $Datos_empresa['representantelegal'] = $this->input->post("representantelegal");
-			            $RFC= $this->input->post("rfc");
+						
+						$RazonSocial = $this->input->post("razonSocial");
+						$RFC = $this->input->post("rfc");
+						$Domicilio = $this->input->post("domicilio");
+						$Correo = $this->input->post("correo");		
+						$Telefono = $this->input->post("telefono");
+						$ReLegal = $this->input->post("representantelegal");
 						 
 
 						 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[13]|is_unique[empresa.rfc]');
@@ -71,32 +71,39 @@ public function General()
 											$dato_archivo=array("upload_data" =>$this->upload->data());
 
 
-											$dempresa=array(
+											$datos_em=array(
 
-												"rfc"=>$Datos_empresa['rfc'],
-												"razonSocial"=>$Datos_empresa['razonSocial'],
-												"domicilio"=>$Datos_empresa['domicilio'],
-												"correo"=>$Datos_empresa['correo'],
-												"telefono"=>$Datos_empresa['telefono'],
-												"representantelegal"=>$Datos_empresa['representantelegal'],
+
+	
+												"rfc"=>$RFC,
+												"razonSocial"=>$RazonSocial,
+												"domicilio"=>$Domicilio,
+												"correo"=>$Correo,
+												"telefono"=>$Telefono,
+												"representantelegal"=>$ReLegal,
 												"archivos" => $dato_archivo['upload_data']['file_name']
+									
+									
 									
 											 );
 											 
-											 $this->Formularios_Model->dataempresa($dempresa);
+											$this->Formularios_Model->dataempresa($datos_em);
+											
 
 										}
-	
+										
 									        
 									    }else {
-											var_dump($RFC);
+											echo"Error";
 										}
 		
 		                }
 
-
-}
+   
+                }
 		
+
+				
 
 		
    }

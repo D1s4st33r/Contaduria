@@ -149,67 +149,9 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
       </div>
    </div>
 </div>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">Empresa3</strong>
-
-            </div>
-            <span class="d-block">RFC EJEMPLO</span>
-            <br>
-            <a href="#demo3"  data-toggle="collapse">Ver Archivos</a>
-
-  <div class="container">
-
-   <div id="demo3" class="collapse in">
-     <div class="panel-group" id="accordion">
-           <div class="panel panel-primary">
-              <div class="panel-heading">
-                 <h6 class="panel-title">
-                     <br>
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse111">Contable</a>
-                 </h6>
-              </div>
-              <div id="collapse111" class="panel-collapse collapse in">
-                 <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-              </div>
-           </div>
-           <div class="panel panel-default">
-                 <div class="panel-heading">
-                    <h6 class="panel-title">
-                       <a data-toggle="collapse" data-parent="#accordion" href="#collapse222">Fiscal</a>
-                    </h6>
-                </div>
-                <div id="collapse222" class="panel-collapse collapse">
-                   <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-              </div>
-           </div>
-           <div class="panel panel-succes">
-              <div class="panel-heading">
-                 <h6 class="panel-title">
-                    <a  data-toggle="collapse" data-parent="#accordion" href="#collapse333">Seguridad Social</a>
-                </h6>
-             </div>
-             <div id="collapse333" class="panel-collapse collapse">
-                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-
-
 
 
           </div>
         </div>
-        <small class="d-block text-right mt-3">
-          <a href="#">All suggestions</a>
-        </small>
+
       </div>

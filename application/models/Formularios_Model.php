@@ -11,10 +11,9 @@
 
 		public function dataempresa($datos_empresa)
 		{
-			
+
 			$this->db->insert("empresa",$datos_empresa);
-			var_dump($datos_empresa);
-			
+		
 
 		}
 

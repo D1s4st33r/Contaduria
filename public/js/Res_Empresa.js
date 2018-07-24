@@ -7,7 +7,7 @@ $(document).on('submit', '#registrar', function(e)
         
      $.ajax({
 
-        method: 'post',
+        method:'post',
         url: this.serialize,
         data:formData,
         cache:false,

@@ -150,6 +150,14 @@ class Paneles_Model extends CI_Model
         return $registrado;   
     }
 
+    public function RegistrarEmpresa($datos)
+    {
+        
+        $this->db->insert('empresa', $datos);
+        echo "llegie aqoi";
+          
+    }
+
     //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
 
     public function registrarCategoria($datos)
