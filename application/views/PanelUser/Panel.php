@@ -93,7 +93,7 @@
               </div>
               <div class="col-12 " id="empresasReg" >
                 <style>
-                #contadoresReg{
+                #empresasReg{
                   max-height: 400px;
                   overflow: hidden;
                   overflow-y: scroll;

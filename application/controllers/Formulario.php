@@ -36,7 +36,18 @@ public function General()
 		$this->load->view('formularios/index',$data);
 		$this->load->view('templates/footer');
 		
-		               if($this->input->post()){
+
+
+   
+				}
+				
+
+
+
+
+				public function AgregarEmpresa()
+				{
+					if($this->input->post()){
 						
 						$RazonSocial = $this->input->post("razonSocial");
 						$RFC = $this->input->post("rfc");
@@ -44,7 +55,7 @@ public function General()
 						$Correo = $this->input->post("correo");		
 						$Telefono = $this->input->post("telefono");
 						$ReLegal = $this->input->post("representantelegal");
-						 
+						 var_dump($RazonSocial);
 
 						 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[13]|is_unique[empresa.rfc]');
 						 $this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
@@ -99,9 +110,8 @@ public function General()
 										}
 		
 		                }
-
-   
-                }
+					
+				}
 		
 
 				
