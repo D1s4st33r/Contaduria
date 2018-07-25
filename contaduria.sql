@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-07-2018 a las 07:58:48
+-- Tiempo de generación: 25-07-2018 a las 22:12:00
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -60,10 +60,8 @@ CREATE TABLE `cat_input_preguntas` (
 --
 
 INSERT INTO `cat_input_preguntas` (`id`, `tipo`) VALUES
-(1, 'checkbox'),
-(2, 'radius'),
-(3, 'textbox'),
-(4, 'combobox');
+(2, 'radio'),
+(3, 'text');
 
 -- --------------------------------------------------------
 
@@ -184,6 +182,9 @@ CREATE TABLE `detalles_preguntas` (
 
 INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarchivo`, `preguntaOpcional`, `tipoPreOpcional`, `categoria`) VALUES
 (545, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(547, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(554, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(573, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
 (577, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
 (578, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
 (579, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
@@ -192,7 +193,8 @@ INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarc
 (586, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
 (587, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
 (588, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
-(589, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL');
+(589, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
+(600, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE');
 
 -- --------------------------------------------------------
 
@@ -817,7 +819,8 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (586, 'FISCAL', 'DIFERENCIAS DE IMPUESTOS POR PAGAR DETERMINADAS POR EL CPR:', 'Retención de IVA servicio prestados por comisionistas PF'),
 (587, 'FISCAL', 'OTRAS CONSIDERACIONES:', '* Durante el ejercicio se ha presentado ante las autoridades fiscales \"solicitud para disminución del pago provisional de IMPAC ? (Proporcionar Aviso y papeles de trabajo)'),
 (588, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'e) Transpaso entre cuenta de cheques'),
-(589, 'FISCAL', 'DEDUCCION DEL COSTO DE ADQUISICION A PRECIO DE MERCADO: PARTES RELACIONADAS EXTRANJERAS', '* Se tiene contemplado presentar conjuntamente la declaración informativa de operaciones con partes relacionadas en el extranjero, con la declaración anual del ejercicio ?');
+(589, 'FISCAL', 'DEDUCCION DEL COSTO DE ADQUISICION A PRECIO DE MERCADO: PARTES RELACIONADAS EXTRANJERAS', '* Se tiene contemplado presentar conjuntamente la declaración informativa de operaciones con partes relacionadas en el extranjero, con la declaración anual del ejercicio ?'),
+(600, 'SEGURIDAD SOCIAL', 'OTROS', 'pregunta');
 
 -- --------------------------------------------------------
 
@@ -851,7 +854,7 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-(72, 1, '51c84ecfa58b5348174a2db1', '::1', '1532241449', 'Sábado 21st de Julio 2018 10:54:21 PM');
+(72, 1, '390d4dfde1fb98e580df0c39', '::1', '1532552765', 'Miércoles 25 de Julio 2018 03:06:04 PM');
 
 -- --------------------------------------------------------
 
@@ -950,13 +953,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cat_categorias_preguntas`
 --
 ALTER TABLE `cat_categorias_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_input_preguntas`
 --
 ALTER TABLE `cat_input_preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_secciones_preguntas`
@@ -968,7 +971,7 @@ ALTER TABLE `cat_secciones_preguntas`
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=590;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=601;
 
 --
 -- AUTO_INCREMENT de la tabla `sessiones`
