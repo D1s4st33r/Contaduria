@@ -47,7 +47,7 @@
                          
                   
                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                     <button type="button" class="btn btn-primary">Registrar</button>
+                                   <button type=" button" class="btn btn-primary" href="<?php echo base_url('Panel_user/index'); ?>">Registrar</button>
             
                         </div>
 

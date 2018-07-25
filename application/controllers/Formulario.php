@@ -94,7 +94,7 @@ public function General()
 										
 									        
 									    }else {
-											echo"Error";
+											echo validation_errors('<li>','<li>');
 										}
 		
 		                }
