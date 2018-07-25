@@ -40,8 +40,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['session'] = $this->session;
 
 		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['secciones']=$this->Paneles_Model->getSecciones();
-		$data['preguntas']=$this->Paneles_Model->getPreguntas();
+		$data['numsecciones']=$this->Paneles_Model->getNumSecciones();
+		$data['preguntas']=$this->Paneles_Model->getNumPreguntas();
 		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
 		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
 
@@ -90,22 +90,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 public function configuracionPreguntas()
 	 {
 		$data['menu']= "ConfPreguntas" ;
-		$data['config']=	"";
-		$data['idcat']=	"";
 		$data['titulo']="";
-		$data['categoria']	=$_GET['cat'];
+		$data['idcat']= (isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+		$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
 		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['secciones']=$this->Paneles_Model->getSecciones();
-		$data['preguntas']=$this->Paneles_Model->getPreguntas();
+		$data['numsecciones']=$this->Paneles_Model->getNumSecciones();
+		$data['numpreguntas']=$this->Paneles_Model->getNumPreguntas();
 		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
 		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
-		if($data['categoria']!="ind"){$data['specific']=$this->Paneles_Model->getSpecificPreguntas(strtoupper($_GET['cat']));$data["titulo"]=strtoupper($_GET['cat']);$data['idcat']=$_GET['idcat'];}
+		
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$data);
-		if($data['categoria']!="ind"){$this->load->view('PanelControl/components/preguntas',$data);}
 		$this->load->view('templates/footer');
 	}
 	
@@ -313,15 +311,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			}
 		}
-			
+
+		public function getPanelCategorias()
+		{
+			$data['categorias']=$this->Paneles_Model->getCategorias();
+			$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$data["titulo"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat']: "" ;
+			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view('PanelControl/components/categorias',$data);	
+		}
+
+		public function getPanelSeccyPre()
+		{
+			$data["categoria"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$data['secciones']=$this->Paneles_Model->getSpecificSecciones(strtoupper($data['categoria']));
+			$data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($data['categoria']));
+			$data['detalles']=$this->Paneles_Model->getDetallesporCat($data['categoria']);
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view('PanelControl/components/secciones',$data);	
+		}
+
+		public function getPanelPreguntas($post)
+		{
+			$data["categoria"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
+			$data['div']=$post['div'];
+			$data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($data['categoria']));
+			$data['detalles']=$this->Paneles_Model->getDetallesporCat($data['categoria']);
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view('PanelControl/components/preguntas',$data);
+		}
+
+		public function configCancelar()
+		{
+			$data['config']="cancelar";
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
 
 		public function configAddCategoria()
 		{
 			$data['config']="addcategoria";
-			
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
+			$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 
@@ -336,7 +380,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				);
 				$hecho = $this->Paneles_Model->registrarCategoria($us);
 				if($hecho){
-					$this->configuracionPreguntas();	
+					$this->getPanelCategorias();
 				}
 			}
 			
@@ -345,10 +389,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		public function configUpCategoria()
 		{
 			$data['config']="upcategoria";
-			$data['catact']=$_GET['cat'];
+			$data['categoria']=$_GET['cat'];
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
+			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 
@@ -364,7 +409,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				);
 				$hecho = $this->Paneles_Model->actualizarCategoria($us,$post['id']);
 				if($hecho){
-					$this->configuracionPreguntas();	
+					$this->getPanelCategorias();	
 				}
 			}
 			
@@ -373,10 +418,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		public function configDelCategoria()
 		{
 			$data['config']="deletecategoria";
-			$data['catact']=$_GET['cat'];
+			$data['categoria']=$_GET['cat'];
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
+			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 
@@ -388,7 +434,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			){
 				$hecho = $this->Paneles_Model->eliminarCategoria($post['id']);
 				if($hecho){
-					$this->configuracionPreguntas();	
+					$this->getPanelCategorias();
 				}
 			}
 			
@@ -397,7 +443,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		public function configAddSeccion()
 		{
 			$data['config']="addseccion";
-			$data['catact']=$_GET['cat'];
+			$data['categoria']=$_GET['cat'];
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
@@ -417,7 +463,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				);
 				$hecho = $this->Paneles_Model->registrarSeccion($us);
 				if($hecho){
-					$this->configuracionPreguntas();	
+					$this->getPanelSeccyPre();	
 				}
 			}
 			
@@ -426,21 +472,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		public function configUpSeccion()
 		{
 			$data['config']="upseccion";
-			$data['catact']=$_GET['cat'];
+			$data['categoria']=$_GET['cat'];
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
+			$data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function updateSeccion()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['seccion']) && !empty($post['seccion'])
+				&& isset($post['id']) && !empty($post['id'])
+			){
+				$us = 	array(
+					"seccion" => strtoupper($post['seccion'])
+				);
+				$hecho = $this->Paneles_Model->actualizarSeccion($us,$post['id']);
+				if($hecho){
+					$this->getPanelSeccyPre();	
+				}
+			}
 		}
 
 		public function configDelSeccion()
 		{
 			$data['config']="deleteseccion";
-			$data['catact']=$_GET['cat'];
+			$data['categoria']=$_GET['cat'];
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
+			$data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function deleteSeccion()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['id']) && !empty($post['id'])
+			){
+				$hecho = $this->Paneles_Model->eliminarSeccion($post['id']);
+				if($hecho){
+					$this->getPanelSeccyPre();	
+				}
+			}
 		}
 
 		public function addPregunta()
@@ -451,14 +529,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				&& isset($post['seccion']) && !empty($post['seccion'])
 				&& isset($post['texto']) && !empty($post['texto'])
 			){
-				$us = 	array(
-					"seccion"=>strtoupper($post['seccion']),
+				$pregunta = 	array(
 					"categoria" => strtoupper($post['categoria']),
+					"seccion"=>strtoupper($post['seccion']),
 					"texto"=>$post['texto']
 				);
-				$hecho = $this->Paneles_Model->registrarSeccion($us);
-				if($hecho){
-					$this->configuracionPreguntas();	
+				$lastId = $this->Paneles_Model->registrarPregunta($pregunta);
+				$detalle = 	array(
+					"id_pregunta" => $lastId,
+					"tipo"=>"default",
+					"obligatorio"=>"0",
+					"soliarchivo"=>"0",
+					"preguntaOpcional"=>"pregunta opcional",
+					"tipoPreOpcional"=>"default",
+					"categoria"=>strtoupper($post['categoria'])
+				);
+				$hecho=$this->Paneles_Model->registrarDetalles($detalle);
+				if($hecho)
+				{
+					$this->getPanelPreguntas($post);	
 				}
 			}
 		}
@@ -466,7 +555,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		public function configUpPregunta()
 		{
 			$data['config']="uppregunta";
-			$data['catact']=$_GET['cat'];
+			$data['categoria']=$_GET['cat'];
+			$data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
+			$data['id']=$_GET['idpre'];
+			$data['pregunta']=$this->Paneles_Model->getSpecificPregunta($data['id']);
+			$num=$this->Paneles_Model->validacionDetalles($data['id']);
+			if($num==0)
+			{
+				$detalle = array(
+				"id_pregunta" => $data['id'],
+				"tipo"=>"default",
+				"obligatorio"=>"0",
+				"soliarchivo"=>"0",
+				"preguntaOpcional"=>"pregunta opcional",
+				"tipoPreOpcional"=>"default",
+				"categoria"=>strtoupper($data['categoria'])
+
+			);
+			$this->Paneles_Model->registrarDetalles($detalle);
+			}
+			$data['detalles']=$this->Paneles_Model->getDetallesPregunta($data['id']);
+			$data['categorias']=$this->Paneles_Model->getCategorias();
+			$data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
+			$data['catalogo']=$this->Paneles_Model->getCatalogo();
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
 			$data['session'] = $this->session;
@@ -491,6 +602,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/CrudEmpresas",$data);
 		}
 		
+		public function updatePregunta()
+		{
+			$post = $this->input->post();
+			//var_dump($post);
+			if(!empty($post) 
+				&& isset($post['categoria']) && !empty($post['categoria'])
+				&& isset($post['seccion']) && !empty($post['seccion'])
+				&& isset($post['texto']) && !empty($post['texto'])
+				&& isset($post['id']) && !empty($post['id'])
+				//&& isset($post['tipo']) && !empty($post['tipo'])
+				//&& isset($post['soliarchivo']) && !empty($post['soliarchivo'])
+				//&& isset($post['obligatorio']) && !empty($post['obligatorio'])
+			){
+				$pregunta = 	array(
+					"categoria" => strtoupper($post['categoria']),
+					"seccion"=>strtoupper($post['seccion']),
+					"texto"=>$post['texto']
+				);
+				$detalles= array(
+					"tipo"=>$post['tipo'],
+					"obligatorio"=>$post['obligatorio'],
+					"soliarchivo"=>$post['soliarchivo'],
+					"preguntaOpcional"=>$post['preguntaOpcional']
+				);
+				$hecho= $this->Paneles_Model->actualizarPregunta($pregunta,$post['id']);
+				$hechode = $this->Paneles_Model->actualizarDetallesPregunta($detalles,$post['id']);
+				if($hecho){
+					$this->getPanelPreguntas($post);	
+				}
+			}
+			
+		}
+
+		public function configDelPregunta()
+		{
+			$data['config']="deletepregunta";
+			$data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
+			$data['categoria']=$_GET['cat'];
+			$data['id']=$_GET['idpre'];
+			$data['usuario'] = $this->Usuario;
+			$data['usuario'] += array("tipo" => $this->session_tipo);
+			$data['session'] = $this->session;
+			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+		}
+
+		public function deletePregunta()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['id']) && !empty($post['id'])
+			){
+				$hecho = $this->Paneles_Model->eliminarPregunta($post['id']);
+				$hechode = $this->Paneles_Model->eliminarDetalles($post['id']);
+				if($hecho){
+					$this->getPanelPreguntas($post);	
+				}
+			}
+		}
 	// Fin funciones AJAX
 }
 

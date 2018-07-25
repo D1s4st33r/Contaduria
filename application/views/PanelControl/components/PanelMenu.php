@@ -28,7 +28,7 @@
           </a>
       </li>
       <li class="nav-item p-1">
-        <a class="nav-link" href="<?php echo base_url("ConfPreguntas");echo $session.'&cat=ind';?>"> 
+        <a class="nav-link" href="<?php echo base_url("ConfPreguntas");echo $session;?>"> 
         <i class='fas fa-question fa-lg'></i> <small>Cuestionarios</small>
         </a>
       </li>

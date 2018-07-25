@@ -1,11 +1,11 @@
-
-
-    <?php
-      if(!isset($usuario)){ redirect('Login/index?error_login=session','refresh');  }
+<?php
+    if (!isset($usuario)) {
+      redirect('Login/index?error_login=session', 'refresh');
+    }
     ?>
   
     <?php
-      $this->load->view("PanelControl/components/PanelMenu",array("usuario"=>$usuario,"session"=>$session));
+    $this->load->view("PanelControl/components/PanelMenu", array("usuario" => $usuario, "session" => $session));
     // $this->load->view("PanelControl/components/PanelLinks");
     ?>
 <!-- Base No Tocar  --> 
@@ -19,7 +19,7 @@
             <div class="container">
               <div class="row" id="TituloPanel">
               <?php 
-                $this->load->view('PanelControl/components/TituloPanel');
+              $this->load->view('PanelControl/components/TituloPanel');
               ?>
               </div>
             </div>
@@ -27,7 +27,7 @@
         </div>
       </div>
       
-      <?php if($menu == "Panel") : ?>
+      <?php if ($menu == "Panel") : ?>
       <div class="container">
         <div class="row">
           <div class="col-12">  
@@ -59,7 +59,7 @@
             <div class="container">
               <div class="row my-3 p-3 bg-white rounded box-shadow">
                 <?php 
-                  $this->load->view('PanelControl/components/ContadoresPreguntas');
+                $this->load->view('PanelControl/components/ContadoresPreguntas');
                 ?>
               </div>
             </div>
@@ -69,7 +69,7 @@
       </div>   
       <?php endif; ?>
 
-    <?php if($menu == "Contadores") : ?>
+    <?php if ($menu == "Contadores") : ?>
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -84,8 +84,8 @@
                 <div class="container">
                   <div class="row" id="Controles">
                     <?php 
-                      $this->load->view('PanelControl/components/controlesCliente');
-                     ?>
+                    $this->load->view('PanelControl/components/controlesCliente');
+                    ?>
                   </div>
                 </div>
               </div>
@@ -107,29 +107,32 @@
 
       </div>
     </div>
-    <?php elseif($menu == "ConfPreguntas") : ?>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
+<?php elseif ($menu == "ConfPreguntas") : ?>
+<div class="container">
+  <div class="row">
+        <div class="col-12" id="general">
           <div class="container">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <?php 
-                $this->load->view('PanelControl/components/ConfiguracionesPreguntas');
+              $this->load->view('PanelControl/components/ConfiguracionesPreguntas');
               ?>
             </div>
           </div>
         </div>
 
-      <div class="col-12">
+    <div class="col-12" id="categorias" >
+    <div id="categorias">
               <?php 
-                $this->load->view('PanelControl/components/categorias');
+              $this->load->view('PanelControl/components/categorias');
               ?>
-        </div>
+    </div> 
+    </div>   
+  </div>
+                
+        <div class "col-12" id="seccypre"></div>
+</div>
 
-      </div>
-    </div>
-
-     <?php elseif($menu == "Clientes") : ?>
+     <?php elseif ($menu == "Clientes") : ?>
      <div class="container">
       <div class="row">
         <div class="col-12">
@@ -144,16 +147,16 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-lg align-items-center">
-                    <h6 class="lh-125 small text-muted p-2"> Registrados :  <?php echo $estadisticas["Clientes"];?></h6>
+                    <h6 class="lh-125 small text-muted p-2"> Registrados :  <?php echo $estadisticas["Clientes"]; ?></h6>
                     </div>
                     <div class="col-lg">
                       <div class="container">
                         <div class="row">
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-success btn-block text-white" href="<?php echo base_url('ClienteControl').$session;?>" > Ver </a> 
+                            <a  type="button" class="btn btn-sm btn-success btn-block text-white" href="<?php echo base_url('ClienteControl') . $session; ?>" > Ver </a> 
                           </div>
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-primary btn-block text-white" onclick="return hacerCambio('clienteReg' ,'<?php echo base_url('FormularioCliente').$session;?>')" > Agregar</a> 
+                            <a  type="button" class="btn btn-sm btn-primary btn-block text-white" onclick="return hacerCambio('clienteReg' ,'<?php echo base_url('FormularioCliente') . $session; ?>')" > Agregar</a> 
                           </div>
                         </div>
                       </div>

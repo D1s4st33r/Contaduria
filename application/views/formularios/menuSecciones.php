@@ -12,33 +12,33 @@
 			  </button>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav">
-			      <a class="nav-item <?php if($titulo =="General" ){echo "btn btn-secondary btn-lg btn-block";}else{echo "nav-link";} ?>" href="<?php echo base_url("Formularios/general".$sessionUrl); ?>">
+			      <a class="nav-item <?php if($titulo =="General" ){echo "btn btn-secondary btn-lg btn-block";}else{echo "nav-link";} ?>" href="<?php echo base_url("Formularios/general".$session); ?>">
 
 			      	General
 			      
 			      </a>
 
-			      <a class="nav-item <?php if($titulo =="Legal" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/legal".$sessionUrl);?>">
+			      <a class="nav-item <?php if($titulo =="Legal" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/legal".$session);?>">
 			      	
 			      		Legal
 			      </a>
 			      
-			      <a class="nav-item <?php if($titulo =="Contable" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/contable".$sessionUrl);?>">
+			      <a class="nav-item <?php if($titulo =="Contable" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/contable".$session);?>">
 
 			  	  	  Contable
 			  	  
 			  	  </a>
 			      
-			      <a class="nav-item <?php if($titulo =="Laboral" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/laboral".$sessionUrl);?>">
+			      <a class="nav-item <?php if($titulo =="Laboral" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/laboral".$session);?>">
 			      	
 			      	Laboral
 
 			  		</a>
 
-			      <a class="nav-item  <?php if($titulo =="Seguridad Social" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/segSocial".$sessionUrl);?>">Seg.Social</a>
+			      <a class="nav-item  <?php if($titulo =="Seguridad Social" ){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/segSocial".$session);?>">Seg.Social</a>
 
 			      
-			      <a class="nav-item <?php if($titulo =="Fiscal"){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/fiscal".$sessionUrl);?>">Fiscal</a>
+			      <a class="nav-item <?php if($titulo =="Fiscal"){echo "btn btn-secondary active";}else{echo "nav-link";} ?>" href="<?php echo base_url("formularios/fiscal".$session);?>">Fiscal</a>
 			    </div>
 			  </div>
 			</nav>

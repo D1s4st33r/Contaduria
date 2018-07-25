@@ -35,10 +35,10 @@
           <div class="col-lg-6">
             <div class="container">
               <div class="row my-3 p-3 bg-white rounded box-shadow">
-                <?php 
+               <?php 
                 $this->load->view('PanelContadores/components/totales');
                 ?>
-              </div>
+              </div> 
             </div>
           </div>
 
