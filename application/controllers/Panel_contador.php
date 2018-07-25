@@ -8,8 +8,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Contador  = roll 1
  * Cliente = roll 2
  */
-class Panel_admin extends MY_Controller {
-	protected $nivelAcceso = "Contadores" ;
+class Panel_contador extends MY_Controller {
+	protected $nivelAcceso = "Contador" ;
 	protected $Usuario = array();
 
 	public function __construct()
@@ -33,9 +33,9 @@ class Panel_admin extends MY_Controller {
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
-		$data['session'] = "?token=".$this->session_token."&id=".$this->session_id;
+		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$data);
+		$this->load->view('PanelContadores/Panel',$data);
 		$this->load->view('templates/footer');
 	}
 }

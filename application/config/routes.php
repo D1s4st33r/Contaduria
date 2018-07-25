@@ -50,28 +50,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Login';
-/* $route['de_donde_vienes'] = "controlador/metodo"; */
-$route['PanelDeControl'] = 'Panel_admin/index';
-$route['ControlContadores'] = 'Panel_admin/Contadores';
-$route['ActualizarPerfil'] = 'Panel_admin/getActualizacionPerfil';//ActualizarUsuarioById
-$route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
-$route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
-$route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
-$route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
-$route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
-$route['TituloPanel'] = 'Panel_admin/getTituloPanel';
-$route['Login'] ="Login/index";
-$route['configAddCategoria']="Panel_admin/configAddCategoria";
-$route['addCategoria']="Panel_admin/addCategoria";
-$route['configUpdateCategoria']="Panel_admin/configUpCategoria";
-$route['updateCategoria']="Panel_admin/updateCategoria";
-$route['configDeleteCategoria']="Panel_admin/configDelCategoria";
-$route['deleteCategoria']="Panel_admin/deleteCategoria";
-$route['configAddSeccion']="Panel_admin/configAddSeccion";
-$route['addSeccion']="Panel_admin/addSeccion";
-$route['configUpSeccion']="Panel_admin/configUpSeccion";
-$route['configDeleteSeccion']="Panel_admin/configDelSeccion";
-$route['configUpdatePregunta']="Panel_admin/configUpPregunta";
+$route['Login']                 = "Login/index";
+
+/**
+ * Panel Prinicipal Admin
+ */
+$route['PanelDeControl']        = 'Panel_admin/index';
+$route['TituloPanel']           = 'Panel_admin/getTituloPanel';
+
+/**
+ * Panel Contadores Admin
+ */
+$route['ControlContadores']     = 'Panel_admin/Contadores';
+$route['AgregarContador']       = 'Panel_admin/AgregarEmpleado';
+
+/**
+ * Panel Cliente Admin
+ */
+$route['ClienteControl'] = 'Panel_admin/Clientes';
+$route['AgregarCliente'] = 'Panel_admin/AgregarCliente';
+$route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
+$route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
+
+$route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
+$route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
+$route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
+$route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
+$route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
+
+$route['viewCategorias']="Panel_admin/getPanelCategorias";
+$route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
+$route['configCancelar']="Panel_admin/configCancelar";
+$route['configAddCategoria']    = "Panel_admin/configAddCategoria";
+$route['addCategoria']          = "Panel_admin/addCategoria";
+$route['configUpdateCategoria'] = "Panel_admin/configUpCategoria";
+$route['updateCategoria']       = "Panel_admin/updateCategoria";
+$route['configDeleteCategoria'] = "Panel_admin/configDelCategoria";
+$route['deleteCategoria']       = "Panel_admin/deleteCategoria";
+$route['configAddSeccion']      = "Panel_admin/configAddSeccion";
+$route['addSeccion']            = "Panel_admin/addSeccion";
+$route['configUpSeccion']       = "Panel_admin/configUpSeccion";
+$route['updateSeccion']="Panel_admin/updateSeccion";
+$route['configDeleteSeccion']   = "Panel_admin/configDelSeccion";
+$route['deleteSeccion']="Panel_admin/deleteSeccion";
+$route['addPregunta']="Panel_admin/addPregunta";
+$route['configUpdatePregunta']  = "Panel_admin/configUpPregunta";
+$route['upPregunta']="Panel_admin/updatePregunta";
+$route['configDelPregunta']="Panel_admin/configDelPregunta";
+$route['deletePregunta']="Panel_admin/deletePregunta";
+
+$route['RegistroEmpresa']="Panel_user/Registro_Empresa";
+$route['Cliente']="Panel_user/index";
+
+$route['Contador']="Panel_contador/index";
+// $route['Contadores']="Panel_user/index";
+
+// Empresas
+$route['empresasClie']="Panel_admin/getEmpresas";
+
+
+
 //$route['Formularios/legal'] = "Formularios/legal";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
