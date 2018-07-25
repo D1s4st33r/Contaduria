@@ -542,7 +542,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
 		}
 
-<<<<<<< HEAD
 		/**
 		 * Empresas AJAX
 		 */
@@ -560,7 +559,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/CrudEmpresas",$data);
 		}
 		
-=======
 		public function updatePregunta()
 		{
 			$post = $this->input->post();
@@ -619,7 +617,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			}
 		}
->>>>>>> salva
 	// Fin funciones AJAX
 }
 
