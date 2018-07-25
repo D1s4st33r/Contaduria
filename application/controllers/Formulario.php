@@ -88,6 +88,7 @@ public function General()
 											 );
 											 
 											$this->Formularios_Model->dataempresa($datos_em);
+											echo "exito";
 											
 
 										}

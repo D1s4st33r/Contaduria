@@ -15,7 +15,7 @@
 				    <div class="col-sm">
 				    	<div class="form-group">
 					    <label for="razonSocial">Razón Social</label>
-					    <input type="text" class="form-control" name="razonSocial" aria-describedby="razonSocial" placeholder="Mi empresa SA de CV" required="required">
+					    <input type="text" class="form-control" name="razonSocial" id="razonSocial" aria-describedby="razonSocial" placeholder="Mi empresa SA de CV" required="required">
 					    <small id="razonSocial" class="form-text text-muted">Ejemplo: <i>Mi empresa SA de CV</i></small>
 					  </div>
 				    </div>
