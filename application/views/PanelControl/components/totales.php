@@ -1,7 +1,7 @@
     <div class="col-12 mb-1">
-      <h4 class="p-2 bg-light text-dark"> 
+      <h6 class="p-2 text-dark"> 
         <i class="fas fa-users fa-lg"></i> Totales
-      </h4>
+      </h6>
     </div>
 
     <?php
@@ -37,9 +37,5 @@
       </div>';
       }
       ?>
-      <div class="col-12">
-        <small class="d-block text-right mt-3">
-          <a href="#" class="btn btn-lg btn-primary">All suggestions</a>
-        </small>
-      </div>
+      
       
