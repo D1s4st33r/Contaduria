@@ -16,7 +16,6 @@
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav contenedor-cat">
           <?php
-          echo '<a class=" '; if($titulo =="general" ){echo "btn btn-secondary active";}else{echo " nav-item nav-link";}echo' "onclick=" hacerCambio(';echo "'"; echo 'categorias';echo "'"; echo  ", '".base_url('viewCategoriasUser').$session.'&cat=general'; echo"'"; echo '); hacerCambio(';echo "'"; echo 'seccypre';echo "'"; echo  ", '".base_url('viewGeneralUser').$session."'"; echo ');" style="cursor:pointer;">Datos Generales</a> '; 
             foreach($categorias as $cen=>$valores)
             {
               echo '<a class=" '; if($titulo ==strtoupper($valores["categoria"]) ){echo "btn btn-secondary active";}else{echo " nav-item nav-link";}echo' "onclick=" hacerCambio(';echo "'"; echo 'categorias';echo "'"; echo  ", '".base_url('viewCategoriasUser').$session.'&cat='.strtoupper($valores["categoria"]).'&idcat='.$valores['id'];echo"'"; echo '); hacerCambio(';echo "'"; echo 'seccypre';echo "'"; echo  ", '".base_url('viewSeccionUser').$session.'&cat='.strtoupper($valores["categoria"]);echo"'"; echo ');" style="cursor:pointer;">'.strtoupper($valores["categoria"]).'</a> '; 

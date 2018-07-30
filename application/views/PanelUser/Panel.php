@@ -123,9 +123,6 @@
   </div>
                 
   <div class "col-12 " id="seccypre" >
-    <?php 
-        $this->load->view('formularios/index');
-    ?>
   </div>
 </div>
 <?php endif  ?>
