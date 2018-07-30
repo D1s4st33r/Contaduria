@@ -150,13 +150,7 @@ class Paneles_Model extends CI_Model
         return $registrado;   
     }
 
-    public function RegistrarEmpresa($datos)
-    {
-        
-        $this->db->insert('empresa', $datos);
-        echo "llegie aqoi";
-          
-    }
+
 
     //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
 
@@ -207,14 +201,38 @@ class Paneles_Model extends CI_Model
         return $registrado;
     }
     
-    public function getContadorEmpresa($id)
+    //Empieza la seccion de clientes
+    public function getContadorEmpresa($id_usuario)
     {
-        $empresas =$this->db->select('COUNT(rfc)')
-                ->from("empresa")
-                ->where('id_usuario',$id)
-                ->get()
-                ->result_array()[0];
-         return $empresas["COUNT(rfc)"] ;
+        $sumaEmpresas = $this->db->select('COUNT(rfc)')
+        ->from("empresa")
+        ->where("id_usuario",1)
+        ->get()
+        ->result_array()[0]["COUNT(rfc)"];
+    $usuarios= array(
+        "Empresas" => $sumaEmpresas
+    );
+    return $usuarios;
          
     }
+    public function getInfoEmpresas()
+    {
+
+        $Empleados = $this->db->select('rfc,razonSocial,correo,telefono,representantelegal,telrepresentante')
+            ->from("empresa")
+            ->where("id_usuario",1)
+            ->get()
+            ->result_array();
+        
+        $usuarios= array(
+            "Empresas" => $Empleados
+        );
+        return $usuarios;
+    }
+    public function EliminarClaveRegistro($clave){
+
+        $registrado = $this->db->where('ClaveRegistro',$clave)->delete("claves_solicitadas");
+        return $registrado;
+    }
+
 }

@@ -74,7 +74,7 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-lg align-items-center">
-                    <h6 class="lh-125 small text-muted p-2"> Registradas :  <?php echo $estadisticas["Contadores"];?></h6>
+                    <h6 class="lh-125 small text-muted p-2"> Registradas :  <?php echo $estadisticas["Empresas"];?></h6>
                     </div>
                     <div class="col-lg">
                       <div class="container">
@@ -100,7 +100,7 @@
                 }
                 </style>
                 <?php 
-                $this->load->view('PanelUser/components_user/VistaDocumentos');
+                $this->load->view('PanelUser/components_user/EmpresasCRUD');
                 ?>
               </div>
             </div>

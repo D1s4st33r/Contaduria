@@ -1,22 +1,39 @@
 $("#error").hide();
+
+
+
+
+
 $(document).on('submit', '#registrar', function(e)
 {
     
         e.preventDefault();
-        var formData = new FormData($("#registrar")[0]);
+        var formData = new FormData($('#registrar')[0]);
         
+
      $.ajax({
 
         method:'post',
-        url: this.serialize,
+        url: base_url+'Login/PostEmpresa',
         data:formData,
         cache:false,
         contentType:false,
         processData:false,
         success: function(respuesta){
+            if(respuesta==="exito"){
+
+                alert("Registros Guardados");
+                $("#error").hide();
+                $("#registrar")[0].reset();
+
+
+            }
+            else{
+                $("#error").show();
+
+            }
             
             
-            alert(respuesta.length);
 
         }
  
@@ -25,4 +42,5 @@ $(document).on('submit', '#registrar', function(e)
 
      });
 });
+
 

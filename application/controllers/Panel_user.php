@@ -47,26 +47,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/components_user/PanelMenu',$data);
-		$this->load->view('PanelUser/components_user/menuSecciones',$data);
-		$this->load->view('PanelUser/components_user/Form_General',$data);
+		$this->load->view('formularios/index',$data);
 		$this->load->view('templates/footer');
 	}
 
 	public function Empresas()
 	{
+		$id_user = $this->session;
 		$data['menu'] = "Empresas" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-		if($data['estadisticas']['Contadores'])
+		$data['estadisticas'] = $this->Paneles_Model->getContadorEmpresa($id_user);
+		$num = $data['estadisticas'];
+		if($data['estadisticas']['Empresas'])
 		{ 
-			$data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados();
+			$data['Empleados'] = $this->Paneles_Model->getInfoEmpresas();
 		}
 		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/Panel',$data);
 		$this->load->view('templates/footer');
 	}
+
+	public function ValidarRegistro(){
+
+		if($this->input->post()){
+	
+			$Clave = $this->input->post("ClaveRegistro");
+			var_dump($Clave);
+			
+		  
+			$hecho = $this->Paneles_Model->EliminarClaveRegistro($Clave);
+			
+				if($hecho){
+					$data['usuario'] = $this->Usuario;
+					$data['usuario'] += array("tipo" => $this->session_tipo);
+					$data['session'] = $this->session;
+
+					$this->load->view("formularios/index",$data);	
+				}
+			
+	
+	}
+}
+
 
 	/**
 	 * Funciones AJAX

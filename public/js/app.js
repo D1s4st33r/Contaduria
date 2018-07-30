@@ -22,8 +22,10 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         data: datosPost, // data recive un objeto con la informacion que se enviara al servidor
         dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
         success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
-            div.html(datos);
-            alert(datos);
+            if(div !="" ){
+                div.html(datos);
+            }
+            
         }
     });
 }
@@ -58,6 +60,7 @@ function AgregarUsuario(url) {
     telefono_ = $("#telefono").val();
     email_ = $("#email").val();
     contrasena_ = $("#contrasena").val();
+
     if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && contrasena_ != "") {
         post = {
             nombre: nombre_,
@@ -66,34 +69,14 @@ function AgregarUsuario(url) {
             telefono: telefono_,
             clave: contrasena_
         };
+
+
+
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
 
     }
 }
 
-function AgregarEmpresa(url) {
-    rfc_ = $("#rfc").val();
-    razonSocial_ = $("#razonSocial").val();
-    domicilio_ = $("#domicilio").val();
-    correo_ = $("#correo").val();
-    telefono_ = $("#telefono").val();
-    representantelegal_ = $("#representantelegal").val();
-    archivos_ = $("#archivos").val();
-    if (rfc_ != "" && razonSocial_ != "" && domicilio_ != "" && correo_ != "" && telefono_ != "" && representantelegal_ != "" && archivos_ != "") {
-        post = {
-            rfc: rfc_,
-            razonSocial: razonSocial_,
-            domicilio: domicilio_,
-            correo: correo_,
-            telefono:telefono_,
-            representantelegal: representantelegal_,
-            archivos: archivos_
-            
-        };
-        hacerCambiosPostAsy(post, url, $("#empresasReg"));
-
-    }
-}
 
 
 function updateContador(iddiv, url) {
@@ -120,10 +103,26 @@ function updateContador(iddiv, url) {
             email: email_,
             telefono: telefono_
         };
-        console.log(url);
+        
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
     }
 }
+
+function ValidarClave(url) {
+    ClaveRegistro_ = $("#ClaveRegistro").val();
+   
+
+    if (ClaveRegistro_ != "") {
+        post = {
+            ClaveRegistro:ClaveRegistro_
+        };
+        console.log(post);
+        hacerCambiosPostAsy(post, url, $("#registrar"));
+    }
+}
+
+
+
 
 function EliminarUsuario(iddiv, url) {
     var id_ = "";

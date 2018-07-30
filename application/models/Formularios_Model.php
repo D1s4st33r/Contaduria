@@ -13,6 +13,7 @@
 		{
 
 			$this->db->insert("empresa",$datos_empresa);
+			
 		
 
 		}
@@ -69,7 +70,19 @@
 					->result_array()[0];
 			 return $empresas["COUNT(rfc)"] ;
 			 
+		} 
+		
+		
+		public function getIdUser($user)
+		{
+			$usuario = $this->db->select("id")
+			->from("usuario")
+			->where('email',$user)
+			->get()
+			->result_array()[0];
+			return $usuario;	
 		}
+
 
 		/**function eliminar_null($datos_null)
 		{

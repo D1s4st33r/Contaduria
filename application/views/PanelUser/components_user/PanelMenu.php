@@ -25,12 +25,17 @@
       </li>
       <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Cuestionario") ) ? "active" : "" ; ?> p-1">
         <a class="nav-link" href="<?php echo base_url("Formulario/General");echo $session;?>">
-          <i class='fas fa-question  fa-lg'></i> <small>Cuestionario</small>
+          <i class='fas fa-th-list'></i> <small>Registrar</small>
         </a>
       </li>
       <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Documentos") ) ? "active" : "" ; ?> p-1">
         <a class="nav-link" href="<?php echo base_url("ControlEmpresas");echo $session;?>">
-          <i class='far fa-folder'></i> <small>Documentos</small>
+          <i class='fas fa-building'></i> <small>Empresas</small>
+        </a>
+      </li>
+      <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Documentos") ) ? "active" : "" ; ?> p-1">
+        <a class="nav-link" href="<?php echo base_url("ControlEmpresas");echo $session;?>">
+          <i class='fab fa-wpforms'></i> <small>Formulario</small>
         </a>
       </li>
       

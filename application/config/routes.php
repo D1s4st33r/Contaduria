@@ -75,6 +75,7 @@ $route['addSeccion']="Panel_admin/addSeccion";
 $route['configUpSeccion']="Panel_admin/configUpSeccion";
 $route['configDeleteSeccion']="Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
+$route['ValidarRegistro'] = 'Panel_user/ValidarRegistro';
 
 $route['RegistroEmpresa']="Panel_user/Registro_Empresa";
 $route['Cliente']="Panel_user/index";
