@@ -1,59 +1,58 @@
 
 
       
-        <?php if( "0" == $estadisticas["Contadores"]):?>
+        <?php if( "0" == $estadisticas["Empresas"]):?>
         <div class=" col-12 p-2 " >    
           <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">
             No hay Registros 
           </h3>
           </div>
         <?php else: ?>
+        <h6 class="border-bottom border-gray pb-2 mb-0">Datos de Empresas Registradas</h6>
         <div class="col-12 p-2 text-center">  
           <div class="container">
-            <?php foreach ($Empleados["Contadores"] as $key => $value) :?>
-            <div class="row p-1 my-1 border-bottom align-items-center border rounded" id="id<?php echo $key ; ?>" >
-              <div class="col-sm-6 col-md-6 col-lg-1  ">
+            <?php foreach ($Empleados["Empresas"] as $key => $value) :?>
+            <div class="row p-1 my-1 border-bottom align-items-center border rounded" >
+            <i class=" mx-3 fas fa-industry fa-2x  "></i>
+              <div class="col-sm-1 col-md-1 col-lg-3 ">
                 <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="id">Id</label>
-                  <input type="text" value="<?php echo $value['id'];?>" name="id" class="form-control form-control-sm text-center" readonly>
+                <h6><strong class="text-gray-dark"><?php echo $value['razonSocial'];?></strong></h6>
+                <small class="d-block">RFC: <?php echo $value['rfc'];?></small>
                 </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-2">
                 <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="nombre">Nombre</label>
-                  <input type="text" value="<?php echo $value['nombre'];?>" name="nombre" class="form-control form-control-sm">
+                    <strong>Correo:</strong>
+                    <small class="d-block"><?php echo $value['correo'];?></small>
+                   
+              
                 </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-2">
                 <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="apellido">Apellidos</label>
-                  <input type="text" value="<?php echo $value['apellido'];?>" name="apellido" class="form-control form-control-sm">
+                    <strong>Telefono:</strong>
+                    <small class="d-block"><?php echo $value['telefono'];?></small>
                 </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-3">
                 <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="email">Email</label>
-                  <input type="text" value="<?php echo $value['email'];?>" name="email" class="form-control form-control-sm">
+                    <strong>Representante Legal:</strong>
+                    <small class="d-block"><?php echo $value['representantelegal'];?></small>
+                    <small class="d-block">Tel.<?php echo $value['telrepresentante'];?></small>
                 </div>
               </div>
-              <div class="col-sm-6 col-md-6 col-lg-2">
-                <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="telefono">Telefono</label>
-                  <input type="text" value="<?php echo $value['telefono'];?>" name="telefono" class="form-control form-control-sm">
-                </div>
-              </div>
-              <div class="col-sm-12 col-lg-2">
+             
                 <div class="container">
                   <div class="row">
-                    <div class="col-sm-6 col-lg-12 p-1">
-                    <a class="btn btn-primary btn-md  btn-block text-white" onclick=" return updateContador('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </a> 
+                    <div class="col-sm-1 col-lg-1 p-1">
+                    <a class="btn btn-primary btn-xs  btn-block text-white" onclick=" return updateContador('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </a> 
                     </div>
-                    <div class="col-sm-6 col-lg-12 p-1">
-                    <a class="btn btn-danger btn-md  btn-block text-white" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </a> 
+                    <div class="col-sm-6 col-lg-1 p-1">
+                    <a class="btn btn-danger btn-xs  btn-block text-white" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </a> 
                     </div>
                   </div>
                 </div>
-              </div>
+             
             </div>
             <?php endforeach;?>
           </div>
