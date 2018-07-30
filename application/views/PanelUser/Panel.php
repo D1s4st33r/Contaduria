@@ -112,6 +112,24 @@
 
     <?php endif; ?>
 
+<?php if ($menu == "formulario") : ?>
+<div class="container">
+  <div class="row">
+    <div class="col-12" id="categorias" >
+              <?php 
+              $this->load->view('formularios/menuCategorias');
+              ?>
+    </div>   
+  </div>
+                
+  <div class "col-12 " id="seccypre" >
+    <?php 
+        $this->load->view('formularios/index');
+    ?>
+  </div>
+</div>
+<?php endif  ?>
+
 
 <!-- cierre de base  --> 
     </div>

@@ -100,6 +100,9 @@ $route['configDelPregunta']="Panel_admin/configDelPregunta";
 $route['deletePregunta']="Panel_admin/deletePregunta";
 
 $route['RegistroEmpresa']="Panel_user/Registro_Empresa";
+$route['viewCategoriasUser']="Formulario/getPanelCategorias";
+$route['viewSeccionUser']="Formulario/getPanelSeccion";
+$route['viewGeneralUser']="Formulario/getDatosGenerales";
 $route['Cliente']="Panel_user/index";
 
 $route['Contador']="Panel_contador/index";

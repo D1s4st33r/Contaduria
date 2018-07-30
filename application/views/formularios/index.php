@@ -1,9 +1,5 @@
-<div class="alert alert-danger" role="alert" id="error" style="text-align:left;">
-				<strong>Importante</strong>
-				<div class="list-errors"></div>
 
-			</div>
-  	<div class="row">
+  	<div class="row container">
 	
   		<div class="jumbotron container">
 
