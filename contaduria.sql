@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2018 a las 22:12:00
+-- Tiempo de generación: 30-07-2018 a las 23:40:46
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -181,10 +181,14 @@ CREATE TABLE `detalles_preguntas` (
 --
 
 INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarchivo`, `preguntaOpcional`, `tipoPreOpcional`, `categoria`) VALUES
-(545, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
-(547, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(545, 'RADIO', 0, 1, 'pregunta opcional', 'default', 'CONTABLE'),
+(546, 'RADIO', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(547, 'RADIO', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(552, 'RADIO', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
 (554, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
-(573, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(573, 'RADIO', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(574, 'TEXT', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
+(576, 'RADIO', 0, 0, 'pregunta opcional', 'default', 'CONTABLE'),
 (577, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
 (578, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
 (579, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL'),
@@ -209,7 +213,8 @@ CREATE TABLE `empresa` (
   `correo` varchar(100) NOT NULL,
   `telefono` int(10) NOT NULL,
   `archivos` varchar(200) DEFAULT NULL,
-  `id_usuario` int(4) NOT NULL
+  `id_usuario` int(4) NOT NULL,
+  `contadorAsignado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -220,9 +225,10 @@ CREATE TABLE `empresa` (
 
 CREATE TABLE `formulario` (
   `id` int(4) NOT NULL,
-  `id_pregunta` int(4) NOT NULL,
-  `categoria` varchar(50) NOT NULL,
-  `seccion` varchar(50) NOT NULL
+  `usuario` varchar(50) NOT NULL,
+  `empresarfc` varchar(13) NOT NULL,
+  `fecha_ini` int(11) NOT NULL,
+  `fecha_fini` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -830,6 +836,7 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 
 CREATE TABLE `resultados` (
   `id` int(4) NOT NULL,
+  `id_formulario` int(11) NOT NULL,
   `id_pregunta` int(4) NOT NULL,
   `respuesta` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -854,7 +861,8 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-(72, 1, '390d4dfde1fb98e580df0c39', '::1', '1532552765', 'Miércoles 25 de Julio 2018 03:06:04 PM');
+(72, 1, 'a033f943457a90560150f445', '::1', '1532989600', 'Lunes 30 de Julio 2018 10:10:10 AM'),
+(73, 4, 'e7c619708c3a3fa3ba4fef22', '::1', '1532988843', 'Lunes 30 de Julio 2018 04:14:03 PM');
 
 -- --------------------------------------------------------
 
@@ -879,7 +887,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
 (1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483646, '123456789', 0),
 (2, 'salvador', 'miron', 'masterchif57@gmail.com', 2147483647, '123456789', 1),
-(3, 'dante', 'auditore', 'strokescode@gmail.com', 2147483647, '123456789', 1);
+(3, 'dante', 'auditore', 'strokescode@gmail.com', 2147483647, '123456789', 1),
+(4, 'salvador', 'miron', 'cliente@prueba.com', 1122334455, '123456789', 2);
 
 --
 -- Índices para tablas volcadas
@@ -977,13 +986,13 @@ ALTER TABLE `preguntas`
 -- AUTO_INCREMENT de la tabla `sessiones`
 --
 ALTER TABLE `sessiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
