@@ -27,10 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function General()
 	{
 		$data['menu']="formulario";
-		$data['titulo'] = "general" ;
-		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
-		$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+		$data['titulo'] = "general";
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
@@ -41,6 +38,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('templates/footer');
 
    
+	}
+
+	public function getFormulario()
+	{
+		$data['menu']="formulario";
+		$data['titulo'] = "general" ;
+		$data['categorias']=$this->Paneles_Model->getCategorias();
+		$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+		$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+		$data['usuario'] = $this->Usuario;
+		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['session'] = $this->session;
+		$this->load->view('templates/headerLimpio');
+		$this->load->view('PanelUser/Panel',$data);
+		$this->load->view('templates/footer');
 	}
 
 	public function getDatosGenerales()

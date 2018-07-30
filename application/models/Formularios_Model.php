@@ -13,8 +13,6 @@
 		{
 
 			$this->db->insert("empresa",$datos_empresa);
-			
-		
 
 		}
 

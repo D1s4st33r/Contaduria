@@ -34,7 +34,7 @@
         </a>
       </li>
       <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Documentos") ) ? "active" : "" ; ?> p-1">
-        <a class="nav-link" href="<?php echo base_url("ControlEmpresas");echo $session;?>">
+        <a class="nav-link" href="<?php echo base_url("Formulario/getFormulario");echo $session;?>">
           <i class='fab fa-wpforms'></i> <small>Formulario</small>
         </a>
       </li>

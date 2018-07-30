@@ -1,5 +1,4 @@
 
-  	<div class="row container">
   	<div class="row">
 	
   		<div class="jumbotron container">
@@ -93,12 +92,12 @@
 						<!--<center><button  type="button" id="resgistroEm"class="btn btn-primary" onclick="return AgregarEmpresa('<//?php echo base_url('AgregarEmpresa').$session;?>')" >  
 								Registrar Empresa
 							</button></center>-->
-							<input type="submit" value="Entrar" class="btn btn-primary" >
+							<input type="submit" value="Entrar" class="btn btn-primary"  >
 						 
 					  </div>
 				    </div>
 						</form>
-
+		
   		</div>
   	</div>
 	

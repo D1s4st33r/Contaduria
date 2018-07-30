@@ -81,13 +81,6 @@ class Login extends CI_Controller {
 			$Telefono = $this->input->post("telefono");
 			$ReLegal = $this->input->post("representantelegal");
 			$TelRepre = $this->input->post("telrepresentante");
-
-
-			
-			
-			
-			
-
 			 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[13]|is_unique[empresa.rfc]');
 			 $this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
 						  if($this->form_validation->run()===TRUE)
