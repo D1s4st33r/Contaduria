@@ -108,9 +108,6 @@ class Login extends CI_Controller {
 
 
 								$datos_em=array(
-
-
-
 									"id_usuario"=> 1,
 									"rfc"=>$RFC,
 									"razonSocial"=>$RazonSocial,
@@ -119,15 +116,18 @@ class Login extends CI_Controller {
 									"telefono"=>$Telefono,
 									"representantelegal"=>$ReLegal,
 									"telrepresentante"=>$TelRepre,
-									"archivos" => $dato_archivo['upload_data']['file_name'],
-									
-						
-						
+									"archivos" => $dato_archivo['upload_data']['file_name'],						
 								 );
 
-								
-								
+								 $form=array(
+									 "usuario"=>$ReLegal,
+									 "empresarfc"=>$RFC,
+									 "fecha_ini"=>date("d/m/Y"),
+									 "fecha_fini"=>""
+								 );
+
 								$this->Formularios_Model->dataempresa($datos_em);
+								$this->Formularios_Model->crearFormulario($form);
 								echo "exito";
 								
 

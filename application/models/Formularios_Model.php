@@ -81,6 +81,11 @@
 			return $usuario;	
 		}
 
+		public function crearFormulario($datos)
+		{
+			$form= $this->db->insert("formulario",$datos);
+		}
+
 
 		/**function eliminar_null($datos_null)
 		{

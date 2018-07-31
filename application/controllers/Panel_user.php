@@ -57,13 +57,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['menu'] = "Empresas" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
+		$data['session'] = $this->session;
 		$data['estadisticas'] = $this->Paneles_Model->getContadorEmpresa($id_user);
 		$num = $data['estadisticas'];
 		if($data['estadisticas']['Empresas'])
 		{ 
 			$data['Empleados'] = $this->Paneles_Model->getInfoEmpresas();
 		}
-		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/Panel',$data);
 		$this->load->view('templates/footer');
