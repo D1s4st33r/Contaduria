@@ -18,7 +18,7 @@
 
 
 			<br>
-			<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrar" method="post" class="card-body" >
+			<form action="<?php echo base_url('postEmpresa').$session?>" id="registrar" method="post" class="card-body" >
   				<div class="row">
 				    <div class="col-sm">
 				    	<div class="form-group">

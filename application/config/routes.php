@@ -130,6 +130,7 @@ $route['viewCategoriasUser']="Formulario/getPanelCategorias";
 $route['viewSeccionUser']="Formulario/getPanelSeccion";
 $route['viewGeneralUser']="Formulario/getDatosGenerales";
 $route['Cliente']="Panel_user/index";
+$route['postEmpresa']="Panel_user/postEmpresa";
 
 $route['Contador']="Panel_contador/index";
 // $route['Contadores']="Panel_user/index";
