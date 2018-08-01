@@ -28,16 +28,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function index()
 	{
+		$id_user = $this->session_id;
 		$data['menu'] = "Panel" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['numEmpresas'] = $this->Paneles_Model->getContadorEmpresa($this->session_id);
+		$data['estadisticas'] = $this->Paneles_Model->getContadorEmpresa($id_user);
+		$num = $data['estadisticas'];
+		if($data['estadisticas']['Empresas'])
+		{ 
+			$data['Empleados'] = $this->Paneles_Model->getInfoEmpresas($id_user);
+		}
 		$data['session'] = $this->session;
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/Panel',$data);
 		$this->load->view('templates/footer');
 	}
 
+	
 	public function Registro_Empresa()
 	{
 		$data['menu'] = "Registro Empresa" ;
@@ -53,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	public function Empresas()
 	{
-		$id_user = $this->session;
+		$id_user = $this->session_id;
 		$data['menu'] = "Empresas" ;
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
@@ -62,32 +69,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$num = $data['estadisticas'];
 		if($data['estadisticas']['Empresas'])
 		{ 
-			$data['Empleados'] = $this->Paneles_Model->getInfoEmpresas();
+			$data['Empleados'] = $this->Paneles_Model->getInfoEmpresas($id_user);
 		}
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/Panel',$data);
 		$this->load->view('templates/footer');
 	}
 
-	public function ValidarRegistro(){
 
-		if($this->input->post()){
-	
-			$Clave = $this->input->post("ClaveRegistro");
-			var_dump($Clave);
-			
-		  
-			$hecho = $this->Paneles_Model->EliminarClaveRegistro($Clave);
-			
-				if($hecho){
-					$data['usuario'] = $this->Usuario;
-					$data['usuario'] += array("tipo" => $this->session_tipo);
-					$data['session'] = $this->session;
 
-					$this->load->view("formularios/index",$data);	
-				}
-	}
-}
 
 
 	/**

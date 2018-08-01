@@ -324,7 +324,7 @@ class Paneles_Model extends CI_Model
 
         $Empleados = $this->db->select('rfc,razonSocial,correo,telefono,representantelegal,telrepresentante')
             ->from("empresa")
-            ->where("id_usuario",1)
+            ->where("id_usuario",$id_usuario)
             ->get()
             ->result_array();
         
