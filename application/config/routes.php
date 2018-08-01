@@ -55,8 +55,9 @@ $route['Login']                 = "Login/index";
 /**
  * Panel Prinicipal Admin
  */
-$route['PanelDeControl']        = 'Panel_admin/index';
-$route['TituloPanel']           = 'Panel_admin/getTituloPanel';
+$route['PanelDeControl'] = 'Panel_admin/index';
+$route['TituloPanel']    = 'Panel_admin/getTituloPanel';
+$route['RestPassAdmin']  = "Panel_admin/RestablecerContrasenaAdmin";
 
 /**
  * Panel Contadores Admin

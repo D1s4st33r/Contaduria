@@ -218,6 +218,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 		}
 
+		public function RestablecerContrasenaAdmin()
+		{
+			if ( 	!empty($this->input->post())
+				 && !empty($this->input->post("claveActual")) 
+				 && !empty($this->input->post("claveNueva")) 
+				 && !empty($this->input->post("claveNuevaRep")) 
+			) {
+				
+			}else{
+				
+			}
+		}
+
 		public function ActualizarPerfil()
 		{
 			$post = $this->input->post();
@@ -592,13 +605,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 			$idCliente = $this->input->get('cliente');
 			$Cliente = (isset($idCliente))? $idCliente : false ; 
-			if($Cliente){
+			if($Cliente)
+			{
 				$data["empresas"] = $this->Paneles_Model->EmpresasByCliente($Cliente);
 			}
-
 			$data['usuario'] = $this->Usuario;
 			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
+			$data['session'] = $this->session."&cliente=".$idCliente;
 			$this->load->view("PanelControl/components/CrudEmpresas",$data);
 		}
 		

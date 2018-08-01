@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <div class=" col-12 ">
+      <div class=" col-12 " id="restContra">
         <div class="form-group">
           <button  type="button" class="btn btn-primary" onclick="return hacerCambio('perfil','<?php echo base_url("Panel_admin/ActualizarPerfil") . $session;?>')"> <i class="fas fa-thumbs-up fa-md"></i>Actualizar Contraseña</button> 
         </div>

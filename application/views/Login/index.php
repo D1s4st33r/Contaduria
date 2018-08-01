@@ -69,9 +69,10 @@
 	
 					<input type="submit" value="Entrar" class="btn btn-primary" >
 					
-					<p class="form__link">¿Aun no tienes una cuenta? <a href="">Has click aqui</a></p>
 				</form>
 			</div>
 		</div>	
 	</div>
 </div>
+<style>
+</style>

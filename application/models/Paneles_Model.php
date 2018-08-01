@@ -353,13 +353,17 @@ class Paneles_Model extends CI_Model
         ->where("id_usuario",$id)
         ->get()
         ->result_array()[0]["COUNT(rfc)"];
-       
-        $contador = $this->db->select('contadorAsignado')
-        ->from("empresa")
-        ->where("id_usuario",$id)
-        ->get()
-        ->result_array()[0]["contadorAsignado"];
-        
+       if((int)$empresa >0)
+       {
+            $contador = $this->db->select('contadorAsignado')
+            ->from("empresa")
+            ->where("id_usuario",$id)
+            ->get()
+            ->result_array()[0]["contadorAsignado"];
+       }else{
+        $contador=0;
+       }
+   
         if($empresa != "0"){
             $empresas["numEmpresas"] =$empresa;
             if($contador!="0")

@@ -201,7 +201,7 @@ INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarc
 --
 -- Estructura de tabla para la tabla `empresa`
 --
-
+DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `rfc` varchar(60) NOT NULL,
   `razonSocial` varchar(150) NOT NULL,
@@ -209,7 +209,8 @@ CREATE TABLE `empresa` (
   `correo` varchar(100) NOT NULL,
   `telefono` int(10) NOT NULL,
   `archivos` varchar(200) DEFAULT NULL,
-  `id_usuario` int(4) NOT NULL
+  `id_usuario` int(4) NOT NULL,
+  `contadorAsignado` int not null
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
