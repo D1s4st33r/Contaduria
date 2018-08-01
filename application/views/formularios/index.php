@@ -41,8 +41,6 @@
 				<p>Posibles Problemas:</p>
 				<li>El RFC ya ha sido registrado o es invalido</li>
 				<li>Correo invalido o ya ha sido registrado</li>
-			
-
         </div>
 
 

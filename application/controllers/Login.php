@@ -149,13 +149,21 @@ class Login extends CI_Controller {
 	public function ValidarRegistro(){
 
 		if($this->input->post()){
-	
+			
 			$Clave = $this->input->post("ClaveRegistro");
-			var_dump($Clave);
 			
 		  
-			$hecho = $this->Formularios_Model->EliminarClaveRegistro($Clave);
-			echo "valida";
+			$hecho = $this->Formularios_Model->ValidarClaveRegistro($Clave);
+			if($hecho==$Clave){
+
+				echo "valida";
+				$hecho = $this->Formularios_Model->EliminarClaveRegistro($Clave);
+
+			}else{
+
+				echo "xd";
+			}
+			
 	
 	}
 }

@@ -1,4 +1,5 @@
 $("#error").hide();
+$("#ClaveError").hide();
 $("#id_usuario").hide();
 $('#myModalRegistro').modal('show'); // show bootstrap modal
 
@@ -11,7 +12,7 @@ $(document).on('submit', '#registrar', function(e)
         e.preventDefault();
         var formData = new FormData($('#registrar')[0]);
         
-        ;
+        
      $.ajax({
 
         method:'post',
@@ -33,7 +34,6 @@ $(document).on('submit', '#registrar', function(e)
             }
             else{
                 $("#error").show();
-                $("#myModal").show()
                 console.log();
             }
             
@@ -50,16 +50,10 @@ $(document).on('submit', '#registrar', function(e)
 $(document).on('submit', '#solicitud', function(e)
 {
     
- 
-  
-    
-    
-
-        
     e.preventDefault();
     var formData = new FormData($('#solicitud')[0]);
     
-    ;
+    
  $.ajax({
 
     method:'post',
@@ -72,19 +66,17 @@ $(document).on('submit', '#solicitud', function(e)
     
     success: function(respuesta){
         if(respuesta==="valida"){
-        
-            alert("Registros Guardados");
-            $("#error").hide();
-            $("#registrar")[0].reset();
-            $('#myModalRegistro').modal('hide'); // show bootstrap modal
-
+            
+            alert("Clave validad");
+            $('#myModalRegistro').modal('hide'); 
+            
 
         }
         else{
-            $("#error").show();
-            $("#myModal").show()
+            $("#ClaveError").show();
             console.log();
         }
+        
         
         
 
@@ -94,6 +86,5 @@ $(document).on('submit', '#solicitud', function(e)
 
 
  });
-
 
 });

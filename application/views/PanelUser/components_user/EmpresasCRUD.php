@@ -37,13 +37,17 @@
                   <label  name="telrepresentante" class="form-control form-control-sm text-center"><?php echo $value['telrepresentante'];?></label>
                 </div>
               </div>
+              <div class="col-sm-6 col-md-6 col-lg-11">
+                <div class="form-group   p-1 m-0 ">
+                  <label class="small disable m-0" for="Direccion">Dirección</label>
+                  <input type="text" value="<?php echo $value['domicilio'];?>" name="domicilio" class="form-control form-control-sm text-center" readonly>
+                </div>
+              </div>
       
               <div class="col-sm-12 col-lg-1">
                 <div class="container">
                   <div class="row">
-                    <div class="col-sm-6 col-lg-12 p-1">
-                    <a class="btn btn-primary btn-md  btn-block text-white"data-toggle="modal" data-target="#myModal"></button> <i class='fas fa-info'></i>  </a> 
-                    </div>
+
                     <div class="col-sm-6 col-lg-12 p-1">
                     <a class="btn btn-success btn-md  btn-block text-white" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-clipboard-list'></i>  </a> 
                     </div>
