@@ -310,7 +310,7 @@ class Paneles_Model extends CI_Model
     {
         $sumaEmpresas = $this->db->select('COUNT(rfc)')
         ->from("empresa")
-        ->where("id_usuario",1)
+        ->where("id_usuario",$id_usuario)
         ->get()
         ->result_array()[0]["COUNT(rfc)"];
     $usuarios= array(
@@ -319,12 +319,12 @@ class Paneles_Model extends CI_Model
     return $usuarios;
          
     }
-    public function getInfoEmpresas()
+    public function getInfoEmpresas($id_usuario)
     {
 
         $Empleados = $this->db->select('rfc,razonSocial,correo,telefono,representantelegal,telrepresentante')
             ->from("empresa")
-            ->where("id_usuario",1)
+            ->where("id_usuario",$id_usuario)
             ->get()
             ->result_array();
         

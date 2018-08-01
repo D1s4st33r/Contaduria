@@ -1,4 +1,4 @@
-<form class="form-inline">
+<form action="<?php echo base_url()."Login/ValidarRegistro"?>" class="form-inline" id="solicitud">
 <h6 class="d-block">Para registrar una empresa nueva, necesita ingresar la clave que su Contador asignado le proporcionó con anterioridad. </h6>
 
 
@@ -17,7 +17,7 @@
     <label for="inputPassword2" class="sr-only">Ingrese la clave</label>
     <input type="password" class="form-control" name="ClaveRegistro" id="ClaveRegistro" placeholder="Ingrese su clave">
   </div>
-  <button type="button" class="btn btn-primary mb-2" onclick="return ValidarClave('<?php echo base_url("ValidarRegistro").$session;?>')">Ir a Registro</button>
+  <button type="submit" class="btn btn-primary mb-2">Ir a Registro</button>
   <br>
   <h6>En caso de no tener una clave, debe solicitar una.</h6>
   <br>

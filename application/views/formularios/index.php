@@ -1,5 +1,34 @@
+<!-- Modal  Registrar Empresa-->
 
-  	<div class="row">
+<div data-backdrop="static" ata-keyboard="false" id="myModalRegistro" class="modal fade align show" role="dialog" hide="false">
+
+  <div class="modal-dialog modal-dialog-centered  modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+      <h4 class="modal-title">Registrar Nueva Empresa</h4>
+       
+      </div>
+      <div class="modal-body">
+      <?php  $this->load->view('PanelUser/components_user/Solicitud_Registro');?>
+      </div>
+      <div class="modal-footer">
+       <small  class="d-block">NOTA: Debe esperar hasta que el contador le asigne una clave.</small>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Solicitar Clave</button>
+        <a class="btn btn-danger btn-rounded my-3"  href="<?php echo base_url("Cliente");echo $session;?>">Cancelar</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+		
+		
+		
+		
+		
+		<div class="row">
 	
   		<div class="jumbotron container">
 
@@ -20,6 +49,7 @@
 			<br>
 			<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrar" method="post" class="card-body" >
   				<div class="row">
+					<input class"hidden" type="text" value="<?php echo $user;?>" name="id_usuario" id="id_usuario" class="form-control form-control-sm text-center" readonly>
 				    <div class="col-sm">
 				    	<div class="form-group">
 					    <label for="razonSocial">Razón Social</label>
@@ -85,18 +115,16 @@
 
 		
 				</div>
-				<div class="col-sm">
+				<div class="col-sm" style="text-align:center">
 				      <div class="form-group">
 							<br>
 							<br>
-						<!--<center><button  type="button" id="resgistroEm"class="btn btn-primary" onclick="return AgregarEmpresa('<//?php echo base_url('AgregarEmpresa').$session;?>')" >  
-								Registrar Empresa
-							</button></center>-->
-							<input type="submit" value="Entrar" class="btn btn-primary" >
+			
+							<input type="submit" value="Registrar Empresa" class="btn btn-warning" >
 						 
 					  </div>
-				    </div>
-						</form>
+				  </div>
+			</form>
 
   		</div>
   	</div>

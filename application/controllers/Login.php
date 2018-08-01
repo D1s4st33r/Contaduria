@@ -72,8 +72,9 @@ class Login extends CI_Controller {
 	}
 
 	public function PostEmpresa(){
+		
 		if($this->input->post()){
-			
+			$id_usuario = $this->input->post("id_usuario");
 			$RazonSocial = $this->input->post("razonSocial");
 			$RFC = $this->input->post("rfc");
 			$Domicilio = $this->input->post("domicilio");
@@ -82,13 +83,12 @@ class Login extends CI_Controller {
 			$ReLegal = $this->input->post("representantelegal");
 			$TelRepre = $this->input->post("telrepresentante");
 
-
 			
 			
 			
 			
 
-			 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[13]|is_unique[empresa.rfc]');
+			 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[12]|max_length[13]|is_unique[empresa.rfc]');
 			 $this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
 						  if($this->form_validation->run()===TRUE)
 						   {
@@ -118,7 +118,7 @@ class Login extends CI_Controller {
 
 
 
-									"id_usuario"=> 1,
+									"id_usuario"=>$id_usuario,
 									"rfc"=>$RFC,
 									"razonSocial"=>$RazonSocial,
 									"domicilio"=>$Domicilio,
@@ -131,7 +131,6 @@ class Login extends CI_Controller {
 						
 						
 								 );
-
 								
 								
 								$this->Formularios_Model->dataempresa($datos_em);
@@ -147,9 +146,25 @@ class Login extends CI_Controller {
 			
 	}
 
+	public function ValidarRegistro(){
+
+		if($this->input->post()){
+	
+			$Clave = $this->input->post("ClaveRegistro");
+			var_dump($Clave);
+			
+		  
+			$hecho = $this->Formularios_Model->EliminarClaveRegistro($Clave);
+			echo "valida";
+	
+	}
+}
+			
+}
+
 
 	
 
 
 
-}
+

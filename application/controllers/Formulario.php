@@ -30,17 +30,18 @@ public function General()
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
-		$id_user['user']=$this->session;
+		$data['user']=$this->session_id;
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelUser/components_user/Validar',$data);
         $this->load->view('PanelUser/components_user/PanelMenu',$data);
 		$this->load->view('formularios/index',$data);
 		$this->load->view('templates/footer');
-		
+	
 
 
    
 		}
+
+	
 
    }
 
