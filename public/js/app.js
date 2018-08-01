@@ -80,11 +80,15 @@ function AgregarUsuario(url) {
             telefono: telefono_,
             clave: contrasena_
         };
+
+
+
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
 
 
     }
 }
+
 
 function AgregarCliente(url) {
     nombre_ = $("#nombre").val();
@@ -130,10 +134,23 @@ function updateContador(iddiv, url) {
             email: email_,
             telefono: telefono_
         };
+        
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
     }
 }
 
+function ValidarClave(url) {
+    ClaveRegistro_ = $("#ClaveRegistro").val();
+   
+
+    if (ClaveRegistro_ != "") {
+        post = {
+            ClaveRegistro:ClaveRegistro_
+        };
+        console.log(post);
+        hacerCambiosPostAsy(post, url, $("#registrar"));
+    }
+}
 
 function updateCliente(iddiv, url) {
     var id_ = "";
@@ -162,6 +179,8 @@ function updateCliente(iddiv, url) {
         hacerCambiosPostAsy(post, url, $("#clienteReg"));
     }
 }
+
+
 
 
 function EliminarUsuario(iddiv, url) {

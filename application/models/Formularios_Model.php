@@ -11,10 +11,10 @@
 
 		public function dataempresa($datos_empresa)
 		{
-			
+
 			$this->db->insert("empresa",$datos_empresa);
-			var_dump($datos_empresa);
 			
+		
 
 		}
 
@@ -65,11 +65,37 @@
 		{
 			$empresas =$this->db->select('COUNT(rfc)')
 					->from("empresa")
-					->where('id_usuario',$id)
+					->where('id_usuario',1)
 					->get()
 					->result_array()[0];
 			 return $empresas["COUNT(rfc)"] ;
 			 
+		} 
+		
+		
+		public function getIdUser($user)
+		{
+			$usuario = $this->db->select("id")
+			->from("usuario")
+			->where('email',$user)
+			->get()
+			->result_array()[0];
+			return $usuario;	
+		}
+		public function EliminarClaveRegistro($clave){
+			$registrado = $this->db->where('ClaveRegistro', $clave)->delete('claves_solicitadas');
+			return $registrado;
+		}
+	
+		public function ValidarClaveRegistro($IdClave)
+		{
+	
+			$Clave = $this->db->select("ClaveRegistro")
+			->from("claves_solicitadas")
+			->where("ClaveRegistro",$IdClave)
+			->get()
+			->result_array()[0]['ClaveRegistro'];
+			return $Clave;
 		}
 
 		/**function eliminar_null($datos_null)

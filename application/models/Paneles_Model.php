@@ -168,6 +168,8 @@ class Paneles_Model extends CI_Model
     }
     
 
+
+
     //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
 
     public function registrarCategoria($datos)
@@ -303,16 +305,35 @@ class Paneles_Model extends CI_Model
         return $registrado;
     }
     
-    public function getContadorEmpresa($id)
+    //Empieza la seccion de clientes
+    public function getContadorEmpresa($id_usuario)
     {
-        $empresas =$this->db->select('COUNT(rfc)')
-                ->from("empresa")
-                ->where('id_usuario',$id)
-                ->get()
-                ->result_array()[0];
-         return $empresas["COUNT(rfc)"] ;
+        $sumaEmpresas = $this->db->select('COUNT(rfc)')
+        ->from("empresa")
+        ->where("id_usuario",$id_usuario)
+        ->get()
+        ->result_array()[0]["COUNT(rfc)"];
+    $usuarios= array(
+        "Empresas" => $sumaEmpresas
+    );
+    return $usuarios;
          
     }
+    public function getInfoEmpresas($id_usuario)
+    {
+
+        $Empleados = $this->db->select('rfc,razonSocial,correo,telefono,representantelegal,telrepresentante,domicilio')
+            ->from("empresa")
+            ->where("id_usuario",$id_usuario)
+            ->get()
+            ->result_array();
+        
+        $usuarios= array(
+            "Empresas" => $Empleados
+        );
+        return $usuarios;
+    }
+
 
     public function getContadoresClientes()
     {
