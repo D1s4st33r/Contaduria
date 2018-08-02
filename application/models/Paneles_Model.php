@@ -144,10 +144,21 @@ class Paneles_Model extends CI_Model
             ->where("roll",1)
             ->get()
             ->result_array();
-        
+        foreach ($Empleados as $key => $value) {
+            $hay = (int)$this->db->select('COUNT(rfc)')
+                ->from("empresa")
+                ->where('contadorAsignado',$value['id'])->get()->result_array()[0]['COUNT(rfc)'];
+            
+            if($hay>0){
+
+            }else{
+                $Empleados[$key]['empresas'] = 0;
+            }
+        }
         $usuarios= array(
             "Contadores" => $Empleados
         );
+
         return $usuarios;
     }
     public function actualizarUsuarioById($usuario,$id)

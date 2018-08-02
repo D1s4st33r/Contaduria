@@ -50,28 +50,55 @@
               </div>
               <div class="col-sm-12 col-md-4 col-lg-3">
                 <!-- Buttons -->
-              <div class="col-sm-12 col-lg-12">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-sm-6 col-sm-12 col-lg-12 p-1">
-                    <button type="button" class="btn btn-block btn-outline-primary " onclick=" return updateContador('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
-                    </div>
-                    <div class="col-sm-6  col-sm-12 col-lg-12 p-1">
-                    <button type="button" class="btn btn-outline-danger btn-block" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
+                <div class="col-sm-12 col-lg-12">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-12 col-lg-12 p-1">
+                      <button type="button" class="btn btn-block btn-outline-primary " onclick=" return updateContador('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
+                      </div>
+                      <div class="col-sm-6  col-sm-12 col-lg-12 p-1">
+                      <button type="button" class="btn btn-outline-danger btn-block" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              </div>
 
               <div class="col-sm-12 col-lg-12">
                 <div class="container">
                   <div class="row">
-
+                    
                     <div class="col-12">
                       <h5 class="text-muted">
-                        Empresas Asignadas
+                      <br>
+                        Empresas Asignadas <a data-toggle="collapse" href="#empresasAsignadas" role="button" aria-expanded="false" aria-controls="empresasAsignadas"><i class="fas fa-eye fa-lg"></i></a>
                       </h5>
+                      <div class="collapse" id="empresasAsignadas">
+                      <style>
+                      .card{
+                        border: 0px;
+                        background: #f9f9f9;
+                      }
+                      </style>
+                        <div class="card card-body">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-12">
+                                <?php
+                                
+                                if( $value['empresas']>0){
+
+                                }else{
+                                 echo  "No se asignado ninguna empresa";
+                                 
+                                }
+                                 
+                                ?>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>             
