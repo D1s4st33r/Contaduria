@@ -77,6 +77,22 @@ class Paneles_Model extends CI_Model
         return $hecho;
         
     }
+    
+    public function CambiarContrasena( $var)
+    {
+         $claveAdmin =$this->db->select('clave')
+                 ->from("usuario")
+                 ->where("id",$var['id'])->get()->result_array()[0]['clave'];
+        
+        if(!empty($claveAdmin) && $claveAdmin == $var['actual'])
+        {
+            $this->db->where('id', $var['id']);
+            $this->db->update('usuario', array('clave'=>$var['nueva']));
+            return $this->db->affected_rows();
+            
+        }
+            
+    }
 
     public function getContadoresUsuarios()
     {

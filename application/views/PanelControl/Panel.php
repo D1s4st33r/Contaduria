@@ -2,17 +2,17 @@
     if (!isset($usuario)) {
       redirect('Login/index?error_login=session', 'refresh');
     }
-    ?>
-  
-    <?php
+    // cargar vista Menu
     $this->load->view("PanelControl/components/PanelMenu", array("usuario" => $usuario, "session" => $session));
     // $this->load->view("PanelControl/components/PanelLinks");
-    ?>
+?>
 <!-- Base No Tocar  --> 
 <div class="container-fluid ">
   <div class="row">
     <div class="col-12" >
 <!-- Fin Base No Tocar  --> 
+
+    <!-- Etiqueta De Usuario -->
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -28,45 +28,50 @@
       </div>
       
       <?php if ($menu == "Panel") : ?>
-      <div class="container">
-        <div class="row">
-          <div class="col-12">  
-            <div class="container">
-              <div class="row"  id="perfil">
-                <?php 
-                $this->load->view('PanelControl/components/perfilVista');
-                ?>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">  
+              <div class="container">
+                <div class="row">
+                  <div class="col-12" id="alertPerfil">
+                    
+                  </div>
+                </div>
+                <div class="row"  id="perfil">
+                  <?php 
+                  $this->load->view('PanelControl/components/perfilVista');
+                  ?>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="container">
-        <div class="row">
+        <div class="container">
+          <div class="row">
 
-          <div class="col-lg-6">
-            <div class="container">
-              <div class="row my-3 p-3 bg-white rounded box-shadow">
-                <?php 
-                $this->load->view('PanelControl/components/totales');
-                ?>
+            <div class="col-lg-6">
+              <div class="container">
+                <div class="row my-3 p-3 bg-white rounded box-shadow">
+                  <?php 
+                  $this->load->view('PanelControl/components/totales');
+                  ?>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-lg-6">
-            <div class="container">
-              <div class="row my-3 p-3 bg-white rounded box-shadow">
-                <?php 
-                $this->load->view('PanelControl/components/ContadoresPreguntas');
-                ?>
+            <div class="col-lg-6">
+              <div class="container">
+                <div class="row my-3 p-3 bg-white rounded box-shadow">
+                  <?php 
+                  $this->load->view('PanelControl/components/ContadoresPreguntas');
+                  ?>
+                </div>
               </div>
             </div>
-          </div>
 
-        </div>
-      </div>   
+          </div>
+        </div>   
       <?php endif; ?>
 
     <?php if ($menu == "Contadores") : ?>
@@ -76,7 +81,7 @@
           <div class="container">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <div class="col-12 mb-1 align-items-center">
-                <h4 class="p-2 bg-light text-dark rounded "> 
+                <h4 class="p-2 bg-light rounded "> 
                   <i class='fas fa-user-tie fa-2x'></i> Contadores
                 </h4>
               </div>
@@ -84,7 +89,7 @@
                 <div class="container">
                   <div class="row" id="Controles">
                     <?php 
-                    $this->load->view('PanelControl/components/controlesCliente');
+                    $this->load->view('PanelControl/components/controlContradores');
                     ?>
                   </div>
                 </div>
@@ -153,10 +158,10 @@
                       <div class="container">
                         <div class="row">
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-success btn-block text-white" href="<?php echo base_url('ClienteControl') . $session; ?>" > Ver </a> 
+                            <a  type="button" class="btn btn-sm btn-success btn-block " href="<?php echo base_url('ClienteControl') . $session; ?>" > Ver </a> 
                           </div>
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-primary btn-block text-white" onclick="return hacerCambio('clienteReg' ,'<?php echo base_url('FormularioCliente') . $session; ?>')" > Agregar</a> 
+                            <a  type="button" class="btn btn-sm btn btn-outline-primary btn-block " onclick="return hacerCambio('clienteReg' ,'<?php echo base_url('FormularioCliente') . $session; ?>')" > Agregar</a> 
                           </div>
                         </div>
                       </div>
@@ -189,6 +194,7 @@
                   <i class='fas fa-industry fa-2x'></i> Empresas
                 </h4>
               </div>
+              
                 <div class="col-12 " id="empresasClie" >
                   <style>
                     #empresasClie{

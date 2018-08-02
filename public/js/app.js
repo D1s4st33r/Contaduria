@@ -33,7 +33,7 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         data: datosPost, // data recive un objeto con la informacion que se enviara al servidor
         dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
         success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
-            //alert(datos);
+            // alert(datos);
             div.html(datos);
         }
     });
@@ -42,7 +42,11 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
 
 
 /**
- * 
+ *      Panel Principal
+ */
+
+
+ /*
  * @param {*} url 
  * @param {*} tituloPanel 
  */
@@ -51,7 +55,7 @@ function actualizarDatosUsuario(url, tituloPanel) {
     apellido_ = $("#apellido").val();
     telefono_ = $("#telefono").val();
     email_ = $("#email").val();
-    if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "") {
+    
         post = {
             nombre: nombre_,
             apellido: apellido_,
@@ -60,10 +64,46 @@ function actualizarDatosUsuario(url, tituloPanel) {
         };
         hacerCambiosPostAsy(post, url, $("#perfil"));
         hacerCambio("TituloPanel", tituloPanel);
-
-    }
+        
 }
 
+function ChangePssw(url,vista) 
+{
+    var psw, nwpsw , rpnwpsw;
+    psw = $("#claveActual").val();
+    nwpsw = $("#claveNueva").val();
+    rpnwpsw =$("#claveRepetida").val();
+    if(psw!="" && nwpsw!="" && rpnwpsw !="")
+    {
+        if(nwpsw === rpnwpsw)
+        {
+            $("#claveNueva").removeClass('inputError');
+            $("#claveRepetida").removeClass('inputError');
+
+            $("#claveNueva").addClass('inputSuccess');
+            $("#claveRepetida").addClass('inputSuccess');
+            $("#msgPsw").removeClass('text-danger');
+            $("#msgPsw").addClass('text-success');
+            $("#msgPsw").html( "Contraseñas no Coinciden")
+            
+            post = {
+                claveActual :psw,
+                claveNueva:nwpsw,
+                claveNuevaRep:rpnwpsw
+            }
+                hacerCambiosPostAsy(post, url, $("#alertPerfil"));
+
+                hacerCambio("perfil", vista);
+        }else{
+            $("#claveNueva").removeClass('inputSuccess');
+            $("#claveRepetida").removeClass('inputSuccess');
+            $("#claveNueva").addClass('inputError');
+            $("#claveRepetida").addClass('inputError');
+            $("#msgPsw").addClass('text-danger');
+            $("#msgPsw").html( "Contraseñas no Coinciden")
+        }
+    }
+}
 
 function AgregarUsuario(url) {
     nombre_ = $("#nombre").val();
@@ -80,12 +120,8 @@ function AgregarUsuario(url) {
             telefono: telefono_,
             clave: contrasena_
         };
-
-
-
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
-
-
+        
     }
 }
 

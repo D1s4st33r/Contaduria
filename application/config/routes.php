@@ -48,20 +48,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
+|       $route['de_donde_vienes'] = "controlador/metodo"; 
 */
 $route['default_controller'] = 'Login';
-/* $route['de_donde_vienes'] = "controlador/metodo"; */
-$route['PanelDeControl'] = 'Panel_admin/index';
+
+
 $route['ControlContadores'] = 'Panel_admin/Contadores';
 $route['ControlEmpresas'] = 'Panel_user/Empresas';
-$route['ActualizarPerfil'] = 'Panel_admin/getActualizacionPerfil';//ActualizarUsuarioById
+
 $route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
 $route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
 $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
 $route['AgregarEmpresa'] = 'Formulario/AgregarEmpresa';
 $route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
-$route['TituloPanel'] = 'Panel_admin/getTituloPanel';
+
 $route['ClientesAdmin'] = 'Panel_admin/Clientes';
 $route['Login'] ="Login/index";
 $route['configAddCategoria']="Panel_admin/configAddCategoria";
@@ -78,6 +79,8 @@ $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
 $route['ValidarRegistro'] = 'Panel_user/ValidarRegistro';
 $route['Login']                 = "Login/index";
 
+$route['FormularioClienteEmpresa'] = 'Panel_admin/FormularioClienteEmpresa';
+
 /**
  * Panel Prinicipal Admin
  */
@@ -90,6 +93,12 @@ $route['RestPassAdmin']  = "Panel_admin/RestablecerContrasenaAdmin";
  */
 $route['ControlContadores']     = 'Panel_admin/Contadores';
 $route['AgregarContador']       = 'Panel_admin/AgregarEmpleado';
+$route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
+$route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
+$route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
+$route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
+$route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
+$route['soloVista']             = 'Panel_admin/perfilVista';
 
 /**
  * Panel Cliente Admin
@@ -99,11 +108,6 @@ $route['AgregarCliente'] = 'Panel_admin/AgregarCliente';
 $route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 
-$route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
-$route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
-$route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
-$route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
-$route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";
 $route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
