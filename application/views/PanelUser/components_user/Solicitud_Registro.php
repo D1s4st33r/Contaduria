@@ -35,7 +35,7 @@
   </div>
   <button type="submit" class="btn btn-primary mb-2">Ir a Registro</button>
   <br>
-  <h6>En caso de no tener una clave, debe solicitar una.</h6>
+  <h6>En caso de no tener una clave, por favor, pongase en contacto con su Contador.</h6>
   
  
 </form>

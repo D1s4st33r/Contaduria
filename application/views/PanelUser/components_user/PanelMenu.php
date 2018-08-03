@@ -33,11 +33,11 @@
           <i class='fas fa-building'></i> <small>Empresas</small>
         </a>
       </li>
-      <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Documentos") ) ? "active" : "" ; ?> p-1">
+      <!--<li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Documentos") ) ? "active" : "" ; ?> p-1">
         <a class="nav-link" href="<?php echo base_url("ControlEmpresas");echo $session;?>">
           <i class='fab fa-wpforms'></i> <small>Formulario</small>
         </a>
-      </li>
+      </li>-->
       
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">

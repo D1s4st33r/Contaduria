@@ -14,8 +14,7 @@
       <?php  $this->load->view('PanelUser/components_user/Solicitud_Registro');?>
       </div>
       <div class="modal-footer">
-       <small  class="d-block">NOTA: Debe esperar hasta que el contador le asigne una clave.</small>
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Solicitar Clave</button>
+       <small  class="d-block">NOTA:Envie un correo o llame a su Contador para obtener su clave.</small>
         <a class="btn btn-danger btn-rounded my-3"  href="<?php echo base_url("Cliente");echo $session;?>">Cancelar</a>
       </div>
     </div>

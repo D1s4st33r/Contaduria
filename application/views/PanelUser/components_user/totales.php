@@ -20,7 +20,6 @@
       <div style="text-align:right">
       
     <a  class="btn btn-primary btn-rounded my-3"  href="<?php echo base_url("Formulario/General");echo $session;?>">Registrar Empresa</a>
-    <button  class="btn btn-warning btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm" >Ir a Formulario</button>
     </div>
     
     
