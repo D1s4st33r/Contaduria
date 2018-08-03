@@ -47,10 +47,6 @@
               <div class="col-sm-12 col-lg-1">
                 <div class="container">
                   <div class="row">
-
-                    <div class="col-sm-6 col-lg-12 p-1">
-                    <a class="btn btn-danger btn-md  btn-block text-white" onclick=" "> <i class='fas fa-clipboard-list'></i>  </a> 
-                    </div>
                     <div class="col-sm-6 col-lg-12 p-1">
                     <a class="btn btn-warning btn-md  btn-block text-white" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='far fa-folder'></i>  </a>                     
                     </div>
