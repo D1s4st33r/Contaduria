@@ -384,7 +384,7 @@ class Paneles_Model extends CI_Model
             ->get()
             ->result_array();
         foreach ($Clientes as $key => $value) {
-            $Clientes[$key]["EmpresasRegistradas"]= $this->getContadorEmpresaById($value['id']);
+            $Clientes[$key]["EmpresasRegistradas"] = $this->getContadorEmpresaById($value['id']);
         }
         $usuarios= array(
             "Clientes" => $Clientes
@@ -397,13 +397,14 @@ class Paneles_Model extends CI_Model
         $empresas =array();
         $datosContador = array();
         $empresa = $this->db->select('COUNT(rfc)')
-        ->from("empresa")
-        ->where("id_usuario",$id)
-        ->get()
-        ->result_array()[0]["COUNT(rfc)"];
+            ->from("empresa")
+            ->where("id_usuario",$id)
+            ->get()
+            ->result_array()[0]["COUNT(rfc)"];
+    
        if((int)$empresa >0)
        {
-            $contador = $this->db->select('contadorAsignado')
+        $contador = $this->db->select('contadorAsignado')
             ->from("empresa")
             ->where("id_usuario",$id)
             ->get()

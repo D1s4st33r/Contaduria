@@ -70,19 +70,25 @@
                         <div class="row">
 
                           <div class="col-sm-6 col-md-6 col-lg-6">
-                          <a href="#" onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session."&cliente=".$value['id'];?>')" >
-                              <i class='fas fa-industry fa-md'></i> Empresas #
-                              <span><?php echo $value['EmpresasRegistradas']["numEmpresas"]; ?> </span>
-                              </a>
+                            <a href="#" onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session."&cliente=".$value['id'];?>')" >
+                                <i class='fas fa-industry fa-md'></i> Empresas #
+                                <span><?php echo $value['EmpresasRegistradas']["numEmpresas"]; ?> </span>
+                            </a>
                           </div>
-                          <?php var_dump($value); ?>
+                          <?php //var_dump($value); ?>
                           <div class="col-sm-6 col-md-6 col-lg-6"><i class='fas fa-user-tie'></i>Contador
-                              <span><?php if( $value['EmpresasRegistradas']["numEmpresas"] == "0") 
+                              <span><?php if( !isset($value['EmpresasRegistradas']["Contador"])) 
                               {
                                 echo "No asignado";
                                 echo '<a href="'. base_url("ControlContadores") . $session.'"> Asignar</a>';
                               }else{
-                                echo  $value['EmpresasRegistradas']["Contador"];
+                                if((int)$value['EmpresasRegistradas']["Contador"] == 0)
+                                {
+                                  echo "No asignado";
+                                  echo '<a href="'. base_url("ControlContadores") . $session.'"> Asignar</a>';
+                                }else{
+                                  echo $value['EmpresasRegistradas']["Contador"];
+                                }
                               } ?> </span>
                           </div>      
                         </div>
