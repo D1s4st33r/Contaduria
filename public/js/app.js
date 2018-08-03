@@ -438,15 +438,28 @@ function eliminarPregunta(iddiv, url) {
     }
 }
 
-var availableTags = ["ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"];
 
 $("#autocomplete").autocomplete({
-source:function (request,response) {
-    
-    $.ajax({
-        url:uri,
-        data:{ empresa:request.term},
-        success:h,
-    });
-}
-});
+    source:function (request,response)
+    {
+      $.ajax({
+          type: 'POST',
+          url: uri,
+          dataType: "json",
+          data: {busqueda: request.term},
+          success: function( data ) 
+          {
+            response( $.map( data, function(item) {
+                return {
+                    label: item.id,
+                    value:item.nombre
+                }
+            }));
+          },
+          error: function (request, status, error) {
+                alert(request.responseText);
+                alert(error);
+            }
+      });
+    }
+  });

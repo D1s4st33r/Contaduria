@@ -123,7 +123,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 	/**
 		 * Seccion Panel 
 		 */
-
+		public function BuscadorEmpresa()
+		{
+			if( $this->input->post() &&  $this->input->post("busqueda") )
+			{
+				$search = $this->input->post("busqueda");
+				echo json_encode(
+					array(
+						"id"=>"0",
+						"nombre" => "nada para mostrar"
+					
+					)
+				);
+			}else{
+				//id	nombre	apellido	email	telefono	clave	roll	ContadorAsignado
+				echo json_encode(
+					array(
+						"id"=>"0",
+						"nombre" => "nada para mostrar"
+					
+					)
+				);
+			}
+		}
 		public function getTituloPanel()
 		{
 			

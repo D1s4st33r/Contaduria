@@ -99,6 +99,7 @@ $route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
 $route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
 $route['soloVista']             = 'Panel_admin/perfilVista';
+$route['BuscadorEmpresa']       = 'Panel_admin/BuscadorEmpresa';
 
 /**
  * Panel Cliente Admin

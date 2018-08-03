@@ -71,9 +71,9 @@
                     <div class="col-12">
                       <h5 class="text-muted">
                       <br>
-                        <a class="text-muted " data-toggle="collapse" href="#empresasAsignadas" role="button" aria-expanded="false" aria-controls="empresasAsignadas">Empresas Asignadas <i class="fas fa-eye "></i></a>
+                        <a class="text-muted " data-toggle="collapse" href="#empresasAsignadas<?php echo $value['id'] ?>" role="button" aria-expanded="false" aria-controls="empresasAsignadas<?php echo $value['id'] ?>">Empresas Asignadas <i class="fas fa-eye "></i></a>
                       </h5>
-                      <div class="collapse" id="empresasAsignadas">
+                      <div class="collapse" id="empresasAsignadas<?php echo $value['id'] ?>">
                       <style>
                       .card{
                         border: 0px;
@@ -94,7 +94,8 @@
                                         <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" type="text" placeholder="Empresa" aria-label="Empresa" id="autocomplete">
 
                                         <script>
-                                           uri = "<?php echo base_url("BuscadorEmpresa");?>";
+                                           uri = "<?php echo base_url("BuscadorEmpresa").$session;?>";
+                                           
                                        </script>
                                       </div>
                                     </div>
