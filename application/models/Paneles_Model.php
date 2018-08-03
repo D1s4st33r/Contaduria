@@ -46,7 +46,7 @@ class Paneles_Model extends CI_Model
 
     public function getPreguntas($categoria)
     {
-        $dato = $this->db->select('id,seccion,texto')->from('preguntas')->where('categoria',$categoria)->get()->result_array();
+        $dato = $this->db->select('id,seccion,texto,categoria')->from('preguntas')->where('categoria',$categoria)->get()->result_array();
 			return $dato;
     }
 

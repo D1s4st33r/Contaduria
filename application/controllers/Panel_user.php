@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				redirect('Login/index?error_login=session','refresh');
 			}
 			$this->load->model('Paneles_Model');
+			$this->load->model('Formularios_Model');
 			$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
 		}
 	
@@ -70,6 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if($data['estadisticas']['Empresas'])
 		{ 
 			$data['Empleados'] = $this->Paneles_Model->getInfoEmpresas($id_user);
+			$data['formularios']=$this->Formularios_Model->getFormularios($id_user);
 		}
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelUser/Panel',$data);

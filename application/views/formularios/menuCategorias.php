@@ -18,7 +18,7 @@
           <?php
             foreach($categorias as $cen=>$valores)
             {
-              echo '<a class=" '; if($titulo ==strtoupper($valores["categoria"]) ){echo "btn btn-secondary active";}else{echo " nav-item nav-link";}echo' "onclick=" hacerCambio(';echo "'"; echo 'categorias';echo "'"; echo  ", '".base_url('viewCategoriasUser').$session.'&cat='.strtoupper($valores["categoria"]).'&idcat='.$valores['id'];echo"'"; echo '); hacerCambio(';echo "'"; echo 'seccypre';echo "'"; echo  ", '".base_url('viewSeccionUser').$session.'&cat='.strtoupper($valores["categoria"]);echo"'"; echo ');" style="cursor:pointer;">'.strtoupper($valores["categoria"]).'</a> '; 
+              echo '<a class=" '; if($titulo ==strtoupper($valores["categoria"]) ){echo "btn btn-secondary active";}else{echo " nav-item nav-link";}echo' " onclick=" hacerCambio(';echo "'"; echo 'categorias';echo "'"; echo  ", '".base_url('viewCategoriasUser').$session.'&cat='.strtoupper($valores["categoria"]).'&idcat='.$valores['id'].'&form='.$idform;echo"'"; echo '); hacerCambio(';echo "'"; echo 'seccypre';echo "'"; echo  ", '".base_url('viewSeccionUser').$session.'&cat='.strtoupper($valores["categoria"]).'&form='.$idform;echo"'"; echo ');" style="cursor:pointer;">'.strtoupper($valores["categoria"]).'</a> '; 
             }
             ?>
            </div>

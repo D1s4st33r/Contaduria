@@ -108,7 +108,7 @@ class Login extends CI_Controller {
 							
 							$this->load->library("upload",$config);
 							
-					
+							
 							if($this->upload->do_upload('archivos')){
 							
 								$dato_archivo=array("upload_data" =>$this->upload->data());
@@ -128,15 +128,15 @@ class Login extends CI_Controller {
 									"telrepresentante"=>$TelRepre,
 									"archivos" => $dato_archivo['upload_data']['file_name'],						
 								 );
-
+								 
 								 $form=array(
-									 "usuario"=>$ReLegal,
+									 "id_cliente"=>$id_usuario,
 									 "empresarfc"=>$RFC,
-									 "fecha_ini"=>date("d/m/Y"),
+									 "fecha_ini"=>date("d.m.Y"),
 									 "fecha_fini"=>""
 								 );
 								
-								
+								 
 								$this->Formularios_Model->dataempresa($datos_em);
 								$this->Formularios_Model->crearFormulario($form);
 								echo "exito";
@@ -163,6 +163,7 @@ class Login extends CI_Controller {
 			echo "valida";
 	
 	}
+	
 }
 			
 }

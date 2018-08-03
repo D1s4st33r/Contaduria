@@ -137,7 +137,7 @@ $route['Contador']="Panel_contador/index";
 
 // Empresas
 $route['empresasClie']="Panel_admin/getEmpresas";
-
+$route['enviarRespuestas']="Formulario/enviarRespuestas";
 
 
 //$route['Formularios/legal'] = "Formularios/legal";

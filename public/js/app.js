@@ -134,18 +134,18 @@ function updateContador(iddiv, url) {
             email: email_,
             telefono: telefono_
         };
-        
+
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
     }
 }
 
 function ValidarClave(url) {
     ClaveRegistro_ = $("#ClaveRegistro").val();
-   
+
 
     if (ClaveRegistro_ != "") {
         post = {
-            ClaveRegistro:ClaveRegistro_
+            ClaveRegistro: ClaveRegistro_
         };
         console.log(post);
         hacerCambiosPostAsy(post, url, $("#registrar"));
@@ -350,6 +350,7 @@ function actualizarPregunta(iddiv, url) {
     var soliarchivo_ = "";
     var obligatorio_ = "";
     var preguntaOpcional_ = "";
+    var tipoOpcional_ = "";
 
     var div = $("#" + iddiv);
     var inputs = div.find("input");
@@ -366,6 +367,7 @@ function actualizarPregunta(iddiv, url) {
         if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
         if ($(this).attr("name") == "seccion") { seccion_ = $(this).val(); }
         if ($(this).attr("name") == "tipo") { tipo_ = $(this).val(); }
+        if ($(this).attr("name") == "tipoOpc") { tipoOpcional_ = $(this).val(); }
     });
     if (texto_ != "" && soliarchivo_ != "" && obligatorio_ != "" && id_ != "" && categoria_ != "" && seccion_ != "" && tipo_ != "") {
         post = {
@@ -377,6 +379,7 @@ function actualizarPregunta(iddiv, url) {
             soliarchivo: soliarchivo_,
             obligatorio: obligatorio_,
             preguntaOpcional: preguntaOpcional_,
+            tipoOpcional: tipoOpcional_,
             div: div_
         };
         console.log(post);
@@ -400,4 +403,26 @@ function eliminarPregunta(iddiv, url) {
         };
         hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
+}
+
+function enviarRespuestas(iddiv, url) {
+    var div = $("#" + iddiv);
+    var finds = div.find("form");
+    finds.each(function() {
+        var post = new FormData($(this)[0]);
+        //console.log(post.get('respuesta'.concat(post.get('id'))));
+        $.ajax({
+
+            method: 'post',
+            url: url,
+            data: post,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(datos) {
+                $("#ch" + post.get('id')).html(datos);
+                //alert(datos);
+            }
+        });
+    });
 }

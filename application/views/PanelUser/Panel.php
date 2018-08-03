@@ -122,7 +122,7 @@
     </div>   
   </div>
                 
-  <div class "col-12 " id="seccypre" >
+  <div class= "col-12 " id="seccypre" >
   </div>
 </div>
 <?php endif  ?>

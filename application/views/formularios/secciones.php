@@ -29,6 +29,7 @@
       <?php 
   //$this->load->model('Paneles_Model');
   //$secciones_disponibles = array();
+
   $div_abierto = false;
   $collapse_activo = false;
   $chars = array(',' , '.', '_' , '´', '¨' , '{', 'ç' , 'Ç', '}' , '^', '?' , '[', '`' ,'\'', '*' , ']', '+' , '¿', '¡' , '!', '"' , '·',  '$' , '%', '&' , '/', '=' , '(', ')' , ')', ':' , ';', ')' , '#', ' ' );
@@ -39,9 +40,9 @@
   //por cada seccion registrada 
   foreach ($secciones as $index => $valores) 
   { 
+    $pre_resueltas = 0;
+    $total_pre=0;
     $data['seccion']=$valores['seccion'];
-    $data['div']=$index;
-    $data['cate']=strtoupper($categoria);
     if ($div_abierto) 
           {
             echo '</div>
@@ -65,16 +66,24 @@
                         '.strtoupper($valores['seccion']).'
                       </button>                                             <!-- fin Button de seccion -->
                     </h5>                                                 <!-- Fin de titulo -->
-                    </div>
-                    <div id="datos-pregunta'.$index.'">
-                    <input type="text" value="'.strtoupper($categoria).'" name="categoria" class="form-control form-control-sm text-center" readonly hidden>
-                    <input type="text" value="'.strtoupper($valores['seccion']).'" name="seccion" class="form-control form-control-sm text-center" readonly hidden>
-                    <input type="text" value="'.$index.'" name="divindex" class="form-control form-control-sm text-center" readonly hidden>
-                    </div>
-                    <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary btn-sm" title="añadir pregunta" onclick="return enviarRespuestas(';echo "'"; echo 'datos-pregunta'.$index;echo "'"; echo  ", '".base_url('enviarRespuestas').$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($valores['seccion']);echo"'"; echo ')">Finalizar Seccion</button>';
+                    </div>';
+                    echo'<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary btn-sm" title="send answers" onclick="return enviarRespuestas(';echo "'"; echo 'preguntas'.$index;echo "'"; echo  ", '".base_url('enviarRespuestas').$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($valores['seccion']).'&form='.$idform;echo"'"; echo ')">Enviar Respuestas</button>';
         echo '</div>
-                  </div>                                                <!-- fin div header seccion -->
+        <div class="text-red-15" style="float:right; margin-right:40px;">'; foreach ($preguntas as $key => $value) {
+          if($value['seccion']==$valores['seccion'])
+          {
+            $total_pre++;
+            foreach ($respuestas as $cen => $value2) {
+              if($value2['id_pregunta']==$value['id'])
+              {
+                $pre_resueltas++;
+                break;
+              }
+            }
+          }
+        } echo'Resueltas: '.$pre_resueltas.'/'.$total_pre.'</div>';
+        echo '</div>                                                <!-- fin div header seccion -->
                   <div id="'.$label_id_html.'1'.'" class="collapse '  ; 
                    if($collapse_activo) 
                    {
@@ -84,7 +93,7 @@
                     echo "";
                   } 
                   echo'" aria-labelledby="'.$label_id_html.'" data-parent="#accordionExample">  <!-- inicio div collapse -->
-                  <div class="card-body" id="preguntas'.$index.'">                                                       <!-- div de preguntas  de seccion -->';
+                  <div class="card-body" id="preguntas'.$index.'" name="formulario">                                                       <!-- div de preguntas  de seccion -->';
                   $div_abierto = true;
     //Si imprime las preguntas corespondientes
     $this->load->view("formularios/preguntas",$data);

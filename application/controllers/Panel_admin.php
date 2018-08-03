@@ -624,7 +624,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					"tipo"=>$post['tipo'],
 					"obligatorio"=>$post['obligatorio'],
 					"soliarchivo"=>$post['soliarchivo'],
-					"preguntaOpcional"=>$post['preguntaOpcional']
+					"preguntaOpcional"=>$post['preguntaOpcional'],
+					"tipoPreOpcional"=>$post['tipoOpcional']
 				);
 				$hecho= $this->Paneles_Model->actualizarPregunta($pregunta,$post['id']);
 				$hechode = $this->Paneles_Model->actualizarDetallesPregunta($detalles,$post['id']);
