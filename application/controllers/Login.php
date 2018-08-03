@@ -87,8 +87,8 @@ class Login extends CI_Controller {
 			
 			 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[12]|max_length[13]|is_unique[empresa.rfc]');
 			 $this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
-			// if($this->form_validation->run()===TRUE)
-			// {
+			if($this->form_validation->run()===TRUE)
+			{
 				$this->load->helper('path');  
 
 				$dir=set_realpath('./Boveda/'.$RFC."/");  
@@ -106,10 +106,10 @@ class Login extends CI_Controller {
 				{
 					$dato_archivo=array("upload_data" =>$this->upload->data());
 					$datos_em=array(
-						"id_usuario"=>$id_usuario,
-						"rfc"=>$RFC,
-						"razonSocial"=>$RazonSocial,
-						"domicilio"=>$Domicilio,
+						"id_usuario" => $id_usuario,
+						"rfc" => $RFC,
+						"razonSocial" => $RazonSocial,
+						"domicilio" => $Domicilio,
 						"correo"=>$Correo,
 						"telefono"=>$Telefono,
 						"representantelegal"=>$ReLegal,
@@ -122,7 +122,7 @@ class Login extends CI_Controller {
 					echo "exito";
 				}else{
 				}
-			// }
+			}
 		}	
 	}
 

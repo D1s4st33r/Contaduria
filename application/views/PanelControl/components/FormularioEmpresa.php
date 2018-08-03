@@ -1,14 +1,21 @@
 <div class="container">
-<?php $data['empresas'] = $empresas; $data['session'] = $session."&cliente=".$id_cliente; $this->load->view('PanelControl/components/controlesRegEmpresa',$data);
-       ?>
-    </div>
-<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrar" method="post" class="card-body" enctype="multipart/form-data" >
+    <?php $data['empresas'] = $empresas; $data['session'] = $session."&cliente=".$id_cliente; $this->load->view('PanelControl/components/controlesRegEmpresa',$data);?>
+</div>
+<div class="alert alert-danger" role="alert" id="error" style="text-align:left; display:none;">
+    <strong>Error de Registro</strong>  Verifique que lo datos sean correctos
+    <div class="list-errors"></div>
+    <br>
+    <p>Posibles Problemas:</p>
+    <li>El RFC ya ha sido registrado o es invalido</li>
+    <li>Correo invalido o ya ha sido registrado</li>
+</div>
+<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrarAdmin" method="post" class="card-body" enctype="multipart/form-data" >
     <div class="row">
         
         <div class="col-sm">
             <div class="form-group">
             <label for="idCliente"> ID cliente :</label>
-            <input type="text" class="form-control " name="idCliente" id="idCliente" aria-describedby="idCliente" required="required" value="<?php echo $id_cliente?>" readonly >
+            <input type="text" class="form-control " name="id_usuario" id="idCliente" aria-describedby="idCliente" required="required" value="<?php echo $id_cliente?>" readonly >
             </div>
         </div>
         <div class="col-sm">
@@ -21,7 +28,7 @@
         <div class="col-sm">
             <div class="form-group">
             <label for="rfc">RFC</label>
-            <input type="text" class="form-control" name="rfc" id="rfcd" placeholder="RFC" required="required">
+            <input type="text" class="form-control" name="rfc" id="rfcd" placeholder="RFC" required="required" maxlength="13">
             </div>
         </div>
     </div>
