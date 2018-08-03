@@ -1,4 +1,5 @@
 $("#error").hide();
+$("#ClaveError").hide();
 $("#id_usuario").hide();
 $('#myModalRegistro').modal('show'); // show bootstrap modal
 
@@ -31,7 +32,6 @@ $(document).on('submit', '#registrar', function(e) {
 
             } else {
                 $("#error").show();
-                $("#myModal").show()
                 console.log();
             }
 
@@ -46,12 +46,6 @@ $(document).on('submit', '#registrar', function(e) {
 });
 
 $(document).on('submit', '#solicitud', function(e) {
-
-
-
-
-
-
 
     e.preventDefault();
     var formData = new FormData($('#solicitud')[0]);

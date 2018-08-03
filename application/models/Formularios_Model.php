@@ -80,10 +80,7 @@
 			->result_array()[0];
 			return $usuario;	
 		}
-		public function EliminarClaveRegistro($clave){
-			$registrado = $this->db->where('ClaveRegistro',$clave)->delete("claves_solicitadas");
-			return $registrado;
-		}
+		
 
 		public function crearFormulario($datos)
 		{
@@ -158,6 +155,21 @@
 		{
 			$form=$this->db->insert("boveda",$datos);
 			return $form;
+		}
+		public function EliminarClaveRegistro($clave){
+			$registrado = $this->db->where('ClaveRegistro', $clave)->delete('claves_solicitadas');
+			return $registrado;
+		}
+	
+		public function ValidarClaveRegistro($IdClave)
+		{
+	
+			$Clave = $this->db->select("ClaveRegistro")
+			->from("claves_solicitadas")
+			->where("ClaveRegistro",$IdClave)
+			->get()
+			->result_array()[0]['ClaveRegistro'];
+			return $Clave;
 		}
 
 		/**function eliminar_null($datos_null)

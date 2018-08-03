@@ -36,9 +36,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         	$this->load->view('PanelUser/components_user/PanelMenu',$data);
 		$this->load->view('formularios/index',$data);
 		$this->load->view('templates/footer');
-	
-
-
    
 	}
 

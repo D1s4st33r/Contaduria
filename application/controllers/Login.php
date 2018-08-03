@@ -126,19 +126,14 @@ class Login extends CI_Controller {
 									"telefono"=>$Telefono,
 									"representantelegal"=>$ReLegal,
 									"telrepresentante"=>$TelRepre,
-									"archivos" => $dato_archivo['upload_data']['file_name'],						
-								 );
-								 
-								 $form=array(
-									 "id_cliente"=>$id_usuario,
-									 "empresarfc"=>$RFC,
-									 "fecha_ini"=>date("d.m.Y"),
-									 "fecha_fini"=>""
+									"archivos" => $dato_archivo['upload_data']['file_name'],
+									
+						
+						
 								 );
 								
-								 
+								
 								$this->Formularios_Model->dataempresa($datos_em);
-								$this->Formularios_Model->crearFormulario($form);
 								echo "exito";
 								
 
@@ -154,13 +149,21 @@ class Login extends CI_Controller {
 	public function ValidarRegistro(){
 
 		if($this->input->post()){
-	
+			
 			$Clave = $this->input->post("ClaveRegistro");
-			var_dump($Clave);
 			
 		  
-			$hecho = $this->Formularios_Model->EliminarClaveRegistro($Clave);
-			echo "valida";
+			$hecho = $this->Formularios_Model->ValidarClaveRegistro($Clave);
+			if($hecho==$Clave){
+
+				echo "valida";
+				$hecho = $this->Formularios_Model->EliminarClaveRegistro($Clave);
+
+			}else{
+
+				echo "xd";
+			}
+			
 	
 	}
 	

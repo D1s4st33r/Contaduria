@@ -322,7 +322,7 @@ class Paneles_Model extends CI_Model
     public function getInfoEmpresas($id_usuario)
     {
 
-        $Empleados = $this->db->select('rfc,razonSocial,correo,telefono,representantelegal,telrepresentante')
+        $Empleados = $this->db->select('rfc,razonSocial,correo,telefono,representantelegal,telrepresentante,domicilio')
             ->from("empresa")
             ->where("id_usuario",$id_usuario)
             ->get()
@@ -332,11 +332,6 @@ class Paneles_Model extends CI_Model
             "Empresas" => $Empleados
         );
         return $usuarios;
-    }
-    public function EliminarClaveRegistro($clave){
-
-        $registrado = $this->db->where('ClaveRegistro',$clave)->delete("claves_solicitadas");
-        return $registrado;
     }
 
 
