@@ -12,9 +12,9 @@
           <div class="container">
             <?php foreach ($Empleados["Contadores"] as $key => $value) :?>
             <div class="row p-1 my-1 border-bottom align-items-center border rounded" id="id<?php echo $key ; ?>" >
-              <div class="col-sm-12 col-md-8 col-lg-9">
-                <div class="container">
-                  <div class="row">
+              <div class="col-sm-12 col-md-8 col-lg-9 p-0">
+                <div class="container p-0">
+                  <div class="row p-0">
                     <div class="col-sm-6 col-md-6 col-lg-4  ">
                       <div class="form-group   p-1 m-0 ">
                           <label class="small disable m-0" for="id">Id</label>
@@ -64,14 +64,14 @@
                 </div>
               </div>
 
-              <div class="col-sm-12 col-lg-12">
-                <div class="container">
-                  <div class="row">
+              <div class="col-sm-12 col-lg-12 p-0">
+                <div class="container p-0">
+                  <div class="row p-0">
                     
                     <div class="col-12">
                       <h5 class="text-muted">
                       <br>
-                        Empresas Asignadas <a data-toggle="collapse" href="#empresasAsignadas" role="button" aria-expanded="false" aria-controls="empresasAsignadas"><i class="fas fa-eye fa-lg"></i></a>
+                        <a class="text-muted " data-toggle="collapse" href="#empresasAsignadas" role="button" aria-expanded="false" aria-controls="empresasAsignadas">Empresas Asignadas <i class="fas fa-eye "></i></a>
                       </h5>
                       <div class="collapse" id="empresasAsignadas">
                       <style>
@@ -80,20 +80,26 @@
                         background: #f9f9f9;
                       }
                       </style>
-                        <div class="card card-body">
-                          <div class="container">
+                        <div class="card card-body m-0 p-0 ">
+                          <div class="container m-0 p-0" id="#empresasContador">
                             <div class="row">
-                              <div class="col-12">
-                                <?php
-                                
-                                if( $value['empresas']>0){
+                              <div class="col-12 m-0 p-0">
+                              <?php if( $value['empresas']>0): ?>
 
-                                }else{
-                                 echo  "No se asignado ninguna empresa";
-                                 
-                                }
-                                 
-                                ?>
+                              <?php else:?>
+                                 <h6 class='text-muted'>No se asignado ninguna empresa</h6>
+                                  <div class="continer">
+                                    <div class="row">
+                                      <div class="col-md-6 offset-md-3">
+                                        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" type="text" placeholder="Empresa" aria-label="Empresa" id="autocomplete">
+
+                                        <script>
+                                           uri = "<?php echo base_url("BuscadorEmpresa");?>";
+                                       </script>
+                                      </div>
+                                    </div>
+                                  </div>
+                              <?php endif; ?>
                               </div>
                             </div>
                           </div>

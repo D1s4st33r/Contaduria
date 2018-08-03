@@ -29,7 +29,7 @@ switch ($error) {
         break;
         case 'pswHecho':
             echo'<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong> Contrasena Actualizada </strong>
+                    <strong> ContraseÑa Actualizada </strong>
                     <br /> los cambios se han realizado Correctamente.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
