@@ -618,6 +618,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->data['session'] = $this->session."&cliente=".$idCliente;
 			$this->load->view("PanelControl/components/CrudEmpresas",$this->data);
 		}
+
+		
 		public function FormularioClienteEmpresa()
 		{
 			$this->data['id_cliente'] = $this->input->get('cliente');

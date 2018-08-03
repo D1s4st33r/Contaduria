@@ -1,8 +1,8 @@
 <div class="container">
-<?php $data['empresas'] = $empresas;  $this->load->view('PanelControl/components/controlesRegEmpresa',$data);
+<?php $data['empresas'] = $empresas; $data['session'] = $session."&cliente=".$id_cliente; $this->load->view('PanelControl/components/controlesRegEmpresa',$data);
        ?>
     </div>
-<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrar" method="post" class="card-body" >
+<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrar" method="post" class="card-body" enctype="multipart/form-data" >
     <div class="row">
         
         <div class="col-sm">

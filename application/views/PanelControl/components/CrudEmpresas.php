@@ -48,10 +48,10 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-sm-6 col-lg-12 p-1">
-                    <a class="btn btn-primary btn-md  btn-block text-white" onclick=" return updateCliente('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </a> 
+                    <a class="btn btn-outline-primary btn-block" onclick=" return updateCliente('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </a> 
                     </div>
                     <div class="col-sm-6 col-lg-12 p-1">
-                    <a class="btn btn-danger btn-md  btn-block text-white" onclick=" return EliminarCliente('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </a> 
+                    <a class="btn btn-outline-danger btn-block " onclick=" return EliminarCliente('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </a> 
                     </div>
                   </div>
                 </div>

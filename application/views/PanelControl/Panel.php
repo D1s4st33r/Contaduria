@@ -158,10 +158,10 @@
                       <div class="container">
                         <div class="row">
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-success btn-block " href="<?php echo base_url('ClienteControl') . $session; ?>" > Ver </a> 
+                            <button  type="button" class="btn  btn-outline-success btn-block " onclick="location.href='<?php echo base_url('ClienteControl') . $session; ?>' " > Ver </button> 
                           </div>
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn btn-outline-primary btn-block " onclick="return hacerCambio('clienteReg' ,'<?php echo base_url('FormularioCliente') . $session; ?>')" > Agregar</a> 
+                            <button  type="button" class="btn btn-outline-primary btn-block " onclick="return hacerCambio('clienteReg' ,'<?php echo base_url('FormularioCliente') . $session; ?>')" > Agregar</button> 
                           </div>
                         </div>
                       </div>
