@@ -80,10 +80,10 @@
                       <div class="container">
                         <div class="row">
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-success btn-block text-white" href="<?php echo base_url('ControlEmpresas').$session;?>" > Ver </a> 
+                         
                           </div>
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-primary btn-block text-white" onclick="return hacerCambio('contadoresReg' ,'<?php echo base_url('FormularioContador').$session;?>')" > Agregar</a> 
+                          <a  class="btn btn-primary btn-rounded my-3"  href="<?php echo base_url("Formulario/General");echo $session;?>">Registrar Empresa</a>
                           </div>
                         </div>
                       </div>

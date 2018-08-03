@@ -1,5 +1,33 @@
+<!-- Modal  Registrar Empresa-->
 
-  	<div class="row">
+<div data-backdrop="static" ata-keyboard="false" id="myModalRegistro" class="modal fade align show" role="dialog" hide="false">
+
+  <div class="modal-dialog modal-dialog-centered  modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+      <h4 class="modal-title">Registrar Nueva Empresa</h4>
+       
+      </div>
+      <div class="modal-body">
+      <?php  $this->load->view('PanelUser/components_user/Solicitud_Registro');?>
+      </div>
+      <div class="modal-footer">
+       <small  class="d-block">NOTA:Envie un correo o llame a su Contador para obtener su clave.</small>
+        <a class="btn btn-danger btn-rounded my-3"  href="<?php echo base_url("Cliente");echo $session;?>">Cancelar</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+		
+		
+		
+		
+		
+		<div class="row">
 	
   		<div class="jumbotron container">
 
@@ -12,14 +40,13 @@
 				<p>Posibles Problemas:</p>
 				<li>El RFC ya ha sido registrado o es invalido</li>
 				<li>Correo invalido o ya ha sido registrado</li>
-			
-
         </div>
 
 
 			<br>
 			<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrar" method="post" class="card-body" >
   				<div class="row">
+					<input class"hidden" type="text" value="<?php echo $user;?>" name="id_usuario" id="id_usuario" class="form-control form-control-sm text-center" readonly>
 				    <div class="col-sm">
 				    	<div class="form-group">
 					    <label for="razonSocial">Razón Social</label>
@@ -85,19 +112,17 @@
 
 		
 				</div>
-				<div class="col-sm">
+				<div class="col-sm" style="text-align:center">
 				      <div class="form-group">
 							<br>
 							<br>
-						<!--<center><button  type="button" id="resgistroEm"class="btn btn-primary" onclick="return AgregarEmpresa('<//?php echo base_url('AgregarEmpresa').$session;?>')" >  
-								Registrar Empresa
-							</button></center>-->
-							<input type="submit" value="Entrar" class="btn btn-primary"  >
+			
+							<input type="submit" value="Registrar Empresa" class="btn btn-warning" >
 						 
 					  </div>
-				    </div>
-						</form>
-		
+				  </div>
+			</form>
+
   		</div>
   	</div>
 	

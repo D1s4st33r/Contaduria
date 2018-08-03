@@ -63,7 +63,7 @@
 		{
 			$empresas =$this->db->select('COUNT(rfc)')
 					->from("empresa")
-					->where('id_usuario',$id)
+					->where('id_usuario',1)
 					->get()
 					->result_array()[0];
 			 return $empresas["COUNT(rfc)"] ;
@@ -86,6 +86,21 @@
 			$form= $this->db->insert("formulario",$datos);
 		}
 
+		public function EliminarClaveRegistro($clave){
+			$registrado = $this->db->where('ClaveRegistro', $clave)->delete('claves_solicitadas');
+			return $registrado;
+		}
+	
+		public function ValidarClaveRegistro($IdClave)
+		{
+	
+			$Clave = $this->db->select("ClaveRegistro")
+			->from("claves_solicitadas")
+			->where("ClaveRegistro",$IdClave)
+			->get()
+			->result_array()[0]['ClaveRegistro'];
+			return $Clave;
+		}
 
 		/**function eliminar_null($datos_null)
 		{
