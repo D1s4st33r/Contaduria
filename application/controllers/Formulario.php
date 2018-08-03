@@ -155,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				{
 					$respuestaF = array(
 						"respuesta"=> $post['respuesta'.$id],
-						"respuestaOpc"=>($post['respuesta'.$id]) && !empty($post['respuesta'.$id]) ? $post['respuesta'.$id] : "" 
+						"respuestaOpc"=>($post['respuestaOpc'.$id]) && !empty($post['respuestaOpc'.$id]) ? $post['respuestaOpc'.$id] : "" 
 					);
 					//print_r( $respuestaF);
 					$hecho = $this->Formularios_Model->updateRespuesta($post['id'],$_GET['form'],$respuestaF);
@@ -165,7 +165,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						"id_formulario" =>$_GET['form'],
 						"id_pregunta"=>$post['id'],
 						"respuesta"=> $post['respuesta'.$id],
-						"respuestaOpc"=>($post['respuesta'.$id]) && !empty($post['respuesta'.$id]) ? $post['respuesta'.$id] : "" 
+						"respuestaOpc"=>($post['respuestaOpc'.$id]) && !empty($post['respuestaOpc'.$id]) ? $post['respuestaOpc'.$id] : "" 
 					);
 					//print_r( $respuestaF);
 					$hecho = $this->Formularios_Model->insertRespuesta($respuestaF);

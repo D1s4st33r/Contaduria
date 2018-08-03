@@ -132,7 +132,7 @@
 
 		public function getRespFormulario($id)
 		{
-			$form=$this->db->select("respuesta,id_pregunta")
+			$form=$this->db->select("respuesta,id_pregunta,respuestaOpc")
 			->from("resultados")
 			->where('id_formulario',$id)
 			->get()
