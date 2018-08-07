@@ -13,8 +13,10 @@ function hacerCambio(divById, url) {
         url: url,
         dataType: 'html',
         success: function(data) {
-            $("#" + divById).html("");
+            $("#" + divById).hide();
             $("#" + divById).html(data);
+            $("#" + divById).fadeIn("slow");
+            
         }
     });
 }
@@ -33,8 +35,9 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         data: datosPost, // data recive un objeto con la informacion que se enviara al servidor
         dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
         success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
-            // alert(datos);
+            div.hide();
             div.html(datos);
+            div.fadeIn("slow");
         }
     });
 }
@@ -437,29 +440,14 @@ function eliminarPregunta(iddiv, url) {
         hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
 }
-
-
-$("#autocomplete").autocomplete({
-    source:function (request,response)
-    {
-      $.ajax({
-          type: 'POST',
-          url: uri,
-          dataType: "json",
-          data: {busqueda: request.term},
-          success: function( data ) 
-          {
-            response( $.map( data, function(item) {
-                return {
-                    label: item.id,
-                    value:item.nombre
-                }
-            }));
-          },
-          error: function (request, status, error) {
-                alert(request.responseText);
-                alert(error);
-            }
-      });
-    }
-  });
+function ocultar(id)
+{
+    $("#"+id).hide(1000);
+}
+function ver(id){
+    $("#"+id).show(1000);
+}
+function desacer(div)
+{
+    $("#"+div).html("");
+}

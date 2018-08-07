@@ -434,4 +434,18 @@ class Paneles_Model extends CI_Model
         $empresas = $this->db->select('rfc,razonSocial,domicilio,correo,telefono')->from("empresa")->where("id_usuario",$id)->get()->result_array();
         return $empresas;
     }
+
+    public function GetContadoreLike($search)
+    {
+        $this->db->select('id,nombre,apellido');
+        $this->db->from('usuario');
+        $this->db->where('roll', "1");
+        $this->db->like("nombre", $search);
+        $resultado = $this->db->get()->result_array();
+        if (!empty($resultado)){
+
+            return $resultado;
+        }
+        return array();
+    }
 }

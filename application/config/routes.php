@@ -108,6 +108,8 @@ $route['ClienteControl'] = 'Panel_admin/Clientes';
 $route['AgregarCliente'] = 'Panel_admin/AgregarCliente';
 $route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
+$route['AsignarContador'] = 'Panel_admin/AsignaContador';
+$route['BuscadorContador'] = "Panel_admin/BuscadorContador";
 
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";

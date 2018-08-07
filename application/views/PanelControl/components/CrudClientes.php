@@ -70,27 +70,30 @@
                         <div class="row">
 
                           <div class="col-sm-6 col-md-6 col-lg-6">
-                            <a href="#" onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session."&cliente=".$value['id'];?>')" >
+                            <a href="#empresasClie" onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session."&cliente=".$value['id'];?>')" >
                                 <i class='fas fa-industry fa-md'></i> Empresas #
                                 <span><?php echo $value['EmpresasRegistradas']["numEmpresas"]; ?> </span>
                             </a>
                           </div>
                           <?php //var_dump($value); ?>
-                          <div class="col-sm-6 col-md-6 col-lg-6"><i class='fas fa-user-tie'></i>Contador
-                              <span><?php if( !isset($value['EmpresasRegistradas']["Contador"])) 
-                              {
-                                echo "No asignado";
-                                echo '<a href="'. base_url("ControlContadores") . $session.'"> Asignar</a>';
-                              }else{
-                                if((int)$value['EmpresasRegistradas']["Contador"] == 0)
-                                {
-                                  echo "No asignado";
-                                  echo '<a href="'. base_url("ControlContadores") . $session.'"> Asignar</a>';
-                                }else{
-                                  echo $value['EmpresasRegistradas']["Contador"];
-                                }
-                              } ?> </span>
-                          </div>      
+                          <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink"><i class='fas fa-user-tie'></i>Contador
+                              <span>
+                              <?php if( !isset($value['EmpresasRegistradas']["Contador"])) :?>
+                            
+                                No asignado
+                                <a href="#infoContadorAsignado" onclick=" hacerCambio('infoContadorAsignado','<?php echo base_url("AsignarContador") . $session?>'); ocultar('asignarLink');"> Asignar</a>
+                              <?php else:?>
+                                <?php  if((int)$value['EmpresasRegistradas']["Contador"] == 0):?>
+                                  No asignado
+                                  <a href="#infoContadorAsignado" onclick=" hacerCambio('infoContadorAsignado','<?php echo base_url("AsignarContador") . $session?>'); ocultar('asignarLink');"> Asignar</a>
+                                <?php else:?>
+                                  <?php echo $value['EmpresasRegistradas']["Contador"];?>
+                                <?php endif;?>
+                              <?php endif;?>
+                                 </span>
+                          </div> 
+                          <div class="col-12 py-1 px-1" id="infoContadorAsignado">
+                          </div>     
                         </div>
                       </div>
                     </div>
