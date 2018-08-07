@@ -76,23 +76,23 @@
                             </a>
                           </div>
                           <?php //var_dump($value); ?>
-                          <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink"><i class='fas fa-user-tie'></i>Contador
+                          <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>"><i class='fas fa-user-tie'></i>Contador
                               <span>
                               <?php if( !isset($value['EmpresasRegistradas']["Contador"])) :?>
                             
                                 No asignado
-                                <a href="#infoContadorAsignado" onclick=" hacerCambio('infoContadorAsignado','<?php echo base_url("AsignarContador") . $session?>'); ocultar('asignarLink');"> Asignar</a>
+                                <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContador") . $session."&contadorId=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
                               <?php else:?>
                                 <?php  if((int)$value['EmpresasRegistradas']["Contador"] == 0):?>
                                   No asignado
-                                  <a href="#infoContadorAsignado" onclick=" hacerCambio('infoContadorAsignado','<?php echo base_url("AsignarContador") . $session?>'); ocultar('asignarLink');"> Asignar</a>
+                                  <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContador") . $session."&contadorId=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
                                 <?php else:?>
                                   <?php echo $value['EmpresasRegistradas']["Contador"];?>
                                 <?php endif;?>
                               <?php endif;?>
                                  </span>
                           </div> 
-                          <div class="col-12 py-1 px-1" id="infoContadorAsignado">
+                          <div class="col-12 py-1 px-1" id="infoContadorAsignado<?php echo $value['id']?>">
                           </div>     
                         </div>
                       </div>

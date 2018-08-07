@@ -149,6 +149,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function AsignaContador()
 		{
+			$idContador = $this->input->get("contadorId");
+			$this->data['idContador'] = $idContador;
 			$this->load->view("PanelControl/components/asignarContador",$this->data);	
 		}
 		public function BuscadorContador()
@@ -171,8 +173,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 		public function getTituloPanel()
 		{
-			
-			
 			$this->load->view("PanelControl/components/TituloPanel",$this->data);
 		}
 

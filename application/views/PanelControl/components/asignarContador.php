@@ -5,17 +5,18 @@
             <h5 class="text-muted text-center"> Asigne contador</h5>
         </div>
         <div class="col-12 text-right ">
-            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado');ver('asignarLink');"> <i class="fas fa-eye-slash"></i> </a>
+        
+            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idContador;?>');ver('asignarLink<?php echo (isset($idContador) && !empty($idContador)) ? $idContador : "" ; ?>');"> <i class="fas fa-eye-slash"></i> </a>
         </div>
 
         <div class="col-md-5 col-lg-5 py-2 m-auto">
-        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" placeholder="Contador" aria-label="Contador" id="BuscadorContador" type="text">
+        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" placeholder="Contador" aria-label="Contador" id="BuscadorContador<?php  echo $idContador;?>" type="text">
         <script>
         $(document).ready(function()
         {
             $(function()
             {
-                $("#BuscadorContador").autocomplete({
+                $("#BuscadorContador<?php  echo $idContador;?>").autocomplete({
                     minLength:2,
                     source: function(request, response) 
                     {
@@ -52,8 +53,8 @@
                     },
                     select: function( event, ui ) 
                     {
-                        $("#nombreContadorAsignado").val(ui.item.label);
-                        $("#idContadorAsignado").val( ui.item.desc);
+                        $("#nombreContadorAsignado<?php  echo $idContador;?>").val(ui.item.label);
+                        $("#idContadorAsignado<?php  echo $idContador;?>").val( ui.item.desc);
                     }
                     }).autocomplete( "instance" )._renderItem = function( ul, item ) 
                     {
@@ -81,17 +82,17 @@
                     <div class="col-4 align-self-center">
                         <div class="input-group input-group-sm ">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="labelidContadorAsignado">ID</span>
+                                <span class="input-group-text" id="labelidContadorAsignado<?php  echo $idContador;?>">ID</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="id" aria-describedby="labelidContadorAsignado" readonly id="idContadorAsignado">
+                            <input type="text" class="form-control" aria-label="id" aria-describedby="labelidContadorAsignado<?php  echo $idContador;?>" readonly id="idContadorAsignado<?php  echo $idContador;?>">
                         </div>
                     </div>
                     <div class="col-4 align-self-center">
                         <div class="input-group input-group-sm ">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="labelnombreContadorAsignado">Nombre</span>
+                                <span class="input-group-text" id="labelnombreContadorAsignado<?php  echo $idContador;?>">Nombre</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="nombre" aria-describedby="labelnombreContadorAsignado" readonly id="nombreContadorAsignado">
+                            <input type="text" class="form-control" aria-label="nombre" aria-describedby="labelnombreContadorAsignado<?php  echo $idContador;?>" readonly id="nombreContadorAsignado<?php  echo $idContador;?>">
                         </div>
                     </div>
                     <div class="col-4 align-self-center">
