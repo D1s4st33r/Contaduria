@@ -333,8 +333,7 @@ function agregarPregunta(iddiv, url) {
         post = {
             categoria: categoria_,
             seccion: seccion_,
-            texto: texto_,
-            div: div_
+            texto: texto_
         };
         hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
@@ -349,6 +348,7 @@ function actualizarPregunta(iddiv, url) {
     var tipo_ = "";
     var soliarchivo_ = "";
     var obligatorio_ = "";
+    var nombreArchivo_;
     var preguntaOpcional_ = "";
     var tipoOpcional_ = "";
 
@@ -362,6 +362,7 @@ function actualizarPregunta(iddiv, url) {
         if ($(this).attr("name") == "obligatorio") { obligatorio_ = $('[name="obligatorio"]:checked').attr('value'); }
         if ($(this).attr("name") == "preOpcional") { preguntaOpcional_ = $(this).val(); }
         if ($(this).attr("name") == "divid") { div_ = $(this).val(); }
+        if ($(this).attr("name") == "nombreArch") { nombreArchivo_ = $(this).val(); }
     });
     select.each(function() {
         if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
@@ -378,6 +379,7 @@ function actualizarPregunta(iddiv, url) {
             tipo: tipo_,
             soliarchivo: soliarchivo_,
             obligatorio: obligatorio_,
+            nombreArchivo: nombreArchivo_,
             preguntaOpcional: preguntaOpcional_,
             tipoOpcional: tipoOpcional_,
             div: div_

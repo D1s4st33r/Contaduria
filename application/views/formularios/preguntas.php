@@ -35,7 +35,7 @@ foreach ($preguntas as $key => $value) {
           $data['id']=$value['id'];
           $data['obligatorio']=$value2['obligatorio'];
 
-           echo '<form id="panel-pregunta'.$value['id'].'" name="datos-pregunta" style="border-bottom: solid 2px black;">';
+           echo '<form id="panel-pregunta'.$value['id'].'" name="datos-pregunta" style="border-bottom: solid 2px #c9c5c5;">';
            echo '<input type="text" value="'.$value['id'].'" name="id" class="form-control form-control-sm text-center" readonly hidden>';
            echo '<h6 class="mb-0" style="padding-left:25px;"> RESPUESTA</h6>';
            echo '<div id="respuesta-pregunta'.$value['id'].'"class=" row">';

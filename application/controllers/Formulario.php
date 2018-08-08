@@ -115,13 +115,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$post = $this->input->post();
 			$id=$post['id'];
 			if(!empty($post) 
-				&& isset($post['respuesta'.$id])&& !empty($post['respuesta'.$id])
-				
+				&& isset($post['respuesta'.$id])	
 			){
 				
 				$solicitud=$this->Formularios_Model->getDetallesporId($post['id']);
-				$existe=strval($this->Formularios_Model->getValiResp($post['id'],$_GET['form']));
-				echo $existe;
 				if($solicitud['soliarchivo']=="1")
 				{
 					$this->load->helper('path');  
@@ -151,28 +148,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					);
 					$this->Formularios_Model->insertBoveda($archivoF);
 				}
-				if($existe==1)
-				{
-					$respuestaF = array(
-						"respuesta"=> $post['respuesta'.$id],
-						"respuestaOpc"=>($post['respuestaOpc'.$id]) && !empty($post['respuestaOpc'.$id]) ? $post['respuestaOpc'.$id] : "" 
-					);
-					//print_r( $respuestaF);
-					$hecho = $this->Formularios_Model->updateRespuesta($post['id'],$_GET['form'],$respuestaF);
-				}
-				else{
-					$respuestaF = array(
-						"id_formulario" =>$_GET['form'],
-						"id_pregunta"=>$post['id'],
-						"respuesta"=> $post['respuesta'.$id],
-						"respuestaOpc"=>($post['respuestaOpc'.$id]) && !empty($post['respuestaOpc'.$id]) ? $post['respuestaOpc'.$id] : "" 
-					);
-					//print_r( $respuestaF);
-					$hecho = $this->Formularios_Model->insertRespuesta($respuestaF);
-				}
+				
+				$respuestaF = array(
+					"id_formulario" =>$_GET['form'],
+					"id_pregunta"=>$post['id'],
+					"respuesta"=> $post['respuesta'.$id],
+					"respuestaOpc"=>(isset($post['respuestaOpc'.$id]) ) ? $post['respuestaOpc'.$id] : "",
+					"seccion"=>$_GET['sec']
+				);
+				//print_r( $respuestaF);
+				$hecho = $this->Formularios_Model->insertRespuesta($respuestaF);
 				
 				if($hecho){
 					echo '<i class="fas fa-check-square fa-1x"></i>';
+				}else{
+					echo'FALLO';
 				}
 			}
 			else{ echo 'Mal';}

@@ -540,6 +540,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					"tipo"=>"default",
 					"obligatorio"=>"0",
 					"soliarchivo"=>"0",
+					"nobreArchivo"=>"",
 					"preguntaOpcional"=>"pregunta opcional",
 					"tipoPreOpcional"=>"default",
 					"categoria"=>strtoupper($post['categoria'])
@@ -612,8 +613,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				&& isset($post['texto']) && !empty($post['texto'])
 				&& isset($post['id']) && !empty($post['id'])
 				//&& isset($post['tipo']) && !empty($post['tipo'])
-				//&& isset($post['soliarchivo']) && !empty($post['soliarchivo'])
-				//&& isset($post['obligatorio']) && !empty($post['obligatorio'])
 			){
 				$pregunta = 	array(
 					"categoria" => strtoupper($post['categoria']),
@@ -624,8 +623,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					"tipo"=>$post['tipo'],
 					"obligatorio"=>$post['obligatorio'],
 					"soliarchivo"=>$post['soliarchivo'],
+					"nombreArchivo"=>$post['nombreArchivo'],
 					"preguntaOpcional"=>$post['preguntaOpcional'],
-					"tipoPreOpcional"=>$post['tipoOpcional']
+					"tipoPreOpcional"=>$post['tipoOpcional'],
+					"categoria"=>strtoupper($post['categoria'])
 				);
 				$hecho= $this->Paneles_Model->actualizarPregunta($pregunta,$post['id']);
 				$hechode = $this->Paneles_Model->actualizarDetallesPregunta($detalles,$post['id']);

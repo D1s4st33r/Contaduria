@@ -27,15 +27,25 @@ foreach ($preguntas as $key => $value) {
            echo '<input type="text" value="'.$value['id'].'" name="id" class="form-control form-control-sm text-center" readonly hidden>';
            echo '<input type="text" value="'.$div.'" name="divid" class="form-control form-control-sm text-center" readonly hidden>';
            echo '<h6 class="mb-0" style="padding-left:25px;"> RESPUESTA</h6>';
-           echo '<div id="config-pregunta'.$value['id'].'"class=" row">';
+           echo '<div id="config-pregunta'.$value['id'].'">';
            
            foreach ($detalles as $ind => $value2) 
            {
             if($value2['id_pregunta']==$value['id'])
             {
               $data['input']=strtoupper($value2['tipo']);
-              if(strtoupper($value2['tipo'])!="DEFAULT"){$this->load->view('PanelControl/components/inputs',$data);}
-              if($value2['soliarchivo']=="1"){$this->load->view('PanelControl/components/solicitudArchivo');}
+              if(strtoupper($value2['tipo'])!="DEFAULT"){
+                echo '<div class=" row">';
+                $this->load->view('PanelControl/components/inputs',$data);
+                if($value2['soliarchivo']=="1"){
+                  $this->load->view('PanelControl/components/solicitudArchivo');
+                  echo '</div>';
+                }
+                else{
+                  echo '</div>';
+                }
+              }
+              
               if($value2['preguntaOpcional']!=null){
                 echo '<div id="respuesta-preguntaOpc'.$value['id'].'"class=" row ml-1">';
                 echo $estatica_numerica.'.1-'.$value2['preguntaOpcional'];
