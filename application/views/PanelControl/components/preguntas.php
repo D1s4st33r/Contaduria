@@ -1,114 +1,56 @@
-<div class="container">
-  <div class="row">
-    <div class="jumbotron container">
-      <div class="accordion" id="accordionExample">
-        <style>
-          .card-body{
-            overflow: hidden;
-            overflow-y: scroll;
-            max-height: 400px;
-          }
-          .seccion-pre{
-            text-align: left;
-            float:left;
-            margin-left:0;
-          }
-          .grupo-bot{
-            
-            text-align: right;
-            float:right;
-            margin-right:0;
-          }
-        </style>
-
-      <?php 
-  
-      $secciones_disponibles = array();
-      $div_abierto = false;
-      $collapse_activo = true;
-      $estatica_numerica = 1;
+<?php
+$estatica_numerica = 1;
+foreach ($preguntas as $key => $value) {
       
-      //por cada pregunta registrada 
-      foreach ($specific as $index => $valores) 
-      { 
-        //Si es una nueva seccion
-          if (!in_array(strtoupper($valores['seccion']), $secciones_disponibles))
-          {
-              $secciones_disponibles[] =strtoupper($valores['seccion']);
-              if ($div_abierto) 
-              {
-                echo '</div>
-                      </div>
-                    </div>';
-                    $div_abierto =false;
+      // var_dump($sec[0]["seccion"]);
+       /*if (!in_array(strtoupper($value['seccion']), $secciones_disponibles))
+         { 
+           $secciones_disponibles[] =$value['seccion'];
+           $us = 	array(
+             "seccion"=>strtoupper($value['seccion']),
+             "categoria" => $categoria
+           );
+           $this->Paneles_Model->registrarSeccion($us);
+         }*/
+ 
+       if ($value['seccion']==$seccion)
+       {
+           echo '<div id="'.$value['id'].'" class="row"> <div class="col-lg"> '.
+           $estatica_numerica."-.".$value['texto'].'</div>';
+           
+           echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
+           <button type="button" class="btn btn-success btn-sm" onclick="return hacerCambio(';echo "'"; echo 'config-pregunta'.$value['id'];echo "'"; echo  ", '".base_url('configUpdatePregunta').$session.'&cat='.strtoupper($categoria).'&idpre='.$value['id'].'&sec='.strtoupper($seccion);echo"'"; echo ')"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+           <button type="button" class="btn btn-danger btn-sm" onclick="return hacerCambio(';echo "'"; echo 'config-pregunta'.$value['id'];echo "'"; echo  ", '".base_url('configDelPregunta').$session.'&cat='.strtoupper($categoria).'&idpre='.$value['id'].'&sec='.strtoupper($seccion);echo"'"; echo ')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+           </div>';
+           echo '</div>';
+           echo '<div id="panel-pregunta'.$value['id'].'">';
+           echo '<input type="text" value="'.$value['id'].'" name="id" class="form-control form-control-sm text-center" readonly hidden>';
+           echo '<input type="text" value="'.$div.'" name="divid" class="form-control form-control-sm text-center" readonly hidden>';
+           echo '<h6 class="mb-0" style="padding-left:25px;"> RESPUESTA</h6>';
+           echo '<div id="config-pregunta'.$value['id'].'"class=" row">';
+           
+           foreach ($detalles as $ind => $value2) 
+           {
+            if($value2['id_pregunta']==$value['id'])
+            {
+              $data['input']=strtoupper($value2['tipo']);
+              if(strtoupper($value2['tipo'])!="DEFAULT"){$this->load->view('PanelControl/components/inputs',$data);}
+              if($value2['soliarchivo']=="1"){$this->load->view('PanelControl/components/solicitudArchivo');}
+              if($value2['preguntaOpcional']!=null){
+                echo '<div id="respuesta-preguntaOpc'.$value['id'].'"class=" row ml-1">';
+                echo $estatica_numerica.'.1-'.$value2['preguntaOpcional'];
+                echo '</div>';
+                if(strtoupper($value2['tipoPreOpcional'])!="DEFAULT"){
+                  $data['input']=strtoupper($value2['tipoPreOpcional']);
+                  $data['id']="Opc".$value['id'];
+                  $this->load->view('Panelcontrol/components/inputs',$data);
+                }
               }
-              
-              $chars = array(',' , '.',
-                             '_' , '´',
-                             '¨' , '{',
-                             'ç' , 'Ç',
-                             '}' , '^',
-                             '?' , '[',
-                             '`' ,'\'',
-                             '*' , ']',
-                             '+' , '¿',
-                             '¡' , '!',
-                             '"' , '·',
-                             '$' , '%',
-                             '&' , '/',
-                             '=' , '(',
-                             ')' , ')',
-                             ':' , ';',
-                             ')' , '#', ' '
-                           );
-              $label_id_html = str_replace($chars, "-",  $valores['seccion']); 
-              echo '<div class="card">                                   <!-- div de seccion -->
-                      <div class="card-header" id="'. $label_id_html.'">    <!-- div header de seccion -->
-                      <div class="seccion-pre" id="'. $label_id_html.'">
-                        <h5 class="mb-0">     
-                        <!-- Button de seccion -->                                <!-- titulo de seccion -->
-                          <button class="btn btn-link"';
-                          echo  (!$collapse_activo) ? "collapsed" : "" ;
-                          echo'   data-toggle="collapse" 
-                                  data-target="#'.$label_id_html.'1'.'" 
-                                  aria-expanded="true" 
-                                  aria-controls="'.$label_id_html.'1'.'"> 
-                            '.strtoupper($valores['seccion']).'
-                          </button>                                             <!-- fin Button de seccion -->
-                        </h5>                                                 <!-- Fin de titulo -->
-                        </div>
-                        <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-sm" >Añadir</button>
-            <button type="button" class="btn btn-primary btn-sm">Actualizar</button>
-            <button type="button" class="btn btn-primary btn-sm">Eliminar</button>
-            </div>
-                      </div>                                                <!-- fin div header seccion -->
-                      <div id="'.$label_id_html.'1'.'" class="collapse '  ; 
-                       if($collapse_activo) 
-                       {
-                          echo  "show";
-                          $collapse_activo=false;
-                       }else{
-                        echo "";
-                      } 
-                      echo'" aria-labelledby="'.$label_id_html.'" data-parent="#accordionExample">  <!-- inicio div collapse -->
-                      <div class="card-body">                                                       <!-- div de preguntas  de seccion -->';
-                      $div_abierto = true;
-
-          }
-            echo '<div id="'.$valores['id'].'"> 
-            <br> <br>'.
-                $estatica_numerica."-.".$valores['texto'];
-                echo '<div class="btn-group grupo-bot" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success btn-sm">Actualizar</button>
-                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                </div>';
-            echo '</div>';
-          $estatica_numerica++;
-      }
-    ?>
-  
-      </div>
-    </div>
-  </div>
-</div>
+            }
+           }
+           echo '</div>';
+           echo '</div><br>';
+         $estatica_numerica++;
+       }
+     }
+     ?>
