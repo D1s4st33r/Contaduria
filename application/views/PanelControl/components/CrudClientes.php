@@ -78,16 +78,16 @@
                           <?php //var_dump($value); ?>
                           <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>"><i class='fas fa-user-tie'></i>Contador
                               <span>
-                              <?php if( !isset($value['EmpresasRegistradas']["Contador"])) :?>
+                              <?php if( !isset($value['ContadorAsignado'])) :?>
                             
                                 No asignado
-                                <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContador") . $session."&contadorId=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
+                                <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContadorFormulario") . $session."&idCliente=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
                               <?php else:?>
-                                <?php  if((int)$value['EmpresasRegistradas']["Contador"] == 0):?>
+                                <?php  if((int)$value['ContadorAsignado'] == NULL):?>
                                   No asignado
-                                  <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContador") . $session."&contadorId=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
+                                  <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContadorFormulario") . $session."&idCliente=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
                                 <?php else:?>
-                                  <?php echo $value['EmpresasRegistradas']["Contador"];?>
+                                  <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("ListaContadorCliente") . $session."&idCliente=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');">Ver detalles</a>
                                 <?php endif;?>
                               <?php endif;?>
                                  </span>

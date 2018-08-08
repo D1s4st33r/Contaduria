@@ -147,10 +147,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		}
 
-		public function AsignaContador()
+		public function AsignarContadorFormulario()
 		{
-			$idContador = $this->input->get("contadorId");
-			$this->data['idContador'] = $idContador;
+			$idCliente = $this->input->get("idCliente");
+			$this->data['idCliente'] = $idCliente;
 			$this->load->view("PanelControl/components/asignarContador",$this->data);	
 		}
 		public function BuscadorContador()
@@ -171,6 +171,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
 			}
 		}
+		
+		public function AsignarContadorACliente()
+		{
+			
+			$Ids = $this->input->post();
+			if(
+				!empty($Ids)
+			)
+			{	
+				$this->Paneles_Model->setContadorCliente($Ids);
+				$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($Ids['IdContador']);
+				$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
+			
+				
+			}else{
+				$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
+			}
+		}
+
+		public function ListaContadorCliente()
+		{
+			$idCliente = $this->input->get("idCliente");
+			$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($idCliente);
+			$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
+		}
+
 		public function getTituloPanel()
 		{
 			$this->load->view("PanelControl/components/TituloPanel",$this->data);

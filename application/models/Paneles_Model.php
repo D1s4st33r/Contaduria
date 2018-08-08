@@ -378,7 +378,7 @@ class Paneles_Model extends CI_Model
     public function getInfoClientes()
     {
 
-        $Clientes = $this->db->select('id,nombre,apellido,email,telefono')
+        $Clientes = $this->db->select('id,nombre,apellido,email,telefono,ContadorAsignado')
             ->from("usuario")
             ->where("roll",2)
             ->get()
@@ -390,6 +390,46 @@ class Paneles_Model extends CI_Model
             "Clientes" => $Clientes
         );
         return $usuarios;
+    }
+
+    public function setContadorCliente($ids)
+    {
+        if(!empty($ids) && isset($ids['IdCliente']) && isset($ids['IdContador']))
+        {
+            $cre =  array("ContadorAsignado"=>$ids['IdContador']);
+            $this->db->where('id', $ids['IdCliente']);
+            $this->db->update("usuario", $cre);
+            
+        }else{
+
+        }
+    }
+
+    public function getContadorClienteByIdCliente($id)
+    {
+        $this->db->select('ContadorAsignado');
+        $this->db->where('id', $id);
+        $this->db->from('usuario');
+        $contadorID =$this->db->get()->result_array();
+        if(!empty($contadorID))
+        {
+            $contadorID = $contadorID[0]['ContadorAsignado'];
+            $this->db->select('nombre,apellido,telefono,email');
+            $this->db->where('id', $contadorID);
+            $this->db->from('usuario');
+            $contador =$this->db->get()->result_array();
+            if(!empty($contador))
+            {
+                $contador =  $contador[0];
+                return $contador;
+            }else{
+                return NULL;
+            }
+        }else{
+            return NULL;
+        }
+        // var_dump($contadorID);
+        
     }
 
     public function getContadorEmpresaById($id)

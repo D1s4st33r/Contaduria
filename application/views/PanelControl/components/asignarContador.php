@@ -6,17 +6,17 @@
         </div>
         <div class="col-12 text-right ">
         
-            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idContador;?>');ver('asignarLink<?php echo (isset($idContador) && !empty($idContador)) ? $idContador : "" ; ?>');"> <i class="fas fa-eye-slash"></i> </a>
+            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idCliente;?>');ver('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : "" ; ?>');"> <i class="fas fa-eye-slash"></i> </a>
         </div>
 
         <div class="col-md-5 col-lg-5 py-2 m-auto">
-        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" placeholder="Contador" aria-label="Contador" id="BuscadorContador<?php  echo $idContador;?>" type="text">
+        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" placeholder="Contador" aria-label="Contador" id="BuscadorContador<?php  echo $idCliente;?>" type="text">
         <script>
         $(document).ready(function()
         {
             $(function()
             {
-                $("#BuscadorContador<?php  echo $idContador;?>").autocomplete({
+                $("#BuscadorContador<?php  echo $idCliente;?>").autocomplete({
                     minLength:2,
                     source: function(request, response) 
                     {
@@ -53,8 +53,8 @@
                     },
                     select: function( event, ui ) 
                     {
-                        $("#nombreContadorAsignado<?php  echo $idContador;?>").val(ui.item.label);
-                        $("#idContadorAsignado<?php  echo $idContador;?>").val( ui.item.desc);
+                        $("#nombreContadorAsignado<?php  echo $idCliente;?>").val(ui.item.label);
+                        $("#idContadorAsignado<?php  echo $idCliente;?>").val( ui.item.desc);
                     }
                     }).autocomplete( "instance" )._renderItem = function( ul, item ) 
                     {
@@ -82,21 +82,22 @@
                     <div class="col-4 align-self-center">
                         <div class="input-group input-group-sm ">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="labelidContadorAsignado<?php  echo $idContador;?>">ID</span>
+                                <span class="input-group-text" id="labelidContadorAsignado<?php  echo $idCliente;?>">ID</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="id" aria-describedby="labelidContadorAsignado<?php  echo $idContador;?>" readonly id="idContadorAsignado<?php  echo $idContador;?>">
+                            <input type="text" class="form-control" aria-label="id" aria-describedby="labelidContadorAsignado<?php  echo $idCliente;?>" readonly id="idContadorAsignado<?php  echo $idCliente;?>">
                         </div>
                     </div>
                     <div class="col-4 align-self-center">
                         <div class="input-group input-group-sm ">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="labelnombreContadorAsignado<?php  echo $idContador;?>">Nombre</span>
+                                <span class="input-group-text" id="labelnombreContadorAsignado<?php  echo $idCliente;?>">Nombre</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="nombre" aria-describedby="labelnombreContadorAsignado<?php  echo $idContador;?>" readonly id="nombreContadorAsignado<?php  echo $idContador;?>">
+                            <input type="text" class="form-control" aria-label="nombre" aria-describedby="labelnombreContadorAsignado<?php  echo $idCliente;?>" readonly id="nombreContadorAsignado<?php  echo $idCliente;?>">
                         </div>
                     </div>
                     <div class="col-4 align-self-center">
-                        <button type="button" class="btn btn-outline-success"> <i class="fas fa-user-plus"></i> Asignar </button>
+                    <input type="hidden" id="idCliente<?php echo $idCliente; ?>" value="<?php echo $idCliente;?>">
+                        <button type="button" class="btn btn-outline-success" onclick="AgregarContadorUsuario('idContadorAsignado<?php  echo $idCliente;?>','idCliente<?php echo $idCliente; ?>','<?php echo base_url("AsignarContadorACliente").$session; ?>','infoContadorAsignado<?php echo $idCliente;?>');"> <i class="fas fa-user-plus"></i> Asignar </button>
                     </div>
                 </div>
             </div>

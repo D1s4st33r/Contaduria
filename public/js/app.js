@@ -219,9 +219,6 @@ function updateCliente(iddiv, url) {
     }
 }
 
-
-
-
 function EliminarUsuario(iddiv, url) {
     var id_ = "";
     var div = $("#" + iddiv);
@@ -251,7 +248,18 @@ function EliminarCliente(iddiv, url) {
         };
         hacerCambiosPostAsy(post, url, $("#clienteReg"));
     }
+}
 
+function AgregarContadorUsuario(labelIdContador,labelIdCliente,urlDes,divRemplazo) 
+{
+    idContador =$("#"+labelIdContador).val();    
+    idCliente = $("#"+labelIdCliente).val();
+    post = {
+        IdCliente:idCliente,
+        IdContador:idContador
+    };
+    
+    hacerCambiosPostAsy(post, urlDes, $("#"+divRemplazo));
 }
 
 function agregarCategoria(iddiv, url) {
