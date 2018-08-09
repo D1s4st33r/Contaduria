@@ -396,7 +396,7 @@ class Paneles_Model extends CI_Model
     {
         if(!empty($ids) && isset($ids['IdCliente']) && isset($ids['IdContador']))
         {
-            $cre =  array("ContadorAsignado"=>$ids['IdContador']);
+            $cre =  array( "ContadorAsignado" => $ids['IdContador'] );
             $this->db->where('id', $ids['IdCliente']);
             $this->db->update("usuario", $cre);
             

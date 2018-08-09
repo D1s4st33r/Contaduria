@@ -181,7 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			)
 			{	
 				$this->Paneles_Model->setContadorCliente($Ids);
-				$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($Ids['IdContador']);
+				$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($Ids['IdCliente']);
 				$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
 			
 				

@@ -34,7 +34,7 @@
                             array_contadores = data.Contadores;
                             response($.map(data.Contadores, function(contador,key) {
                                 return {
-                                value: contador.id,
+                                value: contador.nombre+" "+contador.apellido,
                                 label: contador.nombre+" "+contador.apellido,
                                 desc: contador.id
                                 };
@@ -55,6 +55,7 @@
                     {
                         $("#nombreContadorAsignado<?php  echo $idCliente;?>").val(ui.item.label);
                         $("#idContadorAsignado<?php  echo $idCliente;?>").val( ui.item.desc);
+                        $("#BuscadorContador<?php  echo $idCliente;?>").val(  $("#nombreContadorAsignado<?php  echo $idCliente;?>").val());
                     }
                     }).autocomplete( "instance" )._renderItem = function( ul, item ) 
                     {
