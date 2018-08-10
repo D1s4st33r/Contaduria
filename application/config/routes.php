@@ -87,7 +87,7 @@ $route['FormularioClienteEmpresa'] = 'Panel_admin/FormularioClienteEmpresa';
 $route['PanelDeControl'] = 'Panel_admin/index';
 $route['TituloPanel']    = 'Panel_admin/getTituloPanel';
 $route['RestPassAdmin']  = "Panel_admin/RestablecerContrasenaAdmin";
-
+$route['soloVista']             = 'Panel_admin/perfilVista'; //para usuarios y contadores 
 /**
  * Panel Contadores Admin
  */
@@ -97,9 +97,9 @@ $route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
 $route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
 $route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
-$route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
-$route['soloVista']             = 'Panel_admin/perfilVista';
-$route['BuscadorEmpresa']       = 'Panel_admin/BuscadorEmpresa';
+
+$route['BuscadorParaContadores']       = 'Panel_admin/BuscadorParaContadores';
+$route['VerListaClientesAsignados']       = 'Panel_admin/VerListaClientesAsignados';
 
 /**
  * Panel Cliente Admin
@@ -112,6 +112,7 @@ $route['AsignarContadorFormulario'] = 'Panel_admin/AsignarContadorFormulario';
 $route['BuscadorContador'] = "Panel_admin/BuscadorContador";
 $route['AsignarContadorACliente'] = "Panel_admin/AsignarContadorACliente";
 $route['ListaContadorCliente'] =  "Panel_admin/ListaContadorCliente";
+$route['EliminarContadorCliente'] =  "Panel_admin/EliminarContadorCliente";
 
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";

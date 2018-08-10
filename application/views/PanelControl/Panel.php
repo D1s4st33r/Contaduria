@@ -1,7 +1,7 @@
 <?php
-    if (!isset($usuario)) {
+  if (!isset($usuario)) {
       redirect('Login/index?error_login=session', 'refresh');
-    }
+  }
     // cargar vista Menu
     $this->load->view("PanelControl/components/PanelMenu", array("usuario" => $usuario, "session" => $session));
     // $this->load->view("PanelControl/components/PanelLinks");
@@ -89,7 +89,7 @@
                 <div class="container">
                   <div class="row" id="Controles">
                     <?php 
-                    $this->load->view('PanelControl/components/controlContradores');
+                    $this->load->view('PanelControl/components/contadorAdmin/contadores_crud_controles');
                     ?>
                   </div>
                 </div>
@@ -103,7 +103,8 @@
                 }
                 </style>
                 <?php 
-                $this->load->view('PanelControl/components/ContadoresCRUD');
+                $this->load->view('PanelControl/components/contadorAdmin/contadores_crud');
+                
                 ?>
               </div>
             </div>

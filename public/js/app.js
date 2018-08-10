@@ -1,12 +1,10 @@
 /**
- * Funciones Generales para peticion ajax
- * 
- * */
+* Funciones Generales para peticion ajax 
+**/
 
-/*
- * @param {div para colorcar el response de la url} divById 
- * @param {url donde se hace el GET} url 
- */
+/** @param {div para colorcar el response de la url} divById 
+*   @param {url donde se hace el GET} url 
+**/
 function hacerCambio(divById, url) {
     $.ajax({
         type: 'GET',
@@ -16,14 +14,25 @@ function hacerCambio(divById, url) {
             $("#" + divById).hide();
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
+            console.log(data);
             
         }
     });
 }
 var divPerfil = "";
 
+function soloGet(url){
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(data) {
+            console.log(data);
+            
+        }
+    });
+}
+
 /**
- * 
  * @param {objetoPost} datosPost 
  * @param {Url del recurso} urlDes 
  * @param {div de la vista} div 
@@ -254,12 +263,21 @@ function AgregarContadorUsuario(labelIdContador,labelIdCliente,urlDes,divRemplaz
 {
     idContador =$("#"+labelIdContador).val();    
     idCliente = $("#"+labelIdCliente).val();
-    post = {
-        IdCliente:idCliente,
-        IdContador:idContador
-    };
     
-    hacerCambiosPostAsy(post, urlDes, $("#"+divRemplazo));
+    if(idContador != "0")
+    {
+        post = {
+            IdCliente:idCliente,
+            IdContador:idContador
+        };
+        hacerCambiosPostAsy(post, urlDes, $("#"+divRemplazo));
+    }else{
+        alert("No Existe");
+    }
+}
+
+function CrearClienteContador(url) {
+    
 }
 
 function agregarCategoria(iddiv, url) {

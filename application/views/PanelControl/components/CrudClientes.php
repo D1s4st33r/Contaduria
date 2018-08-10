@@ -76,20 +76,12 @@
                             </a>
                           </div>
                           <?php //var_dump($value); ?>
-                          <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>"><i class='fas fa-user-tie'></i>Contador
+                          <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>">
                               <span>
-                              <?php if( !isset($value['ContadorAsignado'])) :?>
-                            
-                                No asignado
-                                <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContadorFormulario") . $session."&idCliente=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
-                              <?php else:?>
-                                <?php  if((int)$value['ContadorAsignado'] == NULL):?>
-                                  No asignado
-                                  <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("AsignarContadorFormulario") . $session."&idCliente=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');"> Asignar</a>
-                                <?php else:?>
-                                  <a href="#infoContadorAsignado<?php echo $value['id']?>" onclick=" hacerCambio('infoContadorAsignado<?php echo $value['id']?>','<?php echo base_url("ListaContadorCliente") . $session."&idCliente=".$value['id']?>'); ocultar('asignarLink<?php echo $value['id']?>');">Ver detalles</a>
-                                <?php endif;?>
-                              <?php endif;?>
+                                <?php
+                                $this->load->view('PanelControl/components/clienteContador/clienteContadorAsignadoView',$value);
+                                
+                                ?>
                                  </span>
                           </div> 
                           <div class="col-12 py-1 px-1" id="infoContadorAsignado<?php echo $value['id']?>">

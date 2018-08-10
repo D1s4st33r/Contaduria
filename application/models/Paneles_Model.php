@@ -124,7 +124,7 @@ class Paneles_Model extends CI_Model
         return $usuarios;
     }
 
-    public function getContadoresEmp()
+    public function getSumaContadoresEnSistemas()
     {
         $sumaEmContadores = $this->db->select('COUNT(id)')
             ->from("usuario")
@@ -132,11 +132,11 @@ class Paneles_Model extends CI_Model
             ->get()
             ->result_array()[0]["COUNT(id)"];
         $usuarios= array(
-            "Contadores" => $sumaEmContadores
+            "contadoresRegistradosEnSistema" => $sumaEmContadores
         );
         return $usuarios;
     }
-    public function getContadoresEmpleados()
+    public function getContadoresRegistradosEnSistema()
     {
 
         $Empleados = $this->db->select('id,nombre,apellido,email,telefono')
@@ -145,21 +145,40 @@ class Paneles_Model extends CI_Model
             ->get()
             ->result_array();
         foreach ($Empleados as $key => $value) {
-            $hay = (int)$this->db->select('COUNT(rfc)')
-                ->from("empresa")
-                ->where('contadorAsignado',$value['id'])->get()->result_array()[0]['COUNT(rfc)'];
+            $hay = (int)$this->db->select('COUNT(id)')
+                ->from("usuario")
+                ->where('ContadorAsignado',$value['id'])->get()->result_array()[0]['COUNT(id)'];
             
-            if($hay>0){
-
+            if($hay>0)
+            {
+                $Empleados[$key]['clientes'] = array("total"=>$hay );
+                
+                
             }else{
-                $Empleados[$key]['empresas'] = 0;
+                $Empleados[$key]['clientes'] = array("total"=>0); // se asigna la empresa
             }
         }
         $usuarios= array(
-            "Contadores" => $Empleados
+            "contadores" => $Empleados
         );
 
         return $usuarios;
+    }
+    
+    public function getClientesContadoresById($id)
+    {
+        
+        $datos=  $this->db->select('id,nombre,apellido,telefono,email')
+                    ->from("usuario")
+                    ->where("ContadorAsignado",$id)
+                    ->get()
+                    ->result_array();
+        
+        if(!empty($datos))
+        {
+            return $datos;
+        }
+        
     }
     public function actualizarUsuarioById($usuario,$id)
     {
@@ -414,7 +433,7 @@ class Paneles_Model extends CI_Model
         if(!empty($contadorID))
         {
             $contadorID = $contadorID[0]['ContadorAsignado'];
-            $this->db->select('nombre,apellido,telefono,email');
+            $this->db->select('id,nombre,apellido,telefono,email');
             $this->db->where('id', $contadorID);
             $this->db->from('usuario');
             $contador =$this->db->get()->result_array();
@@ -432,6 +451,14 @@ class Paneles_Model extends CI_Model
         
     }
 
+    public function EliminarContadorPorId($id)
+    {
+        $usuario = array(
+            "ContadorAsignado" => NULL
+        );
+        $this->db->where('id', $id);
+        $this->db->update('usuario', $usuario);
+    }
     public function getContadorEmpresaById($id)
     {
         $empresas =array();

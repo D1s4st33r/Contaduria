@@ -69,16 +69,138 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function Contadores()
 	{
 		$this->data['menu'] = "Contadores" ;
-		$this->data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-		if($this->data['estadisticas']['Contadores'])
-		{ 
-			$this->data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados();
-		}
-		
+		$this->data['estadisticas'] = $this->Paneles_Model->getSumaContadoresEnSistemas();
+		if($this->data['estadisticas']){ $this->data['datosDeContadoresEmpleados'] = $this->Paneles_Model->getContadoresRegistradosEnSistema(); }
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$this->data);
 		$this->load->view('templates/footer');
 	}
+
+
+	public function AgregarEmpleado()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['nombre']) && !empty($post['nombre'])
+				&& isset($post['apellido'])&& !empty($post['apellido'])
+				&& isset($post['email'])&& !empty($post['email'])
+				&& isset($post['telefono']) && !empty($post['telefono'])
+				&& isset($post['clave']) && !empty($post['clave'])
+			){
+				$us = 	array(
+					"nombre" => $post['nombre'],
+					"apellido" => $post['apellido'],
+					"email" => $post['email'],
+					"telefono" => $post['telefono'],
+					"clave" => $post['clave']
+				);
+				$hecho = $this->Paneles_Model->RegistrarContador($us);
+				if($hecho){
+					$this->data['usuario'] = $this->Usuario;
+					$this->data['usuario'] += array("tipo" => $this->session_tipo);
+					
+					$this->data['estadisticas'] = $this->Paneles_Model->getSumaContadoresEnSistemas();
+					if($this->data['estadisticas']){ $this->data['datosDeContadoresEmpleados'] = $this->Paneles_Model->getContadoresRegistradosEnSistema(); }
+					$this->load->view("PanelControl/components/contadorAdmin/contadores_crud",$this->data);	
+				}
+			}
+			
+		}
+		public function ActualizarUsuarioById()
+		{
+			$post = $this->input->post();
+			if(!empty($post) 
+				&& isset($post['id']) && !empty($post['id'])
+				&& isset($post['nombre']) && !empty($post['nombre'])
+				&& isset($post['apellido'])&& !empty($post['apellido'])
+				&& isset($post['email'])&& !empty($post['email'])
+				&& isset($post['telefono']) && !empty($post['telefono'])
+			){
+				$us = 	array(
+					"nombre" => $post['nombre'],
+					"apellido" => $post['apellido'],
+					"email" => $post['email'],
+					"telefono" => $post['telefono']
+				);
+				$idUsuario = $post['id'];
+				$roll = $this->Paneles_Model->getRollById($idUsuario);
+				$hecho = $this->Paneles_Model->actualizarUsuarioById($us,$post['id']);
+				if($hecho)
+				{
+					$this->data['usuario'] = $this->Usuario;
+					$this->data['usuario'] += array("tipo" => $this->session_tipo);
+					
+					if($roll=="1" )
+					{
+						$this->data['estadisticas'] = $this->Paneles_Model->getSumaContadoresEnSistemas();
+						if($this->data['estadisticas']){ $this->data['datosDeContadoresEmpleados'] = $this->Paneles_Model->getContadoresRegistradosEnSistema(); }
+						$this->load->view("PanelControl/components/contadorAdmin/contadores_crud",$this->data);	
+					}
+					if($roll=="2" ){
+						$this->data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
+						if($this->data['estadisticas']['Clientes']){ $this->data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
+						$this->load->view("PanelControl/components/CrudClientes",$this->data);	
+					}
+				}
+			}
+		}
+
+		public function EliminarUsuarioById()
+		{
+			$post = $this->input->post();
+			if(!empty($post) && isset($post['id']) && !empty($post['id'])){
+
+				$idUsuario = $post['id'];
+				$roll = $this->Paneles_Model->getRollById($idUsuario);
+				$hecho = $this->Paneles_Model->EliminarUsuarioById($post['id']);
+				if($hecho){
+					$this->data['usuario'] = $this->Usuario;
+					$this->data['usuario'] += array("tipo" => $this->session_tipo);
+					
+					if($roll=="1" )
+					{
+						$this->data['estadisticas'] = $this->Paneles_Model->getSumaContadoresEnSistemas();
+						if($this->data['estadisticas']){ $this->data['datosDeContadoresEmpleados'] = $this->Paneles_Model->getContadoresRegistradosEnSistema(); }
+						$this->load->view("PanelControl/components/contadorAdmin/contadores_crud",$this->data);	
+					}
+					if($roll=="2" ){
+						$this->data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
+						if($this->data['estadisticas']['Clientes']){ $this->data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
+						$this->load->view("PanelControl/components/CrudClientes",$this->data);	
+					}
+				}	
+			}
+		}
+
+		public function BuscadorParaContadores()
+		{
+			$this->data['idContador'] = $this->input->get("idContador");
+			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_buscador',$this->data);
+		}
+
+		public function getActualizacionPerfil()
+		{
+			$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
+			$this->data['usuario'] = $this->Usuario;
+			$this->load->view("PanelControl/components/perfilActualizacion",$this->data);
+		}
+		
+		public function FormularioEmpContador()
+		{	
+			$this->load->view("PanelControl/components/RegistroContadores",$this->data);	
+		}	
+		
+		public function VerListaClientesAsignados()
+		{
+			$idContador = $this->input->get("idContador");
+			$this->data['clientes']  = $this->Paneles_Model->getClientesContadoresById($idContador); 
+			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
+			
+
+		}
+
+
+
 	/** FIN Seccion Contadores Administrador */
 
 	/**
@@ -115,6 +237,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('templates/footer');
 	}
 	
+	public function BuscarClientes()
+	{
+	
+	}
 	
 	/**
 	 * Funciones AJAX
@@ -177,16 +303,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			$Ids = $this->input->post();
 			if(
-				!empty($Ids)
+				!empty($Ids) && $Ids['IdContador'] != '0'
 			)
 			{	
 				$this->Paneles_Model->setContadorCliente($Ids);
 				$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($Ids['IdCliente']);
+				$this->data['cliente']= $Ids['IdCliente'];
 				$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
 			
 				
-			}else{
-				$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
 			}
 		}
 
@@ -194,7 +319,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 			$idCliente = $this->input->get("idCliente");
 			$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($idCliente);
+			$this->data['cliente'] = $idCliente;
+			// var_dump($idCliente);
 			$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
+		}
+
+		public function EliminarContadorCliente()
+		{
+			$idCliente = $this->input->get("idCliente");
+			if(isset($idCliente) && !empty($idCliente) )
+			{
+				$this->Paneles_Model->EliminarContadorPorId($idCliente);	
+				$this->data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
+				if($this->data['estadisticas']['Clientes']){ $this->data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
+				$this->data['id']= $idCliente; 
+				$this->load->view('PanelControl/components/clienteContador/clienteContadorAsignadoView',$this->data);
+				
+			}
 		}
 
 		public function getTituloPanel()
@@ -202,22 +343,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->load->view("PanelControl/components/TituloPanel",$this->data);
 		}
 
-		public function getActualizacionPerfil()
-		{
-			$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
-			$this->data['usuario'] = $this->Usuario;
-			$this->load->view("PanelControl/components/perfilActualizacion",$this->data);
-		}
+		
 		public function getActualizacionContadoresClientesAdmin()
 		{
 			$this->load->view("PanelControl/components/perfilActualizacion",$this->data);
 		}
 		
-		public function FormularioEmpContador()
-		{	
-			$this->load->view("PanelControl/components/RegistroContadores",$this->data);	
-		}	
-
+		
 
 		public function FormularioClientes()
 		{	
@@ -225,36 +357,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}	
 		
 		
-		public function AgregarEmpleado()
-		{
-			$post = $this->input->post();
-			if(!empty($post) 
-				&& isset($post['nombre']) && !empty($post['nombre'])
-				&& isset($post['apellido'])&& !empty($post['apellido'])
-				&& isset($post['email'])&& !empty($post['email'])
-				&& isset($post['telefono']) && !empty($post['telefono'])
-				&& isset($post['clave']) && !empty($post['clave'])
-			){
-				$us = 	array(
-					"nombre" => $post['nombre'],
-					"apellido" => $post['apellido'],
-					"email" => $post['email'],
-					"telefono" => $post['telefono'],
-					"clave" => $post['clave']
-				);
-				$hecho = $this->Paneles_Model->RegistrarContador($us);
-				if($hecho){
-					$this->data['usuario'] = $this->Usuario;
-					$this->data['usuario'] += array("tipo" => $this->session_tipo);
-					
-					$this->data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-					if($this->data['estadisticas']['Contadores']){ $this->data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
-					$this->load->view("PanelControl/components/ContadoresCRUD",$this->data);	
-				}
-			}
-			
-		}
-
+		
 		public function AgregarCliente()
 		{
 			$post = $this->input->post();
@@ -343,70 +446,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$this->getActualizacionPerfil();	
 			}	
 		}
-		public function EliminarUsuarioById()
-		{
-			$post = $this->input->post();
-			if(!empty($post) && isset($post['id']) && !empty($post['id'])){
 
-				$idUsuuarii = $post['id'];
-				$roll = $this->Paneles_Model->getRollById($idUsuuarii);
-				$hecho = $this->Paneles_Model->EliminarUsuarioById($post['id']);
-				if($hecho){
-					$this->data['usuario'] = $this->Usuario;
-					$this->data['usuario'] += array("tipo" => $this->session_tipo);
-					
-					if($roll=="1" )
-					{
-						$this->data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-						if($this->data['estadisticas']['Contadores']){ $this->data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
-						$this->load->view("PanelControl/components/ContadoresCRUD",$this->data);	
-					}
-					if($roll=="2" ){
-						$this->data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
-						if($this->data['estadisticas']['Clientes']){ $this->data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
-						$this->load->view("PanelControl/components/CrudClientes",$this->data);	
-					}
-				}	
-			}
-		}
-		public function ActualizarUsuarioById()
-		{
-			$post = $this->input->post();
-			if(!empty($post) 
-				&& isset($post['id']) && !empty($post['id'])
-				&& isset($post['nombre']) && !empty($post['nombre'])
-				&& isset($post['apellido'])&& !empty($post['apellido'])
-				&& isset($post['email'])&& !empty($post['email'])
-				&& isset($post['telefono']) && !empty($post['telefono'])
-			){
-				$us = 	array(
-					"nombre" => $post['nombre'],
-					"apellido" => $post['apellido'],
-					"email" => $post['email'],
-					"telefono" => $post['telefono']
-				);
-				$idUsuuarii = $post['id'];
-				$roll = $this->Paneles_Model->getRollById($idUsuuarii);
-				$hecho = $this->Paneles_Model->actualizarUsuarioById($us,$post['id']);
-				if($hecho)
-				{
-					$this->data['usuario'] = $this->Usuario;
-					$this->data['usuario'] += array("tipo" => $this->session_tipo);
-					
-					if($roll=="1" )
-					{
-						$this->data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-						if($this->data['estadisticas']['Contadores']){ $this->data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
-						$this->load->view("PanelControl/components/ContadoresCRUD",$this->data);	
-					}
-					if($roll=="2" ){
-						$this->data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
-						if($this->data['estadisticas']['Clientes']){ $this->data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
-						$this->load->view("PanelControl/components/CrudClientes",$this->data);	
-					}
-				}
-			}
-		}
+
 
 		public function getPanelCategorias()
 		{

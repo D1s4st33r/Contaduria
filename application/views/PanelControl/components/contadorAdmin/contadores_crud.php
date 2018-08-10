@@ -1,7 +1,7 @@
 
 
       
-        <?php if( "0" == $estadisticas["Contadores"]):?>
+        <?php if( "0" == $estadisticas['contadoresRegistradosEnSistema']):?>
         <div class=" col-12 p-2 " >    
           <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">
             No hay Registros 
@@ -10,7 +10,7 @@
         <?php else: ?>
         <div class="col-12 p-2 text-center">  
           <div class="container">
-            <?php foreach ($Empleados["Contadores"] as $key => $value) :?>
+            <?php foreach ($datosDeContadoresEmpleados["contadores"] as $key => $value) :?>
             <div class="row p-1 my-1 border-bottom align-items-center border rounded" id="id<?php echo $key ; ?>" >
               <div class="col-sm-12 col-md-8 col-lg-9 p-0">
                 <div class="container p-0">
@@ -67,46 +67,10 @@
               <div class="col-sm-12 col-lg-12 p-0">
                 <div class="container p-0">
                   <div class="row p-0">
+
+                    <?php $datosUtilizados= array("idContador"=>$value['id'],"clientes" =>$value['clientes']); $this->load->view('PanelControl/components/contadorAdmin/contadores_crud_clientes', $datosUtilizados);?>
                     
-                    <div class="col-12">
-                      <h5 class="text-muted">
-                      <br>
-                        <a class="text-muted " data-toggle="collapse" href="#empresasAsignadas<?php echo $value['id'] ?>" role="button" aria-expanded="false" aria-controls="empresasAsignadas<?php echo $value['id'] ?>">Empresas Asignadas <i class="fas fa-eye "></i></a>
-                      </h5>
-                      <div class="collapse" id="empresasAsignadas<?php echo $value['id'] ?>">
-                      <style>
-                      .card{
-                        border: 0px;
-                        background: #f9f9f9;
-                      }
-                      </style>
-                        <div class="card card-body m-0 p-0 ">
-                          <div class="container m-0 p-0" id="#empresasContador">
-                            <div class="row">
-                              <div class="col-12 m-0 p-0">
-                              <?php if( $value['empresas']>0): ?>
-
-                              <?php else:?>
-                                 <h6 class='text-muted'>No se asignado ninguna empresa</h6>
-                                  <div class="continer">
-                                    <div class="row">
-                                      <div class="col-md-6 offset-md-3">
-                                        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" type="text" placeholder="Empresa" aria-label="Empresa" id="autocomplete">
-
-                                        <script>
-                                           uri = "<?php echo base_url("BuscadorEmpresa").$session;?>";
-                                           
-                                       </script>
-                                      </div>
-                                    </div>
-                                  </div>
-                              <?php endif; ?>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>             
               </div>
@@ -117,3 +81,6 @@
         </div>
         <?php endif;?>
       
+        <script>
+                                          
+                                        </script>
