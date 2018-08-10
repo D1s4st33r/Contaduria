@@ -1,13 +1,9 @@
 <div class="col-12 p-0">
-  <?php $this->load->view("PanelControl/components/TituloPanel"); ?>
-</div>
-
-<div class="col-12 p-0">
   <div class="my-3 p-3 bg-white rounded box-shadow container">
     <div class="row">
 
       <div class="col-12 mb-1">
-        <h4 class="p-2 bg-light text-dark"> 
+        <h4 class="my-3 p-3 bg-white rounded box-shadow containe-+"> 
           <i class="fas fa-user-edit fa-md"></i> Perfil
         </h4>
         
@@ -50,7 +46,7 @@
       </div>
     
       <div class="col-12 p-2 text-center">  
-        <button  type="button" class="btn btn-lg btn-primary" onclick="return hacerCambio('perfil','<?php echo base_url("Panel_admin/getActualizacionPerfil");echo $session;?>')"><i class="fas fa-edit fa-md"></i> Editar</button> 
+        <button  type="button" class="btn btn-lg btn-primary" onclick="return hacerCambio('perfil','<?php echo base_url("ActualizarPerfil");echo $session;?>')"><i class="fas fa-edit fa-md"></i> Editar</button> 
       </div>
     
     </div>

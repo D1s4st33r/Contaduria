@@ -77,7 +77,6 @@ $route['configDeleteSeccion']="Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
 $route['ValidarRegistro'] = 'Panel_user/ValidarRegistro';
 $route['Login']                 = "Login/index";
-
 /**
  * Panel Prinicipal Admin
  */

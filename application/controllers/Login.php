@@ -55,7 +55,7 @@ class Login extends CI_Controller {
 				if(((int)$usuario[0]['roll']) == 1 )
 				{
 					unset($usuario[0]['roll']);
-					redirect('Formulario/General'.$url,'refresh');
+					redirect('Contador'.$url,'refresh');
 				}
 				if(((int)$usuario[0]['roll']) == 2 )
 				{
