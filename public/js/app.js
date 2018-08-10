@@ -407,6 +407,21 @@ function eliminarPregunta(iddiv, url) {
     }
 }
 
+function cancelarPregunta(iddiv, url) {
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var finds = div.find("input");
+    finds.each(function() {
+        if ($(this).attr("name") == "divid") { id_ = $(this).val(); }
+    });
+    if (id_ != "") {
+        post = {
+            div: id_
+        };
+        hacerCambiosPostAsy(post, url, $("#preguntas" + id_));
+    }
+}
+
 function enviarRespuestas(iddiv, url) {
     var div = $("#" + iddiv);
     var finds = div.find("form");

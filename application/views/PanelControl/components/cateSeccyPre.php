@@ -180,9 +180,9 @@
             <input type="text" class="form-control" name="nombreArch" id="nombreArch" value="<?php echo $detalles['nombreArchivo'] ?>">
             </div>
         </div>
+        
         <div class=" col-sm col-md-6 col-lg-3 ">
             <div class="form-group input-group-sm">
-            
             </div>
         </div>
 
@@ -217,7 +217,7 @@
       <div class=" col-12 ">
         <div class="form-group">
         <button type="button" class="btn btn-primary btn-sm" onclick="return  actualizarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("upPregunta").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')" >aceptar</button>
-       <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-pregunta<?php echo $id ?>','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
+       <button type="button" class="btn btn-danger btn-sm" onclick="return  cancelarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("viewPreguntas").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')">cancelar</button>
         </div>
       </div>  
     </div>
@@ -228,6 +228,6 @@
 <div class=" col-md">
         <p><b>¿Eliminar esta pregunta?</b></p>
        <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("deletePregunta").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')">aceptar</button>
-       <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-pregunta<?php echo $id ?>','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
+       <button type="button" class="btn btn-danger btn-sm" onclick="return cancelarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("viewPreguntas").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')">cancelar</button>
 </div>
 <?php endif; ?>

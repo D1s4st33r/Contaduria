@@ -521,6 +521,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		}
 
+		public function cancelarPregunta()
+		{
+			$post = $this->input->post();
+			if(!empty($post) ){
+				$this->getPanelPreguntas($post);	
+			}
+		}
+
 		public function addPregunta()
 		{
 			$post = $this->input->post();

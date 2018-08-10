@@ -131,8 +131,14 @@ class Login extends CI_Controller {
 						
 						
 								 );
+								 $formulario=array(
+									 "id_cliente"=>$id_usuario,
+									 "empresarfc"=>$RFC,
+									 "fecha_ini"=>date("d.m.Y"),
+									 "ponderacion"=>$this->Formularios_Model->getNumPreguntas()
+								 );
 								
-								
+								$this->Formularios_Model->crearFormulario($formulario);
 								$this->Formularios_Model->dataempresa($datos_em);
 								echo "exito";
 								

@@ -7,7 +7,14 @@
 			parent::__construct();
 		}
 
-
+		public function getNumPreguntas()
+   		{
+			$preguntas=$this->db->select("COUNT(id)")
+			->from("preguntas")
+			->get()
+			->result_array()[0]["COUNT(id)"];
+			return $preguntas;
+		}
 
 		public function dataempresa($datos_empresa)
 		{
