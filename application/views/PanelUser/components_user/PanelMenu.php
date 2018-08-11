@@ -18,16 +18,20 @@
   </button>
   <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto ">
-      <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Panel") ) ? "active" : "" ; ?> p-1">
-        <a class="nav-link" href="<?php echo base_url("Cliente");echo $session;?>"> 
-          <i class='fas fa-desktop fa-lg'></i><small> Perfil </small>
-        </a>
-      </li>
+
       <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Documentos") ) ? "active" : "" ; ?> p-1">
         <a class="nav-link" href="<?php echo base_url("ControlEmpresas");echo $session;?>">
           <i class='fas fa-building'></i> <small>Empresas</small>
         </a>
       </li>
+
+
+      <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Panel") ) ? "active" : "" ; ?> p-1">
+        <a class="nav-link" href="<?php echo base_url("Cliente");echo $session;?>"> 
+          <i class='fas fa-desktop fa-lg'></i><small> Perfil </small>
+        </a>
+      </li>
+
       
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">

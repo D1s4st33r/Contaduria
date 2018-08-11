@@ -64,14 +64,14 @@ $(document).on('submit', '#solicitud', function(e) {
         success: function(respuesta) {
             if (respuesta === "valida") {
 
-                alert("Registros Guardados");
+                alert("Clave Correcta");
                 $("#error").hide();
                 $("#registrar")[0].reset();
                 $('#myModalRegistro').modal('hide'); // show bootstrap modal
 
 
             } else {
-                $("#error").show();
+                $("#ClaveError").show();
                 $("#myModal").show()
                 console.log();
             }
