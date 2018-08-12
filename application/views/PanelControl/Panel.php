@@ -9,14 +9,14 @@
 <!-- Base No Tocar  --> 
 <div class="container-fluid ">
   <div class="row">
-    <div class="col-12" >
+    <div class="col-12 p-0 m-0" >
 <!-- Fin Base No Tocar  --> 
 
     <!-- Etiqueta De Usuario -->
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="container">
+          <div class="col-12 p-0 m-0">
+            <div class="container p-0 m-0">
               <div class="row" id="TituloPanel">
               <?php 
               $this->load->view('PanelControl/components/TituloPanel');
@@ -30,8 +30,8 @@
       <?php if ($menu == "Panel") : ?>
         <div class="container">
           <div class="row">
-            <div class="col-12">  
-              <div class="container">
+            <div class="col-12 p-0 m-0">  
+              <div class="container p-0 m-0">
                 <div class="row">
                   <div class="col-12" id="alertPerfil">
                     
@@ -47,11 +47,11 @@
           </div>
         </div>
 
-        <div class="container">
+        <div class="container ">
           <div class="row">
 
             <div class="col-lg-6">
-              <div class="container">
+              <div class="container ">
                 <div class="row my-3 p-3 bg-white rounded box-shadow">
                   <?php 
                   $this->load->view('PanelControl/components/totales');
@@ -75,10 +75,10 @@
       <?php endif; ?>
 
     <?php if ($menu == "Contadores") : ?>
-    <div class="container">
+    <div class="container ">
       <div class="row">
-        <div class="col-12">
-          <div class="container">
+        <div class="col-12 p-0 m-0">
+          <div class="container p-0 m-0">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <div class="col-12 mb-1 align-items-center">
                 <h4 class="p-2 bg-light rounded "> 
@@ -114,10 +114,10 @@
       </div>
     </div>
 <?php elseif ($menu == "ConfPreguntas") : ?>
-<div class="container">
+<div class="container p-0 m-0">
   <div class="row">
-        <div class="col-12" id="general">
-          <div class="container">
+        <div class="col-12 p-0 m-0" id="general">
+          <div class="container p-0 m-0">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <?php 
               $this->load->view('PanelControl/components/ConfiguracionesPreguntas');
@@ -126,7 +126,7 @@
           </div>
         </div>
 
-    <div class="col-12" id="categorias" >
+    <div class="col-12 p-0 m-0" id="categorias" >
     <div id="categorias">
               <?php 
               $this->load->view('PanelControl/components/categorias');
@@ -135,13 +135,13 @@
     </div>   
   </div>
                 
-        <div class "col-12" id="seccypre"></div>
+        <div class "col-12 p-0 m-0" id="seccypre"></div>
 </div>
 
      <?php elseif ($menu == "Clientes") : ?>
-     <div class="container">
+     <div class="container p-0 m-0">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 p-0 m-0">
           <div class="container">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <div class="col-12 mb-1 align-items-center">
@@ -186,7 +186,7 @@
           </div>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 p-0 m-0">
           <div class="container">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               

@@ -228,34 +228,46 @@ function updateCliente(iddiv, url) {
     }
 }
 
-function EliminarUsuario(iddiv, url) {
-    var id_ = "";
-    var div = $("#" + iddiv);
-    var finds = div.find("input");
-    finds.each(function() {
-        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
-    });
-    if (id_ != "") {
-        post = {
-            id: id_
-        };
-        hacerCambiosPostAsy(post, url, $("#contadoresReg"));
+function EliminarUsuario(iddiv, url) 
+{
+    var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
+    if (result) 
+    {
+    
+        
+        var id_ = "";
+        var div = $("#" + iddiv);
+        var finds = div.find("input");
+        finds.each(function() {
+            if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+        });
+        if (id_ != "") {
+            post = {
+                id: id_
+            };
+            hacerCambiosPostAsy(post, url, $("#contadoresReg"));
+        }
     }
 
 }
 
-function EliminarCliente(iddiv, url) {
-    var id_ = "";
-    var div = $("#" + iddiv);
-    var finds = div.find("input");
-    finds.each(function() {
-        if ($(this).attr("name") == "id") { id_ = $(this).val(); }
-    });
-    if (id_ != "") {
-        post = {
-            id: id_
-        };
-        hacerCambiosPostAsy(post, url, $("#clienteReg"));
+function EliminarCliente(iddiv, url) 
+{
+    var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
+    if (result) 
+    {
+        var id_ = "";
+        var div = $("#" + iddiv);
+        var finds = div.find("input");
+        finds.each(function() {
+            if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+        });
+        if (id_ != "") {
+            post = {
+                id: id_
+            };
+            hacerCambiosPostAsy(post, url, $("#clienteReg"));
+        }
     }
 }
 

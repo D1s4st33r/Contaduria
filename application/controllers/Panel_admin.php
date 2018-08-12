@@ -70,7 +70,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->data['menu'] = "Contadores" ;
 		$this->data['estadisticas'] = $this->Paneles_Model->getSumaContadoresEnSistemas();
-		if($this->data['estadisticas']){ $this->data['datosDeContadoresEmpleados'] = $this->Paneles_Model->getContadoresRegistradosEnSistema(); }
+		if($this->data['estadisticas'])
+		{ 
+			$this->data['datosDeContadoresEmpleados'] = $this->Paneles_Model->getContadoresRegistradosEnSistema(); 
+		}
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$this->data);
 		$this->load->view('templates/footer');
@@ -194,6 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 			$idContador = $this->input->get("idContador");
 			$this->data['clientes']  = $this->Paneles_Model->getClientesContadoresById($idContador); 
+			$this->data['auxiliando']  = $this->Paneles_Model->getEmpresasContadoresById($idContador); 
 			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
 			
 

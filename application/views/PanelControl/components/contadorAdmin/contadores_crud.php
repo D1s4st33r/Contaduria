@@ -11,11 +11,11 @@
         <div class="col-12 p-2 text-center">  
           <div class="container">
             <?php foreach ($datosDeContadoresEmpleados["contadores"] as $key => $value) :?>
-            <div class="row p-1 my-1 border-bottom align-items-center border rounded" id="id<?php echo $key ; ?>" >
+            <div class="row p-1 my-1 border-bottom align-items-center contenedor rounded" id="id<?php echo $key ; ?>" >
               <div class="col-sm-12 col-md-8 col-lg-9 p-0">
                 <div class="container p-0">
                   <div class="row p-0">
-                    <div class="col-sm-6 col-md-6 col-lg-4  ">
+                    <div class="col-auto  ">
                       <div class="form-group   p-1 m-0 ">
                           <label class="small disable m-0" for="id">Id</label>
                         <input type="text" value="<?php echo $value['id'];?>" name="id" class="form-control form-control-sm text-center" readonly>
@@ -68,7 +68,12 @@
                 <div class="container p-0">
                   <div class="row p-0">
 
-                    <?php $datosUtilizados= array("idContador"=>$value['id'],"clientes" =>$value['clientes']); $this->load->view('PanelControl/components/contadorAdmin/contadores_crud_clientes', $datosUtilizados);?>
+                    <?php $datosUtilizados = array(
+                                "idContador" => $value['id'],
+                                "clientes" =>$value['clientes'],
+                                "auxiliando" =>$value['auxiliando']
+                                );
+                    $this->load->view('PanelControl/components/contadorAdmin/contadores_crud_clientes', $datosUtilizados);?>
                     
                     
                   </div>
