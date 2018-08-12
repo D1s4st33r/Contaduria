@@ -100,6 +100,7 @@ $route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
 
 $route['BuscadorParaContadores']       = 'Panel_admin/BuscadorParaContadores';
 $route['VerListaClientesAsignados']       = 'Panel_admin/VerListaClientesAsignados';
+$route['VerLinksContador']       = 'Panel_admin/VerLinksContador';
 
 /**
  * Panel Cliente Admin

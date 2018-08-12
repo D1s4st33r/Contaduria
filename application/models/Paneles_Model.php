@@ -171,6 +171,30 @@ class Paneles_Model extends CI_Model
 
         return $usuarios;
     }
+    public function TieneEmpresasByIdContador($id)
+    {
+        $hayClientes = (int)$this->db->select('COUNT(id)')
+        ->from("contadores_asignacion_cliente")
+        ->where('idContador',$id)->get()->result_array()[0]['COUNT(id)'];
+    
+        if($hayClientes>0)
+        {
+            $Empleados['clientes'] = array( "total" =>$hayClientes );
+        }else{
+            $Empleados['clientes'] = array("total"=>0); // se asigna la empresa
+        }
+        $hayEmpresas = (int)$this->db->select('COUNT(id)')
+            ->from("contadores_asignacion_empresa")
+            ->where('idContador',$id)->get()->result_array()[0]['COUNT(id)'];
+        if($hayEmpresas>0)
+        {
+            $Empleados['auxiliando'] = array("total"=>$hayEmpresas );   
+        }else{
+            $Empleados['auxiliando'] = array("total"=>0); // se asigna la empresa
+        }
+        return $Empleados;
+        
+    }
     
     public function getClientesContadoresById($id)
     {

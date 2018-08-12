@@ -195,14 +195,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		public function VerListaClientesAsignados()
 		{
-			$idContador = $this->input->get("idContador");
-			$this->data['clientes']  = $this->Paneles_Model->getClientesContadoresById($idContador); 
-			$this->data['auxiliando']  = $this->Paneles_Model->getEmpresasContadoresById($idContador); 
+			$this->data['idContador'] = $this->input->get("idContador");
+			$this->data['clientes']  = $this->Paneles_Model->getClientesContadoresById($this->data['idContador']); 
+			$this->data['auxiliando']  = $this->Paneles_Model->getEmpresasContadoresById($this->data['idContador']); 
 			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
-			
 
 		}
-
+		public function VerLinksContador()
+		{
+			$this->data['idContador'] = $this->input->get("idContador");
+			$var = $this->Paneles_Model->TieneEmpresasByIdContador($this->data['idContador']);
+			
+			$this->data['clientes']  = $this->Paneles_Model->getClientesContadoresById($this->data['idContador']); 
+			$this->data['clientes']['total'] = $var['clientes']['total'];
+			$this->data['auxiliando']  = $this->Paneles_Model->getEmpresasContadoresById($this->data['idContador']); 
+			$this->data['auxiliando']['total'] = $var['auxiliando']['total'];
+			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_clientes_links', $this->data);
+		}
 
 
 	/** FIN Seccion Contadores Administrador */

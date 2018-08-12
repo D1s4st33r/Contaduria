@@ -1,6 +1,9 @@
 <div class="container">
+
     <div class="row  rounded py-2">
-       
+    <div class="col-12 text-right">
+        <a href="#contador<?php echo $idContador;?>" class="text-muted pr-3" onclick="hacerCambio('contador<?php echo $idContador;?>','<?php echo base_url("VerLinksContador").$session."&idContador=".$idContador;  ?>');"> <i class="fas fa-eye-slash"></i> </a>
+    </div>   
     <div class="col-12 p-0 m-0">
             <div class="container">
                 <div class="row">
@@ -54,7 +57,7 @@
                             <div class="container">
                                 <div class="row ">
                                     <div class="col-auto">
-                                        <a   href=""> Ver Empresas </a>
+                                        <a   href=""> Ver en clientes </a>
                                     </div>
                                     <div class="col-auto">
                                         <a   href=""> Ver Boveda </a>
