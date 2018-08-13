@@ -26,8 +26,30 @@ foreach ($preguntas as $key => $value) {
            echo '<div id="panel-pregunta'.$value['id'].'">';
            echo '<input type="text" value="'.$value['id'].'" name="id" class="form-control form-control-sm text-center" readonly hidden>';
            echo '<input type="text" value="'.$div.'" name="divid" class="form-control form-control-sm text-center" readonly hidden>';
-           echo '<div id="config-pregunta'.$value['id'].'"class=" row"></div>';
-           echo '</div><br> <br>';
+           echo '<h6 class="mb-0" style="padding-left:25px;"> RESPUESTA</h6>';
+           echo '<div id="config-pregunta'.$value['id'].'"class=" row">';
+           
+           foreach ($detalles as $ind => $value2) 
+           {
+            if($value2['id_pregunta']==$value['id'])
+            {
+              $data['input']=strtoupper($value2['tipo']);
+              if(strtoupper($value2['tipo'])!="DEFAULT"){$this->load->view('PanelControl/components/inputs',$data);}
+              if($value2['soliarchivo']=="1"){$this->load->view('PanelControl/components/solicitudArchivo');}
+              if($value2['preguntaOpcional']!=null){
+                echo '<div id="respuesta-preguntaOpc'.$value['id'].'"class=" row ml-1">';
+                echo $estatica_numerica.'.1-'.$value2['preguntaOpcional'];
+                echo '</div>';
+                if(strtoupper($value2['tipoPreOpcional'])!="DEFAULT"){
+                  $data['input']=strtoupper($value2['tipoPreOpcional']);
+                  $data['id']="Opc".$value['id'];
+                  $this->load->view('Panelcontrol/components/inputs',$data);
+                }
+              }
+            }
+           }
+           echo '</div>';
+           echo '</div><br>';
          $estatica_numerica++;
        }
      }

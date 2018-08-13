@@ -1,32 +1,61 @@
-<!-- Modal  Registrar Empresa-->
+    <!-- Modal -->
+    <div class="modal fade" id="myModalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	     	<div class="modal-dialog modal-dialog-centered  modal-lg">   
+            <div class="modal-content">
+                <div class="modal-header modal-header-warning">
+								<style>
+								.modal-header-warning {
+	                          color:#fff;
+                            padding:9px 15px;
+                            border-bottom:1px solid #eee;
+                            background-color: #ffcc00;
+                            -webkit-border-top-left-radius: 5px;
+                            -webkit-border-top-right-radius: 5px;
+                            -moz-border-radius-topleft: 5px;
+                            -moz-border-radius-topright: 5px;
+                             border-top-left-radius: 5px;
+                             border-top-right-radius: 5px;
+                        }
+								</style>
+                    <h1><i class="glyphicon glyphicon-thumbs-up"></i> ¡Aviso Importante!</h1>
+								
+                </div>
+                <div class="modal-body">
+								<div class="container">
+								  <br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+                  <strong>
+									Los datos datos ingresados para registrar una empresa, entraran en modalidad de "Solicitud", ya que, su Contador asignado, podra aprobar o rechazar dicha solicitud.
+									</strong>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
 
-<div data-backdrop="static" ata-keyboard="false" id="myModalRegistro" class="modal fade align show" role="dialog" hide="false">
+									<small>
+									Nota: En caso de que su solicitud sea aprobada, su Empresa aparecera en su perfil de Empresas.
+									
+									</small>
 
-  <div class="modal-dialog modal-dialog-centered  modal-lg">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-      <h4 class="modal-title">Registrar Nueva Empresa</h4>
-       
-      </div>
-      <div class="modal-body">
-      <?php  $this->load->view('PanelUser/components_user/Solicitud_Registro');?>
-      </div>
-      <div class="modal-footer">
-       <small  class="d-block">NOTA: Debe esperar hasta que el contador le asigne una clave.</small>
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Solicitar Clave</button>
-        <a class="btn btn-danger btn-rounded my-3"  href="<?php echo base_url("Cliente");echo $session;?>">Cancelar</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
+                </div>                
+                </div>
+                <div class="modal-footer">
+								<a class="btn btn-outline-danger btn-rounded my-3"  href="<?php echo base_url("Cliente");echo $session;?>">Regresar a Menu</a>
+							  <button type="button" class="btn btn-outline-info btn-rounded my-3 pull-left" data-dismiss="modal">Entendido</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 		
 		
 		
-		
+
 		
 		<div class="row">
 	
@@ -45,7 +74,7 @@
 
 
 			<br>
-			<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrar" method="post" class="card-body" >
+			<form action="<?php echo base_url('postEmpresa').$session?>" id="registrar" method="post" class="card-body" >
   				<div class="row">
 					<input class"hidden" type="text" value="<?php echo $user;?>" name="id_usuario" id="id_usuario" class="form-control form-control-sm text-center" readonly>
 				    <div class="col-sm">

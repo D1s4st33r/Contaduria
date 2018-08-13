@@ -1,13 +1,15 @@
-<?php if($input=="text"): ?>
-<div class=" col-sm col-md-6 col-lg-3 ">
+<?php if($input=="TEXT"): ?>
+
+<div class=" col-sm col-md-6 col-lg-3 " style="padding-left:37px; padding-top:10px;">
        <div class="form-group input-group-sm">
-       <input type="text" class="form-control" id="pregunta" name="pregunta" value="<?php echo $pregunta['texto'] ?>">
+       <input type="text" class="form-control"  name="pregunta">
        </div>
 </div>
 <?php endif; ?>
 
-<?php if($input=="radio"): ?>
-<div class=" col-sm col-md-6 col-lg-3 ">
+<?php if($input=="RADIO"): ?>
+
+<div class=" col-sm col-md-6 col-lg-3 " style="padding-left:37px; padding-top:10px;">
        <div class="form-group">
             <div class="form-check form-check-inline">
                      <input class="form-check-input" type="radio" name="archivo" id="inlineRadio1" value="1" >

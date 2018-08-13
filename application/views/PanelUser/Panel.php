@@ -80,10 +80,9 @@
                       <div class="container">
                         <div class="row">
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-success btn-block text-white" href="<?php echo base_url('ControlEmpresas').$session;?>" > Ver </a> 
+                         
                           </div>
                           <div class="col">
-                            <a  type="button" class="btn btn-sm btn-primary btn-block text-white" onclick="return hacerCambio('contadoresReg' ,'<?php echo base_url('FormularioContador').$session;?>')" > Agregar</a> 
                           </div>
                         </div>
                       </div>
@@ -111,6 +110,21 @@
     </div>
 
     <?php endif; ?>
+
+<?php if ($menu == "formulario") : ?>
+<div class="container">
+  <div class="row">
+    <div class="col-12" id="categorias" >
+              <?php 
+              $this->load->view('formularios/menuCategorias');
+              ?>
+    </div>   
+  </div>
+                
+  <div class= "col-12 " id="seccypre" >
+  </div>
+</div>
+<?php endif  ?>
 
 
 <!-- cierre de base  --> 

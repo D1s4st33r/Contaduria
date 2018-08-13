@@ -137,14 +137,18 @@ $route['configDelPregunta']="Panel_admin/configDelPregunta";
 $route['deletePregunta']="Panel_admin/deletePregunta";
 
 $route['RegistroEmpresa']="Panel_user/Registro_Empresa";
+$route['viewCategoriasUser']="Formulario/getPanelCategorias";
+$route['viewSeccionUser']="Formulario/getPanelSeccion";
+$route['viewGeneralUser']="Formulario/getDatosGenerales";
 $route['Cliente']="Panel_user/index";
+$route['postEmpresa']="Panel_user/postEmpresa";
 
 $route['Contador']="Panel_contador/index";
 // $route['Contadores']="Panel_user/index";
 
 // Empresas
 $route['empresasClie']="Panel_admin/getEmpresas";
-
+$route['enviarRespuestas']="Formulario/enviarRespuestas";
 
 
 //$route['Formularios/legal'] = "Formularios/legal";

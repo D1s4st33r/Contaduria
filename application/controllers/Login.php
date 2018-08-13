@@ -60,7 +60,7 @@ class Login extends CI_Controller {
 				if(((int)$usuario[0]['roll']) == 2 )
 				{
 					unset($usuario[0]['roll']);
-					redirect('Cliente'.$url,'refresh');
+					redirect('ControlEmpresas'.$url,'refresh');
 				}
 			
 			}else{
@@ -139,13 +139,11 @@ class Login extends CI_Controller {
 				echo "valida";
 				$hecho = $this->Formularios_Model->EliminarClaveRegistro($Clave);
 
-			}else{
-
-				echo "xd";
 			}
 			
 	
 	}
+	
 }
 			
 }
