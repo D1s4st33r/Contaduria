@@ -18,8 +18,6 @@
     
       </h4>
       <div style="text-align:right">
-      
-    <a  class="btn btn-primary btn-rounded my-3"  href="<?php echo base_url("Formulario/General");echo $session;?>">Registrar Empresa</a>
     </div>
     
     
