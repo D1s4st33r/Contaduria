@@ -9,9 +9,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Cliente = roll 2
  */
 	class Panel_admin extends MY_Controller {
+	
+	/**
+	 * Atributos de la calse Panel admin
+	 */
 	protected $nivelAcceso = "Administrador" ;
 	protected $Usuario = array();
-	protected $post ;
+	protected $post = array();
+	protected $data = array();
+	protected $session ;
+
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -23,9 +31,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 			redirect('Login/index?error_login=session','refresh');
 		}
-		$this->load->model('Paneles_Model');
-		$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
+		//cargar datos
+		$this->load->model('Paneles_Model');// cargar modelo
+		$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
 		$this->post = $this->input->post();
+		// datos necesarios Base para los componentes
+		$this->data['usuario'] = $this->Usuario;
+		$this->data['usuario'] += array("tipo" => $this->session_tipo);
+		$this->data['session'] = $this->session;
 	}
 
 	/**
@@ -33,80 +46,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 */
 	public function index()
 	{
-		$data['menu'] = "Panel" ;
-		$data['usuario'] = $this->Usuario;
-		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
-		$data['session'] = $this->session;
-
-		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['numsecciones']=$this->Paneles_Model->getNumSecciones();
-		$data['preguntas']=$this->Paneles_Model->getNumPreguntas();
-		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
-		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
+		$this->data['menu'] = "Panel" ;
+		// obtiene los contadores de usuarios y empresas
+		$this->data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
+		$this->data['categorias']=$this->Paneles_Model->getCategorias();
+		$this->data['numsecciones']=$this->Paneles_Model->getNumSecciones();
+		$this->data['preguntas']=$this->Paneles_Model->getNumPreguntas();
+		$this->data['archivos']=$this->Paneles_Model->getSoliArchivo();
+		$this->data['obligatorios']=$this->Paneles_Model->getObliArchivo();
 
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$data);
+		$this->load->view('PanelControl/Panel',$this->data);
 		$this->load->view('templates/footer');
 	}
 
-	/**
-	 * Seccion de Contadores Administrador ($route['ControlContadores])
-	 */
-	public function Contadores()
-	{
-		$data['menu'] = "Contadores" ;
-		$data['usuario'] = $this->Usuario;
-		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-		if($data['estadisticas']['Contadores'])
-		{ 
-			$data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados();
-		}
-		$data['session'] = $this->session;
-		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$data);
-		$this->load->view('templates/footer');
-	}
+
+
+
+	
+
+
 	/** FIN Seccion Contadores Administrador */
 
-	/**
-	 * Seccion de Clientes Administrador ($route['ClientesAdmin'])
-	 */
-	public function Clientes()
-	{
-		$data['menu'] = "Clientes" ;
-		$data['usuario'] = $this->Usuario;
-		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['session'] = $this->session;
-		$data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
-		if($data['estadisticas']['Clientes']){ $data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
-		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$data);
-		$this->load->view('templates/footer');
-	}
+	
 	/** FIN Seccion Clientes Administrador */
 
 	 public function configuracionPreguntas()
 	 {
-		$data['menu']= "ConfPreguntas" ;
-		$data['titulo']="";
-		$data['idcat']= (isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
-		$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
-		$data['usuario'] = $this->Usuario;
-		$data['usuario'] += array("tipo" => $this->session_tipo);
-		$data['session'] = $this->session;
-		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['numsecciones']=$this->Paneles_Model->getNumSecciones();
-		$data['numpreguntas']=$this->Paneles_Model->getNumPreguntas();
-		$data['archivos']=$this->Paneles_Model->getSoliArchivo();
-		$data['obligatorios']=$this->Paneles_Model->getObliArchivo();
+		$this->data['menu']= "ConfPreguntas" ;
+		$this->data['titulo']="";
+		$this->data['idcat']= (isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+		$this->data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+		
+		
+		$this->data['categorias']=$this->Paneles_Model->getCategorias();
+		$this->data['numsecciones']=$this->Paneles_Model->getNumSecciones();
+		$this->data['numpreguntas']=$this->Paneles_Model->getNumPreguntas();
+		$this->data['archivos']=$this->Paneles_Model->getSoliArchivo();
+		$this->data['obligatorios']=$this->Paneles_Model->getObliArchivo();
 		
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$data);
+		$this->load->view('PanelControl/Panel',$this->data);
 		$this->load->view('templates/footer');
 	}
 	
+	public function BuscarClientes()
+	{
+	
+	}
 	
 	/**
 	 * Funciones AJAX
@@ -115,107 +102,96 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 	/**
 		 * Seccion Panel 
 		 */
+		public function BuscadorEmpresa()
+		{
+			if( $this->input->post() &&  $this->input->post("busqueda") )
+			{
+				$search = $this->input->post("busqueda");
+				echo json_encode(
+					array(
+						"id"=>"0",
+						"nombre" => "nada para mostrar"
+					
+					)
+				);
+			}else{
+				//id	nombre	apellido	email	telefono	clave	roll	ContadorAsignado
+				echo json_encode(
+					array(
+						"id"=>"0",
+						"nombre" => "nada para mostrar"
+					
+					)
+				);
+			}
+		}
+
+		
+		
+		
+
+		public function ListaContadorCliente()
+		{
+			$idCliente = $this->input->get("idCliente");
+			$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($idCliente);
+			$this->data['cliente'] = $idCliente;
+			// var_dump($idCliente);
+			$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
+		}
+
+		public function EliminarContadorCliente()
+		{
+			$idCliente = $this->input->get("idCliente");
+			if(isset($idCliente) && !empty($idCliente) )
+			{
+				$this->Paneles_Model->EliminarContadorPorId($idCliente);	
+				$this->data['estadisticas'] = $this->Paneles_Model->getCuentaClientesEnSistema();
+				if($this->data['estadisticas']['clientes']){ $this->data['clientes'] = $this->Paneles_Model->getInfoClientes(); }
+				$this->data['id']= $idCliente; 
+				$this->load->view('PanelControl/components/clienteContador/clienteContadorAsignadoView',$this->data);
+				
+			}
+		}
 
 		public function getTituloPanel()
 		{
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/TituloPanel",$data);
+			$this->load->view("PanelControl/components/TituloPanel",$this->data);
 		}
 
-		public function getActualizacionPerfil()
-		{
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/perfilActualizacion",$data);
-		}
+		
 		public function getActualizacionContadoresClientesAdmin()
 		{
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/perfilActualizacion",$data);
+			$this->load->view("PanelControl/components/perfilActualizacion",$this->data);
 		}
 		
-		public function FormularioEmpContador()
-		{
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/RegistroContadores",$data);	
-		}	
 
-
-		public function FormularioClientes()
+		public function RestablecerContrasenaAdmin()
 		{
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/RegistroClientes",$data);	
-		}	
-		
-		
-		public function AgregarEmpleado()
-		{
-			$post = $this->input->post();
-			if(!empty($post) 
-				&& isset($post['nombre']) && !empty($post['nombre'])
-				&& isset($post['apellido'])&& !empty($post['apellido'])
-				&& isset($post['email'])&& !empty($post['email'])
-				&& isset($post['telefono']) && !empty($post['telefono'])
-				&& isset($post['clave']) && !empty($post['clave'])
-			){
-				$us = 	array(
-					"nombre" => $post['nombre'],
-					"apellido" => $post['apellido'],
-					"email" => $post['email'],
-					"telefono" => $post['telefono'],
-					"clave" => $post['clave']
+			if ( !empty($this->input->post())
+				 && !empty($this->input->post("claveActual")) 
+				 && !empty($this->input->post("claveNueva")) 
+				 && !empty($this->input->post("claveNuevaRep"))
+				){
+				$datos=array(
+					'id' => $this->session_id ,
+					"actual" => $this->input->post("claveActual"),
+					"nueva" =>	$this->input->post("claveNueva")
 				);
-				$hecho = $this->Paneles_Model->RegistrarContador($us);
-				if($hecho){
-					$data['usuario'] = $this->Usuario;
-					$data['usuario'] += array("tipo" => $this->session_tipo);
-					$data['session'] = $this->session;
-					$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-					if($data['estadisticas']['Contadores']){ $data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
-					$this->load->view("PanelControl/components/ContadoresCRUD",$data);	
+				if(  $this->input->post("claveNueva") === $this->input->post("claveNuevaRep") )
+				{	
+					if( $this->Paneles_Model->CambiarContrasena( $datos)){
+						$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "pswHecho"));
+					}else{
+						$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
+					}
+					
+				}else{
+					$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
 				}
+			}else{
+				$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
+				
 			}
-			
-		}
-
-		public function AgregarCliente()
-		{
-			$post = $this->input->post();
-			
-			if(!empty($post) 
-				&& isset($post['nombre']) && !empty($post['nombre'])
-				&& isset($post['apellido'])&& !empty($post['apellido'])
-				&& isset($post['email'])&& !empty($post['email'])
-				&& isset($post['telefono']) && !empty($post['telefono'])
-				&& isset($post['clave']) && !empty($post['clave'])
-			){
-				$us = 	array(
-					"nombre" => $post['nombre'],
-					"apellido" => $post['apellido'],
-					"email" => $post['email'],
-					"telefono" => $post['telefono'],
-					"clave" => $post['clave']
-				);
-				$hecho = $this->Paneles_Model->RegistrarCliente($us);
-				if($hecho){
-					$data['usuario'] = $this->Usuario;
-					$data['usuario'] += array("tipo" => $this->session_tipo);
-					$data['session'] = $this->session;
-					$data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
-					if($data['estadisticas']['Clientes']){ $data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
-					$this->load->view("PanelControl/components/CrudClientes",$data);	
-				}
-			}
-			
 		}
 
 		public function ActualizarPerfil()
@@ -234,139 +210,75 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					"telefono" => $post['telefono']
 				);
 				$hecho = $this->Paneles_Model->actualizarDatosUsuario($us,$this->session_id);
-				if($hecho){
-					$this->Usuario=$this->Paneles_Model->getInfoUsuarioPorId($this->session_id);
-					$data['usuario'] = $this->Usuario;
-					$data['usuario'] += array("tipo" => $this->session_tipo);
-					$data['session'] = $this->session;
-					$this->load->view("PanelControl/components/perfilVista",$data);	
+				if($hecho)
+				{	
+					$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
+					$this->data['usuario'] = $this->Usuario;
+					$this->load->view("PanelControl/components/perfilVista",$this->data);	
 				}else{
-				
+					
 				}
 			}else{
 			$this->getActualizacionPerfil();	
 			}	
 		}
-		public function EliminarUsuarioById()
-		{
-			$post = $this->input->post();
-			if(!empty($post) && isset($post['id']) && !empty($post['id'])){
 
-				$idUsuuarii = $post['id'];
-				$roll = $this->Paneles_Model->getRollById($idUsuuarii);
-				$hecho = $this->Paneles_Model->EliminarUsuarioById($post['id']);
-				if($hecho){
-					$data['usuario'] = $this->Usuario;
-					$data['usuario'] += array("tipo" => $this->session_tipo);
-					$data['session'] = $this->session;
-					if($roll=="1" )
-					{
-						$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-						if($data['estadisticas']['Contadores']){ $data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
-						$this->load->view("PanelControl/components/ContadoresCRUD",$data);	
-					}
-					if($roll=="2" ){
-						$data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
-						if($data['estadisticas']['Clientes']){ $data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
-						$this->load->view("PanelControl/components/CrudClientes",$data);	
-					}
-				}	
-			}
-		}
-		public function ActualizarUsuarioById()
-		{
-			$post = $this->input->post();
-			if(!empty($post) 
-				&& isset($post['id']) && !empty($post['id'])
-				&& isset($post['nombre']) && !empty($post['nombre'])
-				&& isset($post['apellido'])&& !empty($post['apellido'])
-				&& isset($post['email'])&& !empty($post['email'])
-				&& isset($post['telefono']) && !empty($post['telefono'])
-			){
-				$us = 	array(
-					"nombre" => $post['nombre'],
-					"apellido" => $post['apellido'],
-					"email" => $post['email'],
-					"telefono" => $post['telefono']
-				);
-				$idUsuuarii = $post['id'];
-				$roll = $this->Paneles_Model->getRollById($idUsuuarii);
-				$hecho = $this->Paneles_Model->actualizarUsuarioById($us,$post['id']);
-				if($hecho)
-				{
-					$data['usuario'] = $this->Usuario;
-					$data['usuario'] += array("tipo" => $this->session_tipo);
-					$data['session'] = $this->session;
-					if($roll=="1" )
-					{
-						$data['estadisticas'] = $this->Paneles_Model->getContadoresEmp();
-						if($data['estadisticas']['Contadores']){ $data['Empleados'] = $this->Paneles_Model->getContadoresEmpleados(); }
-						$this->load->view("PanelControl/components/ContadoresCRUD",$data);	
-					}
-					if($roll=="2" ){
-						$data['estadisticas'] = $this->Paneles_Model->getContadoresClientes();
-						if($data['estadisticas']['Clientes']){ $data['Clientes'] = $this->Paneles_Model->getInfoClientes(); }
-						$this->load->view("PanelControl/components/CrudClientes",$data);	
-					}
-				}
-			}
-		}
+
 
 		public function getPanelCategorias()
 		{
-			$data['categorias']=$this->Paneles_Model->getCategorias();
-			$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
-			$data["titulo"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat']: "" ;
-			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view('PanelControl/components/categorias',$data);	
+			$this->data['categorias']=$this->Paneles_Model->getCategorias();
+			$this->data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$this->data["titulo"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat']: "" ;
+			$this->data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+			
+			
+			$this->load->view('PanelControl/components/categorias',$this->data);	
 		}
 
 		public function getPanelSeccyPre()
 		{
-			$data["categoria"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
-			$data['secciones']=$this->Paneles_Model->getSpecificSecciones(strtoupper($data['categoria']));
-			$data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($data['categoria']));
-			$data['detalles']=$this->Paneles_Model->getDetallesporCat($data['categoria']);
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view('PanelControl/components/secciones',$data);	
+			$this->data["categoria"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$this->data['secciones']=$this->Paneles_Model->getSpecificSecciones(strtoupper($this->data['categoria']));
+			$this->data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($this->data['categoria']));
+			$this->data['detalles']=$this->Paneles_Model->getDetallesporCat($this->data['categoria']);
+			
+			
+			$this->load->view('PanelControl/components/secciones',$this->data);	
 		}
 
 		public function getPanelPreguntas($post)
 		{
-			$data["categoria"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
-			$data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
-			$data['div']=$post['div'];
-			$data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($data['categoria']));
-			$data['detalles']=$this->Paneles_Model->getDetallesporCat($data['categoria']);
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view('PanelControl/components/preguntas',$data);
+			$this->data["categoria"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$this->data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
+			$this->data['div']=$post['div'];
+			$this->data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($this->data['categoria']));
+			$this->data['detalles']=$this->Paneles_Model->getDetallesporCat($this->data['categoria']);
+			
+			
+			$this->load->view('PanelControl/components/preguntas',$this->data);
+		}
+		public function perfilVista()
+		{
+			$this->load->view("PanelControl/components/perfilVista",$this->data);	
 		}
 
 		public function configCancelar()
 		{
-			$data['config']="cancelar";
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="cancelar";
+			
+			
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function configAddCategoria()
 		{
-			$data['config']="addcategoria";
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
-			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="addcategoria";
+			
+			
+			$this->data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+			$this->data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function addCategoria()
@@ -388,13 +300,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function configUpCategoria()
 		{
-			$data['config']="upcategoria";
-			$data['categoria']=$_GET['cat'];
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="upcategoria";
+			$this->data['categoria']=$_GET['cat'];
+			
+			
+			$this->data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function updateCategoria()
@@ -417,13 +328,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function configDelCategoria()
 		{
-			$data['config']="deletecategoria";
-			$data['categoria']=$_GET['cat'];
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="deletecategoria";
+			$this->data['categoria']=$_GET['cat'];
+			
+			
+			$this->data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function deleteCategoria()
@@ -442,12 +352,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function configAddSeccion()
 		{
-			$data['config']="addseccion";
-			$data['categoria']=$_GET['cat'];
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="addseccion";
+			$this->data['categoria']=$_GET['cat'];
+			
+			
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function addSeccion()
@@ -471,13 +380,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function configUpSeccion()
 		{
-			$data['config']="upseccion";
-			$data['categoria']=$_GET['cat'];
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="upseccion";
+			$this->data['categoria']=$_GET['cat'];
+			
+			
+			$this->data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function updateSeccion()
@@ -499,13 +407,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function configDelSeccion()
 		{
-			$data['config']="deleteseccion";
-			$data['categoria']=$_GET['cat'];
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="deleteseccion";
+			$this->data['categoria']=$_GET['cat'];
+			
+			
+			$this->data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function deleteSeccion()
@@ -563,34 +470,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function configUpPregunta()
 		{
-			$data['config']="uppregunta";
-			$data['categoria']=$_GET['cat'];
-			$data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
-			$data['id']=$_GET['idpre'];
-			$data['pregunta']=$this->Paneles_Model->getSpecificPregunta($data['id']);
-			$num=$this->Paneles_Model->validacionDetalles($data['id']);
+			$this->data['config']="uppregunta";
+			$this->data['categoria']=$_GET['cat'];
+			$this->data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
+			$this->data['id']=$_GET['idpre'];
+			$this->data['pregunta']=$this->Paneles_Model->getSpecificPregunta($this->data['id']);
+			$num=$this->Paneles_Model->validacionDetalles($this->data['id']);
 			if($num==0)
 			{
 				$detalle = array(
-				"id_pregunta" => $data['id'],
+				"id_pregunta" => $this->data['id'],
 				"tipo"=>"default",
 				"obligatorio"=>"0",
 				"soliarchivo"=>"0",
 				"preguntaOpcional"=>"pregunta opcional",
 				"tipoPreOpcional"=>"default",
-				"categoria"=>strtoupper($data['categoria'])
+				"categoria"=>strtoupper($this->data['categoria'])
 
 			);
 			$this->Paneles_Model->registrarDetalles($detalle);
 			}
-			$data['detalles']=$this->Paneles_Model->getDetallesPregunta($data['id']);
-			$data['categorias']=$this->Paneles_Model->getCategorias();
-			$data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
-			$data['catalogo']=$this->Paneles_Model->getCatalogo();
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['detalles']=$this->Paneles_Model->getDetallesPregunta($this->data['id']);
+			$this->data['categorias']=$this->Paneles_Model->getCategorias();
+			$this->data['secciones']=$this->Paneles_Model->getSpecificSecciones($_GET['cat']);
+			$this->data['catalogo']=$this->Paneles_Model->getCatalogo();
+			
+			
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		/**
@@ -601,14 +507,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 			$idCliente = $this->input->get('cliente');
 			$Cliente = (isset($idCliente))? $idCliente : false ; 
-			if($Cliente){
-				$data["empresas"] = $this->Paneles_Model->EmpresasByCliente($Cliente);
+			if($Cliente)
+			{
+				$this->data["empresas"] = $this->Paneles_Model->EmpresasByCliente($Cliente);
 			}
+			
+			$this->data['session'] = $this->session."&cliente=".$idCliente;
+			$this->load->view("PanelControl/components/CrudEmpresas",$this->data);
+		}
 
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/CrudEmpresas",$data);
+		
+		public function FormularioClienteEmpresa()
+		{
+			$this->data['id_cliente'] = $this->input->get('cliente');
+			if($this->data['id_cliente'])
+			{
+				$this->data["empresas"] = $this->Paneles_Model->EmpresasByCliente($this->data['id_cliente']);
+			}
+			
+			
+			$this->load->view("PanelControl/components/FormularioEmpresa",$this->data);
+
 		}
 		
 		public function updatePregunta()
@@ -647,14 +566,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		public function configDelPregunta()
 		{
-			$data['config']="deletepregunta";
-			$data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
-			$data['categoria']=$_GET['cat'];
-			$data['id']=$_GET['idpre'];
-			$data['usuario'] = $this->Usuario;
-			$data['usuario'] += array("tipo" => $this->session_tipo);
-			$data['session'] = $this->session;
-			$this->load->view("PanelControl/components/cateSeccyPre",$data);	
+			$this->data['config']="deletepregunta";
+			$this->data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
+			$this->data['categoria']=$_GET['cat'];
+			$this->data['id']=$_GET['idpre'];
+			$this->load->view("PanelControl/components/cateSeccyPre",$this->data);	
 		}
 
 		public function deletePregunta()

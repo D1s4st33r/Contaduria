@@ -59,9 +59,14 @@
           <input type="password" class="form-control" name="claveActual" id="claveActual" placeholder="<?php echo "********************"; ?>">
         </div>
       </div>
+      <style>
+        .inputError{border:1px solid red;}
+        .inputSuccess{border:1px solid #45d14b;}
+      </style>
+      
       <div class=" col-sm col-md-6 col-lg-3 ">
         <div class="form-group">
-          <label for="claveNueva"><b> Clave Actual</b></label>
+          <label for="claveNueva"><b> Nueva Actual</b></label>
           <input type="password" class="form-control"  name="claveNueva" id="claveNueva" placeholder="<?php echo "********************"; ?>">
         </div>
       </div>
@@ -72,10 +77,13 @@
           <input type="password" class="form-control" name="claveRepetida" id="claveRepetida" placeholder="<?php echo "********************"; ?>">    
         </div>
       </div>
-
-      <div class=" col-12 ">
+      <div class="col-12" >
+        <p  class="p-0 m-0 text-left" id="msgPsw">
+        </p>
+      </div>
+      <div class=" col-12 " id="restContra">
         <div class="form-group">
-          <button  type="button" class="btn btn-primary" onclick="return hacerCambio('perfil','<?php echo base_url("Panel_admin/ActualizarPerfil") . $session;?>')"> <i class="fas fa-thumbs-up fa-md"></i>Actualizar Contraseña</button> 
+          <button  type="button" class="btn btn-primary" onclick="return ChangePssw('<?php echo base_url("RestPassAdmin").$session;?>','<?php echo base_url("soloVista").$session;?>')"> <i class="fas fa-thumbs-up fa-md"></i>Actualizar Contraseña</button> 
         </div>
       </div>
 

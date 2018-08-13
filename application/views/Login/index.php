@@ -38,7 +38,7 @@
 						<div class="alert alert-warning alert-dismissible fade show" role="alert">
 							<strong>Error en la sesion</strong> <br />
 							Porfavor inicie session nuevamente.<br />
-							nota: evite modificar o manipular la URL ,eso le causara problemas
+							nota: Hubo un error en su sesi&oacute;n <br/> Regrese o inicie una nueva sesi&oacute;n
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -69,9 +69,10 @@
 	
 					<input type="submit" value="Entrar" class="btn btn-primary" >
 					
-					<p class="form__link">¿Aun no tienes una cuenta? <a href="">Has click aqui</a></p>
 				</form>
 			</div>
 		</div>	
 	</div>
 </div>
+<style>
+</style>

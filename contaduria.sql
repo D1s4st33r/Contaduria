@@ -258,7 +258,7 @@ INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarc
 --
 -- Estructura de tabla para la tabla `empresa`
 --
-
+DROP TABLE IF EXISTS `empresa`;
 CREATE TABLE `empresa` (
   `rfc` varchar(60) NOT NULL,
   `razonSocial` varchar(150) NOT NULL,

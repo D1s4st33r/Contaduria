@@ -24,6 +24,22 @@ class Paneles_Model extends CI_Model
         return $hecho;
         
     }
+    
+    public function CambiarContrasena( $var)
+    {
+         $claveAdmin =$this->db->select('clave')
+                 ->from("usuario")
+                 ->where("id",$var['id'])->get()->result_array()[0]['clave'];
+        
+        if(!empty($claveAdmin) && $claveAdmin == $var['actual'])
+        {
+            $this->db->where('id', $var['id']);
+            $this->db->update('usuario', array('clave'=>$var['nueva']));
+            return $this->db->affected_rows();
+            
+        }
+            
+    }
 
     public function getContadoresUsuarios()
     {
@@ -55,33 +71,11 @@ class Paneles_Model extends CI_Model
         return $usuarios;
     }
 
-    public function getContadoresEmp()
-    {
-        $sumaEmContadores = $this->db->select('COUNT(id)')
-            ->from("usuario")
-            ->where("roll",1)
-            ->get()
-            ->result_array()[0]["COUNT(id)"];
-        $usuarios= array(
-            "Contadores" => $sumaEmContadores
-        );
-        return $usuarios;
-    }
-    public function getContadoresEmpleados()
-    {
+    
 
-        $Empleados = $this->db->select('id,nombre,apellido,email,telefono')
-            ->from("usuario")
-            ->where("roll",1)
-            ->get()
-            ->result_array();
-        
-        $usuarios= array(
-            "Contadores" => $Empleados
-        );
-        return $usuarios;
-    }
-    public function actualizarUsuarioById($usuario,$id)
+    
+    
+    public function actualizarUsuarioById( $usuario , $id )
     {
         $registrado = $this->db->where('id', $id)->update("usuario",$usuario);
         return $registrado;
@@ -101,18 +95,8 @@ class Paneles_Model extends CI_Model
         $registrado = $this->db->where('id', $id)->delete('usuario');
         return $registrado;
     }
-    public function RegistrarContador($datos)
-    {
-        $datos['roll'] = 1;
-        $registrado = $this->db->insert('usuario', $datos);
-        return $registrado;   
-    }
-    public function RegistrarCliente($datos)
-    {
-        $datos['roll'] = 2;
-        $registrado = $this->db->insert('usuario', $datos);
-        return $registrado;   
-    }
+   
+   
     
     //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
     public function getCategorias()
@@ -331,71 +315,27 @@ class Paneles_Model extends CI_Model
     }
 
 
-    public function getContadoresClientes()
+    
+   
+
+
+
+    
+    public function EliminarContadorPorId($id)
     {
-        $Clientes = $this->db->select('COUNT(id)')
-            ->from("usuario")
-            ->where("roll",2)
-            ->get()
-            ->result_array()[0]["COUNT(id)"];
-        $usuarios= array(
-            "Clientes" => $Clientes
+        $usuario = array(
+            "ContadorAsignado" => NULL
         );
-        return $usuarios;
+        $this->db->where('id', $id);
+        $this->db->update('usuario', $usuario);
     }
 
-    public function getInfoClientes()
-    {
-
-        $Clientes = $this->db->select('id,nombre,apellido,email,telefono')
-            ->from("usuario")
-            ->where("roll",2)
-            ->get()
-            ->result_array();
-        foreach ($Clientes as $key => $value) {
-            $Clientes[$key]["EmpresasRegistradas"]= $this->getContadorEmpresaById($value['id']);
-        }
-        $usuarios= array(
-            "Clientes" => $Clientes
-        );
-        return $usuarios;
-    }
-
-    public function getContadorEmpresaById($id)
-    {
-        $empresas =array();
-        $datosContador = array();
-        $empresa = $this->db->select('COUNT(rfc)')
-        ->from("empresa")
-        ->where("id_usuario",$id)
-        ->get()
-        ->result_array()[0]["COUNT(rfc)"];
-       
-        $contador = $this->db->select('contadorAsignado')
-        ->from("empresa")
-        ->where("id_usuario",$id)
-        ->get()
-        ->result_array()[0]["contadorAsignado"];
-        
-        if($empresa != "0"){
-            $empresas["numEmpresas"] =$empresa;
-            if($contador!="0")
-            {
-                $datosContador = $this->db->select('nombre,apellido')->from("usuario")->where("id",$contador)->get()->result_array()[0];
-                var_dump($datosContador);
-            }else{
-                $empresas["Contador"] = "0";
-            }
-        }else{
-            $empresas["numEmpresas"] =0;
-        }
-         
-        return $empresas;
-    }
 
     public function EmpresasByCliente($id)
     {
         $empresas = $this->db->select('rfc,razonSocial,domicilio,correo,telefono')->from("empresa")->where("id_usuario",$id)->get()->result_array();
         return $empresas;
     }
+
+   
 }

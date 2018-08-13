@@ -47,18 +47,22 @@
               <div class="col-sm-12 col-lg-1">
                 <div class="container">
                   <div class="row">
-                    <div class="col-sm-6 col-lg-12 p-1">
-                    <a class="btn btn-warning btn-md  btn-block text-white" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='far fa-folder'></i>  </a>                     
-                    </div>
+
+
                     <?php foreach ($formularios as $cen => $val) {$idform; if($val['empresarfc']==$value['rfc']){$idform=$val['id'];}}?>
                     <div class="col-sm-6 col-lg-12 p-1">
                     <a class="btn btn-success btn-md  btn-block text-white" title="Realizar Formulario" href="<?php echo base_url("Formulario/FormularioCliente");echo $session.'&form='.$idform;?>"> <i class='fab fa-wpforms'></i></a>
                     </div>
+                    <div class="col-sm-6 col-lg-12 p-1">
+                    <a class="btn btn-warning btn-md  btn-block text-white" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='far fa-folder'></i>  </a>                     
+                    </div>
                   </div>
+                  
                 </div>
               </div>
             </div>
             <?php endforeach;?>
+            
           </div>
         </div>
         <?php endif;?>

@@ -60,7 +60,7 @@ class Login extends CI_Controller {
 				if(((int)$usuario[0]['roll']) == 2 )
 				{
 					unset($usuario[0]['roll']);
-					redirect('Cliente'.$url,'refresh');
+					redirect('ControlEmpresas'.$url,'refresh');
 				}
 			
 			}else{
@@ -73,7 +73,8 @@ class Login extends CI_Controller {
 
 	public function PostEmpresa(){
 		
-		if($this->input->post()){
+		if($this->input->post())
+		{
 			$id_usuario = $this->input->post("id_usuario");
 			$RazonSocial = $this->input->post("razonSocial");
 			$RFC = $this->input->post("rfc");
@@ -84,72 +85,45 @@ class Login extends CI_Controller {
 			$TelRepre = $this->input->post("telrepresentante");
 
 			
-			
-			
-			
-
 			 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[12]|max_length[13]|is_unique[empresa.rfc]');
 			 $this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
-						  if($this->form_validation->run()===TRUE)
-						   {
-							$this->load->helper('path');  
+			if($this->form_validation->run()===TRUE)
+			{
+				$this->load->helper('path');  
 
-							$dir=set_realpath('./Boveda/'.$RFC."/");  
-							if(!is_dir($dir)){  
-							mkdir($dir,0777); 
-							}
-							
-							$config = [
-								"upload_path" =>'./Boveda/'.$RFC."/",
-								'allowed_types' =>"png|jpg|pdf|docs|xls"
-					
-							];
-					
-							
-							$this->load->library("upload",$config);
-							
-							
-							if($this->upload->do_upload('archivos')){
-							
-								$dato_archivo=array("upload_data" =>$this->upload->data());
-
-
-								$datos_em=array(
-
-
-
-									"id_usuario"=>$id_usuario,
-									"rfc"=>$RFC,
-									"razonSocial"=>$RazonSocial,
-									"domicilio"=>$Domicilio,
-									"correo"=>$Correo,
-									"telefono"=>$Telefono,
-									"representantelegal"=>$ReLegal,
-									"telrepresentante"=>$TelRepre,
-									"archivos" => $dato_archivo['upload_data']['file_name'],
-									
-						
-						
-								 );
-								 $formulario=array(
-									 "id_cliente"=>$id_usuario,
-									 "empresarfc"=>$RFC,
-									 "fecha_ini"=>date("d.m.Y"),
-									 "ponderacion"=>$this->Formularios_Model->getNumPreguntas()
-								 );
-								
-								$this->Formularios_Model->crearFormulario($formulario);
-								$this->Formularios_Model->dataempresa($datos_em);
-								echo "exito";
-								
-
-							}
-							
-								
-							}
-
-			}
+				$dir=set_realpath('./Boveda/'.$RFC."/");  
+				if(!is_dir($dir)){  
+					mkdir($dir,0777); 
+				}
 			
+				$config = [
+				"upload_path" =>'./Boveda/'.$RFC."/",
+				'allowed_types' =>"png|jpg|pdf|docs|xls"
+				];
+				$this->load->library("upload",$config);
+		
+				if($this->upload->do_upload('archivos'))
+				{
+					$dato_archivo=array("upload_data" =>$this->upload->data());
+					$datos_em=array(
+						"id_usuario" => $id_usuario,
+						"rfc" => $RFC,
+						"razonSocial" => $RazonSocial,
+						"domicilio" => $Domicilio,
+						"correo"=>$Correo,
+						"telefono"=>$Telefono,
+						"representantelegal"=>$ReLegal,
+						"telrepresentante"=>$TelRepre,
+						"archivos" => $dato_archivo['upload_data']['file_name'],
+						"contadorAsignado" => "0"
+					);
+					
+					$this->Formularios_Model->dataempresa($datos_em);
+					echo "exito";
+				}else{
+				}
+			}
+		}	
 	}
 
 	public function ValidarRegistro(){
@@ -165,9 +139,6 @@ class Login extends CI_Controller {
 				echo "valida";
 				$hecho = $this->Formularios_Model->EliminarClaveRegistro($Clave);
 
-			}else{
-
-				echo "xd";
 			}
 			
 	

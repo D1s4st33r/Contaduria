@@ -48,20 +48,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
+|       $route['de_donde_vienes'] = "controlador/metodo"; 
 */
 $route['default_controller'] = 'Login';
-/* $route['de_donde_vienes'] = "controlador/metodo"; */
-$route['PanelDeControl'] = 'Panel_admin/index';
-$route['ControlContadores'] = 'Panel_admin/Contadores';
+
 $route['ControlEmpresas'] = 'Panel_user/Empresas';
-$route['ActualizarPerfil'] = 'Panel_admin/getActualizacionPerfil';//ActualizarUsuarioById
+
 $route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
 $route['ActualizarUsuario'] = 'Panel_admin/ActualizarUsuarioById';
 $route['EliminarUsuario'] = 'Panel_admin/EliminarUsuarioById';
 $route['AgregarContador'] = 'Panel_admin/AgregarEmpleado';
 $route['AgregarEmpresa'] = 'Formulario/AgregarEmpresa';
 $route['ConfPreguntas'] = 'Panel_admin/configuracionPreguntas';
-$route['TituloPanel'] = 'Panel_admin/getTituloPanel';
+
 $route['ClientesAdmin'] = 'Panel_admin/Clientes';
 $route['Login'] ="Login/index";
 $route['configAddCategoria']="Panel_admin/configAddCategoria";
@@ -77,31 +76,45 @@ $route['configDeleteSeccion']="Panel_admin/configDelSeccion";
 $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
 $route['ValidarRegistro'] = 'Panel_user/ValidarRegistro';
 $route['Login']                 = "Login/index";
+
+$route['FormularioClienteEmpresa'] = 'Panel_admin/FormularioClienteEmpresa';
+
 /**
  * Panel Prinicipal Admin
  */
-$route['PanelDeControl']        = 'Panel_admin/index';
-$route['TituloPanel']           = 'Panel_admin/getTituloPanel';
-
+$route['PanelDeControl']    = 'Panel_admin/index';
+$route['ActualizarPerfil']  = 'Panel_admin/getActualizacionContadoresClientesAdmin';
+$route['TituloPanel']       = 'Panel_admin/getTituloPanel';
+$route['RestPassAdmin']     = "Panel_admin/RestablecerContrasenaAdmin";
+$route['soloVista']         = 'Panel_admin/perfilVista'; //para usuarios y contadores 
 /**
  * Panel Contadores Admin
  */
-$route['ControlContadores']     = 'Panel_admin/Contadores';
-$route['AgregarContador']       = 'Panel_admin/AgregarEmpleado';
+$route['ControlContadores']         = 'Panel_Admin_Contador/Contadores';
+$route['AgregarContador']           = 'Panel_Admin_Contador/AgregarContador';
+$route['FormularioContador']        = 'Panel_Admin_Contador/FormularioEmpContador';
+$route['ActualizarContador']        = 'Panel_Admin_Contador/ActualizarContador';
+$route['EliminarContador']          = 'Panel_Admin_Contador/EliminarContador';
+$route['BuscadorParaContadores']    = 'Panel_Admin_Contador/BuscadorParaContadores';
+$route['VerListaClientesAsignados'] = 'Panel_Admin_Contador/VerListaClientesAsignados';
+$route['VerLinksContador']          = 'Panel_Admin_Contador/VerLinksContador';
 
 /**
  * Panel Cliente Admin
  */
-$route['ClienteControl'] = 'Panel_admin/Clientes';
-$route['AgregarCliente'] = 'Panel_admin/AgregarCliente';
-$route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
+$route['ClienteControl'] = 'Panel_Admin_Cliente/Clientes';
+$route['FormularioCliente'] = 'Panel_Admin_Cliente/FormularioClientes';
+$route['AgregarCliente'] = 'Panel_Admin_Cliente/AgregarCliente';
+$route['ActualizarCliente'] = 'Panel_Admin_Cliente/ActualizarCliente';
+$route['EliminarCliente'] ='Panel_Admin_Cliente/EliminarCliente';
+$route['AsignarContadorFormulario'] = 'Panel_Admin_Cliente/AsignarContadorFormulario';
+$route['BuscadorContador'] = "Panel_Admin_Cliente/BuscadorContador";
+$route['AsignarContadorACliente'] = "Panel_Admin_Cliente/AsignarContadorACliente";
+
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 
-$route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
-$route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
-$route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
-$route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
-$route['ConfPreguntas']         = 'Panel_admin/configuracionPreguntas';
+$route['ListaContadorCliente'] =  "Panel_admin/ListaContadorCliente";
+$route['EliminarContadorCliente'] =  "Panel_admin/EliminarContadorCliente";
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";
 $route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
