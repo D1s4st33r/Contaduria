@@ -47,7 +47,8 @@ class Panel_Admin_Cliente_Model extends CI_Model
             ->where("id_usuario",$id)
             ->get()
             ->result_array()[0]["COUNT(rfc)"];
-        if($empresa){
+        if($empresa)
+        {
             $contadores = (int)$this->db->select('COUNT(id)')
             ->from("contadores_asignacion_cliente")
             ->where("idCliente",$id)
@@ -108,6 +109,58 @@ class Panel_Admin_Cliente_Model extends CI_Model
         return $empresa;
             
     }
+
+    public function GetContadoreLike($search)
+    {
+        $this->db->select('id,nombre,apellido');
+        $this->db->from('usuario');
+        $this->db->where('roll', "1");
+        $this->db->like("nombre", $search);
+        $resultado = $this->db->get()->result_array();
+        if (!empty($resultado)){
+
+            return $resultado;
+        }
+        return array();
+    }
+    
+    public function setContadorCliente($ids)
+    {
+        if(!empty($ids) && isset($ids['IdCliente']) && isset($ids['IdContador']))
+        {
+            $cre =  array( "idContador" => $ids['IdContador'] , "idCliente" => $ids['IdCliente']);
+            $this->db->insert('contadores_asignacion_cliente', $cre);           
+        }
+    }
+
+    public function getContadoresClienteByIdCliente($id)
+    {
+        $this->db->select('idContador');
+        $this->db->where('idCliente', $id);
+        $this->db->from('contadores_asignacion_cliente');
+        $contadorID =$this->db->get()->result_array();
+        var_dump($contadorID);
+        // if(!empty($contadorID))
+        // {
+        //     $contadorID = $contadorID[0]['ContadorAsignado'];
+        //     $this->db->select('id,nombre,apellido,telefono,email');
+        //     $this->db->where('id', $contadorID);
+        //     $this->db->from('usuario');
+        //     $contador =$this->db->get()->result_array();
+        //     if(!empty($contador))
+        //     {
+        //         $contador =  $contador[0];
+        //         return $contador;
+        //     }else{
+        //         return NULL;
+        //     }
+        // }else{
+        //     return NULL;
+        // }
+        
+    }
+
+
 }
 
 /* End of file ModelName.php */

@@ -126,47 +126,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		}
 
-		public function AsignarContadorFormulario()
-		{
-			$idCliente = $this->input->get("idCliente");
-			$this->data['idCliente'] = $idCliente;
-			$this->load->view("PanelControl/components/asignarContador",$this->data);	
-		}
-		public function BuscadorContador()
-		{
-			if($this->input->post() && !empty( $this->input->post("search")))
-			{
-				$search = $this->input->post("search");
-				if(!empty($search))
-				{
-					$Contadores = $this->Paneles_Model->GetContadoreLike($search);
-					if(!empty($Contadores)){echo json_encode(array("Contadores"=>$Contadores));}
-					else{echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));}
-					
-				}else{
-					echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
-				}
-			}else{
-				echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
-			}
-		}
 		
-		public function AsignarContadorACliente()
-		{
-			
-			$Ids = $this->input->post();
-			if(
-				!empty($Ids) && $Ids['IdContador'] != '0'
-			)
-			{	
-				$this->Paneles_Model->setContadorCliente($Ids);
-				$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($Ids['IdCliente']);
-				$this->data['cliente']= $Ids['IdCliente'];
-				$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
-			
-				
-			}
-		}
+		
+		
 
 		public function ListaContadorCliente()
 		{

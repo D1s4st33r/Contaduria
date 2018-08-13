@@ -110,9 +110,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 					$this->load->view("PanelControl/components/clientesAdmin/CrudClientes",$this->data);
 					
 				}
-            }
-            
-            
+            }   
         }
         
     public function EliminarCliente()
@@ -132,8 +130,47 @@ class Panel_Admin_Cliente extends MY_Controller {
             }	
         }
     }
+	public function AsignarContadorFormulario()
+	{
+		$idCliente = $this->input->get("idCliente");
+		$this->data['idCliente'] = $idCliente;
+		$this->load->view("PanelControl/components/clientesAdmin/asignarContador",$this->data);	
+	}
 
-
+	public function BuscadorContador()
+	{
+		if($this->input->post() && !empty( $this->input->post("search")))
+		{
+			$search = $this->input->post("search");
+			if(!empty($search))
+			{
+				$Contadores = $this->Panel_Admin_Cliente_Model->GetContadoreLike($search);
+				if(!empty($Contadores)){echo json_encode(array("Contadores"=>$Contadores));}
+				else{echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));}
+				
+			}else{
+				echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+			}
+		}else{
+			echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+		}
+	}
+	public function AsignarContadorACliente()
+	{
+		$Ids = $this->input->post();
+		if(
+			!empty($Ids) && $Ids['IdContador'] != '0'
+		)
+		{	
+			$this->Panel_Admin_Cliente_Model->setContadorCliente($Ids);
+			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($Ids['IdCliente']);
+			// $this->data['cliente']= $Ids['IdCliente'];
+			// $this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
+		
+			
+		}
+	}
+		
 }
 
 /* End of file Panel_Admin_Cliente.php */

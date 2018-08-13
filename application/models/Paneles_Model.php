@@ -322,46 +322,9 @@ class Paneles_Model extends CI_Model
     
    
 
-    public function setContadorCliente($ids)
-    {
-        if(!empty($ids) && isset($ids['IdCliente']) && isset($ids['IdContador']))
-        {
-            $cre =  array( "ContadorAsignado" => $ids['IdContador'] );
-            $this->db->where('id', $ids['IdCliente']);
-            $this->db->update("usuario", $cre);
-            
-        }else{
 
-        }
-    }
 
-    public function getContadorClienteByIdCliente($id)
-    {
-        $this->db->select('ContadorAsignado');
-        $this->db->where('id', $id);
-        $this->db->from('usuario');
-        $contadorID =$this->db->get()->result_array();
-        if(!empty($contadorID))
-        {
-            $contadorID = $contadorID[0]['ContadorAsignado'];
-            $this->db->select('id,nombre,apellido,telefono,email');
-            $this->db->where('id', $contadorID);
-            $this->db->from('usuario');
-            $contador =$this->db->get()->result_array();
-            if(!empty($contador))
-            {
-                $contador =  $contador[0];
-                return $contador;
-            }else{
-                return NULL;
-            }
-        }else{
-            return NULL;
-        }
-        // var_dump($contadorID);
-        
-    }
-
+    
     public function EliminarContadorPorId($id)
     {
         $usuario = array(
@@ -378,17 +341,5 @@ class Paneles_Model extends CI_Model
         return $empresas;
     }
 
-    public function GetContadoreLike($search)
-    {
-        $this->db->select('id,nombre,apellido');
-        $this->db->from('usuario');
-        $this->db->where('roll', "1");
-        $this->db->like("nombre", $search);
-        $resultado = $this->db->get()->result_array();
-        if (!empty($resultado)){
-
-            return $resultado;
-        }
-        return array();
-    }
+   
 }

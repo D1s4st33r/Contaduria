@@ -77,7 +77,7 @@
                           <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>">
                               <span>
                                 <?php
-                                $this->load->view('PanelControl/components/clienteContador/clienteContadorAsignadoView',$value);
+                                $this->load->view('PanelControl/components/clientesAdmin/clienteContadorAsignadoView',$value);
                                 
                                 ?>
                                  </span>

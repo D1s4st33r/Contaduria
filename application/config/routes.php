@@ -107,13 +107,14 @@ $route['FormularioCliente'] = 'Panel_Admin_Cliente/FormularioClientes';
 $route['AgregarCliente'] = 'Panel_Admin_Cliente/AgregarCliente';
 $route['ActualizarCliente'] = 'Panel_Admin_Cliente/ActualizarCliente';
 $route['EliminarCliente'] ='Panel_Admin_Cliente/EliminarCliente';
+$route['AsignarContadorFormulario'] = 'Panel_Admin_Cliente/AsignarContadorFormulario';
+$route['BuscadorContador'] = "Panel_Admin_Cliente/BuscadorContador";
+$route['AsignarContadorACliente'] = "Panel_Admin_Cliente/AsignarContadorACliente";
+
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
-$route['AsignarContadorFormulario'] = 'Panel_admin/AsignarContadorFormulario';
-$route['BuscadorContador'] = "Panel_admin/BuscadorContador";
-$route['AsignarContadorACliente'] = "Panel_admin/AsignarContadorACliente";
+
 $route['ListaContadorCliente'] =  "Panel_admin/ListaContadorCliente";
 $route['EliminarContadorCliente'] =  "Panel_admin/EliminarContadorCliente";
-
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";
 $route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
