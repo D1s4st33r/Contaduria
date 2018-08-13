@@ -40,6 +40,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 		if( $this->data['estadisticas'] )
 		{ 
 			$this->data['clientes'] = $this->Panel_Admin_Cliente_Model->getInfoClientes(); //info_empresas
+			// var_dump($this->data['clientes']);
 		}
 		$this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$this->data);
