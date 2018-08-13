@@ -1,4 +1,3 @@
-      
         <?php if($estadisticas==0):?>
         <div class=" col-12 p-2 " >    
           <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">
@@ -73,7 +72,7 @@
                                 <span><?php echo $value['info_empresas']["numEmpresas"]; ?> </span>
                             </a>
                           </div>
-                          <?php //var_dump($value); ?>
+                          <?php var_dump($value); ?>
                           <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>">
                               <span>
                                 <?php

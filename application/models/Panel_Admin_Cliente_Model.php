@@ -47,13 +47,9 @@ class Panel_Admin_Cliente_Model extends CI_Model
             ->where("id_usuario",$id)
             ->get()
             ->result_array()[0]["COUNT(rfc)"];
+       
         if($empresa)
         {
-            $contadores = (int)$this->db->select('COUNT(id)')
-            ->from("contadores_asignacion_cliente")
-            ->where("idCliente",$id)
-            ->get()
-            ->result_array()[0]["COUNT(id)"];
             $rfcs = $this->db->select('rfc')
                 ->from("empresa")
                 ->where("id_usuario",$id)
@@ -61,17 +57,30 @@ class Panel_Admin_Cliente_Model extends CI_Model
                 ->result_array();
             foreach ($rfcs as $key => $value) 
             {
-                $contadores = $contadores + (int)$this->db->select('COUNT(id)')
+                $contadoresAxu =  (int)$this->db->select('COUNT(id)')
                 ->from("contadores_asignacion_empresa")
                 ->where("rfc",$value['rfc'])
                 ->get()
                 ->result_array()[0]["COUNT(id)"];
             }
         }
+        
+        $contadores = (int)$this->db->select('COUNT(id)')
+            ->from("contadores_asignacion_cliente")
+            ->where("idCliente",$id)
+            ->get()
+            ->result_array()[0]["COUNT(id)"];
+            
+        
         $empresas = array(
             "numEmpresas" => $empresa,
-            'numContadores' =>  (isset($contadores )) ? $contadores  : 0 
+            'numContadores' =>   $contadores 
         );
+        if(isset($contadoresAxu ))
+        {
+            $empresas['numContadores'] =+ $contadoresAxu;
+        }
+        
         return $empresas ;
         
     }

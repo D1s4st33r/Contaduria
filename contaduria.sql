@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
@@ -180,6 +180,38 @@ INSERT INTO `cat_secciones_preguntas` (`id`, `seccion`, `categoria`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contadores_asignacion_cliente`
+--
+
+CREATE TABLE `contadores_asignacion_cliente` (
+  `id` bigint(20) NOT NULL,
+  `idContador` bigint(20) NOT NULL,
+  `idCliente` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `contadores_asignacion_cliente`
+--
+
+INSERT INTO `contadores_asignacion_cliente` (`id`, `idContador`, `idCliente`) VALUES
+(3, 5, 23),
+(5, 5, 22);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contadores_asignacion_empresa`
+--
+
+CREATE TABLE `contadores_asignacion_empresa` (
+  `id` bigint(20) NOT NULL,
+  `idContador` bigint(20) NOT NULL,
+  `rfc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `contrato`
 --
 
@@ -258,13 +290,15 @@ INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarc
 --
 -- Estructura de tabla para la tabla `empresa`
 --
-DROP TABLE IF EXISTS `empresa`;
+
 CREATE TABLE `empresa` (
   `rfc` varchar(60) NOT NULL,
   `razonSocial` varchar(150) NOT NULL,
   `domicilio` varchar(120) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `telefono` int(10) NOT NULL,
+  `representantelegal` varchar(60) NOT NULL,
+  `telrepresentante` varchar(60) NOT NULL,
   `archivos` varchar(200) DEFAULT NULL,
   `id_usuario` int(4) NOT NULL,
   `contadorAsignado` int(1) NOT NULL,
@@ -907,7 +941,6 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 
 CREATE TABLE `resultados` (
   `id` int(4) NOT NULL,
-  `id_formulario` int(11) NOT NULL,
   `id_pregunta` int(4) NOT NULL,
   `respuesta` varchar(255) NOT NULL,
   `respuestaOpc` varchar(255) NOT NULL
@@ -970,8 +1003,9 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-(72, 1, '49810be261bff9c7cf9c84c9', '::1', '1533333191', 'Viernes 3rd de Agosto 2018 12:18:38 PM'),
-(73, 4, 'a7ccf8a365bc8a97e6d5b6c8', '::1', '1533333184', 'Viernes 3rd de Agosto 2018 03:53:04 PM');
+(72, 1, '1a414c973d95c015e4925f58', '::1', '1534207009', 'Lunes 13 de Agosto 2018 05:40:57 PM'),
+(73, 3, 'a948712d1711b24a11c30c93', '::1', '1532574466', 'Miércoles 25 de Julio 2018 09:07:46 PM'),
+(74, 22, '34a34a387971626ea037b8d4', '::1', '1534200600', 'Lunes 13 de Agosto 2018 04:50:00 PM');
 
 -- --------------------------------------------------------
 
@@ -984,7 +1018,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telefono` int(15) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
   `clave` varchar(30) NOT NULL,
   `roll` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -994,10 +1028,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
-(1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483646, '123456789', 0),
-(2, 'salvador', 'miron', 'masterchif57@gmail.com', 2147483647, '123456789', 1),
-(3, 'dante', 'auditore', 'strokescode@gmail.com', 2147483647, '123456789', 1),
-(4, 'salvador', 'miron', 'cliente@prueba.com', 1122334455, '123456789', 2);
+(1, 'Isaac', 'Montiel ', 'isaac.montiels@hotmail.com', '9985932138', '123456789', 0),
+(5, 'salvador', 'Miron Ramos', 'salva@gmail.com', '123123123', '1234567qwerty', 1),
+(13, 'contador', 'prueba3', 'prueba3@contador.com', '2344234234234', 'asdasdas', 1),
+(14, 'pedro', 'lopez perez', 'perez@contador.com', '98989898989', 'qwertyuio', 1),
+(15, 'juan', 'Ramirez Gnzales', 'Gnzales@contador.com', '1231231231123', '123123123123', 1),
+(16, 'Daniel', 'Hernadez herrera', 'heher@gmail.com', '567876578765', '678967896789', 1),
+(22, 'carlos', 'slim', 'slim@gmail.com', '9898989898', 'slim', 2),
+(23, 'salinas', 'pliego', 'pliego@pliego.com', '67767676767676', '1234567890', 2);
 
 --
 -- Índices para tablas volcadas
@@ -1025,6 +1063,18 @@ ALTER TABLE `cat_input_preguntas`
 -- Indices de la tabla `cat_secciones_preguntas`
 --
 ALTER TABLE `cat_secciones_preguntas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `contadores_asignacion_cliente`
+--
+ALTER TABLE `contadores_asignacion_cliente`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `contadores_asignacion_empresa`
+--
+ALTER TABLE `contadores_asignacion_empresa`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1108,6 +1158,16 @@ ALTER TABLE `cat_secciones_preguntas`
 --
 ALTER TABLE `formulario`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+-- AUTO_INCREMENT de la tabla `contadores_asignacion_cliente`
+--
+ALTER TABLE `contadores_asignacion_cliente`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `contadores_asignacion_empresa`
+--
+ALTER TABLE `contadores_asignacion_empresa`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
@@ -1125,13 +1185,13 @@ ALTER TABLE `resultados`
 -- AUTO_INCREMENT de la tabla `sessiones`
 --
 ALTER TABLE `sessiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
