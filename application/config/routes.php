@@ -52,8 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Login';
 
-
-$route['ControlContadores'] = 'Panel_admin/Contadores';
 $route['ControlEmpresas'] = 'Panel_user/Empresas';
 
 $route['FormularioContador'] = 'Panel_admin/FormularioEmpContador';
@@ -84,30 +82,31 @@ $route['FormularioClienteEmpresa'] = 'Panel_admin/FormularioClienteEmpresa';
 /**
  * Panel Prinicipal Admin
  */
-$route['PanelDeControl'] = 'Panel_admin/index';
-$route['TituloPanel']    = 'Panel_admin/getTituloPanel';
-$route['RestPassAdmin']  = "Panel_admin/RestablecerContrasenaAdmin";
-$route['soloVista']             = 'Panel_admin/perfilVista'; //para usuarios y contadores 
+$route['PanelDeControl']    = 'Panel_admin/index';
+$route['ActualizarPerfil']  = 'Panel_admin/getActualizacionContadoresClientesAdmin';
+$route['TituloPanel']       = 'Panel_admin/getTituloPanel';
+$route['RestPassAdmin']     = "Panel_admin/RestablecerContrasenaAdmin";
+$route['soloVista']         = 'Panel_admin/perfilVista'; //para usuarios y contadores 
 /**
  * Panel Contadores Admin
  */
-$route['ControlContadores']     = 'Panel_admin/Contadores';
-$route['AgregarContador']       = 'Panel_admin/AgregarEmpleado';
-$route['ActualizarPerfil']      = 'Panel_admin/getActualizacionPerfil';
-$route['FormularioContador']    = 'Panel_admin/FormularioEmpContador';
-$route['ActualizarUsuario']     = 'Panel_admin/ActualizarUsuarioById';
-$route['EliminarUsuario']       = 'Panel_admin/EliminarUsuarioById';
-
-$route['BuscadorParaContadores']       = 'Panel_admin/BuscadorParaContadores';
-$route['VerListaClientesAsignados']       = 'Panel_admin/VerListaClientesAsignados';
-$route['VerLinksContador']       = 'Panel_admin/VerLinksContador';
+$route['ControlContadores']         = 'Panel_Admin_Contador/Contadores';
+$route['AgregarContador']           = 'Panel_Admin_Contador/AgregarContador';
+$route['FormularioContador']        = 'Panel_Admin_Contador/FormularioEmpContador';
+$route['ActualizarContador']        = 'Panel_Admin_Contador/ActualizarContador';
+$route['EliminarContador']          = 'Panel_Admin_Contador/EliminarContador';
+$route['BuscadorParaContadores']    = 'Panel_Admin_Contador/BuscadorParaContadores';
+$route['VerListaClientesAsignados'] = 'Panel_Admin_Contador/VerListaClientesAsignados';
+$route['VerLinksContador']          = 'Panel_Admin_Contador/VerLinksContador';
 
 /**
  * Panel Cliente Admin
  */
-$route['ClienteControl'] = 'Panel_admin/Clientes';
-$route['AgregarCliente'] = 'Panel_admin/AgregarCliente';
-$route['FormularioCliente'] = 'Panel_admin/FormularioClientes';
+$route['ClienteControl'] = 'Panel_Admin_Cliente/Clientes';
+$route['FormularioCliente'] = 'Panel_Admin_Cliente/FormularioClientes';
+$route['AgregarCliente'] = 'Panel_Admin_Cliente/AgregarCliente';
+$route['ActualizarCliente'] = 'Panel_Admin_Cliente/ActualizarCliente';
+$route['EliminarCliente'] ='Panel_Admin_Cliente/EliminarCliente';
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 $route['AsignarContadorFormulario'] = 'Panel_admin/AsignarContadorFormulario';
 $route['BuscadorContador'] = "Panel_admin/BuscadorContador";

@@ -117,7 +117,7 @@ function ChangePssw(url,vista)
     }
 }
 
-function AgregarUsuario(url) {
+function agregarContador(url) {
     nombre_ = $("#nombre").val();
     apellido_ = $("#apellido").val();
     telefono_ = $("#telefono").val();
@@ -154,7 +154,6 @@ function AgregarCliente(url) {
         };
 
         hacerCambiosPostAsy(post, url, $("#clienteReg"));
-        hacerCambio("Controles", );
     }
 }
 
@@ -231,10 +230,9 @@ function updateCliente(iddiv, url) {
 function EliminarUsuario(iddiv, url) 
 {
     var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
+    console.log(result);
     if (result) 
     {
-    
-        
         var id_ = "";
         var div = $("#" + iddiv);
         var finds = div.find("input");

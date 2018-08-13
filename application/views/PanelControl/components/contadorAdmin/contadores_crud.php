@@ -54,10 +54,10 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-sm-6 col-sm-12 col-lg-12 p-1">
-                      <button type="button" class="btn btn-block btn-outline-primary " onclick=" return updateContador('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
+                      <button type="button" class="btn btn-block btn-outline-primary " onclick=" return updateContador('id<?php echo $key ; ?>','<?php echo base_url("ActualizarContador").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
                       </div>
                       <div class="col-sm-6  col-sm-12 col-lg-12 p-1">
-                      <button type="button" class="btn btn-outline-danger btn-block" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
+                      <button type="button" class="btn btn-outline-danger btn-block" onclick=" return EliminarUsuario('id<?php echo $key ; ?>','<?php echo base_url("EliminarContador").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
                       </div>
                     </div>
                   </div>

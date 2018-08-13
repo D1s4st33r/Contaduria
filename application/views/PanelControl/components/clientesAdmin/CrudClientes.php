@@ -1,7 +1,5 @@
-
-
       
-        <?php if( "0" == $estadisticas["Clientes"]):?>
+        <?php if($estadisticas==0):?>
         <div class=" col-12 p-2 " >    
           <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">
             No hay Registros 
@@ -10,8 +8,8 @@
         <?php else: ?>
         <div class="col-12 p-2 text-center">  
           <div class="container">
-            <?php foreach ($Clientes["Clientes"] as $key => $value) :?>
-            <div class="row p-1 my-1 align-items-center border rounded" id="id<?php echo $key ; ?>" >
+            <?php foreach ($clientes as $key => $value) :?>
+            <div class="row p-1 my-1 align-items-center contenedor rounded" id="id<?php echo $key ; ?>" >
               <div class="col-12 p-0">
                 <div class="container">
                   <div class="row">
@@ -55,10 +53,10 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-12  my-1 p-0">
-                            <button type="button" class="btn btn-outline-primary btn-block" onclick=" return updateCliente('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
+                            <button type="button" class="btn btn-outline-primary btn-block" onclick=" return updateCliente('id<?php echo $key ; ?>','<?php echo base_url("ActualizarCliente").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
                             </div>
                             <div class="col-12 my-1 p-0">
-                            <button type="button" class="btn btn-outline-danger btn-block" onclick=" return EliminarCliente('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
+                            <button type="button" class="btn btn-outline-danger btn-block" onclick=" return EliminarCliente('id<?php echo $key ; ?>','<?php echo base_url("EliminarCliente").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
                             </div>
                           </div>
                         </div>
@@ -72,7 +70,7 @@
                           <div class="col-sm-6 col-md-6 col-lg-6">
                             <a href="#empresasClie" onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session."&cliente=".$value['id'];?>')" >
                                 <i class='fas fa-industry fa-md'></i> Empresas #
-                                <span><?php echo $value['EmpresasRegistradas']["numEmpresas"]; ?> </span>
+                                <span><?php echo $value['info_empresas']["numEmpresas"]; ?> </span>
                             </a>
                           </div>
                           <?php //var_dump($value); ?>

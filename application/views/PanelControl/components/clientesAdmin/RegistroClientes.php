@@ -1,4 +1,14 @@
 
+<div class="col-12 "  >
+    <style>
+    #clienteReg{
+        max-height: 400px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    </style>    
+
+    
 <div class="container">
     <div class="row m-1 contenedorInter rounded  pt-2 pb-2">
         <div class=" col-sm col-md-6 col-lg-3 ">
@@ -35,12 +45,13 @@
         </div>
       
 
-      <div class=" col-12 ">
-        <div class="form-group">
-        <button  type="button" class="btn btn-outline-primary" onclick="return agregarContador('<?php echo base_url("AgregarContador").$session;?>'); " >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Contador</button> 
+
+        <div class=" col-12 ">
+            <div class="form-group">
+            <button  type="button" class="btn btn-outline-primary" onclick="return AgregarCliente('<?php echo base_url("AgregarCliente").$session;?>')" >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Cliente</button> 
+            </div>
+        </div>  
         </div>
-      </div>  
     </div>
 </div>
-      
         
