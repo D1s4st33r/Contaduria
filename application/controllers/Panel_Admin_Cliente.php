@@ -171,6 +171,16 @@ class Panel_Admin_Cliente extends MY_Controller {
 			
 		}
 	}
+
+	public function ListaContadorCliente()
+		{
+			$idCliente = $this->input->get("idCliente");
+			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($idCliente);
+			$this->data['cliente'] = $idCliente;
+			// var_dump($idCliente);
+			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);
+		}
+
 		
 }
 

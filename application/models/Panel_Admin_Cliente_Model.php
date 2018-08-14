@@ -148,24 +148,26 @@ class Panel_Admin_Cliente_Model extends CI_Model
         $this->db->where('idCliente', $id);
         $this->db->from('contadores_asignacion_cliente');
         $contadorID =$this->db->get()->result_array();
-        var_dump($contadorID);
-        // if(!empty($contadorID))
-        // {
-        //     $contadorID = $contadorID[0]['ContadorAsignado'];
-        //     $this->db->select('id,nombre,apellido,telefono,email');
-        //     $this->db->where('id', $contadorID);
-        //     $this->db->from('usuario');
-        //     $contador =$this->db->get()->result_array();
-        //     if(!empty($contador))
-        //     {
-        //         $contador =  $contador[0];
-        //         return $contador;
-        //     }else{
-        //         return NULL;
-        //     }
-        // }else{
-        //     return NULL;
-        // }
+        
+        if(!empty($contadorID))
+        {
+            foreach ($contadorID as $key => $value) 
+            {
+                $this->db->select('id,nombre,apellido,telefono,email');
+                $this->db->where('id', $value['idContador']);
+                $this->db->from('usuario');
+                $contador =$this->db->get()->result_array();
+            }
+            if(isset($contador) && !empty($contador))
+            {
+                $contador =  $contador[0];
+                return $contador;
+            }else{
+                return NULL;
+            }
+        }else{
+            return NULL;
+        }
         
     }
 

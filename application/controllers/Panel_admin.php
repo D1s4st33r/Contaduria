@@ -130,15 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		
 
-		public function ListaContadorCliente()
-		{
-			$idCliente = $this->input->get("idCliente");
-			$this->data['contador'] = $this->Paneles_Model->getContadorClienteByIdCliente($idCliente);
-			$this->data['cliente'] = $idCliente;
-			// var_dump($idCliente);
-			$this->load->view('PanelControl/components/ListaContadoresCliente',$this->data);
-		}
-
+		
 		public function EliminarContadorCliente()
 		{
 			$idCliente = $this->input->get("idCliente");
