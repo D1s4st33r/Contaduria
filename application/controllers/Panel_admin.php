@@ -131,20 +131,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 
 		
-		public function EliminarContadorCliente()
-		{
-			$idCliente = $this->input->get("idCliente");
-			if(isset($idCliente) && !empty($idCliente) )
-			{
-				$this->Paneles_Model->EliminarContadorPorId($idCliente);	
-				$this->data['estadisticas'] = $this->Paneles_Model->getCuentaClientesEnSistema();
-				if($this->data['estadisticas']['clientes']){ $this->data['clientes'] = $this->Paneles_Model->getInfoClientes(); }
-				$this->data['id']= $idCliente; 
-				$this->load->view('PanelControl/components/clienteContador/clienteContadorAsignadoView',$this->data);
-				
-			}
-		}
-
+		
 		public function getTituloPanel()
 		{
 			$this->load->view("PanelControl/components/TituloPanel",$this->data);

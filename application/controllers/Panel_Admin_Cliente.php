@@ -190,6 +190,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 	{
 		$idCliente = $this->input->get("idCliente");
 		$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($idCliente);
+		// var_dump($this->data['contador']);
 		$this->data['cliente'] = $idCliente;
 		// var_dump($idCliente);
 		$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);
@@ -218,7 +219,22 @@ class Panel_Admin_Cliente extends MY_Controller {
 		$this->load->view("PanelControl/components/clientesAdmin/FormularioEmpresa",$this->data);
 
 	}
-		
+	public function EliminarContadorCliente()
+		{
+			$idCliente = $this->input->get("idCliente");
+			$idContador = $this->input->get("idContador");
+			if(isset($idCliente) && !empty($idCliente) 
+				&& isset($idContador) && !empty($idContador)
+			)
+			{
+				$this->Panel_Admin_Cliente_Model->EliminarContadorPorId($idCliente,$idContador);	
+				$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($idCliente);
+				$this->data['cliente'] = $idCliente;
+				// var_dump($idCliente);
+				$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);				
+			}
+		}
+
 }
 
 /* End of file Panel_Admin_Cliente.php */

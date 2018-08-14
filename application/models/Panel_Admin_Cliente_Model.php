@@ -139,8 +139,20 @@ class Panel_Admin_Cliente_Model extends CI_Model
     {
         if(!empty($ids) && isset($ids['IdCliente']) && isset($ids['IdContador']))
         {
-            $cre =  array( "idContador" => $ids['IdContador'] , "idCliente" => $ids['IdCliente']);
+            $existe =  (int)$this->db->select('COUNT(id)')
+                ->from("contadores_asignacion_cliente")
+                ->where("idCliente",$ids['IdCliente'])
+                ->where("idContador",$ids['IdContador'])
+                ->get()
+                ->result_array()[0]["COUNT(id)"];
+            if(
+                $existe ==0
+            )
+            {
+                $cre =  array( "idContador" => $ids['IdContador'] , "idCliente" => $ids['IdCliente']);
             $this->db->insert('contadores_asignacion_cliente', $cre);           
+            }
+            
         }
     }
 
@@ -158,11 +170,10 @@ class Panel_Admin_Cliente_Model extends CI_Model
                 $this->db->select('id,nombre,apellido,telefono,email');
                 $this->db->where('id', $value['idContador']);
                 $this->db->from('usuario');
-                $contador =$this->db->get()->result_array();
+                $contador[] =$this->db->get()->result_array()[0];
             }
             if(isset($contador) && !empty($contador))
             {
-                $contador =  $contador[0];
                 return $contador;
             }else{
                 return NULL;
@@ -176,6 +187,13 @@ class Panel_Admin_Cliente_Model extends CI_Model
     {
         $empresas = $this->db->select('rfc,razonSocial,domicilio,correo,telefono')->from("empresa")->where("id_usuario",$id)->get()->result_array();
         return $empresas;
+    }
+
+    public function EliminarContadorPorId($id,$idContador)
+    {
+        
+        $registrado = $this->db->where('idCliente', $id)->where("idContador",$idContador)->delete('contadores_asignacion_cliente');
+        
     }
 
 }

@@ -118,7 +118,7 @@ $route['ContadorAsignadoLink']  = 'Panel_Admin_Cliente/ContadorAsignadoLink';
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 
 
-$route['EliminarContadorCliente'] =  "Panel_admin/EliminarContadorCliente";
+$route['EliminarContadorCliente'] =  "Panel_Admin_Cliente/EliminarContadorCliente";
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";
 $route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
