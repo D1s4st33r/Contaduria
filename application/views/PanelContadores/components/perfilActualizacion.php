@@ -1,8 +1,4 @@
 <div class="col-12 p-0">
-  <?php $this->load->view("PanelControl/components/TituloPanel"); ?>
-</div>
-
-<div class="col-12 p-0">
   <div class="my-3 p-3 bg-white rounded box-shadow container">
     <div class="row">
     
@@ -45,7 +41,7 @@
 
       <div class=" col-12 ">
         <div class="form-group">
-        <button  type="button" class="btn btn-primary" onclick="actualizarDatosUsuario('<?php echo base_url("Panel_admin/ActualizarPerfil") . $session;?>')">  <i class="fas fa-thumbs-up fa-md"></i> Actualizar Datos</button> 
+        <button  type="button" class="btn btn-primary" onclick="actualizarDatosUsuario('<?php echo base_url("Panel_admin/ActualizarPerfil") . $session;?>','<?php echo base_url("TituloPanel").$session; ?>')">  <i class="fas fa-thumbs-up fa-md"></i> Actualizar Datos</button> 
         </div>
       </div>
         

@@ -1,33 +1,33 @@
 /**
-* Funciones Generales para peticion ajax 
-**/
+ * Funciones Generales para peticion ajax 
+ **/
 
 /** @param {div para colorcar el response de la url} divById 
-*   @param {url donde se hace el GET} url 
-**/
+ *   @param {url donde se hace el GET} url 
+ **/
 function hacerCambio(divById, url) {
     $.ajax({
         type: 'GET',
         url: url,
         dataType: 'html',
         success: function(data) {
-            $("#" + divById).hide();
+            //$("#" + divById).hide();
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
             console.log(data);
-            
+
         }
     });
 }
 var divPerfil = "";
 
-function soloGet(url){
+function soloGet(url) {
     $.ajax({
         type: 'GET',
         url: url,
         success: function(data) {
             console.log(data);
-            
+
         }
     });
 }
@@ -58,7 +58,7 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
  */
 
 
- /*
+/*
  * @param {*} url 
  * @param {*} tituloPanel 
  */
@@ -67,28 +67,25 @@ function actualizarDatosUsuario(url, tituloPanel) {
     apellido_ = $("#apellido").val();
     telefono_ = $("#telefono").val();
     email_ = $("#email").val();
-    
-        post = {
-            nombre: nombre_,
-            apellido: apellido_,
-            email: email_,
-            telefono: telefono_
-        };
-        hacerCambiosPostAsy(post, url, $("#perfil"));
-        hacerCambio("TituloPanel", tituloPanel);
-        
+
+    post = {
+        nombre: nombre_,
+        apellido: apellido_,
+        email: email_,
+        telefono: telefono_
+    };
+    hacerCambiosPostAsy(post, url, $("#perfil"));
+    hacerCambio("TituloPanel", tituloPanel);
+
 }
 
-function ChangePssw(url,vista) 
-{
-    var psw, nwpsw , rpnwpsw;
+function ChangePssw(url, vista) {
+    var psw, nwpsw, rpnwpsw;
     psw = $("#claveActual").val();
     nwpsw = $("#claveNueva").val();
-    rpnwpsw =$("#claveRepetida").val();
-    if(psw!="" && nwpsw!="" && rpnwpsw !="")
-    {
-        if(nwpsw === rpnwpsw)
-        {
+    rpnwpsw = $("#claveRepetida").val();
+    if (psw != "" && nwpsw != "" && rpnwpsw != "") {
+        if (nwpsw === rpnwpsw) {
             $("#claveNueva").removeClass('inputError');
             $("#claveRepetida").removeClass('inputError');
 
@@ -96,23 +93,23 @@ function ChangePssw(url,vista)
             $("#claveRepetida").addClass('inputSuccess');
             $("#msgPsw").removeClass('text-danger');
             $("#msgPsw").addClass('text-success');
-            $("#msgPsw").html( "Contraseñas no Coinciden")
-            
-            post = {
-                claveActual :psw,
-                claveNueva:nwpsw,
-                claveNuevaRep:rpnwpsw
-            }
-                hacerCambiosPostAsy(post, url, $("#alertPerfil"));
+            $("#msgPsw").html("Contraseñas no Coinciden")
 
-                hacerCambio("perfil", vista);
-        }else{
+            post = {
+                claveActual: psw,
+                claveNueva: nwpsw,
+                claveNuevaRep: rpnwpsw
+            }
+            hacerCambiosPostAsy(post, url, $("#alertPerfil"));
+
+            hacerCambio("perfil", vista);
+        } else {
             $("#claveNueva").removeClass('inputSuccess');
             $("#claveRepetida").removeClass('inputSuccess');
             $("#claveNueva").addClass('inputError');
             $("#claveRepetida").addClass('inputError');
             $("#msgPsw").addClass('text-danger');
-            $("#msgPsw").html( "Contraseñas no Coinciden")
+            $("#msgPsw").html("Contraseñas no Coinciden")
         }
     }
 }
@@ -133,7 +130,7 @@ function agregarContador(url) {
             clave: contrasena_
         };
         hacerCambiosPostAsy(post, url, $("#contadoresReg"));
-        
+
     }
 }
 
@@ -227,12 +224,10 @@ function updateCliente(iddiv, url) {
     }
 }
 
-function EliminarUsuario(iddiv, url) 
-{
+function EliminarUsuario(iddiv, url) {
     var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
     console.log(result);
-    if (result) 
-    {
+    if (result) {
         var id_ = "";
         var div = $("#" + iddiv);
         var finds = div.find("input");
@@ -249,11 +244,9 @@ function EliminarUsuario(iddiv, url)
 
 }
 
-function EliminarCliente(iddiv, url) 
-{
+function EliminarCliente(iddiv, url) {
     var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
-    if (result) 
-    {
+    if (result) {
         var id_ = "";
         var div = $("#" + iddiv);
         var finds = div.find("input");
@@ -269,25 +262,23 @@ function EliminarCliente(iddiv, url)
     }
 }
 
-function AgregarContadorUsuario(labelIdContador,labelIdCliente,urlDes,divRemplazo) 
-{
-    idContador =$("#"+labelIdContador).val();    
-    idCliente = $("#"+labelIdCliente).val();
-    
-    if(idContador != "0")
-    {
+function AgregarContadorUsuario(labelIdContador, labelIdCliente, urlDes, divRemplazo) {
+    idContador = $("#" + labelIdContador).val();
+    idCliente = $("#" + labelIdCliente).val();
+
+    if (idContador != "0") {
         post = {
-            IdCliente:idCliente,
-            IdContador:idContador
+            IdCliente: idCliente,
+            IdContador: idContador
         };
-        hacerCambiosPostAsy(post, urlDes, $("#"+divRemplazo));
-    }else{
+        hacerCambiosPostAsy(post, urlDes, $("#" + divRemplazo));
+    } else {
         alert("No Existe");
     }
 }
 
 function CrearClienteContador(url) {
-    
+
 }
 
 function agregarCategoria(iddiv, url) {
@@ -408,8 +399,7 @@ function agregarPregunta(iddiv, url) {
         post = {
             categoria: categoria_,
             seccion: seccion_,
-            texto: texto_,
-            div: div_
+            texto: texto_
         };
         hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
@@ -424,6 +414,7 @@ function actualizarPregunta(iddiv, url) {
     var tipo_ = "";
     var soliarchivo_ = "";
     var obligatorio_ = "";
+    var nombreArchivo_;
     var preguntaOpcional_ = "";
     var tipoOpcional_ = "";
 
@@ -437,6 +428,7 @@ function actualizarPregunta(iddiv, url) {
         if ($(this).attr("name") == "obligatorio") { obligatorio_ = $('[name="obligatorio"]:checked').attr('value'); }
         if ($(this).attr("name") == "preOpcional") { preguntaOpcional_ = $(this).val(); }
         if ($(this).attr("name") == "divid") { div_ = $(this).val(); }
+        if ($(this).attr("name") == "nombreArch") { nombreArchivo_ = $(this).val(); }
     });
     select.each(function() {
         if ($(this).attr("name") == "categoria") { categoria_ = $(this).val(); }
@@ -453,6 +445,7 @@ function actualizarPregunta(iddiv, url) {
             tipo: tipo_,
             soliarchivo: soliarchivo_,
             obligatorio: obligatorio_,
+            nombreArchivo: nombreArchivo_,
             preguntaOpcional: preguntaOpcional_,
             tipoOpcional: tipoOpcional_,
             div: div_
@@ -479,16 +472,32 @@ function eliminarPregunta(iddiv, url) {
         hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
 }
-function ocultar(id)
-{
-    $("#"+id).hide(1000);
+
+function ocultar(id) {
+    $("#" + id).hide(1000);
 }
-function ver(id){
-    $("#"+id).show(1000);
+
+function ver(id) {
+    $("#" + id).show(1000);
 }
-function desacer(div)
-{
-    $("#"+div).html("");
+
+function desacer(div) {
+    $("#" + div).html("");
+}
+
+function cancelarPregunta(iddiv, url) {
+    var id_ = "";
+    var div = $("#" + iddiv);
+    var finds = div.find("input");
+    finds.each(function() {
+        if ($(this).attr("name") == "divid") { id_ = $(this).val(); }
+    });
+    if (id_ != "") {
+        post = {
+            div: id_
+        };
+        hacerCambiosPostAsy(post, url, $("#preguntas" + id_));
+    }
 }
 
 function enviarRespuestas(iddiv, url) {

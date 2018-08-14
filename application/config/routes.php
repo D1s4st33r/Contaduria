@@ -121,6 +121,7 @@ $route['EliminarContadorCliente'] =  "Panel_admin/EliminarContadorCliente";
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";
 $route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
+$route['viewPreguntas']="Panel_admin/cancelarPregunta";
 $route['configCancelar']="Panel_admin/configCancelar";
 $route['configAddCategoria']    = "Panel_admin/configAddCategoria";
 $route['addCategoria']          = "Panel_admin/addCategoria";

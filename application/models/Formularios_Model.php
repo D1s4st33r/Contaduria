@@ -7,7 +7,14 @@
 			parent::__construct();
 		}
 
-
+		public function getNumPreguntas()
+   		{
+			$preguntas=$this->db->select("COUNT(id)")
+			->from("preguntas")
+			->get()
+			->result_array()[0]["COUNT(id)"];
+			return $preguntas;
+		}
 
 		public function dataempresa($datos_empresa)
 		{
@@ -132,7 +139,7 @@
 
 		public function getRespFormulario($id)
 		{
-			$form=$this->db->select("respuesta,id_pregunta")
+			$form=$this->db->select("respuesta,id_pregunta,respuestaOpc")
 			->from("resultados")
 			->where('id_formulario',$id)
 			->get()
@@ -140,16 +147,6 @@
 			return $form;
 		}
 
-		public function getValiResp($pre,$form)
-		{
-			$vali =$this->db->select('COUNT(respuesta)')
-					->from("resultados")
-					->where('id_formulario',strtolower($form))
-					->where('id_pregunta',strtolower($pre))
-					->get()
-					->result_array()[0];
-			 return $vali["COUNT(respuesta)"] ;
-		}
 
 		public function insertBoveda($datos)
 		{

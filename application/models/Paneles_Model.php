@@ -15,60 +15,7 @@ class Paneles_Model extends CI_Model
         ->get()
         ->result_array()[0];
         return $usuario;	
-    }
-
-    public function getCategorias()
-    {
-        $seccions=$this->db->select("categoria,id")
-        ->from("cat_categorias_preguntas")
-        ->get()
-        ->result_array();
-        return $seccions;
-    }
-
-    public function getNumSecciones()
-    {
-        $categories=$this->db->select("COUNT(seccion)")
-        ->from("cat_secciones_preguntas")
-        ->get()
-        ->result_array()[0]["COUNT(seccion)"];
-        return $categories;
-    }
-
-    public function getNumPreguntas()
-    {
-        $preguntas=$this->db->select("COUNT(id)")
-        ->from("preguntas")
-        ->get()
-        ->result_array()[0]["COUNT(id)"];
-        return $preguntas;
-    }
-
-    public function getPreguntas($categoria)
-    {
-        $dato = $this->db->select('id,seccion,texto,categoria')->from('preguntas')->where('categoria',$categoria)->get()->result_array();
-			return $dato;
-    }
-
-    public function getSoliArchivo()
-    {
-        $categories=$this->db->select("id_pregunta")
-        ->from("detalles_preguntas")
-        ->where('soliarchivo',1)
-        ->get()
-        ->result_array();
-        return $categories;
-    }
-
-    public function getObliArchivo()
-    {
-        $obligatorio=$this->db->select("id_pregunta")
-        ->from("detalles_preguntas")
-        ->where('obligatorio',1)
-        ->get()
-        ->result_array();
-        return $obligatorio;
-    }
+    }    
 
     public function actualizarDatosUsuario($usuario,$id)
     {
@@ -151,10 +98,59 @@ class Paneles_Model extends CI_Model
    
    
     
-
-
-
     //SECCION DE  CRUD DE LAS CATEGORIAS, SECCIONES y PREGUNTAS
+    public function getCategorias()
+    {
+        $seccions=$this->db->select("categoria,id")
+        ->from("cat_categorias_preguntas")
+        ->get()
+        ->result_array();
+        return $seccions;
+    }
+
+    public function getNumSecciones()
+    {
+        $categories=$this->db->select("COUNT(seccion)")
+        ->from("cat_secciones_preguntas")
+        ->get()
+        ->result_array()[0]["COUNT(seccion)"];
+        return $categories;
+    }
+
+    public function getNumPreguntas()
+    {
+        $preguntas=$this->db->select("COUNT(id)")
+        ->from("preguntas")
+        ->get()
+        ->result_array()[0]["COUNT(id)"];
+        return $preguntas;
+    }
+
+    public function getPreguntas($categoria)
+    {
+        $dato = $this->db->select('id,seccion,texto,categoria')->from('preguntas')->where('categoria',$categoria)->get()->result_array();
+			return $dato;
+    }
+    
+    public function getSoliArchivo()
+    {
+        $categories=$this->db->select("id_pregunta")
+        ->from("detalles_preguntas")
+        ->where('soliarchivo',1)
+        ->get()
+        ->result_array();
+        return $categories;
+    }
+
+    public function getObliArchivo()
+    {
+        $obligatorio=$this->db->select("id_pregunta")
+        ->from("detalles_preguntas")
+        ->where('obligatorio',1)
+        ->get()
+        ->result_array();
+        return $obligatorio;
+    }
 
     public function registrarCategoria($datos)
     {
@@ -246,7 +242,7 @@ class Paneles_Model extends CI_Model
 
     public function getDetallesPregunta($id)
     {
-        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional')
+        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional,nombreArchivo')
         ->from("detalles_preguntas")
         ->where('id_pregunta',$id)
         ->get()
@@ -256,7 +252,7 @@ class Paneles_Model extends CI_Model
 
     public function getDetallesporCat($categoria)
     {
-        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional,id_pregunta')
+        $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional,id_pregunta,nombreArchivo')
         ->from("detalles_preguntas")
         ->where('categoria',$categoria)
         ->get()

@@ -128,10 +128,16 @@
             <label for="tipo"><b> Tipo</b></label>
             <select class="form-control" id="tipo" name="tipo" value="<?php echo $detalles['tipo'] ?>">
             <?php
-            echo '<option>'.strtoupper($detalles['tipo']).'</option>';
+            
             foreach ($catalogo as $ind3=>$val3)
             {
-                echo '<option>'.strtoupper($val3['tipo']).'</option>';
+                echo '<option value="'.strtoupper($val3['tipo']).'"';
+                if(strtoupper($val3['tipo'])==strtoupper($detalles['tipo'])){echo'selected="selected"';}
+                echo'>';
+                if(strtoupper($val3['tipo'])=="RADIO"){echo 'Si/No';}
+                if(strtoupper($val3['tipo'])=="TEXT"){echo 'Respuesta abierta';}
+                if(strtoupper($val3['tipo'])=="MULTIPLE"){echo 'Opcion multiple';} 
+                echo'</option>';
             }
                 ?>
             </select>
@@ -155,7 +161,7 @@
 
         <div class=" col-sm col-md-6 col-lg-3 ">
             <div class="form-group">
-            <label for="obligatorio"><b> Obligatorio </b></label>
+            <label for="obligatorio"><b> Archivo obligatorio </b></label>
             <br>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="obligatorio" id="inlineRadio1" value="1" <?php if($detalles['obligatorio']==1){echo 'checked';} ?>>
@@ -170,6 +176,18 @@
 
         <div class=" col-sm col-md-6 col-lg-3 ">
             <div class="form-group input-group-sm">
+            <label for="preOpcional"><b> Archivo que solicita:  </b></label>
+            <input type="text" class="form-control" name="nombreArch" id="nombreArch" value="<?php echo $detalles['nombreArchivo'] ?>">
+            </div>
+        </div>
+        
+        <div class=" col-sm col-md-6 col-lg-3 ">
+            <div class="form-group input-group-sm">
+            </div>
+        </div>
+
+        <div class=" col-sm col-md-6 col-lg-3 ">
+            <div class="form-group input-group-sm">
             <label for="preOpcional"><b> Pregunta opcional </b></label>
             <input type="text" class="form-control" name="preOpcional" id="preOpcional" value="<?php echo $detalles['preguntaOpcional'] ?>">
             </div>
@@ -178,12 +196,17 @@
         <div class=" col-sm col-md-6 col-lg-3 ">
             <div class="form-group  input-group-sm">
             <label for="tipo"><b> Tipo pregunta opcional</b></label>
-            <select class="form-control" id="tipoOpc" name="tipoOpc" value="<?php echo $detalles['tipo'] ?>">
+            <select class="form-control" id="tipoOpc" name="tipoOpc" value="<?php echo $detalles['tipoPreOpcional'] ?>">
             <?php
-            echo '<option>'.strtoupper($detalles['tipoPreOpcional']).'</option>';
             foreach ($catalogo as $ind4=>$val4)
             {
-                echo '<option>'.strtoupper($val4['tipo']).'</option>';
+                echo '<option value="'.strtoupper($val4['tipo']).'"';
+                if(strtoupper($val4['tipo'])==strtoupper($detalles['tipoPreOpcional'])){echo'selected="selected"';}
+                echo'>';
+                if(strtoupper($val4['tipo'])=="RADIO"){echo 'Si/No';}
+                if(strtoupper($val4['tipo'])=="TEXT"){echo 'Respuesta abierta';}
+                if(strtoupper($val4['tipo'])=="MULTIPLE"){echo 'Opcion multiple';} 
+                echo'</option>';
             }
                 ?>
             </select>
@@ -194,7 +217,7 @@
       <div class=" col-12 ">
         <div class="form-group">
         <button type="button" class="btn btn-primary btn-sm" onclick="return  actualizarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("upPregunta").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')" >aceptar</button>
-       <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-pregunta<?php echo $id ?>','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
+       <button type="button" class="btn btn-danger btn-sm" onclick="return  cancelarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("viewPreguntas").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')">cancelar</button>
         </div>
       </div>  
     </div>
@@ -205,6 +228,6 @@
 <div class=" col-md">
         <p><b>¿Eliminar esta pregunta?</b></p>
        <button type="button" class="btn btn-primary btn-sm" onclick="return eliminarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("deletePregunta").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')">aceptar</button>
-       <button type="button" class="btn btn-danger btn-sm" onclick="return  hacerCambio('config-pregunta<?php echo $id ?>','<?php echo base_url("configCancelar").$session; ?>')">cancelar</button>
+       <button type="button" class="btn btn-danger btn-sm" onclick="return cancelarPregunta('panel-pregunta<?php echo $id ?>','<?php echo base_url("viewPreguntas").$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($seccion); ?>')">cancelar</button>
 </div>
 <?php endif; ?>
