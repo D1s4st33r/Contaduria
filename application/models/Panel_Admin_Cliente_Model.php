@@ -78,7 +78,8 @@ class Panel_Admin_Cliente_Model extends CI_Model
         );
         if(isset($contadoresAxu ))
         {
-            $empresas['numContadores'] =+ $contadoresAxu;
+                
+            $empresas['numContadores'] = $empresas['numContadores'] + $contadoresAxu;
         }
         
         return $empresas ;
@@ -100,6 +101,7 @@ class Panel_Admin_Cliente_Model extends CI_Model
     {
         $registrado = $this->db->where('id', $id)->delete('usuario');
         $registrado = $this->db->where('idCliente', $id)->delete('contadores_asignacion_cliente');
+        $registrado = $this->db->where('id_Cliente', $id)->delete('formulario');
         foreach ($this->getTodasEmpresasByID($id) as $key => $value) 
         {
             $registrado = $this->db->where('rfc', $value['rfc'])->delete('contadores_asignacion_empresa');        

@@ -85,10 +85,11 @@ class Login extends CI_Controller {
 			$TelRepre = $this->input->post("telrepresentante");
 
 			
-			 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[12]|max_length[13]|is_unique[empresa.rfc]');
+			 $this->form_validation->set_rules('rfc', 'RFC', 'min_length[11]|max_length[13]|is_unique[empresa.rfc]');
 			 $this->form_validation->set_rules('correo', 'Email','is_unique[empresa.correo]');
 			if($this->form_validation->run()===TRUE)
 			{
+				var_dump($this->input->post());
 				$this->load->helper('path');  
 
 				$dir=set_realpath('./Boveda/'.$RFC."/");  

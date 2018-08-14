@@ -158,7 +158,7 @@ class Panel_Admin_Contador extends MY_Controller
 		
 		public function FormularioEmpContador()
 		{	
-			$this->load->view("PanelControl/components/RegistroContadores",$this->data);	
+			$this->load->view("PanelControl/components/contadorAdmin/RegistroContadores",$this->data);	
 		}	
 		
 	
