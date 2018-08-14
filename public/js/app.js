@@ -11,7 +11,7 @@ function hacerCambio(divById, url) {
         url: url,
         dataType: 'html',
         success: function(data) {
-            $("#" + divById).hide();
+            //$("#" + divById).hide();
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
             console.log(data);

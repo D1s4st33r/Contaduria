@@ -5,13 +5,13 @@
   <input type="text" value="<?php echo $categoria ?>" name="categoria" class="form-control form-control-sm text-center" readonly hidden>
   <div id="config-seccion"></div>
   </div>
-  <div class="btn-group grupo-bot" role="group" aria-label="Basic example" style="margin-right:30px;">
+  <div class="btn-group grupo-bot" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-primary btn-sm" title="añadir seccion" onclick="return hacerCambio('config-seccion' ,'<?php echo base_url('configAddSeccion').$session.'&cat='.strtoupper($categoria);?>')"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-primary btn-sm" title="editar seccion" onclick="return hacerCambio('config-seccion' ,'<?php echo base_url('configUpSeccion').$session.'&cat='.strtoupper($categoria);?>')"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-primary btn-sm" title="eliminar seccion" onclick="return hacerCambio('config-seccion' ,'<?php echo base_url('configDeleteSeccion').$session.'&cat='.strtoupper($categoria);?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
     </div>
     </div>
-    <div class="jumbotron container">
+    <div class="jumbotron container p-0">
       <div class="accordion" id="accordionExample">
         <style>
           .card-body{
