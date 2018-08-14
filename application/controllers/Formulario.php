@@ -118,7 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				&& isset($post['respuesta'.$id])	
 			){
 				
-				$solicitud=$this->Formularios_Model->getDetallesporId($post['id']);
+				$solicitud=$this->Formularios_Model->getDetallesporId($id);
 				if($solicitud['soliarchivo']=="1")
 				{
 					$this->load->helper('path');  

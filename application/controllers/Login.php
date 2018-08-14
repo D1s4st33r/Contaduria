@@ -117,7 +117,14 @@ class Login extends CI_Controller {
 						"archivos" => $dato_archivo['upload_data']['file_name'],
 						
 					);
-					
+
+					$formularioData=array(
+						"id_cliente"=>$id_usuario,
+						"empresarfc"=>$RFC,
+						"fecha_ini"=>date("d.m.Y"),
+						"ponderacion"=>$this->Formularios_Model->getNumPreguntas()
+					);
+					$this->Formularios_Model->crearFormulario($formularioData);
 					$this->Formularios_Model->dataempresa($datos_em);
 					echo "exito";
 				}else{
