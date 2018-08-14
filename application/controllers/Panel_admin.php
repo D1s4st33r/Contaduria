@@ -486,32 +486,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		 * Empresas AJAX
 		 */
 
-		public function getEmpresas()
-		{
-			$idCliente = $this->input->get('cliente');
-			$Cliente = (isset($idCliente))? $idCliente : false ; 
-			if($Cliente)
-			{
-				$this->data["empresas"] = $this->Paneles_Model->EmpresasByCliente($Cliente);
-			}
-			
-			$this->data['session'] = $this->session."&cliente=".$idCliente;
-			$this->load->view("PanelControl/components/CrudEmpresas",$this->data);
-		}
+		
 
 		
-		public function FormularioClienteEmpresa()
-		{
-			$this->data['id_cliente'] = $this->input->get('cliente');
-			if($this->data['id_cliente'])
-			{
-				$this->data["empresas"] = $this->Paneles_Model->EmpresasByCliente($this->data['id_cliente']);
-			}
-			
-			
-			$this->load->view("PanelControl/components/FormularioEmpresa",$this->data);
-
-		}
+		
 		
 		public function updatePregunta()
 		{

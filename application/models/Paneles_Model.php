@@ -335,11 +335,7 @@ class Paneles_Model extends CI_Model
     }
 
 
-    public function EmpresasByCliente($id)
-    {
-        $empresas = $this->db->select('rfc,razonSocial,domicilio,correo,telefono')->from("empresa")->where("id_usuario",$id)->get()->result_array();
-        return $empresas;
-    }
+    
 
    
 }
