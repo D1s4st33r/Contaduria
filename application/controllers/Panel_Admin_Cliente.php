@@ -133,7 +133,9 @@ class Panel_Admin_Cliente extends MY_Controller {
                 
             }	
         }
-    }
+	}
+	
+
 	public function AsignarContadorFormulario()
 	{
 		$idCliente = $this->input->get("idCliente");
@@ -173,6 +175,15 @@ class Panel_Admin_Cliente extends MY_Controller {
 		
 			
 		}
+	}
+	public function ContadorAsignadoLink()
+	{
+		$idCliente = $this->input->get("idCliente");
+		$this->data['cliente']['id'] = $idCliente;
+		$this->data['cliente']['info_empresas'] = $this->Panel_Admin_Cliente_Model->getContadorEmpresaById($idCliente); 
+		
+		$this->load->view("PanelControl/components/clientesAdmin/clienteContadorAsignadoView",$this->data);	
+
 	}
 
 	public function ListaContadorCliente()

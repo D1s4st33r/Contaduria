@@ -113,6 +113,7 @@ $route['AsignarContadorACliente']   = "Panel_Admin_Cliente/AsignarContadorAClien
 $route['ListaContadorCliente']      = "Panel_Admin_Cliente/ListaContadorCliente";
 $route['empresasClie']              = "Panel_Admin_Cliente/getEmpresas";
 $route['FormularioClienteEmpresa']  = 'Panel_Admin_Cliente/FormularioClienteEmpresa';
+$route['ContadorAsignadoLink']  = 'Panel_Admin_Cliente/ContadorAsignadoLink';
 
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 
