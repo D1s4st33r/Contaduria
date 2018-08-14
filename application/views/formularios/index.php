@@ -1,121 +1,159 @@
+    <!-- Modal -->
+    <div class="modal fade" id="myModalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	     	<div class="modal-dialog modal-dialog-centered  modal-lg">   
+            <div class="modal-content">
+                <div class="modal-header modal-header-warning">
+								<style>
+								.modal-header-warning {
+	                          color:#fff;
+                            padding:9px 15px;
+                            border-bottom:1px solid #eee;
+                            background-color: #ffcc00;
+                            -webkit-border-top-left-radius: 5px;
+                            -webkit-border-top-right-radius: 5px;
+                            -moz-border-radius-topleft: 5px;
+                            -moz-border-radius-topright: 5px;
+                             border-top-left-radius: 5px;
+                             border-top-right-radius: 5px;
+                        }
+								</style>
+                    <h1><i class="glyphicon glyphicon-thumbs-up"></i> ¡Aviso Importante!</h1>
+								
+                </div>
+                <div class="modal-body">
+								<div class="container">
+								  <br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+                  <strong>
+									Los datos datos ingresados para registrar una empresa, entraran en modalidad de "Solicitud", ya que, su Contador asignado, podra aprobar o rechazar dicha solicitud.
+									</strong>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
+									<br>
 
-  	<div class="row">
+									<small>
+									Nota: En caso de que su solicitud sea aprobada, su Empresa aparecera en su perfil de Empresas.
+									
+									</small>
+
+                </div>                
+                </div>
+                <div class="modal-footer">
+								<a class="btn btn-outline-danger btn-rounded my-3"  href="<?php echo base_url("Cliente");echo $session;?>">Regresar a Menu</a>
+							  <button type="button" class="btn btn-outline-info btn-rounded my-3 pull-left" data-dismiss="modal">Entendido</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+		
+		
+		
+
+		
+		<div class="row">
+	
   		<div class="jumbotron container">
-  			<form>
+
+
+
+				<div class="alert alert-danger" role="alert" id="error" style="text-align:left;">
+				<strong>Error de Registro</strong>  Verifique que lo datos sean correctos
+				<div class="list-errors"></div>
+				<br>
+				<p>Posibles Problemas:</p>
+				<li>El RFC ya ha sido registrado o es invalido</li>
+				<li>Correo invalido o ya ha sido registrado</li>
+        </div>
+
+
+			<br>
+			<form action="<?php echo base_url('postEmpresa').$session?>" id="registrar" method="post" class="card-body" >
   				<div class="row">
+					<input class"hidden" type="text" value="<?php echo $user;?>" name="id_usuario" id="id_usuario" class="form-control form-control-sm text-center" readonly>
 				    <div class="col-sm">
 				    	<div class="form-group">
-					    <label for="RazonSocial">Razón Social</label>
-					    <input type="text" class="form-control" id="RazonSocial" aria-describedby="razonSocial" placeholder="Mi empresa SA de CV">
+					    <label for="razonSocial">Razón Social</label>
+					    <input type="text" class="form-control" name="razonSocial" id="razonSociald" aria-describedby="razonSocial" placeholder="Mi empresa SA de CV" required="required">
 					    <small id="razonSocial" class="form-text text-muted">Ejemplo: <i>Mi empresa SA de CV</i></small>
 					  </div>
 				    </div>
 				    <div class="col-sm">
 				      <div class="form-group">
-					    <label for="inputRfc">RFC</label>
-					    <input type="text" class="form-control" id="inputRfc" placeholder="RFC">
+					    <label for="rfc">RFC</label>
+					    <input type="text" class="form-control" name="rfc" id="rfcd" placeholder="RFC" required="required">
 					  </div>
 				    </div>
 				</div>
 				<div class="row">
 				    <div class="col-sm">
 				    	<div class="form-group">
-					    <label for="Domicilio">Domicilio</label>
-					    <input type="text" class="form-control" id="Domicilio" aria-describedby="domicilio" placeholder="SM 100 MZ 123 LT 123 CALLE 23 CP 775656">
+					    <label for="domicilio">Domicilio</label>
+					    <input type="text" class="form-control" name="domicilio" id="domiciliod" aria-describedby="domicilio" placeholder="SM 100 MZ 123 LT 123 CALLE 23 CP 775656" required="required">
 					    <small id="domicilio" class="form-text text-muted">Ejemplo: <i>SM 100 MZ 123 LT 123 CALLE 23 CP 775656</i></small>
 					  </div>
 				    </div>
 				    <div class="col-sm">
 				     <div class="form-group">
-					    <label for="exampleInputEmail1">Email</label>
-					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="miemail@gmail.com">
-					    <small id="emailHelp" class="form-text text-muted">miemail@gmail.com</small>
+					    <label for="correo">Email</label>
+					    <input type="email" class="form-control" name="correo" id="correod" aria-describedby="emailHelp" placeholder="miemail@gmail.com" required="required">
+					    <small id="correo" class="form-text text-muted">miemail@gmail.com</small>
 					  </div>
 				    </div>
 				</div>
 				<div class="row">
 				    <div class="col-sm">
 				    	<div class="form-group">
-					    <label for="Telefono">Telefono</label>
-					    <input type="number" class="form-control" id="Telefono" aria-describedby="Telefono" placeholder="99 88 23 23 23">
+					    <label for="telefono">Telefono</label>
+					    <input type="number" class="form-control" name="telefono" id="telefonod" aria-describedby="Telefono" placeholder="99 88 23 23 23" required="required">
 					    <small id="Telefono" class="form-text text-muted">Ejemplo: <i>99 88 23 23 23</i></small>
 					  </div>
 				    </div>
 				    <div class="col-sm">
 				      <div class="form-group">
 					    <label for="RepresentanteLegal">Representante Legal</label>
-					    <input type="text" class="form-control" id="RepresentanteLegal" placeholder="Nombre de representate legal">
+					    <input type="text" class="form-control" name="representantelegal" id="representantelegald" placeholder="Nombre de representate legal" required="required">
 					  </div>
 				    </div>
 				</div>
 				<div class="row">
 				    <div class="col-sm">
 				    	<div class="form-group">
-					   		<label for="RazonSocial">Archivos</label>
-					    	<div class="custom-file">
-						    	<input type="file" class="custom-file-input" id="validatedCustomFile" required>
-						    	<label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+					   		<label for="NombreArchivo">Acta Constitutiva</label>
+					       <div class="custom-file">
+						    	<input type="file" class="custom-file-input" name="archivos" id="archivosd"required> 
+						    	<label class="custom-file-label" for="archivos">Gestionar Acta...</label>
 						    	<div class="invalid-feedback">Example invalid custom file feedback</div>
 						  	</div>
 					  </div>
 				    </div>
 				    <div class="col-sm">
 				      <div class="form-group">
-					   <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+					    <label for="RepresentanteLegal">Telefono de Representante Legal</label>
+					    <input type="number" class="form-control" name="telrepresentante" id="telrepresentanted" placeholder="Telefono Representate Legal " required="required">
 					  </div>
 				    </div>
+
+		
 				</div>
-			  
+				<div class="col-sm" style="text-align:center">
+				      <div class="form-group">
+							<br>
+							<br>
+			
+							<input type="submit" value="Registrar Empresa" class="btn btn-warning" >
+						 
+					  </div>
+				  </div>
 			</form>
+
   		</div>
   	</div>
-  	<!-- <div class="row">
-  		<div class="jumbotron">
-  			<div class="accordion" id="accordionExample">
-		  <div class="card">
-		    <div class="card-header" id="headingOne">
-		      <h5 class="mb-0">
-		        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-		          Collapsible Group Item #1
-		        </button>
-		      </h5>
-		    </div>
+	
 
-		    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-		      <div class="card-body">
-		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-		      </div>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <div class="card-header" id="headingTwo">
-		      <h5 class="mb-0">
-		        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-		          Collapsible Group Item #2
-		        </button>
-		      </h5>
-		    </div>
-		    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-		      <div class="card-body">
-		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-		      </div>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <div class="card-header" id="headingThree">
-		      <h5 class="mb-0">
-		        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-		          Collapsible Group Item #3
-		        </button>
-		      </h5>
-		    </div>
-		    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-		      <div class="card-body">
-		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-		      </div>
-		    </div>
-		  </div>
-		</div>
-      </div>
-  	</div> -->
-</div>

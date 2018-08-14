@@ -43,6 +43,22 @@ code {
 .jumbotron{
 	background-color: white !important;
 }
-.nav-link.active{
+/*.nav-link.active{
 	background-color: 
+}*/
+
+.contenedor{
+  border: 1px solid #4299c1 !important;
+    border-top-color: rgb(66, 153, 193);
+    border-top-style: solid;
+    border-top-width: 1px;
+  border-top: 10px solid #4299c1 !important;
+}
+
+.contenedorInter{
+  border: 1px solid #343a40 !important;
+    border-top-color: rgb(66, 153, 193);
+    border-top-style: solid;
+    border-top-width: 1px;
+  border-top: 6px solid #343a40 !important;
 }
