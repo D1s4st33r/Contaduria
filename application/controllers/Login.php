@@ -115,7 +115,7 @@ class Login extends CI_Controller {
 						"representantelegal"=>$ReLegal,
 						"telrepresentante"=>$TelRepre,
 						"archivos" => $dato_archivo['upload_data']['file_name'],
-						"contadorAsignado" => "0"
+						
 					);
 					
 					$this->Formularios_Model->dataempresa($datos_em);

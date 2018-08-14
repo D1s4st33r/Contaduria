@@ -77,7 +77,7 @@ $route['configUpdatePregunta']="Panel_admin/configUpPregunta";
 $route['ValidarRegistro'] = 'Panel_user/ValidarRegistro';
 $route['Login']                 = "Login/index";
 
-$route['FormularioClienteEmpresa'] = 'Panel_admin/FormularioClienteEmpresa';
+
 
 /**
  * Panel Prinicipal Admin
@@ -102,18 +102,21 @@ $route['VerLinksContador']          = 'Panel_Admin_Contador/VerLinksContador';
 /**
  * Panel Cliente Admin
  */
-$route['ClienteControl'] = 'Panel_Admin_Cliente/Clientes';
-$route['FormularioCliente'] = 'Panel_Admin_Cliente/FormularioClientes';
-$route['AgregarCliente'] = 'Panel_Admin_Cliente/AgregarCliente';
-$route['ActualizarCliente'] = 'Panel_Admin_Cliente/ActualizarCliente';
-$route['EliminarCliente'] ='Panel_Admin_Cliente/EliminarCliente';
+$route['ClienteControl']            = 'Panel_Admin_Cliente/Clientes';
+$route['FormularioCliente']         = 'Panel_Admin_Cliente/FormularioClientes';
+$route['AgregarCliente']            = 'Panel_Admin_Cliente/AgregarCliente';
+$route['ActualizarCliente']         = 'Panel_Admin_Cliente/ActualizarCliente';
+$route['EliminarCliente']           = 'Panel_Admin_Cliente/EliminarCliente';
 $route['AsignarContadorFormulario'] = 'Panel_Admin_Cliente/AsignarContadorFormulario';
-$route['BuscadorContador'] = "Panel_Admin_Cliente/BuscadorContador";
-$route['AsignarContadorACliente'] = "Panel_Admin_Cliente/AsignarContadorACliente";
+$route['BuscadorContador']          = "Panel_Admin_Cliente/BuscadorContador";
+$route['AsignarContadorACliente']   = "Panel_Admin_Cliente/AsignarContadorACliente";
+$route['ListaContadorCliente']      = "Panel_Admin_Cliente/ListaContadorCliente";
+$route['empresasClie']              = "Panel_Admin_Cliente/getEmpresas";
+$route['FormularioClienteEmpresa']  = 'Panel_Admin_Cliente/FormularioClienteEmpresa';
 
 $route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 
-$route['ListaContadorCliente'] =  "Panel_admin/ListaContadorCliente";
+
 $route['EliminarContadorCliente'] =  "Panel_admin/EliminarContadorCliente";
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";
@@ -149,7 +152,7 @@ $route['Contador']="Panel_contador/index";
 // $route['Contadores']="Panel_user/index";
 
 // Empresas
-$route['empresasClie']="Panel_admin/getEmpresas";
+
 $route['enviarRespuestas']="Formulario/enviarRespuestas";
 
 

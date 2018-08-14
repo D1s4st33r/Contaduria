@@ -171,6 +171,39 @@ class Panel_Admin_Cliente extends MY_Controller {
 			
 		}
 	}
+
+	public function ListaContadorCliente()
+	{
+		$idCliente = $this->input->get("idCliente");
+		$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($idCliente);
+		$this->data['cliente'] = $idCliente;
+		// var_dump($idCliente);
+		$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);
+	}
+
+	public function getEmpresas()
+	{
+		$idCliente = $this->input->get('cliente');
+		$Cliente = (isset($idCliente))? $idCliente : false ; 
+		if($Cliente)
+		{
+			$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($Cliente);
+		}
+		
+		$this->data['session'] = $this->session."&cliente=".$idCliente;
+		$this->load->view("PanelControl/components/clientesAdmin/CrudEmpresas",$this->data);
+	}
+	public function FormularioClienteEmpresa()
+	{
+		$this->data['id_cliente'] = $this->input->get('cliente');
+		if($this->data['id_cliente'])
+		{
+			$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($this->data['id_cliente']);
+		}
+		
+		$this->load->view("PanelControl/components/clientesAdmin/FormularioEmpresa",$this->data);
+
+	}
 		
 }
 
