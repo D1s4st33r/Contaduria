@@ -1,3 +1,13 @@
+<?php if (empty($contador)):?>
+<div class="container p-0 ">
+    <div class="row">
+        <div class="col-12">
+            <h5 class="text-muted text-center"> Sin Contadores Asignados</h5>
+        </div>
+    </div>
+</div>
+
+<?php else:?>
 <div class="container p-0 ">
 
     <div class="row">
@@ -55,7 +65,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <button type="button" class="btn btn-outline-danger" title=" Quitar Contador " onclick="hacerCambio('infoContadorAsignado<?php echo $cliente; ?>','<?php echo  base_url('EliminarContadorCliente').$session.'&idCliente='.$cliente.'&idContador='.$conta['id'];?>');" > 
+                                <button type="button" class="btn btn-outline-danger" title=" Quitar Contador " onclick="hacerCambio('infoContadorAsignado<?php echo $cliente; ?>','<?php echo  base_url('EliminarContadorCliente').$session.'&idCliente='.$cliente.'&idContador='.$conta['id'];?>'); hacerCambio('asignarLink<?php echo (isset($cliente) && !empty($cliente)) ? $cliente : "" ; ?>','<?php echo base_url('ContadorAsignadoLink').$session."&idCliente=".$cliente?>');" > 
                                     X
                                 </button>
                             </div>
@@ -68,3 +78,4 @@
         </div>
     </div>
 </div>
+<?php endif;?>
