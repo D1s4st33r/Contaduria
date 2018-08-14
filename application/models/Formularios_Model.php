@@ -16,6 +16,16 @@
 			return $preguntas;
 		}
 
+		public function getNumRespuestas($idform)
+   		{
+			$preguntas=$this->db->select("COUNT(id)")
+			->from("resultados")
+			->where("id_formulario",$idform)
+			->get()
+			->result_array()[0]["COUNT(id)"];
+			return $preguntas;
+		}
+
 		public function dataempresa($datos_empresa)
 		{
 
@@ -96,7 +106,7 @@
 
 		public function getDetallesporId($id)
 		{
-		    $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional,id_pregunta')
+		    $detalles= $this->db->select('tipo,obligatorio,soliarchivo,preguntaOpcional,tipoPreOpcional,id_pregunta,nombreArchivo')
 		    ->from("detalles_preguntas")
 		    ->where('id_pregunta',$id)
 		    ->get()

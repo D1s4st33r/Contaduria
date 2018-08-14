@@ -121,8 +121,8 @@
     </div>   
   </div>
                 
-  <div class= "col-12 " id="seccypre" >
-  </div>
+  <div class= "col-12 " id="seccypre" ><?php $this->load->view('formularios/secciones');	?></div>
+  <button type="button" class="btn btn-success btn-sm" style="margin-left:auto;">TOTAL: <?php echo $numre.'/'.$numpre ?></button>
 </div>
 <?php endif  ?>
 

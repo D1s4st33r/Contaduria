@@ -1,4 +1,4 @@
-<div class="container p-3 my-3 text-white-50 bg-lgBlue rounded box-shadow " style="padding-top:30px;margin-bottom:0; text-align:center;"><b class="mb-0 text-white lh-100">CATEGORIAS</b></div>
+<div class="container p-3 my-3 text-white-50 bg-lgBlue rounded box-shadow " style="padding-top:30px;margin-bottom:0; text-align:center;"><b class="mb-0 text-white lh-100">FORMULARIO</b></div>
 
 <div class="container row">
   <div  id="panel-categoria">

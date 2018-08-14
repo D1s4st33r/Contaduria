@@ -14,6 +14,7 @@ function hacerCambio(divById, url) {
             //$("#" + divById).hide();
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
+            $("#" + divById).focus()
             console.log(data);
 
         }

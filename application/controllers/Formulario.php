@@ -42,11 +42,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	public function FormularioCliente()
 	{
 		$data['menu']="formulario";
-		$data['titulo'] = "" ;
 		$data['idform']=$_GET['form'];
 		$data['categorias']=$this->Paneles_Model->getCategorias();
-		$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
+		$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : strtoupper($data['categorias'][0]['categoria']) ;
 		$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+		$data['titulo'] = $data['categoria'] ;
+		$data['secciones']=$this->Paneles_Model->getSpecificSecciones($data['categoria']);
+		$data['preguntas']=$this->Paneles_Model->getPreguntas($data['categoria']);
+		$data['detalles']=$this->Paneles_Model->getDetallesporCat($data['categoria']);
+		$data['respuestas']=$this->Formularios_Model->getRespFormulario($_GET['form']);
+		$data['numpre']=$this->Formularios_Model->getNumPreguntas();
+		$data['numre']=$this->Formularios_Model->getNumRespuestas($_GET['form']);
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
@@ -74,8 +80,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$data['idform']=$_GET['form'];
 		$data['categorias']=$this->Paneles_Model->getCategorias();
 		$data['categoria']	 = (isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
-		$data["titulo"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat']: "" ;
 		$data['idcat']=(isset($_GET['idcat']) && !empty($_GET['idcat'])) ? $_GET['idcat'] : "" ;
+		$data["titulo"]=$data['categoria'];
 		$data['usuario'] = $this->Usuario;
 		$data['usuario'] += array("tipo" => $this->session_tipo);
 		$data['session'] = $this->session;
@@ -121,16 +127,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$solicitud=$this->Formularios_Model->getDetallesporId($id);
 				if($solicitud['soliarchivo']=="1")
 				{
+					$chars = array(',' , '.', '_' , '´', '¨' , '{', 'ç' , 'Ç', '}' , '^', '?' , '[', '`' ,'\'', '*' , ']', '+' , '¿', '¡' , '!', '"' , '·',  '$' , '%', '&' , '/', '=' , '(', ')' , ')', ':' , ';', ')' , '#', ' ' );
+					$catLimpia = str_replace($chars, "_",  $_GET['cat']); 
 					$this->load->helper('path');  
 					$rfc= $this->Formularios_Model->getFormularioEmpresa($_GET['form']);
 					
-					$dir=set_realpath('./Boveda/'.$rfc['empresarfc']."/".$_GET['cat']."/");  
+					$dir=set_realpath('./Boveda/'.$rfc['empresarfc']."/".$catLimpia."/");  
 					if(!is_dir($dir)){  
 						mkdir($dir,0777); 
 					}
 							
 					$config = [
-						"upload_path" =>'./Boveda/'.$rfc['empresarfc']."/".$_GET['cat']."/",
+						"upload_path" =>'./Boveda/'.$rfc['empresarfc']."/".$catLimpia."/",
 						'allowed_types' =>"png|jpg|pdf|docs|xls"	
 					];
 						
@@ -165,7 +173,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					echo'FALLO';
 				}
 			}
-			else{ echo 'Mal';}
+			else{ echo '<i class="fas fa-times fa-1x"></i>';}
 		}
 }
 

@@ -38,7 +38,8 @@ foreach ($preguntas as $key => $value) {
                 echo '<div class=" row">';
                 $this->load->view('PanelControl/components/inputs',$data);
                 if($value2['soliarchivo']=="1"){
-                  $this->load->view('PanelControl/components/solicitudArchivo');
+                  $data['nombreArchivo']=$value2['nombreArchivo'];
+                  $this->load->view('PanelControl/components/solicitudArchivo',$data);
                   echo '</div>';
                 }
                 else{
