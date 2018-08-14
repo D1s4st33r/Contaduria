@@ -1,4 +1,4 @@
-<div class="container border rounded px-1 py-2">
+<div class="container contenedorInter rounded px-1 py-2">
 
     <div class="row">
         <div class="col-12">
