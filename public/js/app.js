@@ -14,6 +14,7 @@ function hacerCambio(divById, url) {
             //$("#" + divById).hide();
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
+            $("#" + divById).focus()
             console.log(data);
 
         }
@@ -501,23 +502,26 @@ function cancelarPregunta(iddiv, url) {
 }
 
 function enviarRespuestas(iddiv, url) {
-    var div = $("#" + iddiv);
-    var finds = div.find("form");
-    finds.each(function() {
-        var post = new FormData($(this)[0]);
-        //console.log(post.get('respuesta'.concat(post.get('id'))));
-        $.ajax({
+    var r = confirm("¿Desea mandar sus respuestas de seccion y finalizar la misma?");
+    if (r) {
+        var div = $("#" + iddiv);
+        var finds = div.find("form");
+        finds.each(function() {
+            var post = new FormData($(this)[0]);
+            //console.log(post.get('respuesta'.concat(post.get('id'))));
+            $.ajax({
 
-            method: 'post',
-            url: url,
-            data: post,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(datos) {
-                $("#ch" + post.get('id')).html(datos);
-                //alert(datos);
-            }
+                method: 'post',
+                url: url,
+                data: post,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(datos) {
+                    $("#ch" + post.get('id')).html(datos);
+                    alert(datos);
+                }
+            });
         });
-    });
+    }
 }

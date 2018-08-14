@@ -34,6 +34,7 @@ foreach ($preguntas as $key => $value) {
           $data['input']=strtoupper($value2['tipo']);
           $data['id']=$value['id'];
           $data['obligatorio']=$value2['obligatorio'];
+          $data['nombreArchivo']=$value2['nombreArchivo'];
 
            echo '<form id="panel-pregunta'.$value['id'].'" name="datos-pregunta" style="border-bottom: solid 2px #c9c5c5;">';
            echo '<input type="text" value="'.$value['id'].'" name="id" class="form-control form-control-sm text-center" readonly hidden>';
