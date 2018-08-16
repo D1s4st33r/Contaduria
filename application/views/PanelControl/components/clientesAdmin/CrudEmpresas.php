@@ -46,6 +46,18 @@
                       <input type="text" value="<?php echo $value['telefono'];?>" name="telefono" class="form-control form-control-sm">
                     </div>
                   </div>
+                  <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class="form-group   p-1 m-0 ">
+                        <label class="small disable m-0" for="representantelegal">Rep Legal</label>
+                      <input type="text" value="<?php echo $value['representantelegal'];?>" name="representantelegal" class="form-control form-control-sm">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class="form-group   p-1 m-0 ">
+                        <label class="small disable m-0" for="telrepresentante">Telefono Rep Legal</label>
+                      <input type="text" value="<?php echo $value['telrepresentante'];?>" name="telrepresentante" class="form-control form-control-sm">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -61,7 +73,18 @@
                 </div>
               </div>
             </div>
-            
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <button type="button" class="btn "> Contadores asignados  </button>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                
+                </div>
+              </div>
+            </div>
+            </div>
             
           </div>
           <?php endforeach;?>        
