@@ -22,6 +22,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 		}
 		//cargar datos
 		$this->load->model('Paneles_Model');// cargar modelo
+		$this->load->model('Formularios_Model');// cargar modelo
 		$this->load->model('Panel_Admin_Cliente_Model');// cargar modelo
 		$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
 		$this->post = $this->input->post();
@@ -207,6 +208,82 @@ class Panel_Admin_Cliente extends MY_Controller {
 		$this->data['session'] = $this->session."&cliente=".$idCliente;
 		$this->load->view("PanelControl/components/clientesAdmin/CrudEmpresas",$this->data);
 	}
+
+	public function RegistrarEmpresaCliente()
+    {
+        if($this->input->post())
+		{
+			$id_usuario = $this->input->post("id_usuario");
+			$RazonSocial = $this->input->post("razonSocial");
+			$RFC = $this->input->post("rfc");
+			$Domicilio = $this->input->post("domicilio");
+			$Correo = $this->input->post("correo");		
+			$Telefono = $this->input->post("telefono");
+			$ReLegal = $this->input->post("representantelegal");
+			$TelRepre = $this->input->post("telrepresentante");
+
+			
+			 $validoRFC = $this->Formularios_Model->validarRFC($RFC);
+			 $validoMail = $this->Formularios_Model->ValidarEmail($Correo);
+			 
+			if($validoRFC && $validoMail )
+			{
+				
+				$this->load->helper('path');  
+
+				$dir=set_realpath('./Boveda/'.$RFC."/");  
+				if(!is_dir($dir)){  
+					mkdir($dir,0777); 
+				}
+			
+				$config = [
+				"upload_path" =>'./Boveda/'.$RFC."/",
+				'allowed_types' =>"png|jpg|pdf|docs|xls"
+				];
+				// $this->load->library("upload",$config);
+		
+				// if($this->upload->do_upload('archivos'))
+				// {
+					// $dato_archivo=array("upload_data" =>$this->upload->data());
+					$datos_em=array(
+						"id_usuario" => $id_usuario,
+						"rfc" => $RFC,
+						"razonSocial" => $RazonSocial,
+						"domicilio" => $Domicilio,
+						"correo"=>$Correo,
+						"telefono"=>$Telefono,
+						"representantelegal"=>$ReLegal,
+						"telrepresentante"=>$TelRepre,
+						// "archivos" => $dato_archivo['upload_data']['file_name'],
+						
+					);
+
+					$formularioData=array(
+						"id_cliente"=>$id_usuario,
+						"empresarfc"=>$RFC,
+						"fecha_ini"=>date("d.m.Y"),
+						"ponderacion"=>$this->Formularios_Model->getNumPreguntas()
+					);
+					$this->Formularios_Model->crearFormulario($formularioData);
+					$this->Formularios_Model->dataempresa($datos_em);
+				
+					$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($id_usuario);
+					$this->data['session'] = $this->session."&cliente=".$id_usuario;
+					$this->load->view("PanelControl/components/clientesAdmin/CrudEmpresas",$this->data);
+				// }else{
+				// 	echo "No subio Documento";
+				// }
+			}else{
+				$this->data['id_cliente'] = $id_usuario;
+				$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($id_usuario);
+				$this->data['session'] = $this->session."&cliente=".$id_usuario;
+				$this->data['error'] =true;
+				$this->data['formulario'] = $this->input->post();
+				$this->load->view("PanelControl/components/clientesAdmin/FormularioEmpresa",$this->data);
+			}
+		}	
+    }
+
 	public function FormularioClienteEmpresa()
 	{
 		$this->data['id_cliente'] = $this->input->get('cliente');

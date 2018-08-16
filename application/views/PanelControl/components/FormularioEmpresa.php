@@ -9,7 +9,7 @@
     <li>El RFC ya ha sido registrado o es invalido</li>
     <li>Correo invalido o ya ha sido registrado</li>
 </div>
-<form action="<?php echo base_url()."Login/PostEmpresa"?>" id="registrarAdmin" method="post" class="card-body" enctype="multipart/form-data" >
+<form  id="registrarAdmin"  >
     <div class="row">
         
         <div class="col-sm">
@@ -87,9 +87,7 @@
             <div class="form-group">
                 <br>
                 <br>
-
-                <input type="submit" value="Registrar Empresa" class="btn btn-warning" >
-                
+                <input type="button" value="Registrar Empresa" class="btn btn-warning" id="#regEmpresaBtn">
             </div>
         </div>
 </form>
