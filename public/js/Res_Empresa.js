@@ -6,6 +6,11 @@ $('#myModalRegistro').modal('show'); // show bootstrap modal
 
 
 
+$("#idarchivo").on("change", function(){
+
+alert("archivo seleccionado");
+});
+
 $(document).on('submit', '#registrar', function(e)
 {  
     e.preventDefault();
