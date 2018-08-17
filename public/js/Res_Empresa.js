@@ -5,12 +5,6 @@ $('#myModalRegistro').modal('show'); // show bootstrap modal
 
 
 
-
-$("#idarchivo").on("change", function(){
-
-alert("archivo seleccionado");
-});
-
 $(document).on('submit', '#registrar', function(e)
 {  
     e.preventDefault();
@@ -35,8 +29,11 @@ $(document).on('submit', '#registrar', function(e)
      });
 });
 
+
+
 $(document).on('submit', '#registrarAdmin', function(e)
 { 
+    
     e.preventDefault();
     var form = $('#registrarAdmin')[0]; // You need to use standard javascript object here
     var formData = new FormData(form);
