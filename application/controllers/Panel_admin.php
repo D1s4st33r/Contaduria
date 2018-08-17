@@ -126,12 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		}
 
-		
-		
-		
 
-		
-		
 		public function getTituloPanel()
 		{
 			$this->load->view("PanelControl/components/TituloPanel",$this->data);

@@ -152,13 +152,8 @@
               <div class="col-12 mb-1">
                 <div class="container">
                   <div class="row">
-                  <?php 
-                  // echo "<pre>";
-                  // print_r ($clientes);
-                  // echo "</pre>";
-                  //  ?>
                     <div class="col-lg align-items-center">
-                    <h6 class="lh-125 small text-muted p-2"> Registrados : <?php echo count($clientes);?> </h6>
+                      <h6 class="lh-125 small text-muted p-2"> Registrados : <?php echo count($clientes);?> </h6>
                     </div>
                     <div class="col-lg">
                       <div class="container">
@@ -223,7 +218,41 @@
       </div>
     </div>
 
+    <?php elseif ($menu == "Boveda") : ?>
+     <div class="container ">
+      <div class="row">
+        <div class="col-12 p-0 m-0">
+          <div class="container">
+            <div class="row my-3 p-3 bg-white rounded box-shadow">
+              <div class="col-12 mb-1 align-items-center">
+                <h4 class="p-2 bg-light text-dark rounded "> 
+                  <i class='fas fa-folder fa-2x'></i> Boveda
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+                
+        
+        <div class="col-12">
+          <div class="container">
+            <div class="row my-3 p-3 bg-white" >
+            
+              <div class="col-12 contenedor" id="BovedaResultados">
+              <?php
+              $array['clientes']=  $clientes;
+                $this->load->view('PanelControl/components/Boveda/listaEmpresas',$array);
+                ?>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <?php endif; ?>
+
 
 
 <!-- cierre de base  --> 
