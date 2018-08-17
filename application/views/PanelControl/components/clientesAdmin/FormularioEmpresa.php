@@ -71,8 +71,9 @@
                         <div class="form-group">
                             <label for="NombreArchivo">Acta Constitutiva</label>
                             <div class="custom-file">
-                                <input type="file"  name="archivos" id="idarchivoAdmin"required> 
- 
+                                <input type="file" class="custom-file-input" name="archivos" id="archivosd"required> 
+                                <label class="custom-file-label" for="archivos">Gestionar Acta...</label>
+                                <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
                         </div>
                     </div>
