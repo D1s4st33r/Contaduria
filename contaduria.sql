@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-08-2018 a las 01:55:53
+-- Tiempo de generación: 17-08-2018 a las 06:04:30
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -34,6 +34,13 @@ CREATE TABLE `boveda` (
   `id_pregunta` int(11) NOT NULL,
   `archivo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `boveda`
+--
+
+INSERT INTO `boveda` (`id`, `id_formulario`, `id_pregunta`, `archivo`) VALUES
+(1, 2, 130, '36232019_1887620847962465_7234704025919160320_n.png');
 
 -- --------------------------------------------------------
 
@@ -164,6 +171,38 @@ INSERT INTO `cat_secciones_preguntas` (`id`, `seccion`, `categoria`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contadores_asignacion_cliente`
+--
+
+CREATE TABLE `contadores_asignacion_cliente` (
+  `id` bigint(20) NOT NULL,
+  `idContador` bigint(20) NOT NULL,
+  `idCliente` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `contadores_asignacion_cliente`
+--
+
+INSERT INTO `contadores_asignacion_cliente` (`id`, `idContador`, `idCliente`) VALUES
+(3, 5, 23),
+(5, 5, 22);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contadores_asignacion_empresa`
+--
+
+CREATE TABLE `contadores_asignacion_empresa` (
+  `id` bigint(20) NOT NULL,
+  `idContador` bigint(20) NOT NULL,
+  `rfc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `contrato`
 --
 
@@ -182,61 +221,69 @@ CREATE TABLE `contrato` (
 CREATE TABLE `detalles_preguntas` (
   `id_pregunta` int(11) NOT NULL,
   `tipo` varchar(255) NOT NULL,
-  `soliarchivo` int(1) NOT NULL,
   `obligatorio` int(1) NOT NULL,
-  `nombreArchivo` varchar(255) NOT NULL,
+  `soliarchivo` int(1) NOT NULL,
   `preguntaOpcional` varchar(255) NOT NULL,
   `tipoPreOpcional` varchar(100) NOT NULL,
-  `categoria` varchar(100) NOT NULL
+  `categoria` varchar(100) NOT NULL,
+  `nombreArchivo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `detalles_preguntas`
 --
 
-INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `soliarchivo`, `obligatorio`, `nombreArchivo`, `preguntaOpcional`, `tipoPreOpcional`, `categoria`) VALUES
-(129, 'RADIO', 0, 0, '', 'pregunta opcional', 'TEXT', 'FISCAL'),
-(545, 'RADIO', 0, 0, '', '', 'RADIO', 'CONTABLE'),
-(546, 'RADIO', 0, 0, '', '', 'RADIO', 'CONTABLE'),
-(547, 'RADIO', 0, 0, '', '', 'TEXT', 'CONTABLE'),
-(548, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(549, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(550, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(551, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(552, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(553, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(554, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(555, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(556, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(557, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(558, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(559, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(560, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(561, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(562, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(563, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(564, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(565, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(566, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(567, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(568, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(569, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(570, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(571, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(573, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(574, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(575, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(576, 'RADIO', 0, 0, '', '', 'DEFAULT', 'CONTABLE'),
-(577, 'default', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(578, 'default', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(579, 'default', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(584, 'DEFAULT', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(585, 'DEFAULT', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(586, 'DEFAULT', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(587, 'DEFAULT', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(588, 'DEFAULT', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(589, 'DEFAULT', 0, 0, '', 'pregunta opcional', 'default', 'FISCAL'),
-(600, 'default', 0, 0, '', 'pregunta opcional', 'default', 'CONTABLE');
+INSERT INTO `detalles_preguntas` (`id_pregunta`, `tipo`, `obligatorio`, `soliarchivo`, `preguntaOpcional`, `tipoPreOpcional`, `categoria`, `nombreArchivo`) VALUES
+(129, 'RADIO', 0, 0, '', 'RADIO', 'FISCAL', ''),
+(130, 'RADIO', 0, 1, '', 'RADIO', 'FISCAL', 'papel de trabajo'),
+(131, 'RADIO', 0, 0, '', 'RADIO', 'FISCAL', ''),
+(132, 'RADIO', 0, 0, '', 'RADIO', 'FISCAL', ''),
+(133, 'RADIO', 0, 0, '', 'RADIO', 'FISCAL', ''),
+(134, 'RADIO', 0, 0, '', 'RADIO', 'FISCAL', ''),
+(136, 'RADIO', 0, 1, '', 'RADIO', 'FISCAL', 'comprobantes'),
+(137, 'RADIO', 0, 0, '', 'RADIO', 'FISCAL', ''),
+(138, 'RADIO', 0, 0, '', 'RADIO', 'FISCAL', ''),
+(545, 'RADIO', 0, 1, '', 'RADIO', 'CONTABLE', 'nomina'),
+(546, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(547, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(548, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(549, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(550, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(551, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(552, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(553, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(554, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(555, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(556, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(557, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(558, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(559, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(560, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(561, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(562, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(563, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(564, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(565, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(566, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(567, 'RADIO', 0, 0, '¿Se expiden CFDIS por dichas ventas?', 'RADIO', 'CONTABLE', ''),
+(568, 'RADIO', 0, 0, '¿Están vinculados para trabajar en modulos? ', 'RADIO', 'CONTABLE', ''),
+(569, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(570, 'RADIO', 0, 0, '¿amarra con cifras dictaminadas? (en caso de ser dictaminada)', 'RADIO', 'CONTABLE', ''),
+(571, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(573, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(574, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(575, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(576, 'RADIO', 0, 0, '', 'RADIO', 'CONTABLE', ''),
+(577, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(578, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(579, 'default', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(584, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(585, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(586, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(587, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(588, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(589, 'DEFAULT', 0, 0, 'pregunta opcional', 'default', 'FISCAL', ''),
+(600, 'default', 0, 0, 'pregunta opcional', 'default', 'CONTABLE', '');
 
 -- --------------------------------------------------------
 
@@ -250,20 +297,18 @@ CREATE TABLE `empresa` (
   `domicilio` varchar(120) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `telefono` int(10) NOT NULL,
+  `representantelegal` varchar(60) NOT NULL,
+  `telrepresentante` varchar(60) NOT NULL,
   `archivos` varchar(200) DEFAULT NULL,
-  `id_usuario` int(4) NOT NULL,
-  `contadorAsignado` int(1) NOT NULL,
-  `representantelegal` varchar(255) NOT NULL,
-  `telrepresentante` varchar(255) NOT NULL
+  `id_usuario` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`rfc`, `razonSocial`, `domicilio`, `correo`, `telefono`, `archivos`, `id_usuario`, `contadorAsignado`, `representantelegal`, `telrepresentante`) VALUES
-('CU120923RAWQD', 'cubitshell', 'SM 222 M 4 L2 #2', 'cubit@cubit.com', 2147483647, 'CV_Salvador.pdf', 4, 0, 'Salvador', '5555555555'),
-('EDU120912GASE', 'EduTrabajo', 'SM 222 M 4 L2 #2', 'edutrabajo@edutrabajo.com', 2147483647, 'CV_Salvador.pdf', 4, 0, 'chucho', '8474152147');
+INSERT INTO `empresa` (`rfc`, `razonSocial`, `domicilio`, `correo`, `telefono`, `representantelegal`, `telrepresentante`, `archivos`, `id_usuario`) VALUES
+('TEL123234ASDA', 'telcel', 'los heroes', 'telcel@telcel.com', 2147483647, 'salvador', '8782525437', '36232019_1887620847962465_7234704025919160320_n.png', 22);
 
 -- --------------------------------------------------------
 
@@ -272,21 +317,20 @@ INSERT INTO `empresa` (`rfc`, `razonSocial`, `domicilio`, `correo`, `telefono`, 
 --
 
 CREATE TABLE `formulario` (
-  `id` int(100) NOT NULL,
+  `id` int(4) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `empresarfc` varchar(13) NOT NULL,
-  `fecha_ini` varchar(11) NOT NULL,
-  `fecha_fini` varchar(11) NOT NULL,
-  `poderacion` int(100) NOT NULL
+  `fecha_ini` varchar(10) NOT NULL,
+  `fecha_fin` varchar(10) NOT NULL,
+  `ponderacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `formulario`
 --
 
-INSERT INTO `formulario` (`id`, `id_cliente`, `empresarfc`, `fecha_ini`, `fecha_fini`, `poderacion`) VALUES
-(1, 4, 'CU120923RAWQD', '01.08.2018', '', 0),
-(2, 4, 'EDU120912GASE', '03.08.2018', '', 0);
+INSERT INTO `formulario` (`id`, `id_cliente`, `empresarfc`, `fecha_ini`, `fecha_fin`, `ponderacion`) VALUES
+(2, 22, 'TEL123234ASDA', '13.08.2018', '', 577);
 
 -- --------------------------------------------------------
 
@@ -435,12 +479,12 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (127, 'LABORAL', 'GENERALES', '¿ En caso de estar ventilando un juicio ante el tribunal federal de conciliación y arbitraje, existe un calendario de suspensión de labores y que por lo mismo no correrán términos legales, ademas de los días sabados y domingos ?'),
 (128, 'LABORAL', 'GENERALESR', '1-enero,5-febrero,21-marzo,1-mayo,5-mayo,16 a 31- julio,16-septiembre,20-noviembre,16 a 31-diciembre'),
 (129, 'FISCAL', 'COEFICIENTE DE UTILIDAD', '¿ Se tiene calculado para el ejercicio actual ?'),
-(130, 'FISCAL', 'COEFICIENTE DE UTILIDAD', '¿ A que ejercicio corresponde ?, (proporcionar papel de trabajo)'),
+(130, 'FISCAL', 'COEFICIENTE DE UTILIDAD', '¿ A que ejercicio corresponde ?'),
 (131, 'FISCAL', 'PERDIDAS FISCALES ACUMULADAS', '¿ Se tienen perdidas fiscales de ejercicios anteriores ?'),
 (132, 'FISCAL', 'PERDIDAS FISCALES ACUMULADAS', '¿ Están integradas por su origen ?'),
 (133, 'FISCAL', 'PERDIDAS FISCALES ACUMULADAS', '¿ Conoce la mecánica actual de actualización fiscal ?'),
 (134, 'FISCAL', 'PERDIDAS FISCALES ACUMULADAS', '¿ Están actualizadas y amortizadas en su caso, en el ejercicio que les corresponde ?'),
-(136, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Esta al corriente en los pagos provisionales de impuestos ? (proporcionar comprobantes)'),
+(136, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Esta al corriente en los pagos provisionales de impuestos ?'),
 (137, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Se tiene actualmente elaborado un calendario de todas las obligaciones al que esta afecto la compañía ?'),
 (138, 'FISCAL', 'PAGOS PROVISIONALES', '¿ Tiene la compañía un listado (concentrado)de todos los impuestos pagados ?'),
 (139, 'FISCAL', 'IMPUESTO SOBRE LA RENTA', '¿ Se tiene un cálculo para el ISR del ejercicio a esta fecha ?'),
@@ -609,9 +653,9 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (304, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'a) Son destruidos los envases una vez agotados el contenido ?'),
 (305, 'FISCAL', 'CHECK LIST FISCAL 2017:', 'b) En que momento ?, al final del día o al día siguiente ?'),
 (306, 'FISCAL', 'PRESTAMOS E INTERESES:', '* Se recibieron préstamos y por los cuales se pagan intereses ?, y a su vez se concedieron créditos a:'),
-(307, 'FISCAL', 'PRESTAMOS E INTERESES:', 'a) Trabajadores o funcionarios');
+(307, 'FISCAL', 'PRESTAMOS E INTERESES:', 'a) Trabajadores o funcionarios'),
+(308, 'FISCAL', 'PRESTAMOS E INTERESES:', 'b) Socios o Accionistas');
 INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
-(308, 'FISCAL', 'PRESTAMOS E INTERESES:', 'b) Socios o Accionistas'),
 (309, 'FISCAL', 'PRESTAMOS E INTERESES:', 'c) Terceros'),
 (310, 'FISCAL', 'PRESTAMOS E INTERESES:', 'y por ello se cobran o no intereses a tasas menores a los pactados por el crédito recibido?, se está conciente de que habrá una porción de \'deducción de intereses no deducibles\' ?'),
 (311, 'FISCAL', 'PRESTAMOS E INTERESES:', '* En el supuesto de otorgar prestamos a terceros a tasas inferiores o nulas que las contratadas con acreedores, se está realizando el cálculo del Art. 38 del RLISR Nuevo Vigente ?'),
@@ -868,10 +912,10 @@ INSERT INTO `preguntas` (`id`, `categoria`, `seccion`, `texto`) VALUES
 (564, 'CONTABLE', 'BANCOS', 'Utilidades acumuladas.- ¿están integradas por año de origen?'),
 (565, 'CONTABLE', 'BANCOS', 'Otras cuentas complementarias de capital.- ¿tiene soporte su origen y aplicación?'),
 (566, 'CONTABLE', 'BANCOS', 'Ventas y/o ingresos.- ¿validados con la emisión de CFDIS del mes con publico en general y personalizada al contribuyente, ademas llevar el archivo consecutivo fiscal de facturas, notas de cargo y notas de crédito?'),
-(567, 'CONTABLE', 'BANCOS', '¿Se hace una facturación global por las ventas diarias con el público en general?,¿Se expiden CFDIS por dichas ventas?'),
-(568, 'CONTABLE', 'BANCOS', 'Que programa contable, tesorería, nomina, inventarios, cuentas por pagar, por cobrar, facturación, etc. Maneja la cia.?,¿Están vinculados para trabajar en modulos? '),
+(567, 'CONTABLE', 'BANCOS', '¿Se hace una facturación global por las ventas diarias con el público en general?'),
+(568, 'CONTABLE', 'BANCOS', 'Que programa contable, tesorería, nomina, inventarios, cuentas por pagar, por cobrar, facturación, etc. Maneja la cia.?'),
 (569, 'CONTABLE', 'BANCOS', 'En el supuesto de alguna contingencia (eléctrica, virus, accidente o siniestro, etc.),¿se cuenta con un respaldo de toda la información?'),
-(570, 'CONTABLE', 'BANCOS', '¿Esta cerrada la balanza de comprobación definitiva del ejercicio inmediato anterior ?,¿amarra con cifras dictaminadas? (en caso de ser dictaminada)'),
+(570, 'CONTABLE', 'BANCOS', '¿Esta cerrada la balanza de comprobación definitiva del ejercicio inmediato anterior ?'),
 (571, 'CONTABLE', 'BANCOS', '¿Se cuenta con registros contable en cuentas de orden de los cálculos para efectos fiscales?'),
 (573, 'CONTABLE', 'CAJA CHICA', '¿Arqueos de caja?'),
 (574, 'CONTABLE', 'CAJA CHICA', '¿Resguardos actualizados?'),
@@ -895,46 +939,19 @@ CREATE TABLE `resultados` (
   `id` int(4) NOT NULL,
   `id_formulario` int(11) NOT NULL,
   `id_pregunta` int(4) NOT NULL,
-  `respuesta` varchar(255) NOT NULL,
-  `respuestaOpc` varchar(255) NOT NULL
+  `respuesta` varchar(20) NOT NULL,
+  `respuestaOpc` varchar(100) NOT NULL,
+  `seccion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `resultados`
 --
 
-INSERT INTO `resultados` (`id`, `id_formulario`, `id_pregunta`, `respuesta`, `respuestaOpc`) VALUES
-(1, 1, 573, '0', ''),
-(2, 1, 574, '0', ''),
-(3, 1, 549, '1', ''),
-(4, 1, 545, '0', ''),
-(5, 1, 552, '0', ''),
-(6, 1, 548, '1', ''),
-(7, 1, 551, '0', ''),
-(8, 1, 550, '0', ''),
-(9, 1, 547, '1', ''),
-(10, 1, 553, '1', ''),
-(11, 1, 546, '1', ''),
-(12, 1, 554, '0', ''),
-(13, 1, 556, '0', ''),
-(14, 1, 555, '1', ''),
-(15, 1, 557, '0', ''),
-(16, 1, 558, '1', ''),
-(17, 1, 559, '0', ''),
-(18, 1, 560, '0', ''),
-(19, 1, 561, '0', ''),
-(20, 1, 564, '0', ''),
-(21, 1, 563, '1', ''),
-(22, 1, 562, '0', ''),
-(23, 1, 565, '0', ''),
-(24, 1, 566, '1', ''),
-(25, 1, 567, '0', ''),
-(26, 1, 568, '0', ''),
-(27, 1, 575, '1', ''),
-(28, 1, 569, '0', ''),
-(29, 1, 576, '0', ''),
-(30, 1, 571, '1', ''),
-(31, 1, 570, '1', '');
+INSERT INTO `resultados` (`id`, `id_formulario`, `id_pregunta`, `respuesta`, `respuestaOpc`, `seccion`) VALUES
+(1, 2, 573, '1', '', 'CAJA CHICA'),
+(2, 2, 129, '0', '', 'COEFICIENTE DE UTILIDAD'),
+(3, 2, 130, '1', '', 'COEFICIENTE DE UTILIDAD');
 
 -- --------------------------------------------------------
 
@@ -956,9 +973,10 @@ CREATE TABLE `sessiones` (
 --
 
 INSERT INTO `sessiones` (`id`, `usuario_id`, `token`, `direccionIP`, `expira`, `ultimaSession`) VALUES
-(72, 1, '4d3737016f3e550dcd6480e6', '::1', '1534208096', 'Lunes 13 de Agosto 2018 06:54:03 PM'),
-(73, 4, '412e15a7d96a8976b4db5cd4', '::1', '1533882267', 'Viernes 10 de Agosto 2018 12:24:27 AM'),
-(74, 2, '21cb6132a59708d2b792e992', '::1', '1533883377', 'Viernes 10 de Agosto 2018 12:42:57 AM');
+(72, 1, '5a9cb08094919944564ee6d1', '::1', '1534482109', 'Jueves 16 de Agosto 2018 11:00:43 PM'),
+(73, 3, 'a948712d1711b24a11c30c93', '::1', '1532574466', 'Miércoles 25 de Julio 2018 09:07:46 PM'),
+(74, 22, '6844743068df998d9ae6b8f7', '::1', '1534481638', 'Jueves 16 de Agosto 2018 10:53:58 PM'),
+(75, 14, 'f4b61248d262d0a3efd09272', '::1', '1534239892', 'Martes 14 de Agosto 2018 03:44:52 AM');
 
 -- --------------------------------------------------------
 
@@ -971,7 +989,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telefono` int(15) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
   `clave` varchar(30) NOT NULL,
   `roll` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -981,10 +999,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `clave`, `roll`) VALUES
-(1, 'ISAAC', 'MONTIEL', 'isaac.montiels@hotmail.com', 2147483646, '123456789', 0),
-(2, 'salvador', 'miron', 'masterchif57@gmail.com', 2147483647, '123456789', 1),
-(3, 'dante', 'auditore', 'strokescode@gmail.com', 2147483647, '123456789', 1),
-(4, 'salvador', 'miron', 'cliente@prueba.com', 1122334455, '123456789', 2);
+(1, 'Isaac', 'Montiel ', 'isaac.montiels@hotmail.com', '9985932138', '123456789', 0),
+(5, 'salvador', 'Miron Ramos', 'salva@gmail.com', '123123123', '1234567qwerty', 1),
+(13, 'contador', 'prueba3', 'prueba3@contador.com', '2344234234234', 'asdasdas', 1),
+(14, 'pedro', 'lopez perez', 'perez@contador.com', '98989898989', 'qwertyuio', 1),
+(15, 'juan', 'Ramirez Gnzales', 'Gnzales@contador.com', '1231231231123', '123123123123', 1),
+(16, 'Daniel', 'Hernadez herrera', 'heher@gmail.com', '567876578765', '678967896789', 1),
+(22, 'carlos', 'slim', 'slim@gmail.com', '9898989898', 'slim', 2),
+(23, 'salinas', 'pliego', 'pliego@pliego.com', '67767676767676', '1234567890', 2);
 
 --
 -- Índices para tablas volcadas
@@ -1012,6 +1034,18 @@ ALTER TABLE `cat_input_preguntas`
 -- Indices de la tabla `cat_secciones_preguntas`
 --
 ALTER TABLE `cat_secciones_preguntas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `contadores_asignacion_cliente`
+--
+ALTER TABLE `contadores_asignacion_cliente`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `contadores_asignacion_empresa`
+--
+ALTER TABLE `contadores_asignacion_empresa`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1070,7 +1104,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `boveda`
 --
 ALTER TABLE `boveda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_categorias_preguntas`
@@ -1091,10 +1125,22 @@ ALTER TABLE `cat_secciones_preguntas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
+-- AUTO_INCREMENT de la tabla `contadores_asignacion_cliente`
+--
+ALTER TABLE `contadores_asignacion_cliente`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `contadores_asignacion_empresa`
+--
+ALTER TABLE `contadores_asignacion_empresa`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `formulario`
 --
 ALTER TABLE `formulario`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
@@ -1106,19 +1152,19 @@ ALTER TABLE `preguntas`
 -- AUTO_INCREMENT de la tabla `resultados`
 --
 ALTER TABLE `resultados`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `sessiones`
 --
 ALTER TABLE `sessiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
