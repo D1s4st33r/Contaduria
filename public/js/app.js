@@ -501,7 +501,7 @@ function cancelarPregunta(iddiv, url) {
     }
 }
 
-function enviarRespuestas(iddiv, url) {
+function enviarRespuestas(iddiv, url, cen) {
     var r = confirm("¿Desea mandar sus respuestas de seccion y finalizar la misma?");
     if (r) {
         var div = $("#" + iddiv);
@@ -519,7 +519,8 @@ function enviarRespuestas(iddiv, url) {
                 processData: false,
                 success: function(datos) {
                     $("#ch" + post.get('id')).html(datos);
-                    alert(datos);
+                    $('#send' + cen).html('');
+                    $('#send' + cen).html('<button type="button" class="btn btn-success btn-sm" title="send answers">FINALIZADO</button>');
                 }
             });
         });
