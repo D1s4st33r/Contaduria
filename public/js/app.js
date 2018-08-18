@@ -500,11 +500,9 @@ function cancelarPregunta(iddiv, url) {
     }
 }
 
-<<<<<<< HEAD
+
 function enviarRespuestas(iddiv, url, index) {
-=======
-function enviarRespuestas(iddiv, url, cen) {
->>>>>>> master
+
     var r = confirm("¿Desea mandar sus respuestas de seccion y finalizar la misma?");
     if (r) {
         var div = $("#" + iddiv);
@@ -520,16 +518,11 @@ function enviarRespuestas(iddiv, url, cen) {
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function(datos) {
+                success: function (datos) {
                     $("#ch" + post.get('id')).html(datos);
-<<<<<<< HEAD
                     $('#seccion' + index).html("");
                     $('#seccion' + index).html('<button type="button" class="btn btn-success btn-sm" title="send answers">FINALIZADO</button>');
-                    alert(datos);
-=======
-                    $('#send' + cen).html('');
-                    $('#send' + cen).html('<button type="button" class="btn btn-success btn-sm" title="send answers">FINALIZADO</button>');
->>>>>>> master
+                    //alert(datos);
                 }
             });
         });
