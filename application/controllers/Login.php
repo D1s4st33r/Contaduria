@@ -123,6 +123,7 @@ class Login extends CI_Controller {
 						"id_cliente"=>$id_usuario,
 						"empresarfc"=>$RFC,
 						"fecha_ini"=>date("d.m.Y"),
+						"fecha_fini"=>"Pendiente",
 						"ponderacion"=>$this->Formularios_Model->getNumPreguntas()
 					);
 					$this->Formularios_Model->crearFormulario($formularioData);

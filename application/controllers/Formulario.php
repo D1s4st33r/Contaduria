@@ -155,6 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						"archivo"=> $dato_archivo['upload_data']['file_name']
 					);
 					$this->Formularios_Model->insertBoveda($archivoF);
+					echo 'subi archivo';
 				}
 				
 				$respuestaF = array(
