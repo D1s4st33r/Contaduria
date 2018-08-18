@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo  base_url();?>public/css/jquery-ui.min.css">
     <link rel="stylesheet" href="<?php echo  base_url();?>public/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="<?php echo  base_url();?>public/css/app.css">
+	<script src="<?php echo  base_url();?>public/js/jquery.min.js" ></script>
     
     <title>Contaduria &amp; Consultoria </title>
     

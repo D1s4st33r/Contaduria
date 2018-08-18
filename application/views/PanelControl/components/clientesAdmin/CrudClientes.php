@@ -67,9 +67,8 @@
                         <div class="row">
 
                           <div class="col-sm-6 col-md-6 col-lg-6">
-                            <a href="#empresasClie" onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session."&cliente=".$value['id'];?>')" >
-                                <i class='fas fa-industry fa-md'></i> Empresas #
-                                <span><?php echo $value['info_empresas']["numEmpresas"]; ?> </span>
+                            <a href="#empresasClie" onclick="return hacerCambio('empresasClie','<?php echo base_url('empresasClie').$session.'&cliente='.$value['id'];?>')" >
+                                <i class='fas fa-industry fa-md'></i> Ver empresas </span>
                             </a>
                           </div>
                           <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>">

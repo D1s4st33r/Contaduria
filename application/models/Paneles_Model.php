@@ -321,14 +321,6 @@ class Paneles_Model extends CI_Model
 
 
     
-    public function EliminarContadorPorId($id)
-    {
-        $usuario = array(
-            "ContadorAsignado" => NULL
-        );
-        $this->db->where('id', $id);
-        $this->db->update('usuario', $usuario);
-    }
 
 
     

@@ -113,11 +113,16 @@ $route['AsignarContadorACliente']   = "Panel_Admin_Cliente/AsignarContadorAClien
 $route['ListaContadorCliente']      = "Panel_Admin_Cliente/ListaContadorCliente";
 $route['empresasClie']              = "Panel_Admin_Cliente/getEmpresas";
 $route['FormularioClienteEmpresa']  = 'Panel_Admin_Cliente/FormularioClienteEmpresa';
+$route['ContadorAsignadoLink']      = 'Panel_Admin_Cliente/ContadorAsignadoLink';
+$route['RegistrarEmpresaCliente']   = 'Panel_Admin_Cliente/RegistrarEmpresaCliente';
+$route['ActualizarEmpresa']         = "Panel_Admin_Cliente/ActualizarEmpresa";
+$route['EliminarEmpresa']           = "Panel_Admin_Cliente/EliminarEmpresa";
 
-$route['ClientesRegistrados'] = 'Panel_admin/getActualizacionContadoresClientesAdmin';
+$route['ClientesRegistrados']       = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 
+$route['BovedaAdmin'] = 'Panel_Admin_Boveda/Boveda';
 
-$route['EliminarContadorCliente'] =  "Panel_admin/EliminarContadorCliente";
+$route['EliminarContadorCliente'] =  "Panel_Admin_Cliente/EliminarContadorCliente";
 
 $route['viewCategorias']="Panel_admin/getPanelCategorias";
 $route['viewSeccyPre']="Panel_admin/getPanelSeccyPre";
