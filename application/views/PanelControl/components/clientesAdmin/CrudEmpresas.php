@@ -1,66 +1,75 @@
-    <div class="container">
-
-      <?php $data['empresas'] = $empresas;  $this->load->view('PanelControl/components/controlesRegEmpresa',$data);
-       ?>
-    </div>
-     <?php if( empty( $empresas)):?>
-        <div class=" col-12 p-2 " >    
-          <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">
-            No hay Empresas 
-          </h3>
-          </div>
-        <?php else: ?>
-        <div class="col-12 p-2 text-center">  
-          <div class="container">
-            <?php foreach ($empresas as $key => $value) :?>
-            <div class="row p-1 my-1 border-bottom align-items-center border rounded" id="id<?php echo $key ; ?>" >
-              <div class="col-sm-6 col-md-6 col-lg-4 ">
-                <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="rfc">RFC</label>
-                  <input type="text" value="<?php echo $value['rfc'];?>" name="rfc" class="form-control form-control-sm text-center" readonly>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-4">
-                <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="razonSocial">Razon Social</label>
-                  <input type="text" value="<?php echo $value['razonSocial'];?>" name="razonSocial" class="form-control form-control-sm">
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-4">
-                <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="correo">Email</label>
-                  <input type="email" value="<?php echo $value['correo'];?>" name="correo" class="form-control form-control-sm">
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-4">
-                <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="domicilio">Domicilio</label>
-                  <input type="text" value="<?php echo $value['domicilio'];?>" name="domicilio" class="form-control form-control-sm">
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-4">
-                <div class="form-group   p-1 m-0 ">
-                    <label class="small disable m-0" for="telefono">Telefono</label>
-                  <input type="text" value="<?php echo $value['telefono'];?>" name="telefono" class="form-control form-control-sm">
-                </div>
-              </div>
-              <div class="col-sm-12 col-lg-4">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-sm-6 col-lg-12 p-1">
-                    <button type="button" class="btn btn-outline-primary btn-block" onclick=" return updateCliente('id<?php echo $key ; ?>','<?php echo base_url("ActualizarUsuario").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
-                    </div>
-                    <div class="col-sm-6 col-lg-12 p-1">
-                    <button type="button" class="btn btn-outline-danger btn-block " onclick=" return EliminarCliente('id<?php echo $key ; ?>','<?php echo base_url("EliminarUsuario").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              
-            </div>
-            <?php endforeach;?>
-          </div>
+<div class="container">
+   <?php $data['empresas'] = $empresas;  $this->load->view('PanelControl/components/clientesAdmin/controlesRegEmpresa',$data);     
+  ?>
+  <div class="row">
+    <?php if( empty( $empresas)):?>
+      <div class=" col-12 p-2 " >    
+        <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">            
+          No hay Empresas 
+        </h3>
+      </div>
+    <?php else: ?>
+      <div class="col-12 p-2 text-center">
+        <div class="container">
+          <?php foreach ($empresas as $key => $value) :?>
+          <form id="<?php echo $value['rfc'] ; ?>">
+            <?php 
+            $empresa = array(
+              "empresa" => $value
+            );
+            $this->load->view('PanelControl/components/clientesAdmin/empresa_vista_admin',$empresa);
+            
+            ?>
+          </form>
+          <?php endforeach;?>        
         </div>
-        <?php endif;?>
+      </div>    
+      <script>
+      function ActualizarEmpresa(div , url)
+      {
+        var piv = true;
+        var post = {};
+        $.each($("#"+div)[0].elements, function(){ 
+            if($(this).val() == "" && $(this).attr("type") != "button" )
+            {
+                piv=false;
+                $(this).addClass("error");
+                $(this).keyup(function() 
+                {
+                    if($(this).val() == "")
+                    {   
+                        $(this).addClass("error");
+                    }else{
+                        $(this).removeClass('error');
+                    }
+                });
+            }else{
+                if($(this).attr("name") != undefined ){
+                  post[$(this).attr("name")] = $(this).val();
+                  $(this).removeClass('error');
+                }
+            }
+            
+            });
+            if(piv){
+                 hacerCambiosPostAsy(post, url, $("#"+div));
+            }      
+
+      }
       
+      </script>
+      <style>
+.defaultInput
+    {
+     width: 100px;
+     height:25px;
+     padding: 5px;
+    }
+
+.error
+{
+ border:1px solid red;
+}
+</style>
+    <?php endif;?>
+</div>        

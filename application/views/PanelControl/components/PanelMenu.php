@@ -22,8 +22,8 @@
           </a>
       </li>
 
-      <li class="nav-item p-1">
-        <a class="nav-link" href="#">
+      <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Boveda") ) ? "active" : "" ; ?> p-1">
+        <a class="nav-link" href="<?php echo base_url("BovedaAdmin").$session;?>">
           <i class='fas fa-suitcase fa-lg'></i> <small> Boveda</small>
           </a>
       </li>

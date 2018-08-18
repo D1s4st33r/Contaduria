@@ -116,7 +116,7 @@
 
 		public function getFormularios($id)
 		{
-			$form=$this->db->select("id,empresarfc,fecha_ini,fecha_fin,ponderacion")
+			$form=$this->db->select("id,empresarfc,fecha_ini,fecha_fini,ponderacion")
 			->from("formulario")
 			->where('id_cliente',$id)
 			->get()
@@ -178,7 +178,32 @@
 			->result_array()[0]['ClaveRegistro'];
 			return $Clave;
 		}
+		
+		public function validarRFC($rfc)
+		{
+			if( strlen($rfc) >= 11 && strlen($rfc)<=13 )
+			{
+				 $cuenta= (int)$this->db->select('COUNT(rfc)')->from("empresa")->where("rfc",$rfc)->get()->result_array()[0]["COUNT(rfc)"];
+				if($cuenta==0){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
 
+		public function ValidarEmail($mail)
+		{
+			if( strlen($mail) >3 && strlen($mail)<=50 )
+			{
+				 $cuenta= (int)$this->db->select('COUNT(rfc)')->from("empresa")->where("correo",$mail)->get()->result_array()[0]["COUNT(rfc)"];
+				if($cuenta==0){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
 		/**function eliminar_null($datos_null)
 		{
 			$this->db->delete("empresa",$datos_null);

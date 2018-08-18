@@ -15,7 +15,7 @@ function hacerCambio(divById, url) {
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
             $("#" + divById).focus()
-            console.log(data);
+            
 
         }
     });
@@ -27,7 +27,6 @@ function soloGet(url) {
         type: 'GET',
         url: url,
         success: function(data) {
-            console.log(data);
 
         }
     });
@@ -525,3 +524,8 @@ function enviarRespuestas(iddiv, url) {
         });
     }
 }
+
+
+
+
+

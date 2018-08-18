@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                <button type="button"  class="btn btn-outline-success btn-block "onclick="return hacerCambio('empresasClie','<?php echo base_url("empresasClie").$session;?>')" > Ver</a>                    
+                <button type="button"  class="btn btn-outline-success btn-block "onclick="return hacerCambio('empresasClie','<?php echo base_url('empresasClie').$session;?>')" > Ver</a>                    
                 </div>
                 <div class="col">
                     <button type="button" class="btn btn-outline-primary btn-block " onclick="return hacerCambio('empresasClie' ,'<?php echo base_url('FormularioClienteEmpresa').$session;?>')" > Agregar</a> 
