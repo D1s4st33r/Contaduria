@@ -136,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					if(!is_dir($dir)){  
 						mkdir($dir,0777); 
 					}
-							
+						echo($dir);	
 					$config = [
 						"upload_path" =>'./Boveda/'.$rfc['empresarfc']."/".$catLimpia."/",
 						'allowed_types' =>"png|jpg|pdf|docs|xls"	
@@ -147,6 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								
 					if($this->upload->do_upload('archivo'.$id)){			
 						$dato_archivo=array("upload_data" =>$this->upload->data());
+						echo('lo hice');
 					}
 
 					$archivoF= array(
