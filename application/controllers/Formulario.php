@@ -132,9 +132,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					$this->load->helper('path');  
 					$rfc= $this->Formularios_Model->getFormularioEmpresa($_GET['form']);
-					
 					$dir=set_realpath('./Boveda/'.$rfc['empresarfc']."/".$catLimpia."/");  
-					echo($dir);
+					
 					if(!is_dir($dir)){  
 						mkdir($dir,0777); 
 					}
