@@ -125,7 +125,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			){
 				
 				$solicitud=$this->Formularios_Model->getDetallesporId($id);
-				var_dump($solicitud);
 				if($solicitud['soliarchivo']=="1")
 				{
 					$chars = array(',' , '.', '_' , '´', '¨' , '{', 'ç' , 'Ç', '}' , '^', '?' , '[', '`' ,'\'', '*' , ']', '+' , '¿', '¡' , '!', '"' , '·',  '$' , '%', '&' , '/', '=' , '(', ')' , ')', ':' , ';', ')' , '#', ' ' );
@@ -135,6 +134,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$rfc= $this->Formularios_Model->getFormularioEmpresa($_GET['form']);
 					
 					$dir=set_realpath('./Boveda/'.$rfc['empresarfc']."/".$catLimpia."/");  
+					echo($dir);
 					if(!is_dir($dir)){  
 						mkdir($dir,0777); 
 					}
@@ -148,8 +148,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$this->load->library("upload",$config);
 								
 					if($this->upload->do_upload('archivo'.$id)){			
-						$dato_archivo=array("upload_data" =>$this->upload->data());
-						
+						$dato_archivo=array("upload_data" =>$this->upload->data());	
+					}
+					else{
+        					echo $this->upload->display_errors();
 					}
 
 					$archivoF= array(
@@ -158,7 +160,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						"archivo"=> $dato_archivo['upload_data']['file_name']
 					);
 					$this->Formularios_Model->insertBoveda($archivoF);
-					echo 'subi archivo';
 				}
 				
 				$respuestaF = array(
