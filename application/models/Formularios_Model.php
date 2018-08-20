@@ -126,7 +126,7 @@
 
 		public function getFormularioEmpresa($id)
 		{
-			$form=$this->db->select("empresarfc,fecha_ini,fecha_fin,ponderacion")
+			$form=$this->db->select("empresarfc,fecha_ini,fecha_fini,ponderacion")
 			->from("formulario")
 			->where('id',$id)
 			->get()

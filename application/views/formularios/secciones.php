@@ -81,9 +81,9 @@
                       </button>                                             <!-- fin Button de seccion -->
                     </h5>                                                 <!-- Fin de titulo -->
                     </div>';
-                    echo'<div class="btn-group grupo-bot" role="group" aria-label="Basic example">';
+                    echo'<div class="btn-group grupo-bot" id="seccion'.$index.'"role="group" aria-label="Basic example">';
             if($pre_resueltas==0){
-                  echo'<button type="button" class="btn btn-primary btn-sm" title="send answers" onclick="return enviarRespuestas(';echo "'"; echo 'preguntas'.$index;echo "'"; echo  ", '".base_url('enviarRespuestas').$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($valores['seccion']).'&form='.$idform;echo"'"; echo ')">Enviar Respuestas</button>';
+                  echo'<button type="button" class="btn btn-primary btn-sm" title="send answers" onclick="return enviarRespuestas(';echo "'"; echo 'preguntas'.$index;echo "'"; echo  ", '".base_url('enviarRespuestas').$session.'&cat='.strtoupper($categoria).'&sec='.strtoupper($valores['seccion']).'&form='.$idform;echo"'";echo ", '"; echo $index;echo "'"; echo ')">Enviar Respuestas</button>';
             }else{
               echo'<button type="button" class="btn btn-success btn-sm" title="send answers">FINALIZADO</button>';
             }

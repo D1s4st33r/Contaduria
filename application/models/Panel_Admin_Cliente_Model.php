@@ -185,6 +185,7 @@ class Panel_Admin_Cliente_Model extends CI_Model
     }
     public function EmpresasByCliente($id)
     {
+        $empresas=[];
         $frcs = $this->db->select('rfc')->from("empresa")->where("id_usuario",$id)->get()->result_array();
         $empresas= array();
         foreach ($frcs as $key => $value) 

@@ -129,14 +129,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				{
 					$chars = array(',' , '.', '_' , '´', '¨' , '{', 'ç' , 'Ç', '}' , '^', '?' , '[', '`' ,'\'', '*' , ']', '+' , '¿', '¡' , '!', '"' , '·',  '$' , '%', '&' , '/', '=' , '(', ')' , ')', ':' , ';', ')' , '#', ' ' );
 					$catLimpia = str_replace($chars, "_",  $_GET['cat']); 
+					
 					$this->load->helper('path');  
 					$rfc= $this->Formularios_Model->getFormularioEmpresa($_GET['form']);
-					
 					$dir=set_realpath('./Boveda/'.$rfc['empresarfc']."/".$catLimpia."/");  
+					
 					if(!is_dir($dir)){  
 						mkdir($dir,0777); 
 					}
-							
+						
 					$config = [
 						"upload_path" =>'./Boveda/'.$rfc['empresarfc']."/".$catLimpia."/",
 						'allowed_types' =>"png|jpg|pdf|docs|xls"	
@@ -146,7 +147,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$this->load->library("upload",$config);
 								
 					if($this->upload->do_upload('archivo'.$id)){			
-						$dato_archivo=array("upload_data" =>$this->upload->data());
+						$dato_archivo=array("upload_data" =>$this->upload->data());	
+					}
+					else{
+        					echo $this->upload->display_errors();
 					}
 
 					$archivoF= array(

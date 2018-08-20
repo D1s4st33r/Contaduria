@@ -15,7 +15,7 @@ function hacerCambio(divById, url) {
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
             $("#" + divById).focus()
-            
+
 
         }
     });
@@ -500,14 +500,16 @@ function cancelarPregunta(iddiv, url) {
     }
 }
 
-function enviarRespuestas(iddiv, url) {
+
+function enviarRespuestas(iddiv, url, index) {
+
     var r = confirm("¿Desea mandar sus respuestas de seccion y finalizar la misma?");
     if (r) {
         var div = $("#" + iddiv);
         var finds = div.find("form");
         finds.each(function() {
             var post = new FormData($(this)[0]);
-            //console.log(post.get('respuesta'.concat(post.get('id'))));
+            //alert(post.get('archivo'.concat(post.get('id'))));
             $.ajax({
 
                 method: 'post',
@@ -516,16 +518,15 @@ function enviarRespuestas(iddiv, url) {
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function(datos) {
+                success: function (datos) {
                     $("#ch" + post.get('id')).html(datos);
+                    $('#seccion' + index).html("");
+                    $('#seccion' + index).html('<button type="button" class="btn btn-success btn-sm" title="send answers">FINALIZADO</button>');
                     alert(datos);
-                }
+                },
+                error: function (datos) {
+                    alert(JSON.stringify(datos, null, 4));                }
             });
         });
     }
 }
-
-
-
-
-
