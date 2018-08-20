@@ -262,6 +262,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 						"id_cliente"=>$id_usuario,
 						"empresarfc"=>$RFC,
 						"fecha_ini"=>date("d.m.Y"),
+						"fecha_fini"=>"Sin fecha",
 						"ponderacion"=>$this->Formularios_Model->getNumPreguntas()
 					);
 					$this->Formularios_Model->crearFormulario($formularioData);

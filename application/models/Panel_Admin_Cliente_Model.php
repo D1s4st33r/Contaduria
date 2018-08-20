@@ -89,7 +89,7 @@ class Panel_Admin_Cliente_Model extends CI_Model
     public function RegistrarCliente($datos)
     {
         $datos['roll'] = 2;
-        $$registrado = $this->db->insert('usuario', $datos);o;
+        $registrado = $this->db->insert('usuario', $datos);
         return $registrado;   
     }
     public function ActualizarCliente( $usuario , $id )
@@ -186,6 +186,7 @@ class Panel_Admin_Cliente_Model extends CI_Model
     public function EmpresasByCliente($id)
     {
         $frcs = $this->db->select('rfc')->from("empresa")->where("id_usuario",$id)->get()->result_array();
+        $empresas= array();
         foreach ($frcs as $key => $value) 
         {
             // var_dump($value);
