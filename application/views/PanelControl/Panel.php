@@ -97,7 +97,7 @@
               <div class="col-12 " id="contadoresReg" >
                 <style>
                 #contadoresReg{
-                  max-height: 400px;
+                  max-height: 650px;
                   overflow: hidden;
                   overflow-y: scroll;
                 }
@@ -168,6 +168,85 @@
                       </div>
                     </div>
                   </div>
+
+                <div class="col-12">
+                  <div class="container px-1 py-0">
+                    <div class="row">
+                      <div class="col-12 text-right ">
+                      
+                          <!-- <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idCliente;?>');ver('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : "" ; ?>');"> <i class="fas fa-eye-slash"></i> </a> -->
+                      </div>
+                      <div class="col-md-5 col-lg-6  m-auto py-0">
+                        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" placeholder="Cliente" aria-label="Contador" id="BuscarCliente" type="text">
+                        <script>
+                            $(document).ready(function()
+                            {
+                              $(function()
+                              {
+                                  $("#BuscarCliente").autocomplete({
+                                      minLength:2,
+                                      source: function(request, response) 
+                                      {
+                                          searchRequest = $.ajax({
+                                          url: '<?php echo base_url("ClientesPorNombre").$session;?>',
+                                          method: 'POST',
+                                          dataType: "json",
+                                          data: {search: request.term},
+                                          beforeSend: function(){
+                                              // $("#toinput").addClass("loading");
+                                          },
+                                          success: function(data) 
+                                          {
+                                              searchRequest = null;
+                                              array_contadores = data.Clientes;
+                                              response($.map(data.Clientes, function(cliente,key) {
+                                                  return {
+                                                  value: cliente.nombre+" "+cliente.apellido,
+                                                  label: cliente.nombre+" "+cliente.apellido,
+                                                  desc: cliente.id
+                                                  };
+                                              }));
+                                              // $("#toinput").removeClass("loading");
+
+                                          }
+                                          }).fail(function() 
+                                              {
+                                                  searchRequest = null;
+                                          });
+                                      },
+                                      focus: function( event, ui ) 
+                                      {
+                                          return false;
+                                      },
+                                      select: function( event, ui ) 
+                                      {
+                                          hacerCambio('clienteReg' ,'<?php echo base_url('ClienteCRUD').$session;?>&idCliente='+ui.item.desc);
+                                          hacerCambio('asignarLink'+ui.item.desc ,'<?php echo base_url('ClienteContadorAsignadoLink').$session;?>&idCliente='+ui.item.desc);
+                                          desacer("empresasClie");
+                                      }
+                                      }).autocomplete( "instance" )._renderItem = function( ul, item ) 
+                                      {
+                                          return $( "<li>" )
+                                          .append( "<div class='border'><p class='nombreContador p-0 m-0 '>Nombre: " + item.label + "</p>" + '<p class="idContador text-mutext p-0 m-0"> ID :'+item.desc +"</p></div>" )
+                                          .appendTo( ul );
+                                      };
+                                  });
+                              });
+                              
+                        </script>
+                        <style>
+                            .nombreContador{
+                                font-size:.9em;
+
+                            }
+                            .idContador{
+                                font-size:.725rem;
+                            }
+                        </style>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-12 " id="clienteReg" >
@@ -202,7 +281,8 @@
               </div>
               
                 <div class="col-12 " id="empresasClie" >
-                  <style>
+                
+                </div>  <style>
                     #empresasClie{
                       max-height: 400px;
                       overflow: hidden;
@@ -210,7 +290,6 @@
                     }
                   </style>
                   
-                </div>
             </div>
           </div>
         </div>

@@ -49,6 +49,32 @@ class Panel_Admin_Contador extends MY_Controller
 		$this->load->view('templates/footer');
 	}
 
+	public function ContadoresPorNombre()
+	{
+		if($this->input->post() && !empty( $this->input->post("search")))
+		{
+			$search = $this->input->post("search");
+			if(!empty($search))
+			{
+				$Contadores = $this->Panel_Admin_Contador_Model->GetContadoreLike($search);
+				if(!empty($Contadores)){echo json_encode(array("Contadores"=>$Contadores));}
+				else{echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));}
+				
+			}else{
+				echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+			}
+		}else{
+			echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+		}
+	}
+
+	public function CrudContadorById()
+	{
+		$idContador = $this->input->get("idContador");
+		$this->data['estadisticas'] = $this->Panel_Admin_Contador_Model->getContadorSeleccionado($idContador);
+		$this->data['datosDeContadoresEmpleados'] = $this->Panel_Admin_Contador_Model->getContadorRegistradoPorId($idContador); 
+		$this->load->view('PanelControl/components/contadorAdmin/contadores_crud',$this->data);	
+	}
 
 	public function AgregarContador()
 		{

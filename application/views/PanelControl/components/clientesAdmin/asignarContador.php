@@ -56,6 +56,7 @@
                         $("#nombreContadorAsignado<?php  echo $idCliente;?>").val(ui.item.label);
                         $("#idContadorAsignado<?php  echo $idCliente;?>").val( ui.item.desc);
                         $("#BuscadorContador<?php  echo $idCliente;?>").val(  $("#nombreContadorAsignado<?php  echo $idCliente;?>").val());
+                        
                     }
                     }).autocomplete( "instance" )._renderItem = function( ul, item ) 
                     {
@@ -99,7 +100,14 @@
                     <div class="col-4 align-self-center">
                     <input type="hidden" id="idCliente<?php echo $idCliente; ?>" value="<?php echo $idCliente;?>">
                     
-                        <button type="button" class="btn btn-outline-success" onclick="AgregarContadorUsuario('idContadorAsignado<?php  echo $idCliente;?>','idCliente<?php echo $idCliente; ?>','<?php echo base_url('AsignarContadorACliente').$session; ?>','infoContadorAsignado<?php echo $idCliente;?>');  hacerCambio('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : "" ; ?>','<?php echo base_url('ContadorAsignadoLink').$session."&idCliente=".$idCliente?>');"> <i class="fas fa-user-plus"></i> Asignar </button>
+                        <button type="button" id="Agreegar" class="btn btn-outline-success"> <i class="fas fa-user-plus"></i> Asignar </button>
+                        <script>
+                        $("#Agreegar").click(function(){
+                            
+                            AgregarContadorUsuario('idContadorAsignado<?php  echo $idCliente;?>','idCliente<?php echo $idCliente; ?>','<?php echo base_url('AsignarContadorACliente').$session; ?>','infoContadorAsignado<?php echo $idCliente;?>');
+                            hacerCambio('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : ''; ?>','<?php echo base_url('ContadorAsignadoLink').$session.'&idCliente='.$idCliente;?>');
+                        });
+                        </script>
                     </div>
                 </div>
             </div>

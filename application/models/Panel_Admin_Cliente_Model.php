@@ -20,6 +20,8 @@ class Panel_Admin_Cliente_Model extends CI_Model
         
         return $Clientes;
     }
+
+
     public function getInfoClientes()
     {
         $Clientes = $this->db->select('id,nombre,apellido,email,telefono')
@@ -27,6 +29,23 @@ class Panel_Admin_Cliente_Model extends CI_Model
             ->where("roll",2)
             ->get()
             ->result_array();
+        foreach ($Clientes as $key => $value) 
+        {
+            $Clientes[$key]["info_empresas"] = $this->getContadorEmpresaById($value['id']);
+        }
+        $usuarios= array(
+            "cliente" => $Clientes
+        );
+        return $Clientes;
+    }
+
+    public function getInfoClientesById($id)
+    {
+        $Clientes = $this->db->select('id,nombre,apellido,email,telefono')
+        ->from("usuario")
+        ->where("id",$id)
+        ->get()
+        ->result_array();
         foreach ($Clientes as $key => $value) 
         {
             $Clientes[$key]["info_empresas"] = $this->getContadorEmpresaById($value['id']);
@@ -134,7 +153,20 @@ class Panel_Admin_Cliente_Model extends CI_Model
         }
         return array();
     }
-    
+    public function GetClienteLike($search)
+    {
+        $this->db->select('id,nombre,apellido');
+        $this->db->from('usuario');
+        $this->db->where('roll', "2");
+        $this->db->like("nombre", $search);
+        $resultado = $this->db->get()->result_array();
+        if (!empty($resultado)){
+
+            return $resultado;
+        }
+        return array();
+    }
+
     public function setContadorCliente($ids)
     {
         if(!empty($ids) && isset($ids['IdCliente']) && isset($ids['IdContador']))

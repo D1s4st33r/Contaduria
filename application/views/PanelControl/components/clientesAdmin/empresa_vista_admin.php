@@ -6,7 +6,7 @@
                   <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="form-group   p-1 m-0 ">
                         <label class="small disable m-0" for="rfc">RFC</label>
-                      <input type="text" value="<?php echo $empresa['rfc'];?>" name="rfc" class="form-control form-control-sm text-center" readonly>
+                      <input type="text" value="<?php echo $empresa['rfc'];?>" name="rfc" class="form-control form-control-sm text-center" >
                     </div>
                   </div>
                   <div class="col-sm-6 col-md-6 col-lg-4">
@@ -48,26 +48,26 @@
 
                   <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="container">
-                        <div class="row p-0 border rounded">
+                        <div class="row p-0 contenedorInter rounded">
                             <div class="col-12">
                                 Cuestionario de Empresa
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-4">
                                 <div class="form-group   p-1 m-0 ">
                                     <label class="small disable m-0" for="fechaIni">Fecha de Inicio</label>
-                                    <input type="text" value="<?php echo $empresa['cuestionario']['fecha_ini'];?>" name="fechaIni" class="form-control form-control-sm" readonly>
+                                    <input type="text" value="<?php echo $empresa['cuestionario']['fecha_ini'];?>" name="fechaIni" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-4">
                                 <div class="form-group   p-1 m-0 ">
                                     <label class="small disable m-0" for="fechaFin">Fecha de finalizaci&oacute;n</label>
-                                    <input type="text" value="<?php echo $empresa['cuestionario']['fecha_fini'];?>" name="fechaFin" class="form-control form-control-sm" readonly>
+                                    <input type="text" value="<?php echo $empresa['cuestionario']['fecha_fini'];?>" name="fechaFin" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-4">
                                 <div class="form-group   p-1 m-0 ">
                                     <label class="small disable m-0" for="ponderacion">Ponderacion</label>
-                                    <input type="text" value="<?php echo $empresa['cuestionario']['ponderacion'];?>" name="ponderacion" class="form-control form-control-sm" readonly>
+                                    <input type="text" value="<?php echo $empresa['cuestionario']['ponderacion'];?>" name="ponderacion" class="form-control form-control-sm" >
                                 </div>
                             </div>
                         </div>

@@ -19,6 +19,74 @@ class Panel_Admin_Contador_Model extends CI_Model
         );
         return $usuarios;
     }
+
+    public function getContadorSeleccionado($id)
+    {
+        $sumaEmContadores = $this->db->select('COUNT(id)')
+            ->from("usuario")
+            ->where("roll",1)
+            ->get()
+            ->result_array()[0]["COUNT(id)"];
+        $usuarios= array(
+            "contadoresRegistradosEnSistema" => $sumaEmContadores
+        );
+        return $usuarios;
+    }
+
+    public function GetContadoreLike($search)
+    {
+        $this->db->select('id,nombre,apellido');
+        $this->db->from('usuario');
+        $this->db->where('roll', "1");
+        $this->db->like("nombre", $search);
+        $resultado = $this->db->get()->result_array();
+        if (!empty($resultado)){
+
+            return $resultado;
+        }
+        return array();
+    }
+
+    public function getContadorRegistradoPorId($id)
+    {
+        $Existe =(int) $this->db->select('COUNT(id)')
+                            ->where('id',$id)
+                            ->from("usuario")
+                            ->get()->result_array()[0]['COUNT(id)'];
+        
+        $Empleados = $this->db->select('id,nombre,apellido,email,telefono')
+            ->from("usuario")
+            ->where("id",$id)
+            ->get()
+            ->result_array();
+            foreach ($Empleados as $key => $value) {
+                $hayClientes = (int)$this->db->select('COUNT(id)')
+                    ->from("contadores_asignacion_cliente")
+                    ->where('idContador',$value['id'])->get()->result_array()[0]['COUNT(id)'];
+                
+                if($hayClientes>0)
+                {
+                    $Empleados[$key]['clientes'] = array( "total" =>$hayClientes );
+                }else{
+                    $Empleados[$key]['clientes'] = array("total"=>0); // se asigna la empresa
+                }
+                $hayEmpresas = (int)$this->db->select('COUNT(id)')
+                    ->from("contadores_asignacion_empresa")
+                    ->where('idContador',$value['id'])->get()->result_array()[0]['COUNT(id)'];
+                if($hayEmpresas>0)
+                {
+                    $Empleados[$key]['auxiliando'] = array("total"=>$hayEmpresas );   
+                }else{
+                    $Empleados[$key]['auxiliando'] = array("total"=>0); // se asigna la empresa
+                }
+            }
+            $usuarios= array(
+                "contadores" => $Empleados
+            );
+    
+            return $usuarios;
+    }
+
     public function getContadoresRegistradosEnSistema()
     {
 

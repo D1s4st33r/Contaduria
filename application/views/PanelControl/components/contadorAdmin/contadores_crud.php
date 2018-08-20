@@ -1,6 +1,3 @@
-
-
-      
         <?php if( "0" == $estadisticas['contadoresRegistradosEnSistema']):?>
         <div class=" col-12 p-2 " >    
           <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">

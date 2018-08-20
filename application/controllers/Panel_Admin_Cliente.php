@@ -162,6 +162,13 @@ class Panel_Admin_Cliente extends MY_Controller {
 			echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
 		}
 	}
+	public function CRUDByCliente()
+	{
+		$idCliente = $this->input->get('idCliente');
+		$this->data['estadisticas'] = "1";
+		$this->data['clientes'] = $this->Panel_Admin_Cliente_Model->getInfoClientesById($idCliente); //info_empresas
+		$this->load->view('PanelControl/components/clientesAdmin/CrudClientes',$this->data);
+	}
 	public function AsignarContadorACliente()
 	{
 		$Ids = $this->input->post();
@@ -177,7 +184,28 @@ class Panel_Admin_Cliente extends MY_Controller {
 			
 		}
 	}
-	public function ContadorAsignadoLink()
+
+	public function ClientesPorNombre()
+	{
+		if($this->input->post() && !empty( $this->input->post("search")))
+		{
+			$search = $this->input->post("search");
+			if(!empty($search))
+			{
+				$Clientes = $this->Panel_Admin_Cliente_Model->GetClienteLike($search);
+				if(!empty($Clientes)){echo json_encode(array("Clientes"=>$Clientes));}
+				else{echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));}
+				
+			}else{
+				echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));
+			}
+		}else{
+			echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));
+		}
+	}
+
+
+	public function ClienteContadorAsignadoLink()
 	{
 		$idCliente = $this->input->get("idCliente");
 		$this->data['cliente']['id'] = $idCliente;

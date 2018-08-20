@@ -272,6 +272,7 @@ function AgregarContadorUsuario(labelIdContador, labelIdCliente, urlDes, divRemp
             IdContador: idContador
         };
         hacerCambiosPostAsy(post, urlDes, $("#" + divRemplazo));
+          
     } else {
         alert("No Existe");
     }
@@ -522,7 +523,7 @@ function enviarRespuestas(iddiv, url, index) {
                     $("#ch" + post.get('id')).html(datos);
                     $('#seccion' + index).html("");
                     $('#seccion' + index).html('<button type="button" class="btn btn-success btn-sm" title="send answers">FINALIZADO</button>');
-                    alert(datos);
+                    //alert(datos);
                 },
                 error: function (datos) {
                     alert(JSON.stringify(datos, null, 4));                }
