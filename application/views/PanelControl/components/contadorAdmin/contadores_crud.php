@@ -63,14 +63,15 @@
 
               <div class="col-sm-12 col-lg-12 p-0">
                 <div class="container p-0">
-                  <div class="row p-0">
+                  <div class="row p-0" id="contador<?php echo $value['id'];?>">
 
                     <?php $datosUtilizados = array(
                                 "idContador" => $value['id'],
                                 "clientes" =>$value['clientes'],
                                 "auxiliando" =>$value['auxiliando']
                                 );
-                    $this->load->view('PanelControl/components/contadorAdmin/contadores_crud_clientes', $datosUtilizados);?>
+                    $this->load->view('PanelControl/components/contadorAdmin/contadores_crud_clientes_links',$datosUtilizados);
+                    ?>
                     
                     
                   </div>

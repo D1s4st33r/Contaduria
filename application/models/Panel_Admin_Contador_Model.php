@@ -46,6 +46,12 @@ class Panel_Admin_Contador_Model extends CI_Model
         }
         return array();
     }
+    public function EliminarContadorPorId($id,$idContador)
+    {
+        
+        $registrado = $this->db->where('idCliente', $id)->where("idContador",$idContador)->delete('contadores_asignacion_cliente');
+        
+    }
 
     public function getContadorRegistradoPorId($id)
     {

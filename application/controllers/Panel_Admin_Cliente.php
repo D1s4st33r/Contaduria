@@ -162,6 +162,8 @@ class Panel_Admin_Cliente extends MY_Controller {
 			echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
 		}
 	}
+
+	
 	public function CRUDByCliente()
 	{
 		$idCliente = $this->input->get('idCliente');

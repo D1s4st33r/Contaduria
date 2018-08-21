@@ -67,6 +67,24 @@ class Panel_Admin_Contador extends MY_Controller
 			echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
 		}
 	}
+	public function ClientesPorNombreParaContadores()
+	{
+		if($this->input->post() && !empty( $this->input->post("search")))
+		{
+			$search = $this->input->post("search");
+			if(!empty($search))
+			{
+				$Contadores = $this->Panel_Admin_Contador_Model->GetContadoreLike($search);
+				if(!empty($Contadores)){echo json_encode(array("Contadores"=>$Contadores));}
+				else{echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));}
+				
+			}else{
+				echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+			}
+		}else{
+			echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+		}
+	}
 
 	public function CrudContadorById()
 	{
@@ -74,6 +92,23 @@ class Panel_Admin_Contador extends MY_Controller
 		$this->data['estadisticas'] = $this->Panel_Admin_Contador_Model->getContadorSeleccionado($idContador);
 		$this->data['datosDeContadoresEmpleados'] = $this->Panel_Admin_Contador_Model->getContadorRegistradoPorId($idContador); 
 		$this->load->view('PanelControl/components/contadorAdmin/contadores_crud',$this->data);	
+	}
+
+	public function EliminarContadorCliente()
+	{
+		$idCliente = $this->input->get("idCliente");
+		$idContador = $this->input->get("idContador");
+		if(isset($idCliente) && !empty($idCliente) 
+			&& isset($idContador) && !empty($idContador)
+		)
+		{
+			$this->data['idContador'] = $idContador;
+			$this->Panel_Admin_Contador_Model->EliminarContadorPorId($idCliente,$idContador);	
+			$this->data['clientes']  = $this->Panel_Admin_Contador_Model->getClientesContadoresById($this->data['idContador']); 
+			$this->data['auxiliando']  = $this->Panel_Admin_Contador_Model->getEmpresasContadoresById($this->data['idContador']); 
+			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
+
+		}
 	}
 
 	public function AgregarContador()
@@ -175,6 +210,12 @@ class Panel_Admin_Contador extends MY_Controller
 			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_buscador',$this->data);
 		}
 
+		public function BuscadorClientesContadores()
+		{
+			$this->data['idContador'] = $this->input->get("idContador");
+			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_buscador_clientes', $this->data);
+			
+		}
 		public function getActualizacionPerfil()
 		{
 			$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario

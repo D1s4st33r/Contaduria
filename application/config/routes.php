@@ -99,7 +99,10 @@ $route['BuscadorParaContadores']    = 'Panel_Admin_Contador/BuscadorParaContador
 $route['VerListaClientesAsignados'] = 'Panel_Admin_Contador/VerListaClientesAsignados';
 $route['VerLinksContador']          = 'Panel_Admin_Contador/VerLinksContador';
 $route['ContadoresPorNombre']       = 'Panel_Admin_Contador/ContadoresPorNombre';
-$route['ContadorCRUD']       = 'Panel_Admin_Contador/CrudContadorById';
+$route['ContadorCRUD']              = 'Panel_Admin_Contador/CrudContadorById';
+$route['ClientesParaContadores']    = 'Panel_Admin_Contador/ClientesPorNombreParaContadores';
+$route['BuscadorClientesContadores'] = 'Panel_Admin_Contador/BuscadorClientesContadores';
+$route['EliminarClienteDeContador'] = 'Panel_Admin_Contador/EliminarContadorCliente';
 /**
  * Panel Cliente Admin
  */
@@ -121,6 +124,7 @@ $route['EliminarEmpresa']           = "Panel_Admin_Cliente/EliminarEmpresa";
 $route['ClientesPorNombre']         = "Panel_Admin_Cliente/ClientesPorNombre";
 $route['ClienteCRUD']               = 'Panel_Admin_Cliente/CRUDByCliente';
 $route['ClientesRegistrados']       = 'Panel_admin/getActualizacionContadoresClientesAdmin';
+
 
 $route['BovedaAdmin'] = 'Panel_Admin_Boveda/Boveda';
 

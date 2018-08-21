@@ -2,9 +2,16 @@
 
     <div class="row  rounded py-2">
     <div class="col-12 text-right">
-        <a href="#contador<?php echo $idContador;?>" class="text-muted pr-3" onclick="hacerCambio('contador<?php echo $idContador;?>','<?php echo base_url("VerLinksContador").$session."&idContador=".$idContador;  ?>');"> <i class="fas fa-eye-slash"></i> </a>
+        <a  href="#contador<?php echo $idContador;?>" 
+            class="text-muted pr-3" 
+            onclick="hacerCambio('contador<?php echo $idContador;?>',
+                                '<?php echo base_url('VerLinksContador').$session.'&idContador='.$idContador;  ?>'
+                                );"
+        > 
+            <i class="fas fa-eye-slash"></i> 
+        </a>
     </div>   
-    <div class="col-12 p-0 m-0">
+        <div class="col-12 p-0 m-0">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -21,15 +28,15 @@
                 foreach($clientes as $indice => $value  ):
             ?>
             
-                <div class="container">
-                    <div class="row p-1 my-1 rounded contenedorInter">
+                <div class="container rounded contenedorInter">
+                    <div class="row p-1 my-1 ">
                         <div class="col-sm-9 col-md-9 m-0 p-0">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-auto m-0 p-0" style="display:none;">
                                         <div class="form-group   p-1  ">
                                             <label class="small" for="id">id</label>
-                                            <input type="text" value="<?php echo $value['id'];?>" name="id" class="form-control form-control-sm" readonly>
+                                            <input type="text" value="<?php echo $value['id'];?>" name="id<?php echo $value['id'];?>" class="form-control form-control-sm" readonly>
                                         </div>
                                     </div>
                                     <div class="col-auto m-0 p-0">
@@ -62,6 +69,20 @@
                                     <div class="col-auto">
                                         <a   href=""> Ver Boveda </a>
                                     </div>
+                                    <div class="col-auto">
+                                        <button type="button" 
+                                                class="btn btn-outline-danger" 
+                                                title=" Quitar Cliente " 
+                                                onclick="eliminarClientedeContador();" > 
+                                            X
+                                        </button>
+                                        <script>
+                                            function eliminarClientedeContador(){
+                                                hacerCambio('contador<?php echo $idContador;?>',
+                                                '<?php echo  base_url('EliminarClienteDeContador').$session.'&idCliente='.$value['id'].'&idContador='.$idContador;?>'); 
+                                            }
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -78,7 +99,23 @@
             <div class="container">
                 <div class="row p-1 my-1 rounded border">        
                     <div class="col-12">
-                        Sin clientes Asignados
+                        Sin clientes
+                        <br>
+                        <a  href="#contador<?php echo $idContador; ?>" 
+                            onclick="hacerCambio(
+                                                'AsignacionCliente<?php echo $idContador; ?>',
+                                                '<?php echo base_url('BuscadorClientesContadores').$session.'&idContador='.$idContador?>'
+                                        );
+                                        "
+                        > Asignar</a>
+                        <div class="container">
+                            <div class="row" id="AsignacionCliente<?php echo $idContador; ?>">
+                                <div class="col-12">
+                                
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -157,6 +194,7 @@
                                     <div class="col-auto">
                                         <a   href=""> Ver Boveda </a>
                                     </div>
+                                    
                                 </div>
                             </div>
                             
@@ -174,6 +212,8 @@
                 <div class="row p-1 my-1 rounded border">        
                     <div class="col-12">
                         Sin empresas Asignadas
+                        <br>
+                        <a href="#contador<?php echo $idContador; ?>" onclick=""> Asignar</a>
                     </div>
                 </div>
             </div>
