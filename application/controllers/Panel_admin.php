@@ -41,36 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->data['session'] = $this->session;
 	}
 
-	/**
-	 * Panel Principal ($route['PanelDeControl'])
-	 */
-	public function index()
-	{
-		$this->data['menu'] = "Panel" ;
-		// obtiene los contadores de usuarios y empresas
-		$this->data['estadisticas'] = $this->Paneles_Model->getContadoresUsuarios();
-		$this->data['categorias']=$this->Paneles_Model->getCategorias();
-		$this->data['numsecciones']=$this->Paneles_Model->getNumSecciones();
-		$this->data['preguntas']=$this->Paneles_Model->getNumPreguntas();
-		$this->data['archivos']=$this->Paneles_Model->getSoliArchivo();
-		$this->data['obligatorios']=$this->Paneles_Model->getObliArchivo();
-
-		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$this->data);
-		$this->load->view('templates/footer');
-	}
-
-
-
-
-	
-
-
-	/** FIN Seccion Contadores Administrador */
-
-	
-	/** FIN Seccion Clientes Administrador */
-
 	 public function configuracionPreguntas()
 	 {
 		$this->data['menu']= "ConfPreguntas" ;
@@ -111,7 +81,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					array(
 						"id"=>"0",
 						"nombre" => "nada para mostrar"
-					
 					)
 				);
 			}else{
@@ -133,71 +102,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 		
-		public function getActualizacionContadoresClientesAdmin()
-		{
-			$this->load->view("PanelControl/components/perfilActualizacion",$this->data);
-		}
+
 		
-
-		public function RestablecerContrasenaAdmin()
-		{
-			if ( !empty($this->input->post())
-				 && !empty($this->input->post("claveActual")) 
-				 && !empty($this->input->post("claveNueva")) 
-				 && !empty($this->input->post("claveNuevaRep"))
-				){
-				$datos=array(
-					'id' => $this->session_id ,
-					"actual" => $this->input->post("claveActual"),
-					"nueva" =>	$this->input->post("claveNueva")
-				);
-				if(  $this->input->post("claveNueva") === $this->input->post("claveNuevaRep") )
-				{	
-					if( $this->Paneles_Model->CambiarContrasena( $datos)){
-						$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "pswHecho"));
-					}else{
-						$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
-					}
-					
-				}else{
-					$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
-				}
-			}else{
-				$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
-				
-			}
-		}
-
-		public function ActualizarPerfil()
-		{
-			$post = $this->input->post();
-			if(!empty($post) 
-				&& isset($post['nombre']) && !empty($post['nombre'])
-				&& isset($post['apellido'])&& !empty($post['apellido'])
-				&& isset($post['email'])&& !empty($post['email'])
-				&& isset($post['telefono']) && !empty($post['telefono'])
-			){
-				$us = 	array(
-					"nombre" => $post['nombre'],
-					"apellido" => $post['apellido'],
-					"email" => $post['email'],
-					"telefono" => $post['telefono']
-				);
-				$hecho = $this->Paneles_Model->actualizarDatosUsuario($us,$this->session_id);
-				if($hecho)
-				{	
-					$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
-					$this->data['usuario'] = $this->Usuario;
-					$this->load->view("PanelControl/components/perfilVista",$this->data);	
-				}else{
-					
-				}
-			}else{
-			$this->getActualizacionPerfil();	
-			}	
-		}
-
-
 
 		public function getPanelCategorias()
 		{
@@ -232,10 +138,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			$this->load->view('PanelControl/components/preguntas',$this->data);
 		}
-		public function perfilVista()
-		{
-			$this->load->view("PanelControl/components/perfilVista",$this->data);	
-		}
+		
 
 		public function configCancelar()
 		{

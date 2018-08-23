@@ -19,7 +19,7 @@
             <div class="container p-0 m-0">
               <div class="row" id="TituloPanel">
               <?php 
-              $this->load->view('PanelControl/components/TituloPanel');
+                $this->load->view('PanelControl/components/TituloPanel');
               ?>
               </div>
             </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="row"  id="perfil">
                   <?php 
-                  $this->load->view('PanelControl/components/perfilVista');
+                  $this->load->view('PanelControl/components/perfilAdmin/perfilVista');
                   ?>
                 </div>
               </div>
@@ -54,7 +54,7 @@
               <div class="container ">
                 <div class="row my-3 p-3 bg-white rounded box-shadow">
                   <?php 
-                  $this->load->view('PanelControl/components/totales');
+                  $this->load->view('PanelControl/components/perfilAdmin/totales');
                   ?>
                 </div>
               </div>

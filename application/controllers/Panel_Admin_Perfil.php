@@ -46,6 +46,75 @@ class Panel_Admin_Perfil extends MY_Controller
 		$this->load->view('PanelControl/Panel',$this->data);
 		$this->load->view('templates/footer');
 	}
+
+	public function FormularioParaActualizar()
+	{
+		$this->load->view("PanelControl/components/perfilAdmin/perfilActualizacion",$this->data);
+	}
+	
+	public function ActualizarPerfil()
+	{
+		$post = $this->input->post();
+		if(!empty($post) 
+			&& isset($post['nombre']) && !empty($post['nombre'])
+			&& isset($post['apellido'])&& !empty($post['apellido'])
+			&& isset($post['email'])&& !empty($post['email'])
+			&& isset($post['telefono']) && !empty($post['telefono'])
+		){
+			$us = 	array(
+				"nombre" => $post['nombre'],
+				"apellido" => $post['apellido'],
+				"email" => $post['email'],
+				"telefono" => $post['telefono']
+			);
+			$hecho = $this->Paneles_Model->actualizarDatosUsuario($us,$this->session_id);
+			if($hecho)
+			{	
+				$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
+				$this->data['usuario'] = $this->Usuario;
+				$this->load->view("PanelControl/components/perfilAdmin/perfilVista",$this->data);	
+			}else{
+				
+			}
+		}else{
+		$this->getActualizacionPerfil();	
+		}	
+	}
+
+	public function perfilVista()
+	{
+		$this->load->view("PanelControl/components/perfilAdmin/perfilVista",$this->data);	
+	}
+
+	public function RestablecerContrasenaAdmin()
+	{
+		if ( !empty($this->input->post())
+				&& !empty($this->input->post("claveActual")) 
+				&& !empty($this->input->post("claveNueva")) 
+				&& !empty($this->input->post("claveNuevaRep"))
+			){
+			$datos=array(
+				'id' => $this->session_id ,
+				"actual" => $this->input->post("claveActual"),
+				"nueva" =>	$this->input->post("claveNueva")
+			);
+			if(  $this->input->post("claveNueva") === $this->input->post("claveNuevaRep") )
+			{	
+				if( $this->Paneles_Model->CambiarContrasena( $datos)){
+					$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "pswHecho"));
+				}else{
+					$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
+				}
+				
+			}else{
+				$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
+			}
+		}else{
+			$this->load->view('PanelControl/errores/mensajesError', $data =array( "error" => "ErrorChngPswd"));
+			
+		}
+	}
+
 }
 
 /* End of file Panel_Admin_Perfil.php */
