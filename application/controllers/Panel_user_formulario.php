@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * [Panel_admin] [Clase] [esta clase es solo para el administador]
  */
-	class Formulario extends MY_Controller {
+	class Panel_user_formulario extends MY_Controller {
 		protected $nivelAcceso = "Cliente" ;
 		protected $Usuario = array();
 	

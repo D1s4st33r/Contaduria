@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Contador  = roll 1
  * Cliente = roll 2
  */
-	class Panel_admin extends MY_Controller {
+	class Panel_Admin_Formulario extends MY_Controller {
 	
 	/**
 	 * Atributos de la calse Panel admin
