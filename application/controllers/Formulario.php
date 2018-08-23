@@ -174,7 +174,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				if($hecho){
 					echo '<i class="fas fa-check-square fa-1x"></i>';
 				}else{
-					echo'FALLO';
+					echo'No subio a la base datos';
 				}
 			}
 			else{ echo '<i class="fas fa-times fa-1x"></i>';}
