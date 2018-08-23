@@ -94,9 +94,9 @@ $route['addSeccion']="Panel_admin_formulario/addSeccion";
 $route['configUpSeccion']="Panel_admin_formulario/configUpSeccion";
 $route['configDeleteSeccion']="Panel_admin_formulario/configDelSeccion";
 $route['configUpdatePregunta']="Panel_admin_formulario/configUpPregunta";
-$route['upPregunta']="Panel_admin/updatePregunta";
-$route['configDelPregunta']="Panel_admin/configDelPregunta";
-$route['deletePregunta']="Panel_admin/deletePregunta";
+$route['upPregunta']="Panel_admin_formulario/updatePregunta";
+$route['configDelPregunta']="Panel_admin_formulario/configDelPregunta";
+$route['deletePregunta']="Panel_admin_formulario/deletePregunta";
 /**
  * Panel Contadores Admin
  */
