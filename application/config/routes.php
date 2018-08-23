@@ -78,25 +78,25 @@ $route['RestPassAdmin']     = "Panel_admin/RestablecerContrasenaAdmin";
 $route['soloVista']         = 'Panel_admin/perfilVista'; //para usuarios y contadores 
 
 //CRUD formulario
-$route['ConfPreguntas'] = 'Panel_admin_formulario/configuracionPreguntas';
-$route['viewCategorias']="Panel_admin_formulario/getPanelCategorias";
-$route['viewSeccyPre']="Panel_admin_formulario/getPanelSeccyPre";
-$route['viewPreguntas']="Panel_admin_formulario/cancelarPregunta";
-$route['configCancelar']="Panel_admin_formulario/configCancelar";
-$route['configAddCategoria']="Panel_admin_formulario/configAddCategoria";
-$route['addCategoria']="Panel_admin_formulario/addCategoria";
-$route['configUpdateCategoria']="Panel_admin_formulario/configUpCategoria";
-$route['updateCategoria']="Panel_admin_formulario/updateCategoria";
-$route['configDeleteCategoria']="Panel_admin_formulario/configDelCategoria";
-$route['deleteCategoria']="Panel_admin_formulario/deleteCategoria";
-$route['configAddSeccion']="Panel_admin_formulario/configAddSeccion";
-$route['addSeccion']="Panel_admin_formulario/addSeccion";
-$route['configUpSeccion']="Panel_admin_formulario/configUpSeccion";
-$route['configDeleteSeccion']="Panel_admin_formulario/configDelSeccion";
-$route['configUpdatePregunta']="Panel_admin_formulario/configUpPregunta";
-$route['upPregunta']="Panel_admin_formulario/updatePregunta";
-$route['configDelPregunta']="Panel_admin_formulario/configDelPregunta";
-$route['deletePregunta']="Panel_admin_formulario/deletePregunta";
+$route['ConfPreguntas'] = 'Panel_Admin_Formulario/configuracionPreguntas';
+$route['viewCategorias']="Panel_Admin_Formulario/getPanelCategorias";
+$route['viewSeccyPre']="Panel_Admin_Formulario/getPanelSeccyPre";
+$route['viewPreguntas']="Panel_Admin_Formulario/cancelarPregunta";
+$route['configCancelar']="Panel_Admin_Formulario/configCancelar";
+$route['configAddCategoria']="Panel_Admin_Formulario/configAddCategoria";
+$route['addCategoria']="Panel_Admin_Formulario/addCategoria";
+$route['configUpdateCategoria']="Panel_Admin_Formulario/configUpCategoria";
+$route['updateCategoria']="Panel_Admin_Formulario/updateCategoria";
+$route['configDeleteCategoria']="Panel_Admin_Formulario/configDelCategoria";
+$route['deleteCategoria']="Panel_Admin_Formulario/deleteCategoria";
+$route['configAddSeccion']="Panel_Admin_Formulario/configAddSeccion";
+$route['addSeccion']="Panel_Admin_Formulario/addSeccion";
+$route['configUpSeccion']="Panel_Admin_Formulario/configUpSeccion";
+$route['configDeleteSeccion']="Panel_Admin_Formulario/configDelSeccion";
+$route['configUpdatePregunta']="Panel_Admin_Formulario/configUpPregunta";
+$route['upPregunta']="Panel_Admin_Formulario/updatePregunta";
+$route['configDelPregunta']="Panel_Admin_Formulario/configDelPregunta";
+$route['deletePregunta']="Panel_Admin_Formulario/deletePregunta";
 /**
  * Panel Contadores Admin
  */
