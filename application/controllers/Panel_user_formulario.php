@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 
 		
-	public function General()
+	/*public function General()
 	{
 		$data['menu']="formulario";
 		$data['titulo'] = "general";
@@ -38,8 +38,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('templates/footer');
    
 	}
-
-	public function FormularioCliente()
+*/
+	public function FormularioEmpresa()
 	{
 		$data['menu']="formulario";
 		$data['idform']=$_GET['form'];
