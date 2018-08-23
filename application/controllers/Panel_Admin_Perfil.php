@@ -52,6 +52,11 @@ class Panel_Admin_Perfil extends MY_Controller
 		$this->load->view("PanelControl/components/perfilAdmin/perfilActualizacion",$this->data);
 	}
 	
+	public function getTituloPanel()
+	{
+		$this->load->view("PanelControl/components/perfilAdmin/TituloPanel",$this->data);
+	}
+
 	public function ActualizarPerfil()
 	{
 		$post = $this->input->post();

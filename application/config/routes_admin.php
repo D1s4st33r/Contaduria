@@ -7,3 +7,4 @@ $route['FormularioParaActualizar']  = "Panel_Admin_Perfil/FormularioParaActualiz
 $route['ActualizarPerfil']  = "Panel_Admin_Perfil/ActualizarPerfil";
 $route['RestPassAdmin']     = "Panel_Admin_Perfil/RestablecerContrasenaAdmin";
 $route['soloVista']         = 'Panel_Admin_Perfil/perfilVista';
+$route['TituloPanel']       = 'Panel_Admin_Perfil/getTituloPanel';

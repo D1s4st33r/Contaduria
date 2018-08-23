@@ -19,7 +19,7 @@
             <div class="container p-0 m-0">
               <div class="row" id="TituloPanel">
               <?php 
-                $this->load->view('PanelControl/components/TituloPanel');
+                $this->load->view('PanelControl/components/perfilAdmin/TituloPanel');
               ?>
               </div>
             </div>
@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <div class="container ">
+        <div class="container p-0 ">
           <div class="row">
 
             <div class="col-lg-6">
@@ -77,7 +77,7 @@
     <?php if ($menu == "Contadores") : ?>
     <div class="container ">
       <div class="row">
-        <div class="col-12 p-0 m-0">
+        <div class="col-12 m-0">
           <div class="container p-0 m-0">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <div class="col-12 mb-1 align-items-center">
