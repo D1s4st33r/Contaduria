@@ -161,7 +161,10 @@ class Panel_Admin_Contador_Model extends CI_Model
                     ->from("usuario")
                     ->where("id",$value['idCliente'])
                     ->get()
-                    ->result_array()[0];
+                    ->result_array();
+            if(!empty($datosTemp)){
+                $datosTemp = $datosTemp[0];
+            }
 
             $datos[] = $datosTemp;
        }
