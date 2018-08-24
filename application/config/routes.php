@@ -18,46 +18,11 @@ $route['AgregarEmpresa']        = 'Formulario/AgregarEmpresa';
 $route['ControlEmpresas']       = 'Panel_user/Empresas';
 $route['ValidarRegistro']       = 'Panel_user/ValidarRegistro';
 
-//CRUD formulario
-$route['ConfPreguntas']         = 'Panel_Admin_Formulario/configuracionPreguntas';
-$route['viewCategorias']        = "Panel_Admin_Formulario/getPanelCategorias";
-$route['viewSeccyPre']          = "Panel_Admin_Formulario/getPanelSeccyPre";
-$route['viewPreguntas']         = "Panel_Admin_Formulario/cancelarPregunta";
-$route['configCancelar']        = "Panel_Admin_Formulario/configCancelar";
-$route['configAddCategoria']    = "Panel_Admin_Formulario/configAddCategoria";
-$route['addCategoria']          = "Panel_Admin_Formulario/addCategoria";
-$route['configUpdateCategoria'] = "Panel_Admin_Formulario/configUpCategoria";
-$route['updateCategoria']       = "Panel_Admin_Formulario/updateCategoria";
-$route['configDeleteCategoria'] = "Panel_Admin_Formulario/configDelCategoria";
-$route['deleteCategoria']       = "Panel_Admin_Formulario/deleteCategoria";
-$route['configAddSeccion']      = "Panel_Admin_Formulario/configAddSeccion";
-$route['addSeccion']            = "Panel_Admin_Formulario/addSeccion";
-$route['configUpSeccion']       = "Panel_Admin_Formulario/configUpSeccion";
-$route['configDeleteSeccion']   = "Panel_Admin_Formulario/configDelSeccion";
-$route['configUpdatePregunta']  = "Panel_Admin_Formulario/configUpPregunta";
-$route['upPregunta']            = "Panel_Admin_Formulario/updatePregunta";
-$route['configDelPregunta']     = "Panel_Admin_Formulario/configDelPregunta";
-$route['deletePregunta']        = "Panel_Admin_Formulario/deletePregunta";
-/**
- * Panel Contadores Admin
- */
-$route['ControlContadores']          = 'Panel_Admin_Contador/Contadores';
-$route['AgregarContador']            = 'Panel_Admin_Contador/AgregarContador';
-$route['FormularioContador']         = 'Panel_Admin_Contador/FormularioEmpContador';
-$route['ActualizarContador']         = 'Panel_Admin_Contador/ActualizarContador';
-$route['EliminarContador']           = 'Panel_Admin_Contador/EliminarContador';
-$route['BuscadorParaContadores']     = 'Panel_Admin_Contador/BuscadorParaContadores';
-$route['VerListaClientesAsignados']  = 'Panel_Admin_Contador/VerListaClientesAsignados';
-$route['VerLinksContador']           = 'Panel_Admin_Contador/VerLinksContador';
-$route['ContadoresPorNombre']        = 'Panel_Admin_Contador/ContadoresPorNombre';
-$route['ContadorCRUD']               = 'Panel_Admin_Contador/CrudContadorById';
-$route['ClientesParaContadores']     = 'Panel_Admin_Contador/ClientesPorNombreParaContadores';
-$route['BuscadorClientesContadores'] = 'Panel_Admin_Contador/BuscadorClientesContadores';
-$route['EliminarClienteDeContador']  = 'Panel_Admin_Contador/EliminarContadorCliente';
+
 /**
  * Panel Cliente Admin
  */
-$route['ClienteControl']            = 'Panel_Admin_Cliente/Clientes';
+
 $route['FormularioCliente']         = 'Panel_Admin_Cliente/FormularioClientes';
 $route['AgregarCliente']            = 'Panel_Admin_Cliente/AgregarCliente';
 $route['ActualizarCliente']         = 'Panel_Admin_Cliente/ActualizarCliente';

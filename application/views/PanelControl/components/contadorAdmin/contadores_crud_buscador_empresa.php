@@ -12,21 +12,21 @@
 <div class="col-md-5 col-lg-5 py-2 m-auto">
     <input class="form-control mr-sm-2 ui-autocomplete-input" 
             autocomplete="off" 
-            placeholder="Cliente" 
-            aria-label="Cliente" 
-            id="ClientesPorNombre<?php  echo $idContador;?>" 
+            placeholder="Empresa" 
+            aria-label="Empresa" 
+            id="EmpresasPorRFC<?php  echo $idContador;?>" 
             type="text">
     <script>
     $(document).ready(function()
    {
         $(function()
         {
-            $("#ClientesPorNombre<?php  echo $idContador;?>").autocomplete({
+            $("#EmpresasPorRFC<?php  echo $idContador;?>").autocomplete({
                 minLength:2,
                 source: function(request, response) 
                 {
                     searchRequest = $.ajax({
-                    url: '<?php echo base_url("ClientesPorNombreContador").$session;?>',
+                    url: '<?php echo base_url("EmpresaByRazonSocial").$session;?>',
                     method: 'POST',
                     dataType: "json",
                     data: {search: request.term},
@@ -36,12 +36,12 @@
                     success: function(data) 
                     {
                         searchRequest = null;
-                        array_contadores = data.Clientes;
-                        response($.map(data.Clientes, function(cliente,key) {
+                        array_contadores = data.Empresas;
+                        response($.map(data.Empresas, function(empresa,key) {
                             return {
-                            value: cliente.nombre+" "+cliente.apellido,
-                            label: cliente.nombre+" "+cliente.apellido,
-                            desc: cliente.id
+                            value: empresa.razonSocial,
+                            label: empresa.razonSocial,
+                            desc: empresa.rfc
                             };
                         }));
                         // $("#toinput").removeClass("loading");
@@ -58,9 +58,9 @@
                     },
                     select: function( event, ui ) 
                     {
-                        $("#nombreAsignarCliente<?php  echo $idContador;?>").val(ui.item.label);
-                        $("#idCliente<?php  echo $idContador;?>").val( ui.item.desc);
-                        $("#ClientesPorNombre<?php  echo $idContador;?>").val(  $("#nombreAsignarCliente<?php  echo $idContador;?>").val());
+                        $("#RazonSocial<?php  echo $idContador;?>").val(ui.item.label);
+                        $("#rfc<?php  echo $idContador;?>").val( ui.item.desc);
+                        $("#EmpresasPorRFC<?php  echo $idContador;?>").val(  $("#nombreAsignarCliente<?php  echo $idContador;?>").val());
                         
                     }
                 }).autocomplete( "instance" )._renderItem = function( ul, item ) 
@@ -89,54 +89,54 @@
                     <div class="col-4 align-self-center">
                         <div class="input-group input-group-sm ">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="labelidContador<?php  echo $idContador;?>">ID</span>
+                                <span class="input-group-text" id="labelRFC<?php  echo $idContador;?>">RFC</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="id" aria-describedby="labelidContador<?php  echo $idContador;?>" readonly id="idCliente<?php  echo $idContador;?>">
+                            <input type="text" class="form-control" aria-label="id" aria-describedby="labelRFC<?php  echo $idContador;?>" readonly id="rfc<?php  echo $idContador;?>">
                         </div>
                     </div>
                     <div class="col-4 align-self-center">
                         <div class="input-group input-group-sm ">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="labelnombreAsignarCliente<?php  echo $idContador;?>">Nombre</span>
+                                <span class="input-group-text" id="labelRazonSocial<?php  echo $idContador;?>">Raz&oacute;n Social</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="nombre" aria-describedby="labelnombreAsignarCliente<?php  echo $idContador;?>" readonly id="nombreAsignarCliente<?php  echo $idContador;?>">
+                            <input type="text" class="form-control" aria-label="Razon" aria-describedby="labelRazonSocial<?php  echo $idContador;?>" readonly id="RazonSocial<?php  echo $idContador;?>">
                         </div>
                     </div>
                     <div class="col-4 align-self-center">
                     <input type="hidden" id="idContador<?php echo $idContador; ?>" value="<?php echo $idContador;?>">
                     
-                        <button type="button" id="Agreegar" class="btn btn-outline-success"> <i class="fas fa-user-plus"></i> Asignar </button>
+                        <button type="button" id="AgreegarEmpresa" class="btn btn-outline-success"> <i class="fas fa-user-plus"></i> Asignar </button>
                         <script>
-
-                        function agregarContadoCliente(labelIdContador, labelIdCliente, urlDes, divRemplazo) {
+                        function AgregarContadorEmpresa(labelIdContador,labelrfc,urlDes,divRemplazo)
+                        {
                             idContador = $("#" + labelIdContador).val();
-                            idCliente = $("#" + labelIdCliente).val();
+                            rfc = $("#" + labelrfc).val();
 
                             if (idContador != "0") {
                                 post = {
-                                    IdCliente: idCliente,
+                                    rfc: rfc,
                                     IdContador: idContador
                                 };
                                 hacerCambiosPostAsy(post, urlDes, $("#" + divRemplazo));
-                                
+                                    
                             } else {
                                 alert("No Existe");
                             }
-                        }
 
-                        $("#Agreegar").click(function(){
+                        }
+                        $("#AgreegarEmpresa").click(function(){
                             
-                            if($('#idContador<?php  echo $idContador;?>').val() != "0"){
-                                agregarContadoCliente('idContador<?php  echo $idContador;?>',//contador
-                                                    'idCliente<?php echo $idContador; ?>',//cliente
-                                                    '<?php echo base_url('AsignarCliente').$session; ?>',
+                            if($('#rfc<?php  echo $idContador;?>').val() != "" )
+                            {
+                                AgregarContadorEmpresa('idContador<?php  echo $idContador;?>',//contador
+                                                    'rfc<?php echo $idContador; ?>',//empresa
+                                                    '<?php echo base_url('AsignarEmpresaContador').$session; ?>',
                                                     'infoContadorAsignado<?php echo $idContador;?>');
 
                                 hacerCambio('contador<?php echo $idContador;?>',
                                             '<?php echo base_url('VerListaClientesAsignados').$session.'&idContador='.$idContador;?>');
-                                
                             }else{
-                                alert("El cliente No Existe\nEliga uno que si Exista!");
+                                alert("La Empresa No Existe\nEliga una que si Exista!");
                             }
                             
                         });

@@ -225,7 +225,7 @@ function updateCliente(iddiv, url) {
 }
 
 function EliminarUsuario(iddiv, url) {
-    var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
+    var result = confirm("Seguro de eliminar?. \nNo podra desacer esta accion");
     console.log(result);
     if (result) {
         var id_ = "";
@@ -245,7 +245,7 @@ function EliminarUsuario(iddiv, url) {
 }
 
 function EliminarCliente(iddiv, url) {
-    var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
+    var result = confirm("Seguro de eliminar?.\nNo podra desacer esta accion");
     if (result) {
         var id_ = "";
         var div = $("#" + iddiv);

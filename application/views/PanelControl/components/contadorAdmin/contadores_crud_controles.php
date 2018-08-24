@@ -5,10 +5,18 @@
     <div class="container">
         <div class="row">
             <div class="col">
-            <button type="button" class="btn  btn-outline-success btn-block" onclick="location.href='<?php echo base_url('ControlContadores').$session;?>'" > Ver </button> 
+                <button type="button" 
+                        class="btn  btn-outline-success btn-block" 
+                        onclick="location.href='<?php echo base_url('ControlContadores').$session;?>'" > 
+                    Ver 
+                </button> 
             </div>
             <div class="col">
-                <button type="button" class="btn btn-block btn-outline-primary" onclick="return hacerCambio('contadoresReg' ,'<?php echo base_url('FormularioContador').$session;?>')" > Agregar</button> 
+                <button type="button" 
+                        class="btn btn-block btn-outline-primary" 
+                        onclick="return hacerCambio('contadoresReg' ,'<?php echo base_url('FormularioContador').$session;?>')" >
+                    Agregar
+                </button> 
             </div>
         </div>
     </div>
@@ -16,10 +24,7 @@
 <div class="col-12">
     <div class="container px-1 py-0">
         <div class="row">
-            <div class="col-12 text-right ">
             
-                <!-- <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idCliente;?>');ver('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : "" ; ?>');"> <i class="fas fa-eye-slash"></i> </a> -->
-            </div>
             <div class="col-md-5 col-lg-6  m-auto py-0">
                 <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" placeholder="Contador" aria-label="Contador" id="BuscadorContador" type="text">
                 <script>
