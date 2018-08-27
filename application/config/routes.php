@@ -27,8 +27,6 @@ $route['viewCategoriasUser']="Panel_user_formulario/getPanelCategorias";
 $route['viewSeccionUser']="Panel_user_formulario/getPanelSeccion";
 $route['enviarRespuestas']="Panel_user_formulario/enviarRespuestas";
 //Fin FORMULARIO
-
-
 $route['RegistroEmpresa']="Panel_user/Registro_Empresa";
 $route['viewGeneralUser']="Formulario/getDatosGenerales";
 $route['Cliente']="Panel_user/index";

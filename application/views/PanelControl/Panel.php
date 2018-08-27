@@ -325,7 +325,7 @@
               <div class="col-12 contenedor" id="BovedaResultados">
               <?php
               $array['clientes']=  $clientes;
-                $this->load->view('PanelControl/components/Boveda/listaEmpresas',$array);
+                $this->load->view('PanelControl/components/boveda/listaEmpresas',$array);
                 ?>
               </div>
             </div>
