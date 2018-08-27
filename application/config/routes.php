@@ -19,24 +19,6 @@ $route['ControlEmpresas']       = 'Panel_user/Empresas';
 $route['ValidarRegistro']       = 'Panel_user/ValidarRegistro';
 
 
-/**
- * Panel Cliente Admin
- */
-
-
-
-
-$route['ListaContadorCliente']      = "Panel_Admin_Cliente/ListaContadorCliente";
-$route['FormularioClienteEmpresa']  = 'Panel_Admin_Cliente/FormularioClienteEmpresa';
-$route['ClienteContadorAsignadoLink']      = 'Panel_Admin_Cliente/ClienteContadorAsignadoLink';
-$route['RegistrarEmpresaCliente']   = 'Panel_Admin_Cliente/RegistrarEmpresaCliente';
-$route['ActualizarEmpresa']         = "Panel_Admin_Cliente/ActualizarEmpresa";
-$route['EliminarEmpresa']           = "Panel_Admin_Cliente/EliminarEmpresa";
-
-$route['ClienteCRUD']               = 'Panel_Admin_Cliente/CRUDByCliente';
-$route['ClientesRegistrados']       = 'Panel_admin/getActualizacionContadoresClientesAdmin';
-
-
 $route['BovedaAdmin'] = 'Panel_Admin_Boveda/Boveda';
 $route['EliminarContadorCliente'] =  "Panel_Admin_Cliente/EliminarContadorCliente";
 //FORMULARIO

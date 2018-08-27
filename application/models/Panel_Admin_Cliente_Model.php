@@ -187,12 +187,58 @@ class Panel_Admin_Cliente_Model extends CI_Model
             
         }
     }
-
+    public function setContadorEmpresa($ids)
+    {
+        if(!empty($ids) && isset($ids['rfc']) && isset($ids['IdContador']))
+        {
+            $existe =  (int)$this->db->select('COUNT(id)')
+                ->from("contadores_asignacion_empresa")
+                ->where("rfc",$ids['rfc'])
+                ->where("idContador",$ids['IdContador'])
+                ->get()
+                ->result_array()[0]["COUNT(id)"];
+            if(
+                $existe ==0
+            )
+            {
+                $cre =  array( "idContador" => $ids['IdContador'] , "rfc" => $ids['rfc']);
+                $this->db->insert('contadores_asignacion_empresa', $cre);           
+            }
+            
+        }
+    }
     public function getContadoresClienteByIdCliente($id)
     {
         $this->db->select('idContador');
         $this->db->where('idCliente', $id);
         $this->db->from('contadores_asignacion_cliente');
+        $contadorID =$this->db->get()->result_array();
+        
+        if(!empty($contadorID))
+        {
+            foreach ($contadorID as $key => $value) 
+            {
+                $this->db->select('id,nombre,apellido,telefono,email');
+                $this->db->where('id', $value['idContador']);
+                $this->db->from('usuario');
+                $contador[] =$this->db->get()->result_array()[0];
+            }
+            if(isset($contador) && !empty($contador))
+            {
+                return $contador;
+            }else{
+                return NULL;
+            }
+        }else{
+            return NULL;
+        }
+        
+    }
+    public function getContadoresClienteByIdRFC($rfc)
+    {
+        $this->db->select('idContador');
+        $this->db->where('rfc', $rfc);
+        $this->db->from('contadores_asignacion_empresa');
         $contadorID =$this->db->get()->result_array();
         
         if(!empty($contadorID))
@@ -228,12 +274,26 @@ class Panel_Admin_Cliente_Model extends CI_Model
         return $empresas;
     }
     
+    public function nombreClienteById($id)
+    {
+        $usuario = $this->db->select('nombre,apellido')->from("usuario")->where("id",$id)->get()->result_array()[0];
+        $usuario = $usuario['nombre'] . " " . $usuario['apellido'];
+        return $usuario;
+    }
+    
     public function EliminarContadorPorId($id,$idContador)
     {
         
         $registrado = $this->db->where('idCliente', $id)->where("idContador",$idContador)->delete('contadores_asignacion_cliente');
         
     }
+    public function EliminarContadorPorIdEmpresa($rfc,$idContador)
+    {
+        
+        $registrado = $this->db->where('rfc', $rfc)->where("idContador",$idContador)->delete('contadores_asignacion_empresa');
+        
+    }
+    
     public function getCamposEmpresa(){
         $campos = $this->db->list_fields("empresa");
         return $campos ;

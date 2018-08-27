@@ -144,6 +144,14 @@ class Panel_Admin_Cliente extends MY_Controller {
 		$this->load->view("PanelControl/components/clientesAdmin/asignarContador",$this->data);	
 	}
 
+	public function AsignarContadorFormularioEmpresa()
+	{
+		$idCliente = $this->input->get("idCliente");
+		$this->data['rfc'] = $this->input->get("rfc");
+		$this->data['idCliente'] = $idCliente;
+		$this->load->view("PanelControl/components/clientesAdmin/asignarContadorEmpresa",$this->data);	
+	}
+
 	public function BuscadorContador()
 	{
 		if($this->input->post() && !empty( $this->input->post("search")))
@@ -171,6 +179,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 		$this->data['clientes'] = $this->Panel_Admin_Cliente_Model->getInfoClientesById($idCliente); //info_empresas
 		$this->load->view('PanelControl/components/clientesAdmin/CrudClientes',$this->data);
 	}
+	
 	public function AsignarContadorACliente()
 	{
 		$Ids = $this->input->post();
@@ -181,9 +190,22 @@ class Panel_Admin_Cliente extends MY_Controller {
 			$this->Panel_Admin_Cliente_Model->setContadorCliente($Ids);
 			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($Ids['IdCliente']);
 			$this->data['cliente']= $Ids['IdCliente'];
-			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);
-		
-			
+			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);	
+		}
+	}
+
+	public function AsignarContadorAEmpresa()
+	{
+		$Ids = $this->input->post();
+		if(
+			!empty($Ids) && $Ids['IdContador'] != '0'
+		)
+		{	
+			$this->Panel_Admin_Cliente_Model->setContadorEmpresa($Ids);
+			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdRFC($Ids['rfc']);
+			$this->data['cliente'] = $this->input->get("idCliente");
+			$this->data['rfc']=  $Ids['rfc'];
+			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresEmpresa',$this->data);
 		}
 	}
 
@@ -225,7 +247,15 @@ class Panel_Admin_Cliente extends MY_Controller {
 		// var_dump($idCliente);
 		$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);
 	}
+	public function ListaContadorEmpresa()
+	{    
+		$idCliente = $this->input->get("idCliente");
+		$this->data['rfc'] = $this->input->get("rfc");
+		$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdRFC($this->data['rfc']);
+		$this->data['cliente'] = $idCliente;
 
+		$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresEmpresa',$this->data);
+	}
 	public function getEmpresas()
 	{
 		$idCliente = $this->input->get('cliente');
@@ -234,8 +264,9 @@ class Panel_Admin_Cliente extends MY_Controller {
 		{
 			$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($Cliente);
 		}
-		
+		$this->data['id_cliente'] = $idCliente;		
 		$this->data['session'] = $this->session."&cliente=".$idCliente;
+		$this->data['nombreCompletoCliente'] = $this->Panel_Admin_Cliente_Model->nombreClienteById($this->data['id_cliente']);
 		$this->load->view("PanelControl/components/clientesAdmin/CrudEmpresas",$this->data);
 	}
 
@@ -297,8 +328,9 @@ class Panel_Admin_Cliente extends MY_Controller {
 					);
 					$this->Formularios_Model->crearFormulario($formularioData);
 					$this->Formularios_Model->dataempresa($datos_em);
-				
+					$this->data['id_cliente'] = $id_usuario;
 					$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($id_usuario);
+					$this->data['nombreCompletoCliente'] = $this->Panel_Admin_Cliente_Model->nombreClienteById($this->data['id_cliente']);
 					$this->data['session'] = $this->session."&cliente=".$id_usuario;
 					$this->load->view("PanelControl/components/clientesAdmin/CrudEmpresas",$this->data);
 				// }else{
@@ -307,6 +339,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 			}else{
 				$this->data['id_cliente'] = $id_usuario;
 				$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($id_usuario);
+				$this->data['nombreCompletoCliente'] = $this->Panel_Admin_Cliente_Model->nombreClienteById($this->data['id_cliente']);
 				$this->data['session'] = $this->session."&cliente=".$id_usuario;
 				$this->data['error'] =true;
 				$this->data['formulario'] = $this->input->post();
@@ -322,6 +355,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 		{
 			$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($this->data['id_cliente']);
 		}
+		$this->data['nombreCompletoCliente'] = $this->Panel_Admin_Cliente_Model->nombreClienteById($this->data['id_cliente']);
 		
 		$this->load->view("PanelControl/components/clientesAdmin/FormularioEmpresa",$this->data);
 
@@ -339,6 +373,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 		}
 		$hecho = $this->Panel_Admin_Cliente_Model->ActualizarEmpresa($postVal);	
 		$this->data["empresa"] = $this->Panel_Admin_Cliente_Model->EmpresaByRFC($postVal['rfc']);
+		$this->data['nombreCompletoCliente'] = $this->Panel_Admin_Cliente_Model->nombreClienteById($post['id_cliente']);
 		$this->load->view('PanelControl/components/clientesAdmin/empresa_vista_admin',$this->data);
 		
 	}
@@ -358,7 +393,21 @@ class Panel_Admin_Cliente extends MY_Controller {
 			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);				
 		}
 	}
-	
+	public function EliminarContadorEmpresa()
+	{
+		$idContador = $this->input->get("idContador");
+		$rfc = $this->input->get("rfc");
+		if(isset($rfc) && !empty($rfc) 
+			&& isset($idContador) && !empty($idContador)
+		)
+		{
+			$this->Panel_Admin_Cliente_Model->EliminarContadorPorIdEmpresa($rfc,$idContador);	
+			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdRFC($rfc);
+			$this->data['cliente'] = $this->input->get("idCliente");
+			$this->data['rfc']=  $rfc;
+			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresEmpresa',$this->data);
+		}
+	}
 	public function EliminarEmpresa()
 	{
 		$rfc = $this->input->get("rfc");

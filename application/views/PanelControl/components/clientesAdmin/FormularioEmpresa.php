@@ -22,8 +22,9 @@
                     
                     <div class="col-sm-12 col-md-auto">
                         <div class="form-group">
-                        <label for="idCliente"> ID cliente :</label>
-                        <input type="text" class="form-control form-control-sm" name="id_usuario" id="idCliente" aria-describedby="idCliente" required="required" value="<?php echo $id_cliente?>" readonly >
+                        <label for="idCliente"> Cliente</label>
+                        <input type="hidden" class="form-control form-control-sm" name="id_usuario" id="idCliente" aria-describedby="idCliente" required="required" value="<?php echo $id_cliente?>" readonly >
+                        <input type="text" class="form-control form-control-sm" name="nombreCliente" id="nombreCliente" aria-describedby="nombreCliente" value="<?php echo $nombreCompletoCliente?>" readonly >
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-auto">

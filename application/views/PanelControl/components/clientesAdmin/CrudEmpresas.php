@@ -1,5 +1,6 @@
 <div class="container">
    <?php $data['empresas'] = $empresas;  $this->load->view('PanelControl/components/clientesAdmin/controlesRegEmpresa',$data);     
+  //  var_dump($data);
   ?>
   <div class="row">
     <?php if( empty( $empresas)):?>
@@ -15,7 +16,8 @@
           <form id="<?php echo $value['rfc'] ; ?>">
             <?php 
             $empresa = array(
-              "empresa" => $value
+              "empresa" => $value,
+              "nombreCompletoCliente" => $nombreCompletoCliente
             );
             $this->load->view('PanelControl/components/clientesAdmin/empresa_vista_admin',$empresa);
             
