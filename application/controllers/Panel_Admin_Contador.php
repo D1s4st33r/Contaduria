@@ -224,7 +224,7 @@ class Panel_Admin_Contador extends MY_Controller
 			)
 			{	
 				$this->Panel_Admin_Contador_Model->setContadorCliente($Ids);
-				$this->data['idContador'] = $Ids["idContador"];
+				$this->data['idContador'] = $Ids["IdContador"];
 				$this->data['clientes']  = $this->Panel_Admin_Contador_Model->getClientesContadoresById($this->data['idContador']); 
 				$this->data['auxiliando']  = $this->Panel_Admin_Contador_Model->getEmpresasContadoresById($this->data['idContador']); 
 				$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);

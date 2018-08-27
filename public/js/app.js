@@ -245,7 +245,7 @@ function EliminarUsuario(iddiv, url) {
 }
 
 function EliminarCliente(iddiv, url) {
-    var result = confirm("Seguro de eliminar?.\nNo podra desacer esta accion");
+    var result = confirm("Seguro de eliminar?.\nNo podra desacer esta accion si continua");
     if (result) {
         var id_ = "";
         var div = $("#" + iddiv);

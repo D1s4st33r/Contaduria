@@ -6,7 +6,7 @@
         </div>
         <div class="col-12 text-right ">
         
-            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idCliente;?>');ver('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : "" ; ?>');"> <i class="fas fa-eye-slash"></i> </a>
+            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idCliente;?>');"> <i class="fas fa-eye-slash"></i> </a>
         </div>
 
         <div class="col-md-5 col-lg-5 py-2 m-auto">
@@ -103,9 +103,14 @@
                         <button type="button" id="Agreegar" class="btn btn-outline-success"> <i class="fas fa-user-plus"></i> Asignar </button>
                         <script>
                         $("#Agreegar").click(function(){
+                            if($('#idContadorAsignado<?php  echo $idCliente;?>').val() != "0")
+                            {
+                                AgregarContadorUsuario('idContadorAsignado<?php  echo $idCliente;?>','idCliente<?php echo $idCliente; ?>','<?php echo base_url('AsignarContadorACliente').$session; ?>','infoContadorAsignado<?php echo $idCliente;?>');
+                                hacerCambio('asignarLink<?php echo $idCliente; ?>','<?php echo base_url('ClienteContadorAsignadoLink').$session.'&idCliente='.$idCliente;?>');
+                            }else{
+                                alert("El Contador No Existe\nEliga uno que si Exista!");
+                            }
                             
-                            AgregarContadorUsuario('idContadorAsignado<?php  echo $idCliente;?>','idCliente<?php echo $idCliente; ?>','<?php echo base_url('AsignarContadorACliente').$session; ?>','infoContadorAsignado<?php echo $idCliente;?>');
-                            hacerCambio('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : ''; ?>','<?php echo base_url('ContadorAsignadoLink').$session.'&idCliente='.$idCliente;?>');
                         });
                         </script>
                     </div>

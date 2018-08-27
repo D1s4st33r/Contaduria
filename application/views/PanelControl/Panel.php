@@ -113,7 +113,7 @@
 
       </div>
     </div>
-<?php elseif ($menu == "ConfPreguntas") : ?>
+<?php elseif ($menu == 'ConfPreguntas') : ?>
 <div class="container">
   <div class="row">
         <div class="col-12 p-0 m-0" id="general">
@@ -135,7 +135,7 @@
     </div>   
   </div>
                 
-        <div class "col-12 p-0 m-0" id="seccypre"></div>
+        <div class="col-12 p-0 m-0" id="seccypre"></div>
 </div>
 
      <?php elseif ($menu == "Clientes") : ?>
@@ -177,7 +177,12 @@
                           <!-- <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idCliente;?>');ver('asignarLink<?php echo (isset($idCliente) && !empty($idCliente)) ? $idCliente : "" ; ?>');"> <i class="fas fa-eye-slash"></i> </a> -->
                       </div>
                       <div class="col-md-5 col-lg-6  m-auto py-0">
-                        <input class="form-control mr-sm-2 ui-autocomplete-input" autocomplete="off" placeholder="Cliente" aria-label="Contador" id="BuscarCliente" type="text">
+                        <input class="form-control mr-sm-2 ui-autocomplete-input" 
+                               autocomplete="off" 
+                               placeholder="Cliente" 
+                               aria-label="Contador" 
+                               id="BuscarCliente" 
+                               type="text">
                         <script>
                             $(document).ready(function()
                             {

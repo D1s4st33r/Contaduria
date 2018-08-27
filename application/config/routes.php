@@ -23,21 +23,16 @@ $route['ValidarRegistro']       = 'Panel_user/ValidarRegistro';
  * Panel Cliente Admin
  */
 
-$route['FormularioCliente']         = 'Panel_Admin_Cliente/FormularioClientes';
-$route['AgregarCliente']            = 'Panel_Admin_Cliente/AgregarCliente';
-$route['ActualizarCliente']         = 'Panel_Admin_Cliente/ActualizarCliente';
-$route['EliminarCliente']           = 'Panel_Admin_Cliente/EliminarCliente';
-$route['AsignarContadorFormulario'] = 'Panel_Admin_Cliente/AsignarContadorFormulario';
-$route['BuscadorContador']          = "Panel_Admin_Cliente/BuscadorContador";
-$route['AsignarContadorACliente']   = "Panel_Admin_Cliente/AsignarContadorACliente";
+
+
+
 $route['ListaContadorCliente']      = "Panel_Admin_Cliente/ListaContadorCliente";
-$route['empresasClie']              = "Panel_Admin_Cliente/getEmpresas";
 $route['FormularioClienteEmpresa']  = 'Panel_Admin_Cliente/FormularioClienteEmpresa';
 $route['ClienteContadorAsignadoLink']      = 'Panel_Admin_Cliente/ClienteContadorAsignadoLink';
 $route['RegistrarEmpresaCliente']   = 'Panel_Admin_Cliente/RegistrarEmpresaCliente';
 $route['ActualizarEmpresa']         = "Panel_Admin_Cliente/ActualizarEmpresa";
 $route['EliminarEmpresa']           = "Panel_Admin_Cliente/EliminarEmpresa";
-$route['ClientesPorNombre']         = "Panel_Admin_Cliente/ClientesPorNombre";
+
 $route['ClienteCRUD']               = 'Panel_Admin_Cliente/CRUDByCliente';
 $route['ClientesRegistrados']       = 'Panel_admin/getActualizacionContadoresClientesAdmin';
 

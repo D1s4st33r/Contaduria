@@ -60,3 +60,12 @@ $route['deletePregunta']        = "Panel_Admin_Formulario/deletePregunta";
  * Panel Cuestionario Admin
  */
 $route['ClienteControl']            = 'Panel_Admin_Cliente/Clientes';
+$route['FormularioCliente']         = 'Panel_Admin_Cliente/FormularioClientes';
+$route['ClientesPorNombre']         = "Panel_Admin_Cliente/ClientesPorNombre";
+$route['AgregarCliente']            = 'Panel_Admin_Cliente/AgregarCliente';
+$route['ActualizarCliente']         = 'Panel_Admin_Cliente/ActualizarCliente';
+$route['empresasClie']              = "Panel_Admin_Cliente/getEmpresas";
+$route['EliminarCliente']           = 'Panel_Admin_Cliente/EliminarCliente';
+$route['AsignarContadorFormulario'] = 'Panel_Admin_Cliente/AsignarContadorFormulario';
+$route['BuscadorContador']          = "Panel_Admin_Cliente/BuscadorContador";
+$route['AsignarContadorACliente']   = "Panel_Admin_Cliente/AsignarContadorACliente";

@@ -65,9 +65,20 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <button type="button" class="btn btn-outline-danger" title=" Quitar Contador " onclick="hacerCambio('infoContadorAsignado<?php echo $cliente; ?>','<?php echo  base_url('EliminarContadorCliente').$session.'&idCliente='.$cliente.'&idContador='.$conta['id'];?>'); hacerCambio('asignarLink<?php echo (isset($cliente) && !empty($cliente)) ? $cliente : "" ; ?>','<?php echo base_url('ContadorAsignadoLink').$session."&idCliente=".$cliente?>');" > 
+                                <button type="button" 
+                                        class="btn btn-outline-danger" 
+                                        title=" Quitar Contador " 
+                                        onclick="QuitarContadorCliente();" > 
                                     X
                                 </button>
+                                <script>
+                                function QuitarContadorCliente(){
+                                    hacerCambio('infoContadorAsignado<?php echo $cliente; ?>',
+                                                             '<?php echo  base_url('EliminarContadorCliente').$session.'&idCliente='.$cliente.'&idContador='.$conta['id'];?>'); 
+                                 hacerCambio('asignarLink<?php echo $cliente; ?>',
+                                            '<?php echo base_url('ClienteContadorAsignadoLink').$session.'&idCliente='.$cliente;?>');
+                                }
+                                </script>
                             </div>
                         </div>
                     </div>

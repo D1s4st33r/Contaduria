@@ -10,7 +10,7 @@
         onclick=" hacerCambio('infoContadorAsignado<?php 
             echo   $id;
         ?>','<?php 
-            echo base_url("AsignarContadorFormulario") . $session."&idCliente=".  $id;
+            echo base_url('AsignarContadorFormulario') . $session.'&idCliente='.$id;
             ?>'); "> Asignar</a>
 <?php else:?>
     <?php  if($cliente['info_empresas']['numContadores'] ==0):?>
