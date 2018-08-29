@@ -80,3 +80,8 @@ $route['ListaContadorEmpresa']          = "Panel_Admin_Cliente/ListaContadorEmpr
 $route['AsignarContadorFormularioEmpresa']     = 'Panel_Admin_Cliente/AsignarContadorFormularioEmpresa';
 $route['AsignarContadorAEmpresa']       = "Panel_Admin_Cliente/AsignarContadorAEmpresa";
 $route['EliminarContadorEmpresa']  = 'Panel_Admin_Cliente/EliminarContadorEmpresa';
+
+/**
+ * BovedaAdmin
+ */
+$route['BovedaAdmin'] = 'Panel_Admin_Boveda/Boveda';

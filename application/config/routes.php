@@ -6,6 +6,7 @@ $route['default_controller']    = 'Login';
 
 //Aqui Van los Routes del Panel Admin 
 require_once(APPPATH.'config'.DIRECTORY_SEPARATOR."routes_admin.php"); 
+require_once(APPPATH.'config'.DIRECTORY_SEPARATOR."routes_contadores.php"); 
 
 //Aqui Van los Routes del Panel Contador 
 
@@ -18,9 +19,6 @@ $route['AgregarEmpresa']        = 'Formulario/AgregarEmpresa';
 $route['ControlEmpresas']       = 'Panel_user/Empresas';
 $route['ValidarRegistro']       = 'Panel_user/ValidarRegistro';
 
-
-$route['BovedaAdmin'] = 'Panel_Admin_Boveda/Boveda';
-$route['EliminarContadorCliente'] =  "Panel_Admin_Cliente/EliminarContadorCliente";
 //FORMULARIO
 $route['FormularioEmpresa']='Panel_user_formulario/FormularioEmpresa';
 $route['viewCategoriasUser']="Panel_user_formulario/getPanelCategorias";
@@ -31,13 +29,6 @@ $route['RegistroEmpresa']="Panel_user/Registro_Empresa";
 $route['viewGeneralUser']="Formulario/getDatosGenerales";
 $route['Cliente']="Panel_user/index";
 $route['postEmpresa']="Panel_user/postEmpresa";
-
-$route['Contador']="Panel_contador/index";
-// $route['Contadores']="Panel_user/index";
-
-// Empresas
-
-
 
 
 //$route['Formularios/legal'] = "Formularios/legal";

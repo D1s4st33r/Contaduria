@@ -11,12 +11,10 @@ function hacerCambio(divById, url) {
         url: url,
         dataType: 'html',
         beforeSend: function() {
-            $("#" + divById).fadeOut("slow");
-            $("#"+divById).html('<img class="d-block mb-1 m-auto" src="http://localhost/contaduria/public/imagenes/loader.gif" alt="" width="250" height="400">');
-            $("#" + divById).fadeIn("slow");
-            
+            $("#"+divById).html('<img class="d-block mb-1 m-auto" src="http://localhost/contaduria/public/imagenes/loader.gif" alt="" width="100%">');
         },
         success: function(data) {
+            $("#" + divById).html("");
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
             $("#" + divById).focus()
