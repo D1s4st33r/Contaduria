@@ -213,6 +213,18 @@ class Panel_Contador_Cliente_Model extends CI_Model {
        
     }
 
+    public function EmpresasAsignadasDirectamente($id)
+    {
+        
+        $frcs = $this->db->select('rfc')->from("contadores_asignacion_empresa")->where("idContador",$id)->get()->result_array();
+        $empresas= array();
+        foreach ($frcs as $key => $value) 
+        {
+            // var_dump($value);
+            $empresas[] = $this->EmpresaByRFC($value['rfc']);
+        }
+        return $empresas;   
+    }
    
 }
 

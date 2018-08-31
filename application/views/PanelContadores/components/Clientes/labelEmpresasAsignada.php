@@ -14,7 +14,7 @@
                 <div class="col">
                 <button type="button" 
                         class="btn btn-outline-success btn-block btn-sm"
-                        onclick="return hacerCambio('empresasClie','<?php echo base_url('empresasClie').$session;?>')"
+                        onclick="return hacerCambio('empresasClie','<?php echo base_url('EmpresasAsignadasDirectamente').$session;?>')"
                         title="Son empresas que fueron asignadas para que las auxilie" > 
                     Ver Empresa Asignadas
                 </button>                    

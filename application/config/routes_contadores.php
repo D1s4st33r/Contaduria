@@ -26,3 +26,4 @@ $route['FormularioRegistroEmpresaCont'] = 'Panel_Contador_Cliente/FormularioClie
 $route['RegistrarEmpresaClienteCont']   = 'Panel_Contador_Cliente/RegistrarEmpresaCliente';
 $route['ActualizarEmpresaCont']         = "Panel_Contador_Cliente/ActualizarEmpresa";
 $route['EliminarEmpresaCont']           = "Panel_Contador_Cliente/EliminarEmpresaCont";
+$route['EmpresasAsignadasDirectamente']           = "Panel_Contador_Cliente/EmpresasAsignadasDirectamente";

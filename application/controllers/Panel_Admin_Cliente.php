@@ -188,7 +188,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 		)
 		{
 			$this->data['idContador'] = $idContador;
-			$this->data['cliente'] =$idCliente;
+
 			$this->Panel_Admin_Cliente_Model->EliminarContadorPorId($idCliente,$idContador);	
 			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($idCliente);
 			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);	

@@ -309,6 +309,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 	}
 
+	public function EmpresasAsignadasDirectamente()
+	{
+		$this->data["empresas"] = $this->Panel_Contador_Cliente_Model->EmpresasAsignadasDirectamente($this->session_id);
+		// $this->data['nombreCompletoCliente'] = $this->Panel_Contador_Cliente_Model->nombreClienteById($this->data['id_cliente']);
+		$this->load->view("PanelContadores/components/Clientes/crudEmpresas",$this->data);
+	}
 
 	public function ClientesPorNombre()
 	{
