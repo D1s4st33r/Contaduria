@@ -19,14 +19,14 @@
       </li>
 
       <li class="nav-item <?php echo ( isset($menu) && !empty($menu) && ($menu == "Boveda") ) ? "active" : "" ; ?> p-1">
-        <a class="nav-link" href="<?php echo base_url("BovedaAdmin").$session;?>">
+        <a class="nav-link" href="<?php echo base_url("BovedaContador").$session;?>">
           <i class='fas fa-suitcase fa-lg'></i> <small> Boveda</small>
           </a>
       </li>
-      <li class="nav-item p-1">
+      <!-- <li class="nav-item p-1">
         <a class="nav-link" href="<?php echo base_url("ConfPreguntas");echo $session;?>"> 
         <i class='fas fa-question fa-lg'></i> <small>Cuestionarios</small>
-        </a>
+        </a> -->
       </li>
     </ul>
     

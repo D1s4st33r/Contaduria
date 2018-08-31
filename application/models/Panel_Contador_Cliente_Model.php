@@ -54,7 +54,7 @@ class Panel_Contador_Cliente_Model extends CI_Model {
         {
             return array();
         }
-        // $Clientes[$key]["info_empresas"] = $this->getContadorEmpresaById($value['id']);
+        // $Clientes$[$key]["info_empresas"] = $this->getContadorEmpresaById(resultado['id']);
         // $usuarios= array(
         //     "cliente" => $Clientes
         // );
@@ -187,6 +187,33 @@ class Panel_Contador_Cliente_Model extends CI_Model {
         $registrado = $this->db->where('empresarfc', $rfc)->delete('formulario');
         return $registrado;
     }
+
+    public function GetClienteLike($search,$id)
+    {
+        $resultado =$this->db->select('id,nombre,apellido')
+                ->from('usuario')
+                ->where('roll', 2)
+                ->like("nombre", $search)
+                ->get()->result_array();
+       $pivote="";
+        foreach ($resultado as $key => $value) 
+        {
+            $existe = (int)$this->db->select('COUNT(id)')
+                  ->from("contadores_asignacion_cliente")
+                  ->where("idCliente",$value['id'])
+                  ->where("idContador",$id)
+                  ->get()
+                  ->result_array()[0]["COUNT(id)"];
+            if($existe)
+            {
+                $pivote[] = $resultado[$key];
+            }
+        }
+        return $pivote;
+       
+    }
+
+   
 }
 
 /* End of file Panel_Contador_Cliente_Model.php */

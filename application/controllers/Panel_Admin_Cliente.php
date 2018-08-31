@@ -179,7 +179,22 @@ class Panel_Admin_Cliente extends MY_Controller {
 		$this->data['clientes'] = $this->Panel_Admin_Cliente_Model->getInfoClientesById($idCliente); //info_empresas
 		$this->load->view('PanelControl/components/clientesAdmin/CrudClientes',$this->data);
 	}
-	
+	public function EliminarContadorCliente()
+	{
+		$idCliente = $this->input->get("idCliente");
+		$idContador = $this->input->get("idContador");
+		if(isset($idCliente) && !empty($idCliente) 
+			&& isset($idContador) && !empty($idContador)
+		)
+		{
+			$this->data['idContador'] = $idContador;
+			$this->data['cliente'] =$idCliente;
+			$this->Panel_Admin_Cliente_Model->EliminarContadorPorId($idCliente,$idContador);	
+			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($idCliente);
+			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);	
+
+		}
+	}
 	public function AsignarContadorACliente()
 	{
 		$Ids = $this->input->post();
@@ -378,21 +393,6 @@ class Panel_Admin_Cliente extends MY_Controller {
 		
 	}
 
-	public function EliminarContadorCliente()
-	{
-		$idCliente = $this->input->get("idCliente");
-		$idContador = $this->input->get("idContador");
-		if(isset($idCliente) && !empty($idCliente) 
-			&& isset($idContador) && !empty($idContador)
-		)
-		{
-			$this->Panel_Admin_Cliente_Model->EliminarContadorPorId($idCliente,$idContador);	
-			$this->data['contador'] = $this->Panel_Admin_Cliente_Model->getContadoresClienteByIdCliente($idCliente);
-			$this->data['cliente'] = $idCliente;
-			//  var_dump($this->data['contador']);
-			$this->load->view('PanelControl/components/clientesAdmin/ListaContadoresCliente',$this->data);				
-		}
-	}
 	public function EliminarContadorEmpresa()
 	{
 		$idContador = $this->input->get("idContador");

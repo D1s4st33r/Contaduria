@@ -127,7 +127,7 @@
                                       source: function(request, response) 
                                       {
                                           searchRequest = $.ajax({
-                                          url: '<?php echo base_url("ClientesPorNombre").$session;?>',
+                                          url: '<?php echo base_url("ClientesPorNombreCont").$session;?>',
                                           method: 'POST',
                                           dataType: "json",
                                           data: {search: request.term},
@@ -159,8 +159,8 @@
                                       },
                                       select: function( event, ui ) 
                                       {
-                                          hacerCambio('clienteReg' ,'<?php echo base_url('ClienteCRUD').$session;?>&idCliente='+ui.item.desc);
-                                          hacerCambio('asignarLink'+ui.item.desc ,'<?php echo base_url('ClienteContadorAsignadoLink').$session;?>&idCliente='+ui.item.desc);
+                                          hacerCambio('clienteReg' ,'<?php echo base_url('ClienteCRUDCont').$session;?>&idCliente='+ui.item.desc);
+                                          // hacerCambio('asignarLink'+ui.item.desc ,'<?php echo base_url('ClienteContadorAsignadoLink').$session;?>&idCliente='+ui.item.desc);
                                           desacer("empresasClie");
                                       }
                                       }).autocomplete( "instance" )._renderItem = function( ul, item ) 
