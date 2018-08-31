@@ -48,7 +48,12 @@
       </div>
     
       <div class="col-12 p-2 text-center">  
-        <button  type="button" class="btn btn-lg btn btn-outline-primary" onclick="return hacerCambio('perfil','<?php echo base_url("ActualizarPerfil");echo $session;?>')"><i class="fas fa-edit fa-md"></i> Editar</button> 
+        <button  type="button" 
+                 class="btn btn-lg btn btn-outline-primary" 
+                 onclick="return hacerCambio('perfil','<?php echo base_url('FormularioParaActualizar');echo $session;?>');">
+          <i class="fas fa-edit fa-md"></i> 
+          Editar
+        </button> 
       </div>
     
     </div>

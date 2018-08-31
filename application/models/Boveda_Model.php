@@ -17,12 +17,16 @@ class Boveda_Model extends CI_Model
         ->from("usuario")
         ->where("roll",2)
         ->get()->result_array();
-        foreach ($usuarios as $key => $usuario) {
-           $usuarios[$key]['empresas'] =$this->db->select('rfc')
-            ->from("empresa")
-            ->where("id_usuario",$usuario['id'])
-            ->get()
-            ->result_array();
+        foreach ($usuarios as $key => $usuario) 
+        {
+        $empresExiste =(int)$this->db->select('COUNT(rfc)')->from("empresa")->where("id_usuario",$usuario['id'])->get()->result_array()[0]['COUNT(rfc)'];
+            if($empresExiste){
+                $usuarios[$key]['empresas'] =$this->db->select('rfc,razonSocial')
+                ->from("empresa")
+                ->where("id_usuario",$usuario['id'])
+                ->get()
+                ->result_array();
+            }
             
         }
         return $usuarios;

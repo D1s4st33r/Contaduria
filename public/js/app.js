@@ -10,8 +10,11 @@ function hacerCambio(divById, url) {
         type: 'GET',
         url: url,
         dataType: 'html',
+        beforeSend: function() {
+            $("#"+divById).html('<img class="d-block mb-1 m-auto" src="http://localhost/contaduria/public/imagenes/loader.gif" alt="" width="100%">');
+        },
         success: function(data) {
-            //$("#" + divById).hide();
+            $("#" + divById).html("");
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
             $("#" + divById).focus()
@@ -225,7 +228,7 @@ function updateCliente(iddiv, url) {
 }
 
 function EliminarUsuario(iddiv, url) {
-    var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
+    var result = confirm("Seguro de eliminar?. \nNo podra desacer esta accion");
     console.log(result);
     if (result) {
         var id_ = "";
@@ -245,7 +248,7 @@ function EliminarUsuario(iddiv, url) {
 }
 
 function EliminarCliente(iddiv, url) {
-    var result = confirm("Seguro de eliminar!!. No podra desacer esta accion");
+    var result = confirm("Seguro de eliminar?.\nNo podra desacer esta accion si continua");
     if (result) {
         var id_ = "";
         var div = $("#" + iddiv);

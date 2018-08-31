@@ -1,9 +1,11 @@
+
+
 <div class="col-12 p-0">
-  <div class="my-3 p-3 bg-white rounded box-shadow container">
+  <div class="my-1 px-2 bg-white rounded contenedor container">
     <div class="row">
 
       <div class="col-12 mb-1">
-        <h4 class="my-3 p-3 bg-white rounded box-shadow containe-+"> 
+        <h4 class="p-2  text-muted"> 
           <i class="fas fa-user-edit fa-md"></i> Perfil
         </h4>
         
@@ -46,7 +48,12 @@
       </div>
     
       <div class="col-12 p-2 text-center">  
-        <button  type="button" class="btn btn-lg btn-primary" onclick="return hacerCambio('perfil','<?php echo base_url("ActualizarPerfil");echo $session;?>')"><i class="fas fa-edit fa-md"></i> Editar</button> 
+        <button  type="button" 
+                 class="btn btn-lg btn btn-outline-primary" 
+                 onclick="return hacerCambio('perfil','<?php echo base_url('FormularioParaActualizarCont');echo $session;?>');">
+          <i class="fas fa-edit fa-md"></i> 
+          Editar
+        </button> 
       </div>
     
     </div>

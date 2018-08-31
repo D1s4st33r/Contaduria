@@ -52,12 +52,12 @@ class Login extends CI_Controller {
 					unset($usuario[0]['roll']);
 					redirect('PanelDeControl'.$url,'refresh');
 				}
-				if(((int)$usuario[0]['roll']) == 1 )
+				elseif(((int)$usuario[0]['roll']) == 1 )
 				{
 					unset($usuario[0]['roll']);
 					redirect('Contador'.$url,'refresh');
 				}
-				if(((int)$usuario[0]['roll']) == 2 )
+				elseif(((int)$usuario[0]['roll']) == 2 )
 				{
 					unset($usuario[0]['roll']);
 					redirect('ControlEmpresas'.$url,'refresh');

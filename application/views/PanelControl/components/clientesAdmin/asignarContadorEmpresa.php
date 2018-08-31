@@ -6,7 +6,7 @@
         </div>
         <div class="col-12 text-right ">
         
-            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $idCliente;?>');"> <i class="fas fa-eye-slash"></i> </a>
+            <a href="#infoContadorAsignadoEmpresa<?php  echo $idCliente;?>" class="text-muted pr-3" onclick="desacer('infoContadorAsignadoEmpresa<?php  echo $idCliente;?>');"> <i class="fas fa-eye-slash"></i> </a>
         </div>
 
         <div class="col-md-5 col-lg-5 py-2 m-auto">
@@ -98,15 +98,23 @@
                         </div>
                     </div>
                     <div class="col-4 align-self-center">
-                    <input type="hidden" id="idCliente<?php echo $idCliente; ?>" value="<?php echo $idCliente;?>">
+                    <input type="hidden" id="rfc" value="<?php echo $rfc;?>">
                     
                         <button type="button" id="Agreegar" class="btn btn-outline-success"> <i class="fas fa-user-plus"></i> Asignar </button>
                         <script>
+
+                        function asignarContadorEmpresa(url) {
+                             
+                            post = {
+                                rfc: $("#rfc").val(),
+                                IdContador: $("#idContadorAsignado<?php  echo $idCliente;?>").val()
+                            };                            
+                            hacerCambiosPostAsy(post, url, $("#infoContadorAsignadoEmpresa<?php echo $idCliente; ?>")); 
+                        }
                         $("#Agreegar").click(function(){
                             if($('#idContadorAsignado<?php  echo $idCliente;?>').val() != "0")
                             {
-                                AgregarContadorUsuario('idContadorAsignado<?php  echo $idCliente;?>','idCliente<?php echo $idCliente; ?>','<?php echo base_url('AsignarContadorACliente').$session; ?>','infoContadorAsignado<?php echo $idCliente;?>');
-                                hacerCambio('asignarLink<?php echo $idCliente; ?>','<?php echo base_url('ClienteContadorAsignadoLink').$session.'&idCliente='.$idCliente;?>');
+                                asignarContadorEmpresa('<?php echo base_url('AsignarContadorAEmpresa').$session.'&idCliente='.$idCliente;?>');
                             }else{
                                 alert("El Contador No Existe\nEliga uno que si Exista!");
                             }

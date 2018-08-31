@@ -2,6 +2,7 @@
 
     <div class="row  rounded py-2">
     <div class="col-12 text-right">
+    <!-- !Oculta el contenedor -->
         <a  href="#contador<?php echo $idContador;?>" 
             class="text-muted pr-3" 
             onclick="hacerCambio('contador<?php echo $idContador;?>',
@@ -22,7 +23,7 @@
         </div>
         <div class="col-sm-12 col-md-12">
         <?php   
-            if($clientes):
+            if(!empty($clientes)):
         ?>
             <?php 
                 foreach($clientes as $indice => $value  ):
@@ -63,13 +64,13 @@
                         <div class="col-sm-12 col-md-3 align-self-center">
                             <div class="container">
                                 <div class="row ">
-                                    <div class="col-auto">
+                                    <div class="col-12">
                                         <a   href=""> Ver en clientes </a>
                                     </div>
-                                    <div class="col-auto">
+                                    <div class="col-12">
                                         <a   href=""> Ver Boveda </a>
                                     </div>
-                                    <div class="col-auto">
+                                    <div class="col-12">
                                         <button type="button" 
                                                 class="btn btn-outline-danger" 
                                                 title=" Quitar Cliente " 
@@ -188,11 +189,25 @@
                         <div class="col-sm-12 col-md-3 align-self-center">
                             <div class="container">
                                 <div class="row ">
-                                    <div class="col-auto">
-                                        <a   href=""> Ver Empresas </a>
+                                <div class="col-12">
+                                        <a   href=""> Ver Detalles </a>
                                     </div>
-                                    <div class="col-auto">
+                                    <div class="col-12">
                                         <a   href=""> Ver Boveda </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" 
+                                                class="btn btn-outline-danger" 
+                                                title=" Quitar Empresa " 
+                                                onclick="eliminarEmpresadeContador();" > 
+                                            X
+                                        </button>
+                                        <script>
+                                            function eliminarEmpresadeContador(){
+                                                hacerCambio('contador<?php echo $idContador;?>',
+                                                '<?php echo  base_url('EliminarEmpresaDeContador').$session.'&rfc='.$value['rfc'].'&idContador='.$idContador;?>'); 
+                                            }
+                                        </script>
                                     </div>
                                     
                                 </div>
@@ -213,7 +228,19 @@
                     <div class="col-12">
                         Sin empresas Asignadas
                         <br>
-                        <a href="#contador<?php echo $idContador; ?>" onclick=""> Asignar</a>
+                        <a  href="#contador<?php echo $idContador; ?>" 
+                        onclick="hacerCambio(
+                                                'AsignacionEmpresa<?php echo $idContador; ?>',
+                                                '<?php echo base_url('BuscadorContadoresEmpresas').$session.'&idContador='.$idContador?>'
+                                        );
+                                        "> Asignar</a>
+                        <div class="container">
+                            <div class="row" id="AsignacionEmpresa<?php echo $idContador; ?>">
+                                <div class="col-12">
+                                
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

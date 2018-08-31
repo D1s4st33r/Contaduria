@@ -1,13 +1,23 @@
+  <div class="col-sm-12 col-md-3 col-lg-3 ml-auto pb-3">
+    <button type="button" 
+        class="btn btn-outline-primary btn-block btn-sm"
+        onclick="return hacerCambio('empresasClie','<?php echo base_url('EmpresasDelCliente').$session;?>')"
+        title="AgregarEmpresas" > 
+        Ver
+    </button>                    
+</div>
 
+<div class="col-12 p-2">
+    <h5>
+        <strong class="text-muted">
+        Registro de Empresas
+        </strong>
+    </h5>
+</div>
 <div class="container p-0 ">
     <div class="row">
         <div class="col-12  ">
         
-            <?php 
-                $data['empresas'] = $empresas; $data['session'] = $session."&cliente=".$id_cliente; 
-                $this->load->view('PanelControl/components/clientesAdmin/controlesRegEmpresa',$data);
-            ?>
-
             <div class="alert alert-danger" role="alert" id="error" style="text-align:left;<?php echo  (isset($error) && $error) ?"":'display:none;';?>">
                 <strong>Error de Registro</strong>  Verifique que lo datos sean correctos
                 <div class="list-errors"></div>
@@ -17,7 +27,7 @@
                 <li>Correo invalido o ya ha sido registrado</li>
             </div>
             <div class="container contenedorInter rounded py-2">
-            <form  id="registrarAdmin">
+            <form  id="RegistrarEmpresaCont">
                 <div class="row">
                     
                     <div class="col-sm-12 col-md-auto">
@@ -79,7 +89,7 @@
 
                     <div class="col-sm" style="text-align:center">
                         <div class="form-group">
-                            <button type="button"  class="btn btn-warning" onclick="registrarEmpresa('<?php echo base_url('RegistrarEmpresaCliente').$session?>');" >
+                            <button type="button"  class="btn btn-warning" onclick="registrarEmpresaCont('<?php echo base_url('RegistrarEmpresaClienteCont').$session?>');" >
                             Registrar Empresa
                             </button>
                         </div>
@@ -91,11 +101,11 @@
 
                   <script>
 
-             function registrarEmpresa(url)
+             function registrarEmpresaCont(url)
              {
                  var piv = true;
                  var post = {};
-                $.each($("#registrarAdmin")[0].elements, function(){ 
+                $.each($("#RegistrarEmpresaCont")[0].elements, function(){ 
                     if($(this).val() == "" && $(this).attr("type") != "button" )
                     {
                         piv=false;

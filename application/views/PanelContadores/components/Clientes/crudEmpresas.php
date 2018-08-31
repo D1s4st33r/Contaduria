@@ -1,6 +1,10 @@
 <div class="container">
-   <?php $data['empresas'] = $empresas;  $this->load->view('PanelControl/components/clientesAdmin/controlesRegEmpresa',$data);     
-  //  var_dump($data);
+   <?php 
+        $data['empresas'] = $empresas;  
+        $data['nombreCompletoCliente'] =$nombreCompletoCliente;
+        $data['id_cliente'] =$id_cliente;
+        $this->load->view('PanelContadores/components/Clientes/crudEmpresas_controles',$data);     
+        //  var_dump($data);
   ?>
   <div class="row">
     <?php if( empty( $empresas)):?>
@@ -19,7 +23,7 @@
               "empresa" => $value,
               "nombreCompletoCliente" => $nombreCompletoCliente
             );
-            $this->load->view('PanelControl/components/clientesAdmin/empresa_vista_admin',$empresa);
+            $this->load->view('PanelContadores/components/Clientes/EmpresaCliente',$empresa);
             
             ?>
           </form>
@@ -27,7 +31,7 @@
         </div>
       </div>    
       <script>
-      function ActualizarEmpresa(div , url)
+      function ActualizarEmpresaCont(div , url)
       {
         var piv = true;
         var post = {};

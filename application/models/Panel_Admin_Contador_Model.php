@@ -46,13 +46,39 @@ class Panel_Admin_Contador_Model extends CI_Model
         }
         return array();
     }
+    public function GetClienteLike($search)
+    {
+        $this->db->select('id,nombre,apellido');
+        $this->db->from('usuario');
+        $this->db->where('roll', "2");
+        $this->db->like("nombre", $search);
+        $resultado = $this->db->get()->result_array();
+        if (!empty($resultado)){
+
+            return $resultado;
+        }
+        return array();
+    }
+    public function getEmpresaLike($search)
+    {
+        $this->db->select('rfc,razonSocial');
+        $this->db->from('empresa');
+        $this->db->like("razonSocial", $search);
+        $resultado = $this->db->get()->result_array();
+        if (!empty($resultado)){
+
+            return $resultado;
+        }
+        return array();
+    }
     public function EliminarContadorPorId($id,$idContador)
     {
-        
-        $registrado = $this->db->where('idCliente', $id)->where("idContador",$idContador)->delete('contadores_asignacion_cliente');
-        
+        $registrado = $this->db->where('idCliente', $id)->where("idContador",$idContador)->delete('contadores_asignacion_cliente');   
     }
-
+    public function EliminarEmpresaDeContadorPorId($rfc,$idContador)
+    {
+        $registrado = $this->db->where('rfc', $rfc)->where("idContador",$idContador)->delete('contadores_asignacion_empresa');   
+    }
     public function getContadorRegistradoPorId($id)
     {
         $Existe =(int) $this->db->select('COUNT(id)')
@@ -174,25 +200,77 @@ class Panel_Admin_Contador_Model extends CI_Model
         }
         
     }
+
+    public function setContadorCliente($ids)
+    {
+        if(!empty($ids) && isset($ids['IdCliente']) && isset($ids['IdContador']))
+        {
+            $existe =  (int)$this->db->select('COUNT(id)')
+                ->from("contadores_asignacion_cliente")
+                ->where("idCliente",$ids['IdCliente'])
+                ->where("idContador",$ids['IdContador'])
+                ->get()
+                ->result_array()[0]["COUNT(id)"];
+            if(
+                $existe ==0
+            )
+            {
+                $cre =  array( "idContador" => $ids['IdContador'] , "idCliente" => $ids['IdCliente']);
+                $this->db->insert('contadores_asignacion_cliente', $cre);           
+            }
+            
+        }
+    }
+    public function setEmpresaCliente($ids)
+    {
+        if(!empty($ids) && isset($ids['rfc']) && isset($ids['IdContador']))
+        {
+            $existe =  (int)$this->db->select('COUNT(id)')
+                ->from("contadores_asignacion_empresa")
+                ->where("rfc",$ids['rfc'])
+                ->where("idContador",$ids['IdContador'])
+                ->get()
+                ->result_array()[0]["COUNT(id)"];
+            if(
+                $existe == 0
+            )
+            {
+                $cre =  array( "idContador" => $ids['IdContador'] , "rfc" => $ids['rfc']);
+                $this->db->insert('contadores_asignacion_empresa', $cre);           
+            }
+            
+        }
+    }
+    
     public function getEmpresasContadoresById($id)
     {
-        $empresa = $this->db->select('rfc')
+        $existe =  (int)$this->db->select('COUNT(id)')
             ->from("contadores_asignacion_empresa")
             ->where("idContador",$id)
-            ->get()->result_array();
-            foreach ($empresa as $key => $value) {
-                $datosTemp=  $this->db->select('rfc,razonSocial,domicilio,correo,telefono,representantelegal,telrepresentante')
-                        ->from("empresa")
-                        ->where("rfc",$value['rfc'])
-                        ->get()
-                        ->result_array()[0];
-    
-                $datos[] = $datosTemp;
-           }
-           if(!empty($datos))
-            {
-            return $datos;
+            ->get()
+            ->result_array()[0]["COUNT(id)"];
+        if(
+            $existe 
+        )
+        {
+            $empresa = $this->db->select('rfc')
+                ->from("contadores_asignacion_empresa")
+                ->where("idContador",$id)
+                ->get()->result_array();
+                foreach ($empresa as $key => $value) {
+                    $datosTemp=  $this->db->select('rfc,razonSocial,domicilio,correo,telefono,representantelegal,telrepresentante')
+                            ->from("empresa")
+                            ->where("rfc",$value['rfc'])
+                            ->get()
+                            ->result_array()[0];
+        
+                    $datos[] = $datosTemp;
             }
+            if(!empty($datos))
+            {
+                return $datos;
+            }
+        }
     }
     public function TieneEmpresasByIdContador($id)
     {

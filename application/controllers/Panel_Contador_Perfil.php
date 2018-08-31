@@ -1,63 +1,50 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Panel_Admin_Perfil extends MY_Controller 
-{
-    protected $nivelAcceso = "Administrador" ;
+/**
+ * [Panel_admin] [Clase] [esta clase es solo para el administador]
+ * tipos de Usuarios
+ * Administrador = roll 0
+ * Contador  = roll 1
+ * Cliente = roll 2
+ */
+	class Panel_Contador_Perfil extends MY_Controller {
+	protected $nivelAcceso = "Contador" ;
 	protected $Usuario = array();
-	protected $post = array();
-	protected $data = array();
-	protected $session ;
-
-    //contructor Que todos Deben de tener
-	public function __construct()
+	protected $post ;
+    
+    public function __construct()
 	{
-		parent::__construct();
-		
+        parent::__construct();
 		if($this->nivelAcceso != $this->session_tipo)
 		{
 			redirect('Login/index?error_login=session','refresh');
 		}
-		//cargar datos
-        $this->load->model('Paneles_Model');// cargar modelo
-        $this->load->model('Panel_Admin_Perfil_Model');
+		$this->load->model('Paneles_Model');// cargar modelo
+        $this->load->model('Panel_Contador_Perfil_Model');
         
 		$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
 		$this->post = $this->input->post();
 		// datos necesarios Base para los componentes
-		$this->data['usuario'] = $this->Usuario;
+        $this->data['usuario'] = $this->Usuario;
 		$this->data['usuario'] += array("tipo" => $this->session_tipo);
 		$this->data['session'] = $this->session;
     }
     
-    // inicio del panel Admin
     public function Perfil()
 	{
 		$this->data['menu'] = "Panel" ;
-		// obtiene los contadores de usuarios y empresas
-		$this->data['estadisticas'] = $this->Panel_Admin_Perfil_Model->getContadoresUsuarios();
-		$this->data['categorias']=$this->Panel_Admin_Perfil_Model->getCategorias();
-		$this->data['numsecciones']=$this->Panel_Admin_Perfil_Model->getNumSecciones();
-		$this->data['preguntas']=$this->Panel_Admin_Perfil_Model->getNumPreguntas();
-		$this->data['archivos']=$this->Panel_Admin_Perfil_Model->getSoliArchivo();
-		$this->data['obligatorios']=$this->Panel_Admin_Perfil_Model->getObliArchivo();
-
+		$this->data['estadisticas'] = $this->Panel_Contador_Perfil_Model->getContadoresClientes($this->session_id);
 		$this->load->view('templates/headerLimpio');
-		$this->load->view('PanelControl/Panel',$this->data);
+		$this->load->view('PanelContadores/Panel',$this->data);
 		$this->load->view('templates/footer');
+    }
+    
+    public function FormularioParaActualizarCont()
+    {
+        $this->load->view("PanelContadores/components/Perfil/perfilActualizacion",$this->data);
 	}
-
-	public function FormularioParaActualizar()
-	{
-		$this->load->view("PanelControl/components/perfilAdmin/perfilActualizacion",$this->data);
-	}
-	
-	public function getTituloPanel()
-	{
-		$this->load->view("PanelControl/components/perfilAdmin/TituloPanel",$this->data);
-	}
-
-	public function ActualizarPerfil()
+	public function ActualizarPerfilCont()
 	{
 		$post = $this->input->post();
 		if(!empty($post) 
@@ -72,24 +59,25 @@ class Panel_Admin_Perfil extends MY_Controller
 				"email" => $post['email'],
 				"telefono" => $post['telefono']
 			);
-			$hecho = $this->Paneles_Model->actualizarDatosUsuario($us,$this->session_id);
+			$hecho = $this->Panel_Contador_Perfil_Model->ActualizarPerfil($us,$this->session_id);
 			if($hecho)
 			{	
-				$this->load->view("PanelControl/components/perfilAdmin/perfilVista",$this->data);	
-			}else{
-				
+				//Panel ModelGenerl
+				$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario
+				$this->data['usuario'] = $this->Usuario;
+				$this->load->view('PanelContadores/components/Perfil/perfilVista',$this->data);	
 			}
 		}else{
-		$this->getActualizacionPerfil();	
+			$this->getActualizacionPerfil();	
 		}	
 	}
 
-	public function perfilVista()
+	public function getTituloPanelCont()
 	{
-		$this->load->view("PanelControl/components/perfilAdmin/perfilVista",$this->data);	
+		$this->load->view("PanelContadores/components/TituloPanel",$this->data);
 	}
 
-	public function RestablecerContrasenaAdmin()
+	public function RestablecerContrasenaConta()
 	{
 		if ( !empty($this->input->post())
 				&& !empty($this->input->post("claveActual")) 
@@ -117,7 +105,8 @@ class Panel_Admin_Perfil extends MY_Controller
 			
 		}
 	}
-
+	public function perfilVista()
+	{
+		$this->load->view("PanelContadores/components/Perfil/perfilVista",$this->data);	
+	}
 }
-
-/* End of file Panel_Admin_Perfil.php */

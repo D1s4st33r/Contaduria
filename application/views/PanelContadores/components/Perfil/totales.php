@@ -1,13 +1,13 @@
-    <div class="col-12 mb-1">
+<div class="col-sm-12 col-md-12 col-lg-12 mb-1">
       <h6 class="p-2 text-dark"> 
-        <i class="fas fa-users fa-lg"></i> Totales
+        <i class="fas fa-users fa-lg"></i> Clientes &amp; Empresas 
       </h6>
     </div>
 
     <?php
     foreach ($estadisticas as $key => $value) {            
       echo '
-      <div class=" col-12 text-muted pt-3 ">
+      <div class=" col-sm-12 col-md-12 col-lg-6 text-muted pt-3 ">
         <div class="col-auto  rounded " > ';
           if($key == "Clientes"){
             echo "<i class='fas fa-user fa-2x'></i>";

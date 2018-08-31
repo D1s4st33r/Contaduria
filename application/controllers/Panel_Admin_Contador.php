@@ -13,9 +13,6 @@ class Panel_Admin_Contador extends MY_Controller
     public function __construct()
 	{
 		parent::__construct();
-		//extendido de core/MY_Contoller.php
-		//$this->session_token;
-		// $this->session_id;
 		
 		if($this->nivelAcceso != $this->session_tipo)
 		{
@@ -74,15 +71,34 @@ class Panel_Admin_Contador extends MY_Controller
 			$search = $this->input->post("search");
 			if(!empty($search))
 			{
-				$Contadores = $this->Panel_Admin_Contador_Model->GetContadoreLike($search);
-				if(!empty($Contadores)){echo json_encode(array("Contadores"=>$Contadores));}
-				else{echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));}
+				$Clientes = $this->Panel_Admin_Contador_Model->GetClienteLike($search);
+				if(!empty($Clientes)){echo json_encode(array("Clientes"=>$Clientes));}
+				else{echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));}
 				
 			}else{
-				echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+				echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));
 			}
 		}else{
-			echo json_encode(array("Contadores"=>array(array("nombre"=> "Contador No" ,"apellido"=>"Encontrado","id"=>0))));
+			echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));
+		}
+	}
+
+	public function EmpresaByRazonSocial()
+	{
+		if($this->input->post() && !empty( $this->input->post("search")))
+		{
+			$search = $this->input->post("search");
+			if(!empty($search))
+			{
+				$Empresas = $this->Panel_Admin_Contador_Model->getEmpresaLike($search);
+				if(!empty($Empresas)){echo json_encode(array("Empresas"=>$Empresas));}
+				else{echo json_encode(array("Empresas"=>array(array("razonSocial"=> "Empresa no encontrada" ,"rfc"=>""))));}
+				
+			}else{
+				echo json_encode(array("Empresas"=>array(array("razonSocial"=> "Empresa no encontrada" ,"rfc"=>""))));
+			}
+		}else{
+			echo json_encode(array("Empresas"=>array(array("razonSocial"=> "Empresa no encontrada" ,"rfc"=>""))));
 		}
 	}
 
@@ -104,6 +120,23 @@ class Panel_Admin_Contador extends MY_Controller
 		{
 			$this->data['idContador'] = $idContador;
 			$this->Panel_Admin_Contador_Model->EliminarContadorPorId($idCliente,$idContador);	
+			$this->data['clientes']  = $this->Panel_Admin_Contador_Model->getClientesContadoresById($this->data['idContador']); 
+			$this->data['auxiliando']  = $this->Panel_Admin_Contador_Model->getEmpresasContadoresById($this->data['idContador']); 
+			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
+
+		}
+	}
+
+	public function EliminarContadorEmpresa()
+	{
+		$rfc = $this->input->get("rfc");
+		$idContador = $this->input->get("idContador");
+		if(isset($rfc) && !empty($rfc) 
+			&& isset($idContador) && !empty($idContador)
+		)
+		{
+			$this->data['idContador'] = $idContador;
+			$this->Panel_Admin_Contador_Model->EliminarEmpresaDeContadorPorId($rfc,$idContador);	
 			$this->data['clientes']  = $this->Panel_Admin_Contador_Model->getClientesContadoresById($this->data['idContador']); 
 			$this->data['auxiliando']  = $this->Panel_Admin_Contador_Model->getEmpresasContadoresById($this->data['idContador']); 
 			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
@@ -183,6 +216,35 @@ class Panel_Admin_Contador extends MY_Controller
 			}
 		}
 
+		public function AsignarCliente()
+		{
+			$Ids = $this->input->post();
+			if(
+				!empty($Ids) && $Ids['IdContador'] != '0'
+			)
+			{	
+				$this->Panel_Admin_Contador_Model->setContadorCliente($Ids);
+				$this->data['idContador'] = $Ids["IdContador"];
+				$this->data['clientes']  = $this->Panel_Admin_Contador_Model->getClientesContadoresById($this->data['idContador']); 
+				$this->data['auxiliando']  = $this->Panel_Admin_Contador_Model->getEmpresasContadoresById($this->data['idContador']); 
+				$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
+			}
+		}
+		public function AsignarEmpresaContador()
+		{
+			$Ids = $this->input->post();
+			if(
+				!empty($Ids) && $Ids['IdContador'] != '0'
+			)
+			{	
+				$this->Panel_Admin_Contador_Model->setEmpresaCliente($Ids);
+				$this->data['idContador'] = $Ids["IdContador"];
+				$this->data['clientes']  = $this->Panel_Admin_Contador_Model->getClientesContadoresById($this->data['idContador']); 
+				$this->data['auxiliando']  = $this->Panel_Admin_Contador_Model->getEmpresasContadoresById($this->data['idContador']); 
+				$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_lista_clientes', $this->data);
+			}
+		}
+
 		public function VerListaClientesAsignados()
 		{
 			$this->data['idContador'] = $this->input->get("idContador");
@@ -216,6 +278,13 @@ class Panel_Admin_Contador extends MY_Controller
 			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_buscador_clientes', $this->data);
 			
 		}
+		public function BuscadorContadoresEmpresas()
+		{
+			$this->data['idContador'] = $this->input->get("idContador");
+			$this->load->view('PanelControl/components/contadorAdmin/contadores_crud_buscador_empresa', $this->data);
+			
+		}
+		
 		public function getActualizacionPerfil()
 		{
 			$this->Usuario = $this->Paneles_Model->getInfoUsuarioPorId($this->session_id); // obtiene todos la info de usuario

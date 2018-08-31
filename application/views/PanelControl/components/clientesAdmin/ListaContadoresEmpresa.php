@@ -16,7 +16,7 @@
         </div>
         <div class="col-12 text-right ">
         
-            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $cliente;?>'); hacerCambio('asignarLink<?php echo (isset($cliente) && !empty($cliente)) ? $cliente : "" ; ?>','<?php echo base_url('ContadorAsignadoLink').$session."&idCliente=".$cliente?>');"> <i class="fas fa-eye-slash"></i> </a>
+            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignadoEmpresa<?php  echo $cliente;?>'); hacerCambio('asignarLink<?php echo (isset($cliente) && !empty($cliente)) ? $cliente : "" ; ?>','<?php echo base_url('ContadorAsignadoLink').$session."&idCliente=".$cliente?>');"> <i class="fas fa-eye-slash"></i> </a>
         </div>
         <div class="col-12">
             <?php foreach($contador as $index => $conta):?>
@@ -68,15 +68,14 @@
                                 <button type="button" 
                                         class="btn btn-outline-danger" 
                                         title=" Quitar Contador " 
-                                        onclick="QuitarContadorCliente();" > 
+                                        onclick="QuitarContadorEmpresa();" > 
                                     X
                                 </button>
                                 <script>
-                                function QuitarContadorCliente(){
-                                    hacerCambio('infoContadorAsignado<?php echo $cliente; ?>',
-                                                             '<?php echo  base_url('EliminarContadorCliente').$session.'&idCliente='.$cliente.'&idContador='.$conta['id'];?>'); 
-                                 hacerCambio('asignarLink<?php echo $cliente; ?>',
-                                            '<?php echo base_url('ClienteContadorAsignadoLink').$session.'&idCliente='.$cliente;?>');
+                                function QuitarContadorEmpresa(){
+                                    hacerCambio('infoContadorAsignadoEmpresa<?php echo $cliente; ?>',
+                                                             '<?php echo  base_url('EliminarContadorEmpresa').$session.'&rfc='.$rfc.'&idContador='.$conta['id'];?>'); 
+                                 
                                 }
                                 </script>
                             </div>
