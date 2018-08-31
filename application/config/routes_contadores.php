@@ -16,3 +16,11 @@ $route['PerfilConta']  = "Panel_Contador_Perfil/perfilVista";
 
 $route['ContadorCliente'] = "Panel_Contador_Cliente/Clientes";
 $route['FormularioClienteConta'] = "Panel_Contador_Cliente/FormularioClienteConta";
+$route['RegistrarClienteContador'] = "Panel_Contador_Cliente/RegistrarClienteContador";
+$route['ActualizarClienteCont'] = "Panel_Contador_Cliente/ActualizarClienteCont";
+$route['EliminarClienteCont']       = 'Panel_Contador_Cliente/EliminarClienteCont';
+$route['EmpresasDelCliente']        = "Panel_Contador_Cliente/getEmpresas";
+$route['FormularioRegistroEmpresaCont']      = 'Panel_Contador_Cliente/FormularioClienteEmpresa';
+$route['RegistrarEmpresaClienteCont']      = 'Panel_Contador_Cliente/RegistrarEmpresaCliente';
+$route['ActualizarEmpresaCont']             = "Panel_Contador_Cliente/ActualizarEmpresa";
+$route['EliminarEmpresaCont']               = "Panel_Contador_Cliente/EliminarEmpresaCont";

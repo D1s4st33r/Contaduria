@@ -80,11 +80,6 @@
               <div class="col-12 mb-1">
                 <div class="container">
                   <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-12 my-2">
-                  <strong class="text-gray-dark">
-                                    Clientes Asignados<i class="fas fa-hashtag"></i> <?php echo $estadisticas  ?>
-                                </strong>
-                  </div>
                     <div class="col-lg-4 col-md-5 col-sm-12 my-2 ml-auto">
                       <div class="container">
                         <div class="row">
@@ -207,7 +202,10 @@
                   "estadisticas"=> $estadisticas
 
                 );
-                $this->load->view('PanelContadores/components/Clientes//crudCliente',$cliente);
+                // echo "<pre>";
+                // var_dump($cliente);
+                // echo "</pre>";
+                $this->load->view('PanelContadores/components/Clientes/crudCliente',$cliente);
                 ?>
               </div>
             </div>
@@ -216,16 +214,35 @@
 
         <div class="col-12 p-0 m-0">
           <div class="container">
-            <div class="row my-3 p-3 bg-white rounded box-shadow">
+            <div class="row my-3 p-3 bg-white contenedor rounded box-shadow">
               
               <div class="col-12 mb-1 align-items-center">
                 <h4 class="p-2 bg-light text-dark rounded "> 
                   <i class='fas fa-industry fa-2x'></i> Empresas
                 </h4>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-12 col-auto">
+                    
+                    </div>
+                    <div class="col-sm-12 col-auto">
+                    
+                    </div>
+                  </div>
+                </div>
               </div>
               
                 <div class="col-12 " id="empresasClie" >
-                
+                <?php 
+                $cliente = array(
+                  "estadisticasEmp"=> $estadisticasEmp
+
+                );
+                // echo "<pre>";
+                // var_dump($cliente);
+                // echo "</pre>";
+                $this->load->view('PanelContadores/components/Clientes/labelEmpresasAsignada',$cliente);
+                ?>
                 </div>  <style>
                     #empresasClie{
                       max-height: 400px;

@@ -57,7 +57,7 @@ $route['configDelPregunta']     = "Panel_Admin_Formulario/configDelPregunta";
 $route['deletePregunta']        = "Panel_Admin_Formulario/deletePregunta";
 
 /**
- * Panel Cuestionario Admin
+ * Panel Cliente Admin
  */
 $route['ClienteControl']                = 'Panel_Admin_Cliente/Clientes';
 $route['FormularioCliente']             = 'Panel_Admin_Cliente/FormularioClientes';

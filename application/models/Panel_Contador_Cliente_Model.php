@@ -47,18 +47,30 @@ class Panel_Contador_Cliente_Model extends CI_Model {
         ->where("id",$id)
         ->get()
         ->result_array();
-        foreach ($Clientes as $key => $value) 
+        if( !empty($Clientes[0]) )
         {
-            $Clientes[$key]["info_empresas"] = $this->getContadorEmpresaById($value['id']);
+            return $Clientes[0];
+        }else
+        {
+            return array();
         }
-        $usuarios= array(
-            "cliente" => $Clientes
-        );
-        return $Clientes;
+        // $Clientes[$key]["info_empresas"] = $this->getContadorEmpresaById($value['id']);
+        // $usuarios= array(
+        //     "cliente" => $Clientes
+        // );
+        
+    }
+    public function empresasAsignadas($id){
+        $cliente = $this->db->select('COUNT(id)')
+                  ->from("contadores_asignacion_empresa")
+                  ->where("idContador",$id)
+                  ->get()
+                  ->result_array()[0]["COUNT(id)"];
+        return  $cliente;
     }
     public function getTodosCliente($id)
     {   
-        $Clientes = array();
+        $Cliente = array();
         $idCliente = $this->db->select('idCliente')
             ->from("contadores_asignacion_cliente")
             ->where("idContador",$id)
@@ -66,15 +78,115 @@ class Panel_Contador_Cliente_Model extends CI_Model {
             ->result_array();
         foreach ($idCliente as $key => $value) 
         {
-            $cliente[] = $this->getInfoClientesById($idCliente[]['idCliente']);
+            $pivote = $this->getInfoClientesById($idCliente[$key]['idCliente']);
+            if(!empty($pivote))
+            {
+                $Cliente[] = $pivote;
+            }
         }
-        $usuarios= array(
-            "cliente" => $Clientes
-        );
-        return $Clientes;
-    }   
 
-    
+        return $Cliente;
+    }   
+    public function RegistrarCliente($datos,$id)
+    {
+        $datos['roll'] = 2;
+        $registrado = $this->db->insert('usuario', $datos);
+        $insert_id = $this->db->insert_id();
+        $cliente= array(
+            "idContador" =>  $id,
+            "idCliente"  => $insert_id
+        );
+        $registrado = $this->db->insert('contadores_asignacion_cliente', $cliente);
+        
+        return $registrado;   
+    }
+
+    public function ActualizarCliente( $usuario , $id )
+    {
+        $registrado = $this->db->where('id', $id)->update("usuario",$usuario);
+        return $registrado;
+    }
+    public function EliminarCliente($id)
+    {
+        $registrado = $this->db->where('id', $id)->delete('usuario');
+        $registrado = $this->db->where('idCliente', $id)->delete('contadores_asignacion_cliente');
+        $registrado = $this->db->where('id_Cliente', $id)->delete('formulario');
+        foreach ($this->getTodasEmpresasByID($id) as $key => $value) 
+        {
+            $registrado = $this->db->where('rfc', $value['rfc'])->delete('contadores_asignacion_empresa');        
+            $registrado = $this->db->where('rfc', $value['rfc'])->delete('empresa');        
+        }
+        
+        return $registrado;
+    }
+    public function getTodasEmpresasByID($id)
+    {
+        $empresa = $this->db->select('rfc')
+            ->from("empresa")
+            ->where("id_usuario",$id)
+            ->get()->result_array();
+        return $empresa;
+            
+    }
+    public function nombreClienteById($id)
+    {
+        $usuario = $this->db->select('nombre,apellido')->from("usuario")->where("id",$id)->get()->result_array()[0];
+        $usuario = $usuario['nombre'] . " " . $usuario['apellido'];
+        return $usuario;
+    }
+    public function EmpresasByCliente($id)
+    {
+        $empresas=[];
+        $frcs = $this->db->select('rfc')->from("empresa")->where("id_usuario",$id)->get()->result_array();
+        $empresas= array();
+        foreach ($frcs as $key => $value) 
+        {
+            // var_dump($value);
+            $empresas[] = $this->EmpresaByRFC($value['rfc']);
+        }
+        return $empresas;
+    }
+    public function EmpresaByRFC($rfc)
+    {
+        $empresa= $this->db->select('rfc,razonSocial,domicilio,correo,telefono,id_usuario,representantelegal,telrepresentante')
+        ->from("empresa")
+        ->where("rfc",$rfc)
+        ->get()->result_array()[0];
+        $empresa["cuestionario"] = $this->db->select('fecha_ini,fecha_fini,ponderacion')
+        ->from("formulario")
+        ->where('empresarfc', $rfc)
+        ->get()->result_array()[0];
+        return $empresa;
+    }
+    public function getCamposEmpresa(){
+        $campos = $this->db->list_fields("empresa");
+        return $campos ;
+    }
+    public function ActualizarEmpresa($empresa)
+    {
+        
+        $empresExiste =(int)$this->db->select('COUNT(rfc)')->from("empresa")->where("rfc",$empresa['rfc'])->get()->result_array()[0]['COUNT(rfc)'];
+        if($empresExiste)
+        {
+            $this->db->where("rfc",$empresa['rfc']);
+            $this->db->update('empresa', $empresa);
+            $aver =$this->db->affected_rows();
+            if($aver)
+            {
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+    }
+    public function EliminarEmpresa($rfc)
+    {
+        $registrado = $this->db->where('rfc', $rfc )->delete('contadores_asignacion_empresa');        
+        $registrado = $this->db->where('rfc', $rfc)->delete('empresa');
+        $registrado = $this->db->where('empresarfc', $rfc)->delete('formulario');
+        return $registrado;
+    }
 }
 
 /* End of file Panel_Contador_Cliente_Model.php */

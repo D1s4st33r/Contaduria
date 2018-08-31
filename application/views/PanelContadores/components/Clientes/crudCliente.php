@@ -1,3 +1,8 @@
+<div class="col-12 p-2">
+<strong class="text-gray-dark">
+  Clientes Asignados<i class="fas fa-hashtag"></i> <?php echo $estadisticas  ?>
+</strong>
+</div>
 <?php if($estadisticas==0):?>
         <div class=" col-12 p-2 " >    
           <h3 class=" pb-0 pt-1 mb-0 lh-125 text-muted text-center ">
@@ -8,7 +13,7 @@
         <div class="col-12 p-2 text-center">  
           <div class="container">
             <?php foreach ($clientes as $key => $value) :?>
-            <div class="row p-1 my-1 align-items-center contenedor rounded" id="id<?php echo $key ; ?>" >
+            <div class="row p-1 my-1 align-items-center contenedorInter rounded" id="id<?php echo $key ; ?>" >
               <div class="col-12 p-0">
                 <div class="container">
                   <div class="row">
@@ -52,10 +57,19 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-12  my-1 p-0">
-                            <button type="button" class="btn btn-outline-primary btn-block" onclick=" return updateCliente('id<?php echo $key ; ?>','<?php echo base_url("ActualizarCliente").$session; ?>')"> <i class='fas fa-sync'></i>  </button> 
+                            <button type="button" 
+                                    class="btn btn-outline-primary btn-block" 
+                                    onclick=" ActualizarInformacionCliente('id<?php echo $key ; ?>');"> 
+                                <i class='fas fa-sync'></i>  
+                            </button> 
+                           
                             </div>
                             <div class="col-12 my-1 p-0">
-                            <button type="button" class="btn btn-outline-danger btn-block" onclick=" return EliminarCliente('id<?php echo $key ; ?>','<?php echo base_url("EliminarCliente").$session; ?>')"> <i class='fas fa-trash-alt'></i>  </button> 
+                            <button type="button" 
+                                    class="btn btn-outline-danger btn-block"
+                                    onclick=" EliminarClienteCont('id<?php echo $key ; ?>');">
+                                    <i class='fas fa-trash-alt'></i> 
+                            </button> 
                             </div>
                           </div>
                         </div>
@@ -67,21 +81,10 @@
                         <div class="row">
 
                           <div class="col-sm-6 col-md-6 col-lg-6">
-                            <a href="#empresasClie" onclick="return hacerCambio('empresasClie','<?php echo base_url('empresasClie').$session.'&cliente='.$value['id'];?>')" >
-                                <i class='fas fa-industry fa-md'></i> Ver empresas </span>
+                            <a href="#empresasClie" onclick="return hacerCambio('empresasClie','<?php echo base_url('EmpresasDelCliente').$session.'&cliente='.$value['id'];?>')" >
+                                <i class='fas fa-industry fa-md'></i> Empresas </span>
                             </a>
                           </div>
-                          <div class="col-sm-6 col-md-6 col-lg-6" id="asignarLink<?php echo $value['id']?>">
-                              <span>
-                                <?php
-                                $cliente["cliente"] = $value;
-                                $this->load->view('PanelControl/components/clientesAdmin/clienteContadorAsignadoView',$cliente);
-                                
-                                ?>
-                                 </span>
-                          </div> 
-                          <div class="col-12 py-1 px-1" id="infoContadorAsignado<?php echo $value['id']?>">
-                          </div>     
                         </div>
                       </div>
                     </div>
@@ -93,4 +96,47 @@
           </div>
         </div>
         <?php endif;?>
-      
+        <script>  
+        function ActualizarInformacionCliente(iddiv) 
+        {
+          var url = '<?php echo base_url("ActualizarClienteCont").$session; ?>';
+          var finds = $("#" + iddiv).find("input");
+          finds.each(function() {
+              if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+              if ($(this).attr("name") == "nombre") { nombre_ = $(this).val(); }
+              if ($(this).attr("name") == "apellido") { apellido_ = $(this).val(); }
+              if ($(this).attr("name") == "telefono") { telefono_ = $(this).val(); }
+              if ($(this).attr("name") == "email") { email_ = $(this).val(); }
+          });
+          if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && id_ != "") {
+              post = {
+                  id: id_,
+                  nombre: nombre_,
+                  apellido: apellido_,
+                  email: email_,
+                  telefono: telefono_
+              };
+              hacerCambiosPostAsy(post, url, $("#clienteReg"));
+          
+            }
+          }
+
+function EliminarClienteCont(iddiv) {
+    var result = confirm("Seguro de eliminar?.\nNo podra desacer esta accion si continua");
+    if (result) {
+        var id_ = "";
+        var url = '<?php echo base_url("EliminarClienteCont").$session; ?>';
+        var finds = $("#" + iddiv).find("input");
+        finds.each(function() {
+            if ($(this).attr("name") == "id") { id_ = $(this).val(); }
+        });
+        if (id_ != "") {
+            post = {
+                id: id_
+            };
+            hacerCambiosPostAsy(post, url, $("#clienteReg"));
+        }
+    }
+}
+
+          </script>

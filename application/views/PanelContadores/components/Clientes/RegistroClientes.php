@@ -1,14 +1,3 @@
-
-<div class="col-12 "  >
-    <style>
-    #clienteReg{
-        max-height: 400px;
-        overflow: hidden;
-        overflow-y: scroll;
-    }
-    </style>    
-
-    
 <div class="container">
     <div class="row m-1 contenedorInter rounded  pt-2 pb-2">
         <div class="col-12">
@@ -51,10 +40,30 @@
 
         <div class=" col-12 ">
             <div class="form-group">
-            <button  type="button" class="btn btn-outline-primary" onclick="return AgregarCliente('<?php echo base_url("AgregarCliente").$session;?>')" >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Cliente</button> 
+                <button  type="button" class="btn btn-outline-primary" onclick="RegistrarCliente();" >  <i class="fas fa-thumbs-up fa-md"></i> Registrar Cliente</button> 
+                <script>
+                    function RegistrarCliente()
+                    {
+                        nombre_ = $("#nombre").val();
+                        apellido_ = $("#apellido").val();
+                        telefono_ = $("#telefono").val();
+                        email_ = $("#email").val();
+                        contrasena_ = $("#contrasena").val();
+                        if (nombre_ != "" && apellido_ != "" && telefono_ != "" && email_ != "" && contrasena_ != "") {
+                            post = {
+                                nombre: nombre_,
+                                apellido: apellido_,
+                                email: email_,
+                                telefono: telefono_,
+                                clave: contrasena_
+                            };
+
+                            hacerCambiosPostAsy(post, '<?php echo base_url("RegistrarClienteContador").$session;?>', $("#clienteReg"));
+                        }
+                    }
+                </script>
             </div>
         </div>  
-        </div>
     </div>
 </div>
         
