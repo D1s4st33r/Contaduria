@@ -1,8 +1,8 @@
 <div class="container">
    <?php 
         $data['empresas'] = $empresas;  
-        $data['nombreCompletoCliente'] =$nombreCompletoCliente;
-        $data['id_cliente'] =$id_cliente;
+        $data['nombreCompletoCliente'] = (isset($nombreCompletoCliente)) ? $nombreCompletoCliente:"";
+        $data['id_cliente'] =(isset($id_cliente))?$id_cliente:"";
         $this->load->view('PanelContadores/components/Clientes/crudEmpresas_controles',$data);     
         //  var_dump($data);
   ?>
@@ -21,7 +21,7 @@
             <?php 
             $empresa = array(
               "empresa" => $value,
-              "nombreCompletoCliente" => $nombreCompletoCliente
+              'nombreCompletoCliente' => (isset($nombreCompletoCliente)) ? $nombreCompletoCliente:""
             );
             $this->load->view('PanelContadores/components/Clientes/EmpresaCliente',$empresa);
             

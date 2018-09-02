@@ -308,4 +308,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 		}
 	}
+
+	public function EmpresasAsignadasDirectamente()
+	{
+		$this->data["empresas"] = $this->Panel_Contador_Cliente_Model->EmpresasAsignadasDirectamente($this->session_id);
+		// $this->data['nombreCompletoCliente'] = $this->Panel_Contador_Cliente_Model->nombreClienteById($this->data['id_cliente']);
+		$this->load->view("PanelContadores/components/Clientes/crudEmpresas",$this->data);
+	}
+
+	public function ClientesPorNombre()
+	{
+		if($this->input->post() && !empty( $this->input->post("search")))
+		{
+			$search = $this->input->post("search");
+			if(!empty($search))
+			{
+				$Clientes = $this->Panel_Contador_Cliente_Model->GetClienteLike($search,$this->session_id);
+				if(!empty($Clientes)){echo json_encode(array("Clientes"=>$Clientes));}
+				else{echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));}
+				
+			}else{
+				echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));
+			}
+		}else{
+			echo json_encode(array("Clientes"=>array(array("nombre"=> "Cliente No" ,"apellido"=>"Encontrado","id"=>0))));
+		}
+	}
+	public function CRUDByCliente()
+	{
+		$idCliente = $this->input->get('idCliente');
+		$this->data['estadisticas'] = "1";
+		$this->data['estadisticasEmp'] =$this->Panel_Contador_Cliente_Model->empresasAsignadas($this->session_id);
+		$this->data['clientes']['clientes'] = $this->Panel_Contador_Cliente_Model->getInfoClientesById($idCliente); //info_empresas
+		$this->load->view("PanelContadores/components/Clientes/crudCliente",$this->data);	
+	}
+
 }
