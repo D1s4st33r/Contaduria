@@ -11,6 +11,11 @@
     
 <div class="container">
     <div class="row m-1 contenedorInter rounded  pt-2 pb-2">
+        <div class=" col-sm-12 col-md-12 col-lg-12 ">
+            <h4><i class="text-muted">
+                Nuevo Cliente
+            </i></h4>
+        </div>
         <div class=" col-sm col-md-6 col-lg-3 ">
             <div class="form-group">
                 <label for="nombre" class="small disable m-0"> Nombre</label>

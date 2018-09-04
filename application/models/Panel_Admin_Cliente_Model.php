@@ -108,7 +108,22 @@ class Panel_Admin_Cliente_Model extends CI_Model
     public function RegistrarCliente($datos)
     {
         $datos['roll'] = 2;
-        $registrado = $this->db->insert('usuario', $datos);
+        $this->db->insert('usuario', $datos);
+        $registrado = $this->db->insert_id();
+        return $registrado;   
+    }
+    public function RegistrarFolderCliente($folder,$id)
+    {
+        $datos['id_cliente'] = $id;
+        $datos['folder'] = $folder;
+        $datos['ruta'] = $folder."/";
+        $datos['id_folder'] =0;
+        $datos['tipo_folder'] =0;
+        $this->db->insert('boveda_cliente_folder', $datos);
+        $registrado = $this->db->insert_id();
+        $this->db->where('id', $id);
+        $id_folder = array("id_folder"=>$registrado);
+        $this->db->update('usuario', $id_folder);
         return $registrado;   
     }
     public function ActualizarCliente( $usuario , $id )
@@ -129,7 +144,27 @@ class Panel_Admin_Cliente_Model extends CI_Model
         
         return $registrado;
     }
-
+    public function folderCliente($id)
+    {
+        $id_folder = $this->db->select('id_folder')
+            ->from("usuario")
+            ->where("id",$id)
+            ->get()->result_array()[0]['id_folder'];
+        $path_folder = $this->db->select('ruta')
+                           ->where('id', $id_folder)
+                           ->from("boveda_cliente_folder")
+                           ->get()->result_array()[0]['ruta'];
+        
+        return $path_folder;
+    }
+    public function IdFolderCliente($id)
+    {
+        $id_folder = $this->db->select('id_folder')
+            ->from("usuario")
+            ->where("id",$id)
+            ->get()->result_array()[0]['id_folder'];
+        return $id_folder;
+    }
     public function getTodasEmpresasByID($id)
     {
         $empresa = $this->db->select('rfc')
@@ -336,6 +371,26 @@ class Panel_Admin_Cliente_Model extends CI_Model
         $registrado = $this->db->where('rfc', $rfc )->delete('contadores_asignacion_empresa');        
         $registrado = $this->db->where('rfc', $rfc)->delete('empresa');
         $registrado = $this->db->where('empresarfc', $rfc)->delete('formulario');
+        return $registrado;
+    }
+    public function registrarFolderEmpresa($ruta,$id,$nomFolder,$id_folder_)
+    {  
+        $object = array(
+            "folder"     => $nomFolder,
+            "id_cliente" => $id,
+            "ruta"       => $ruta,
+            "id_folder"  => $id_folder_,
+            "tipo_folder "=> 1
+        );
+        
+        $this->db->insert('boveda_cliente_folder', $object);
+       $registrado = $this->db->insert_id();
+        
+        $id_folder = array(
+            "id_folder" => $registrado
+        );
+        $this->db->where('rfc', $nomFolder);
+        $registrado =$this->db->update('empresa', $id_folder);
         return $registrado;
     }
 }

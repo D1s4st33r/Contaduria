@@ -16,7 +16,7 @@
         </div>
         <div class="col-12 text-right ">
         
-            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $cliente;?>'); hacerCambio('asignarLink<?php echo (isset($cliente) && !empty($cliente)) ? $cliente : "" ; ?>','<?php echo base_url('ContadorAsignadoLink').$session."&idCliente=".$cliente?>');"> <i class="fas fa-eye-slash"></i> </a>
+            <a href="#clienteReg" class="text-muted pr-3" onclick="desacer('infoContadorAsignado<?php  echo $cliente;?>');"> <i class="fas fa-eye-slash"></i> </a>
         </div>
         <div class="col-12">
             <?php foreach($contador as $index => $conta):?>

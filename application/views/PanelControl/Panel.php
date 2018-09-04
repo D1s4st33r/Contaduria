@@ -152,10 +152,15 @@
               <div class="col-12 mb-1">
                 <div class="container">
                   <div class="row">
-                    <div class="col-lg align-items-center">
-                      <h6 class="lh-125 small text-muted p-2"> Registrados : <?php echo count($clientes);?> </h6>
-                    </div>
-                    <div class="col-lg">
+                    <div class="col-sm-12 col-md-4 col-lg-5 mr-auto">
+                      <p class="m-0 p-0 text-muted">
+                          <small>(Registrados)</small>
+                          <strong class="text-gray-dark">
+                          <i class="fas fa-hashtag"></i> <?php echo count($clientes);  ?>
+                      </strong>
+                      </p>
+                  </div>
+                    <div class="col-lg py-2">
                       <div class="container">
                         <div class="row">
                           <div class="col">
@@ -254,14 +259,15 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 " id="clienteReg" >
-                <style>
+              <style>
                 #clienteReg{
                   max-height: 400px;
                   overflow: hidden;
                   overflow-y: scroll;
                 }
                 </style>
+              <div class="col-12 " id="clienteReg" >
+                
                 <?php 
                 $cliente = array(
                   "clientes" => $clientes,
@@ -305,7 +311,7 @@
     <?php elseif ($menu == "Boveda") : ?>
      <div class="container ">
       <div class="row">
-        <div class="col-12 p-0 m-0">
+        <div class="col-12 p-0 m-0 ">
           <div class="container">
             <div class="row my-3 p-3 bg-white rounded box-shadow">
               <div class="col-12 mb-1 align-items-center">
@@ -318,11 +324,11 @@
         </div>
                 
         
-        <div class="col-12">
+        <div class="col-12 p-0 m-0">
           <div class="container">
             <div class="row my-3 p-3 bg-white" >
             
-              <div class="col-12 contenedor" id="BovedaResultados">
+              <div class="col-12 contenedor rounded" id="BovedaResultados">
               <?php
               $array['clientes']=  $clientes;
                 $this->load->view('PanelControl/components/boveda/listaEmpresas',$array);
@@ -331,7 +337,149 @@
             </div>
           </div>
         </div>
+    <script>  
 
+      function foldersYdocumentos(contenedor,inputContent) {
+        var inputsData = $("#" + inputContent);
+        var datos = inputsData.find("input");
+        var id_folder_,path_,id_cliente_;
+        datos.each(function() {
+            if ($(this).attr("name") == "id_folder") { id_folder_ = $(this).val(); }
+            if ($(this).attr("name") == "path") { path_ = $(this).val(); }
+            if ($(this).attr("name") == "id_cliente") { id_cliente_ = $(this).val(); }
+        });
+        post = {
+          id_folder: id_folder_,
+          path: path_,
+          id_cliente: id_cliente_
+        };
+        hacerCambiosPostAsy(post, '<?php echo base_url("BovedaLoadFolder").$session;?>', $("#" + contenedor));
+      }  
+    
+      $(".sisArchivos").mouseenter(function(){
+        $(this).addClass("onhoverDiv");
+      });
+      $(".sisArchivos").mouseleave(function(){
+        $(this).removeClass("onhoverDiv");
+      });
+
+      function crearCarpeta(contenedor,inputContent,inputNombre,divOcultar) 
+      {
+        var inputsData = $("#" + inputContent);
+        var datos = inputsData.find("input");
+        var id_folder_,path_,id_cliente_;
+        var nombre =$("#"+inputNombre).val();
+        datos.each(function() {
+            if ($(this).attr("name") == "id_folder") { id_folder_ = $(this).val(); }
+            if ($(this).attr("name") == "path") { path_ = $(this).val(); }
+            if ($(this).attr("name") == "id_cliente") { id_cliente_ = $(this).val(); }
+        });
+        post = {
+          id_folder: id_folder_,
+          path: path_,
+          id_cliente: id_cliente_,
+          folder:nombre
+        };
+        if(nombre != ""){
+          hacerCambiosPostAsy(post, '<?php echo base_url("BovedaCrearCarpeta").$session;?>', $("#" + contenedor));
+          ocultarForm(divOcultar);
+          $("#"+inputNombre).val("");
+        }else{
+          alert("El nombre de la carpeta nueva esta vacia");
+        }
+        
+      }
+      function mostrarForm(div)
+      {
+        $("#"+div).show("slow");
+      }
+      function ocultarForm(div)
+      {
+        $("#"+div).hide("slow");
+      }
+
+      function CargarDoc(contenedor,inputContent,inputFile,divOcultar) 
+      {
+        
+        var inputsData = $("#" + inputContent);
+        var datos = inputsData.find("input");
+          datos.each(function() {
+              if ($(this).attr("name") == "id_folder") { id_folder_ = $(this).val(); }
+              if ($(this).attr("name") == "path") { path_ = $(this).val(); }
+              if ($(this).attr("name") == "id_cliente") { id_cliente_ = $(this).val(); }
+          });
+        var inputsFiles = $("#" + inputFile);
+        var files = inputsFiles.find("input");
+
+        var id_folder_,path_,id_cliente_,titulo_archivo_,nombre_archivo_;
+        files.each(function() {
+            if ($(this).attr("name") == "titulo_archivo") { titulo_archivo_ = $(this).val(); }
+            if ($(this).attr("name") == "nombre_archivo") { nombre_archivo_ = $(this)[0].files[0]; }
+        });
+       
+        post = {
+          id_folder: id_folder_,
+          path: path_,
+          id_cliente: id_cliente_,
+          titulo_archivo : titulo_archivo_,
+          nombre_archivo : nombre_archivo_
+        };
+        
+        if(nombre_archivo_ != ""){
+          var fd = new FormData();
+          fd.append('id_folder',post.id_folder);
+          fd.append('path',post.path);
+          fd.append('id_cliente',post.id_cliente);
+          fd.append('titulo_archivo',post.titulo_archivo);
+          fd.append('nombre_archivo',post.nombre_archivo);
+          hacerCambiosPostAsyFile(fd, '<?php echo base_url("BovedaSubirArchivo").$session;?>', $("#" + contenedor));
+          ocultarForm(divOcultar);
+          
+        }else{
+          alert("El nombre de la carpeta nueva esta vacia");
+        }
+        
+      }
+      
+    </script>
+    <style>
+      .modal{
+        display:none;
+        position:fixed;
+        z-index:9;
+        padding-top:100;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color:rgb(0,0,0);
+        background-color:rgba(0,0,0,0.4);
+      }
+      .modal-content{
+        background:#fefefe;
+        margin:auto;
+        padding:15%;
+        border:1px solid #888;
+        width:80%;
+      }
+      .close-button{
+        color:#aaaaaa;
+        float:right;
+        font-size:28px;
+        font-weight:bold;
+        
+      }
+      .close-button:hover,
+      .close-button:focus{
+        color:#000;
+        text-decoration:none;
+        cursor:pointer;
+      }
+      .bg-silver{
+        background:#f3f3f3;
+      }
+    </style>
       </div>
     </div>
 

@@ -62,8 +62,8 @@ class Panel_Admin_Cliente extends MY_Controller {
 			
 			if(!empty($post) 
 				&& isset($post['nombre']) && !empty($post['nombre'])
-				&& isset($post['apellido'])&& !empty($post['apellido'])
-				&& isset($post['email'])&& !empty($post['email'])
+				&& isset($post['apellido']) && !empty($post['apellido'])
+				&& isset($post['email']) && !empty($post['email'])
 				&& isset($post['telefono']) && !empty($post['telefono'])
 				&& isset($post['clave']) && !empty($post['clave'])
 			){
@@ -76,6 +76,22 @@ class Panel_Admin_Cliente extends MY_Controller {
 				);
 				$hecho = $this->Panel_Admin_Cliente_Model->RegistrarCliente($us);
 				if($hecho){
+					$this->load->helper('path'); 
+					$name = uniqid(); 
+					$dir=set_realpath('./Boveda/'.$name."/");  
+					if(!is_dir($dir))
+					{  
+						mkdir($dir,0777); 
+						$hecho = $this->Panel_Admin_Cliente_Model->RegistrarFolderCliente($name,$hecho);
+					}else{
+						$name = uniqid(); 
+						$dir=set_realpath('./Boveda/'.$name."/");  
+						if(!is_dir($dir))
+						{  
+							mkdir($dir,0777); 
+						}
+					}
+				
 					$this->data['usuario'] = $this->Usuario;
 					$this->data['usuario'] += array("tipo" => $this->session_tipo);
 					
@@ -304,10 +320,11 @@ class Panel_Admin_Cliente extends MY_Controller {
 			 
 			if($validoRFC && $validoMail )
 			{
-				
 				$this->load->helper('path');  
-
-				$dir=set_realpath('./Boveda/'.$RFC."/");  
+				$folder =$this->Panel_Admin_Cliente_Model->folderCliente($id_usuario);
+				$id_folder =$this->Panel_Admin_Cliente_Model->IdFolderCliente($id_usuario);
+				$pathTemp = $folder.$RFC."/";
+				$dir=set_realpath('./Boveda/'.$pathTemp);  
 				if(!is_dir($dir)){  
 					mkdir($dir,0777); 
 				}
@@ -343,6 +360,7 @@ class Panel_Admin_Cliente extends MY_Controller {
 					);
 					$this->Formularios_Model->crearFormulario($formularioData);
 					$this->Formularios_Model->dataempresa($datos_em);
+					$folder =$this->Panel_Admin_Cliente_Model->registrarFolderEmpresa($pathTemp,$id_usuario,$RFC,$id_folder);
 					$this->data['id_cliente'] = $id_usuario;
 					$this->data["empresas"] = $this->Panel_Admin_Cliente_Model->EmpresasByCliente($id_usuario);
 					$this->data['nombreCompletoCliente'] = $this->Panel_Admin_Cliente_Model->nombreClienteById($this->data['id_cliente']);

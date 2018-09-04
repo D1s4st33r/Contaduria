@@ -13,4 +13,4 @@
             echo   $id;
         ?>','<?php 
             echo base_url('AsignarContadorFormulario') . $session.'&idCliente='.  $id;
-            ?>');"> Asignar otro</a>
+            ?>');"> Asignar</a>

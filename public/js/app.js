@@ -9,7 +9,12 @@ function hacerCambio(divById, url) {
     $.ajax({
         type: 'GET',
         url: url,
-        dataType: 'html',
+        dataType:"html",
+        
+        cache: false,
+        
+        contentType: false,
+        processData: false,
         beforeSend: function() {
             $("#"+divById).html('<img class="d-block mb-1 m-auto" src="http://localhost/contaduria/public/imagenes/loader.gif" alt="" width="100%">');
         },
@@ -18,8 +23,9 @@ function hacerCambio(divById, url) {
             $("#" + divById).html(data);
             $("#" + divById).fadeIn("slow");
             $("#" + divById).focus()
-
-
+        },
+        error:function(data){
+            console.log(data)
         }
     });
 }
@@ -46,6 +52,7 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         url: urlDes, //urlDes guarda la ruta hacia donde se hace la peticion
         data: datosPost, // data recive un objeto con la informacion que se enviara al servidor
         dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
+        
         success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
             div.hide();
             div.html(datos);
@@ -53,7 +60,22 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
         }
     });
 }
-
+function hacerCambiosPostAsyFile(datosPost, urlDes, div) {
+    $.ajax({
+        type: "POST", // la variable type guarda el tipo de la peticion GET,POST,..
+        url: urlDes, //urlDes guarda la ruta hacia donde se hace la peticion
+        data: datosPost, // data recive un objeto con la informacion que se enviara al servidor
+        dataType: "html", // El tipo de datos esperados del servidor. Valor predeterminado: Intelligent Guess (xml, json, script, text, html).
+        enctype:"multipart/form-data",
+        contentType: false,
+        processData: false,
+        success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
+            div.hide();
+            div.html(datos);
+            div.fadeIn("slow");
+        }
+    });
+}
 
 
 /**
