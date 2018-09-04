@@ -18,11 +18,11 @@
 
 		public function getNumRespuestas($idform)
    		{
-			$preguntas=$this->db->select("COUNT(id)")
+			$preguntas=$this->db->select("COUNT(id_pregunta)")
 			->from("resultados")
 			->where("id_formulario",$idform)
 			->get()
-			->result_array()[0]["COUNT(id)"];
+			->result_array()[0]["COUNT(id_pregunta)"];
 			return $preguntas;
 		}
 

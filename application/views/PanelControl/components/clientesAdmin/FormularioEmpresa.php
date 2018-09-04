@@ -19,7 +19,11 @@
             <div class="container contenedorInter rounded py-2">
             <form  id="registrarAdmin">
                 <div class="row">
-                    
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h4><i class="text-muted">
+                        Nueva Empresas
+                    </i></h4>
+                    </div>
                     <div class="col-sm-12 col-md-auto">
                         <div class="form-group">
                         <label for="idCliente"> Cliente</label>

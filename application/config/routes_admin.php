@@ -86,3 +86,6 @@ $route['EliminarContadorCliente']  = 'Panel_Admin_Cliente/EliminarContadorClient
  * BovedaAdmin
  */
 $route['BovedaAdmin'] = 'Panel_Admin_Boveda/Boveda';
+$route['BovedaLoadFolder'] = 'Panel_Admin_Boveda/CargarCarpeta';
+$route['BovedaCrearCarpeta'] = 'Panel_Admin_Boveda/BovedaCrearCarpeta';
+$route['BovedaSubirArchivo'] = 'Panel_Admin_Boveda/BovedaSubirArchivo';

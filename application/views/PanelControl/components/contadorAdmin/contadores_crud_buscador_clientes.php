@@ -126,12 +126,11 @@
 
                         $("#Agreegar").click(function(){
                             
-                            if($('#idContador<?php  echo $idContador;?>').val() != "0"){
+                            if($('#idContador<?php  echo $idContador;?>').val() != "0" && $('#idCliente<?php  echo $idContador;?>').val() != 0 ){
                                 agregarContadoCliente('idContador<?php  echo $idContador;?>',//contador
                                                     'idCliente<?php echo $idContador; ?>',//cliente
                                                     '<?php echo base_url('AsignarCliente').$session; ?>',
                                                     'infoContadorAsignado<?php echo $idContador;?>');
-
                                 hacerCambio('contador<?php echo $idContador;?>',
                                             '<?php echo base_url('VerListaClientesAsignados').$session.'&idContador='.$idContador;?>');
                                 

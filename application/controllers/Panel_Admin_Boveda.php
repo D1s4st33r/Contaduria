@@ -43,6 +43,90 @@ class Panel_Admin_Boveda extends MY_Controller {
         var_dump($this->input->post());
     }
 
+	public function CargarCarpeta()
+	{
+		if(!empty($this->input->post()))
+		{
+			$dataFol['id_cliente'] = $this->input->post('id_cliente');
+			$dataFol['path'] = $this->input->post('path');
+			$dataFol['id_folder'] = $this->input->post('id_folder');
+
+			if(
+				!empty( $dataFol['id_cliente']) && 
+				!empty( $dataFol['path']) && 
+				!empty( $dataFol['id_folder'])  
+			)
+			{
+				$data['carpetasYdocs'] = $this->Boveda_Model->getFoldersYCarpetas($dataFol);
+				$this->load->view('PanelControl/components/boveda/contenedor_folder', $data);
+
+			}
+		}
+
+	}
+	public function BovedaCrearCarpeta()
+	{
+		if(!empty($this->input->post()))
+		{
+			$dataFol['id_cliente'] = $this->input->post('id_cliente');
+			$dataFol['path'] = $this->input->post('path');
+			$dataFol['id_folder'] = $this->input->post('id_folder');
+			$dataFol['folder'] = $this->input->post('folder');
+
+			if(
+				!empty( $dataFol['id_cliente']) && 
+				!empty( $dataFol['path']) && 
+				!empty( $dataFol['id_folder'])  &&
+				!empty( $dataFol['folder']) 
+			)
+			{
+				$this->Boveda_Model->CrearCarpeta($dataFol);
+				$data['carpetasYdocs'] = $this->Boveda_Model->getFoldersYCarpetas($dataFol);
+				$this->load->view('PanelControl/components/boveda/contenedor_folder', $data);
+			}
+		}
+	}
+
+	public function BovedaSubirArchivo()
+	{
+		
+		$datos = $this->input->post();	
+		var_dump($datos);
+		$this->load->helper('path');  
+		$config = [
+			"upload_path" =>'./Boveda/'.$datos['path'],
+			'allowed_types' =>"png|jpg|pdf|docs|xls"
+			];
+			$this->load->library("upload",$config);
+	
+			if($this->upload->do_upload('nombre_archivo'))
+			{
+				$this->load->model('Login_Model');
+				
+				$dato_archivo=array("upload_data" =>$this->upload->data());
+				$array = array(
+					"nombre_archivo"=> $dato_archivo['upload_data']['file_name'],
+					 "titulo_archivo" => $datos['titulo_archivo'],
+					 "fecha_subida" => $this->Login_Model->fecha,
+					 "id_usuario_mod" => $this->session_id,
+					 "fecha_modificacion" => $this->Login_Model->fecha,
+					 "id_folder" => $datos["id_folder"]
+				);
+				$this->Boveda_Model->registrarArchivo($array);
+				$dataFol['id_cliente'] = $this->input->post('id_cliente');
+				$dataFol['path'] = $this->input->post('path');
+				$dataFol['id_folder'] = $this->input->post('id_folder');
+				$data['carpetasYdocs'] = $this->Boveda_Model->getFoldersYCarpetas($dataFol);
+				$this->load->view('PanelControl/components/boveda/contenedor_folder', $data);
+			}else{
+				$dataFol['id_cliente'] = $this->input->post('id_cliente');
+				$dataFol['path'] = $this->input->post('path');
+				$dataFol['id_folder'] = $this->input->post('id_folder');
+				$data['carpetasYdocs'] = $this->Boveda_Model->getFoldersYCarpetas($dataFol);
+				$this->load->view('PanelControl/components/boveda/contenedor_folder', $data);
+			}
+	}
+
 }
 
 /* End of file Panel_Admin_Boveda.php */

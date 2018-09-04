@@ -103,7 +103,7 @@
                         <button type="button" id="Agreegar" class="btn btn-outline-success"> <i class="fas fa-user-plus"></i> Asignar </button>
                         <script>
                         $("#Agreegar").click(function(){
-                            if($('#idContadorAsignado<?php  echo $idCliente;?>').val() != "0")
+                            if($('#idContadorAsignado<?php  echo $idCliente;?>').val() != "0" && $('#idCliente<?php  echo $idCliente;?>').val() != "0")
                             {
                                 AgregarContadorUsuario('idContadorAsignado<?php  echo $idCliente;?>','idCliente<?php echo $idCliente; ?>','<?php echo base_url('AsignarContadorACliente').$session; ?>','infoContadorAsignado<?php echo $idCliente;?>');
                                 hacerCambio('asignarLink<?php echo $idCliente; ?>','<?php echo base_url('ClienteContadorAsignadoLink').$session.'&idCliente='.$idCliente;?>');

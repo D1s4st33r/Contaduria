@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login_Model extends CI_Model {
 
 	private $date;
+	public $fecha;
 	private $ip;
 	public function __construct()
 	{
@@ -11,6 +12,7 @@ class Login_Model extends CI_Model {
 		setlocale(LC_TIME, "es_ES.UTF-8/UTF-8");
 
 		$this->date = date('l jS \of F Y h:i:s A');
+		$this->fecha = date('l jS \of F Y h:i:s A');
 		$days_dias = array(
 			'Monday'=>'Lunes',
 			'Tuesday'=>'Martes',
@@ -36,6 +38,7 @@ class Login_Model extends CI_Model {
 			);
 			foreach ($days_dias as $index => $value) {
 				$this->date =str_replace($index, $value, $this->date);
+				$this->fecha =str_replace($index, $value, $this->fecha);
 			}
 			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 				$this->ip = $_SERVER ['HTTP_CLIENT_IP'];

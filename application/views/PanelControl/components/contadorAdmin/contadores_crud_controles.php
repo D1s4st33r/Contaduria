@@ -1,7 +1,13 @@
-<div class="col-lg align-items-center">
-    <h6 class="lh-125 small text-muted p-2"> Registrados :  <?php echo $estadisticas["contadoresRegistradosEnSistema"];?></h6>
+<div class="col-sm-12 col-md-4 col-lg-5 mr-auto">
+    <p class="m-0 p-0 text-muted">
+        <small>(Registrados)</small>
+        <strong class="text-gray-dark">
+        <i class="fas fa-hashtag"></i> <?php echo $estadisticas["contadoresRegistradosEnSistema"];  ?>
+    </strong>
+    </p>
 </div>
-<div class="col-lg">
+
+<div class="col-lg py-2">
     <div class="container">
         <div class="row">
             <div class="col">
