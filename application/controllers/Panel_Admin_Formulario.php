@@ -86,7 +86,7 @@ public function getPanelCategorias()
 		{
 			$this->data["categoria"]=(isset($_GET['cat']) && !empty($_GET['cat'])) ? $_GET['cat'] : "" ;
 			$this->data['seccion']=(isset($_GET['sec']) && !empty($_GET['sec'])) ? $_GET['sec'] : "" ;
-			$this->data['div']=$post['div'];
+			$this->data['div']=($post['div']!=null)?$post['div']:"";
 			$this->data['preguntas']=$this->Paneles_Model->getPreguntas(strtoupper($this->data['categoria']));
 			$this->data['detalles']=$this->Paneles_Model->getDetallesporCat($this->data['categoria']);
 			
@@ -290,7 +290,7 @@ public function getPanelCategorias()
 					"tipo"=>"default",
 					"obligatorio"=>"0",
 					"soliarchivo"=>"0",
-					"nobreArchivo"=>"",
+					"nombreArchivo"=>"",
 					"preguntaOpcional"=>"pregunta opcional",
 					"tipoPreOpcional"=>"default",
 					"categoria"=>strtoupper($post['categoria'])

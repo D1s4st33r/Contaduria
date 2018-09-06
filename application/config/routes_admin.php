@@ -52,6 +52,7 @@ $route['addSeccion']            = "Panel_Admin_Formulario/addSeccion";
 $route['configUpSeccion']       = "Panel_Admin_Formulario/configUpSeccion";
 $route['configDeleteSeccion']   = "Panel_Admin_Formulario/configDelSeccion";
 $route['configUpdatePregunta']  = "Panel_Admin_Formulario/configUpPregunta";
+$route['addPregunta']="Panel_Admin_Formulario/addPregunta";
 $route['upPregunta']            = "Panel_Admin_Formulario/updatePregunta";
 $route['configDelPregunta']     = "Panel_Admin_Formulario/configDelPregunta";
 $route['deletePregunta']        = "Panel_Admin_Formulario/deletePregunta";

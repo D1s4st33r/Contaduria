@@ -50,11 +50,13 @@ foreach ($preguntas as $key => $value) {
               if($value2['preguntaOpcional']!=null){
                 echo '<div id="respuesta-preguntaOpc'.$value['id'].'"class=" row ml-1">';
                 echo $estatica_numerica.'.1-'.$value2['preguntaOpcional'];
-                echo '</div>';
                 if(strtoupper($value2['tipoPreOpcional'])!="DEFAULT"){
                   $data['input']=strtoupper($value2['tipoPreOpcional']);
-                  $data['id']="Opc".$value['id'];
-                  $this->load->view('Panelcontrol/components/inputs',$data);
+                  //$data['id']="Opc".$value['id'];
+                  $this->load->view('PanelControl/components/inputs',$data);
+                  echo '</div>';
+                }else{
+                  echo '</div>';
                 }
               }
             }

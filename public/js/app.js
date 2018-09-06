@@ -57,6 +57,9 @@ function hacerCambiosPostAsy(datosPost, urlDes, div) {
             div.hide();
             div.html(datos);
             div.fadeIn("slow");
+        },
+        error:function(data){
+            console.log(data)
         }
     });
 }
@@ -425,7 +428,8 @@ function agregarPregunta(iddiv, url) {
         post = {
             categoria: categoria_,
             seccion: seccion_,
-            texto: texto_
+            texto: texto_,
+            div:div_
         };
         hacerCambiosPostAsy(post, url, $("#preguntas" + div_));
     }
