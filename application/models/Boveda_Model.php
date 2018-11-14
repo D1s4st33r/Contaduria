@@ -45,6 +45,7 @@ class Boveda_Model extends CI_Model
             }
 
         }
+        
         return $usuarios;
     }
     public function getFoldersYCarpetas($array)

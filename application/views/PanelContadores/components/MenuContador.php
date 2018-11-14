@@ -29,6 +29,9 @@
         </a> -->
       </li>
     </ul>
-    
+    <button 
+        class="btn btn-outline-warning my-2 my-sm-0"
+        onclick="CerrarSesion('<?php echo base_url('CerrarSesion').$session;?>')"
+        >Cerrar Sesion</button>
   </div>
 </nav>

@@ -138,7 +138,18 @@ function ChangePssw(url, vista) {
         }
     }
 }
-
+function CerrarSesion(url){
+    $.ajax({
+        type: "GET", // la variable type guarda el tipo de la peticion GET,POST,..
+        url: url, //urlDes guarda la ruta hacia donde se hace la peticion
+        dataType: 'json',
+        success: function(datos) { //success es una funcion que se utiliza si el servidor retorna informacion
+            if(datos.sesionCerrada){
+                window.location.href = base_url;   
+            }
+        }
+    });
+}
 function agregarContador(url) {
     nombre_ = $("#nombre").val();
     apellido_ = $("#apellido").val();

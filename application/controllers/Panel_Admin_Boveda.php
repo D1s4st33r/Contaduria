@@ -32,7 +32,8 @@ class Panel_Admin_Boveda extends MY_Controller {
     public function Boveda()
     {
         $this->data['menu'] = "Boveda" ;
-        $this->data['clientes'] =$this->Boveda_Model->getEmpresasAdmin();
+	   $this->data['clientes'] =$this->Boveda_Model->getEmpresasAdmin();
+	//    var_dump($this->data['clientes']);
         $this->load->view('templates/headerLimpio');
 		$this->load->view('PanelControl/Panel',$this->data);
 		$this->load->view('templates/footer');

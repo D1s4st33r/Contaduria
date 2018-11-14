@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Inicio de Aplicación
 $route['default_controller']    = 'Login';
+$route['IniciarSesion'] = 'Login/IniciarSesion';
+$route['CerrarSesion'] = 'Login/CerrarSesion';
 
 //Aqui Van los Routes del Panel Admin 
 require_once(APPPATH.'config'.DIRECTORY_SEPARATOR."routes_admin.php"); 

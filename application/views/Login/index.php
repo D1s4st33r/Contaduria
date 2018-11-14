@@ -49,7 +49,7 @@
 				}
 			?>
 			<div class="col m-2 p-2 card text-white bg-dark mb-3 ">
-				<form action="<?php echo base_url()."Login/IniciarSesion" ?>" method="post" class="card-body" >
+				<form action="<?php echo base_url("IniciarSesion"); ?>" method="post" class="card-body" >
   					<div class="card-header">Iniciar Sesión</div>
 					<div class="input-group p-1 input-group-md mb-2">
 					

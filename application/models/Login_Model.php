@@ -92,7 +92,7 @@ class Login_Model extends CI_Model {
 							   ->get()
 							   ->result_array()[0]["COUNT(id)"];
 		$session = array("token" => $this->GenerarToken() ,
-						"expira" => (time()+(60*60)),
+						"expira" => (time()+(60*60*2)),
 						"direccionIP" => $this->ip,
 						'ultimaSession' => $this->date);
 
@@ -106,7 +106,14 @@ class Login_Model extends CI_Model {
 		}
 
 	}
-
+	public function CerrarSesionByID($id)
+	{
+		$session = array(
+			'token'=>0
+		);
+		$this->db->where('usuario_id', $id);
+		$this->db->update("sessiones",$session);
+	}
 	public function usuarioById($id){
 
 		$datos = $this->db->select('*')->from('usuario')->where('id',$id)->get()->result_array();

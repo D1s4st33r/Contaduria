@@ -23,6 +23,18 @@ class Login extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function CerrarSesion()
+	{
+		$get = $this->input->get();
+		if($get['id'] != NULL){
+			$this->Login_Model->CerrarSesionByID($get['id']);
+			echo json_encode(array(
+				"sesionCerrada" => true
+			));
+		}
+		
+	}
+
 	/**
 	 * [IniciorSesion][ metodo que valida el usuario que debe ser un correo y una clave y le asigna sesion o le actualiza ]
 	 * @param [array] [Post por variable global $_POST o en CI $this->input->post() ]

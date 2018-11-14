@@ -35,7 +35,7 @@
                         <div class="form-group">
                         <label for="razonSocial">Razón Social</label>
                         <input type="text" class="form-control form-control-sm"  name="razonSocial" id="razonSociald" aria-describedby="razonSocial" placeholder="Mi empresa SA de CV" required="required" value="<?php echo (isset($formulario['razonSocial'])) ? $formulario['razonSocial']:""?>">
-                        <small id="razonSocial" class="form-text text-muted">Ejemplo: <i>Mi empresa SA de CV</i></small>
+                        
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-auto">
@@ -49,14 +49,14 @@
                         <div class="form-group">
                         <label for="domicilio">Domicilio</label>
                         <input type="text" class="form-control form-control-sm"  name="domicilio" id="domiciliod" aria-describedby="domicilio" placeholder="SM 100 MZ 123 LT 123 CALLE 23 CP 775656" required="required" value="<?php echo (isset($formulario['domicilio'])) ? $formulario['domicilio']:""?>">
-                        <small id="domicilio" class="form-text text-muted">Ejemplo: <i>SM 100 MZ 123 LT 123 CALLE 23 CP 775656</i></small>
+                        
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-auto">
                         <div class="form-group">
                         <label for="correo">Email</label>
                         <input type="email" class="form-control form-control-sm"  name="correo" id="correod" aria-describedby="emailHelp" placeholder="miemail@gmail.com" required="required" value="<?php echo (isset($formulario['correo'])) ? $formulario['correo']:""?>">
-                        <small id="correo" class="form-text text-muted">miemail@gmail.com</small>
+                        
                         </div>
                     </div>
                 
@@ -64,7 +64,7 @@
                         <div class="form-group">
                         <label for="telefono">Telefono</label>
                         <input type="number" class="form-control form-control-sm"  name="telefono" id="telefonod" aria-describedby="Telefono" placeholder="99 88 23 23 23" required="required" value="<?php echo (isset($formulario['telefono'])) ? $formulario['telefono']:""?>">
-                        <small id="Telefono" class="form-text text-muted">Ejemplo: <i>99 88 23 23 23</i></small>
+                        
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-auto">
